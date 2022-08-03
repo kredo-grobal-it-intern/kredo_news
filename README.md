@@ -16,15 +16,6 @@ Github > Settings > SSH and GPG keys
 
 if you don't have any PHP version
 
-`brew install php@7.4`
-
-if you have any PHP version
-
-`phpenv install 7.4.29`
-
-`brew --prefix php@7.4`
-
-`echo 'export PATH="/opt/homebrew/opt/php@7.4/bin:$PATH"' >> ~/.zshrc`
 
 ##### install mysql 
 if you don't have mysql `brew install mysql`
@@ -33,6 +24,8 @@ if you don't have mysql `brew install mysql`
 `git clone git@github.com:kredo-grobal-it-intern/kredo_news.git`
 
 ##### 2. Go to your directory
+`cd Desktop`
+
 `cd kredo_news`
 
 ##### 3. Create .env
