@@ -1,11 +1,11 @@
 @extends('layouts.admin')
-@section('title', 'ニュースの新規作成')
+@section('title', 'create new news')
 
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <h2>ニュース新規作成</h2>
+                <h2>Create new news</h2>
                 <form action="{{ route('admin.news.create') }}" method="post" enctype="multipart/form-data">
 
                     @if (count($errors) > 0)
@@ -16,25 +16,25 @@
                         </ul>
                     @endif
                     <div class="form-group row">
-                        <label class="col-md-2" for="title">タイトル</label>
+                        <label class="col-md-2" for="title">Title</label>
                         <div class="col-md-10">
                             <input type="text" class="form-control" name="title" value="{{ old('title') }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2" for="body">本文</label>
+                        <label class="col-md-2" for="body">Main</label>
                         <div class="col-md-10">
                             <textarea class="form-control" name="body" rows="20">{{ old('body') }}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2" for="title">画像</label>
+                        <label class="col-md-2" for="title">Picture</label>
                         <div class="col-md-10">
                             <input type="file" class="form-control-file" name="image">
                         </div>
                     </div>
                     {{ csrf_field() }}
-                    <input type="submit" class="btn btn-primary" value="更新">
+                    <input type="submit" class="btn btn-primary" value="update">
                 </form>
             </div>
         </div>
