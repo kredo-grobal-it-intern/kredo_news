@@ -13,6 +13,7 @@ class News extends Model
         'title' => 'required',
         'body' => 'required',
     );
+    protected $fillable = ['title','body'];
 
     public function histories()
     {
