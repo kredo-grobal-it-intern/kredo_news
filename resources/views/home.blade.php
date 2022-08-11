@@ -19,5 +19,6 @@
             </div>
         </div>
     </div>
+    <a href="{{ route('admin.news') }}">Admin news</a>
 </div>
 @endsection
