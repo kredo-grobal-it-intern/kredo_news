@@ -6,7 +6,11 @@
         <div class="col-md-8">
             @foreach ($all_news as $news)
                 <div class="card">
-                    <img src="{{ asset('storage/image/' . $news->image_path) }}" alt="">
+                    @if ($news->image_path === null)
+                        <img src="{{ asset('images/no_image.png') }}" alt="NO IMAGE">
+                    @else
+                        <img src="{{ asset('storage/images/' . $news->image_path) }}" alt="News Image">
+                    @endif
                     <p>Title: {{ $news->title }}</p>
                     <p>Description: {{ $news->description }}</p>
                     <p>Content: {{ $news->content }}</p>
