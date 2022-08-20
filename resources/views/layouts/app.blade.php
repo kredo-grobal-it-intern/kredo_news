@@ -20,7 +20,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('style')
 </head>
-<body id="@yield('body_id','deafault')">
+<body id="@yield('body_id', 'default')">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
