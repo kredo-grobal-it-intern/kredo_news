@@ -15,10 +15,17 @@ class CreateNewsTable extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('body');
+            $table->unsignedBigInteger('source_id')->nullable(); // for API
+            $table->string('source_name')->nullable(); // for API
+            $table->text('title');
+            $table->text('description');
+            $table->text('content');
+            $table->string('author');
+            $table->string('url');
             $table->string('image_path')->nullable();
+            $table->date('published_at');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
