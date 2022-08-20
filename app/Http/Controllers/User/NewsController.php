@@ -14,4 +14,10 @@ class NewsController extends Controller
         return view('user.news.index')
             ->with('all_news', $all_news);
     }
+
+    public function show($news_id){
+        $news = News::findOrFail($news_id);
+        return view('user.news.detail')
+            ->with('news',$news);
+    }
 }
