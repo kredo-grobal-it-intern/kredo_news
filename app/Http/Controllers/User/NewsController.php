@@ -11,4 +11,6 @@ class NewsController extends Controller
     {
         return view('user.news.index');
     }
+
+    // test test
 }
