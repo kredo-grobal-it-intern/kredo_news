@@ -12,7 +12,7 @@
         <div class="col-4 mx-auto">
             <form method="POST" action="{{ route('register') }}">
                 @csrf
-                <img src="{{asset('/storage/images/logo3.PNG')}}" alt="logo2" style="height:100px; width:100px;">
+                <img src="{{asset('/images/logo3.PNG')}}" alt="logo2" style="height:100px; width:100px;">
                 <p class="h4 text-white text-center">Create your CCC acount</p>
                 <div class="form-check text-white mb-4 text-center">
                     <p class="me-4">Already have an account?
