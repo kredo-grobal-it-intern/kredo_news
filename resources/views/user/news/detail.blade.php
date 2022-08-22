@@ -19,7 +19,7 @@
             </div>
 
             <div class="card-body justify-content-center mx-auto">
-                <img src="{{ asset('storage/image/' . $news->image_path) }}" alt="">
+                <img src="{{ asset('storage/images/' . $news->image_path) }}" alt="">
                 <p>caption for image? description?</p>
                 <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum nisi fugiat ad similique et placeat neque. Aliquam nulla odit assumenda dignissimos sit quibusdam, optio ab delectus maxime fugit esse adipisci.
@@ -111,7 +111,7 @@
           {{-- @foreach ( as ) --}}
              <div class="row">
                 <div class="col-5 my-auto mx-auto ps-4">
-                    <img src="{{ asset('storage/image/' . $news->image_path) }}" alt="" style="width:100px">
+                    <img src="{{ asset('storage/images/' . $news->image_path) }}" alt="" style="width:100px">
                 </div>
                 <div class="col-7">
                     <p class="fw-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit possimus cum tempora</p>
@@ -125,7 +125,7 @@
              <hr>
              <div class="row">
                 <div class="col-5 my-auto mx-auto ps-4">
-                    <img src="{{ asset('storage/image/' . $news->image_path) }}" alt="" style="width:100px">
+                    <img src="{{ asset('storage/images/' . $news->image_path) }}" alt="" style="width:100px">
                 </div>
                 <div class="col-7">
                     <p class="fw-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit possimus cum tempora</p>
@@ -139,7 +139,7 @@
              <hr>
              <div class="row">
                 <div class="col-5 my-auto mx-auto ps-4">
-                    <img src="{{ asset('storage/image/' . $news->image_path) }}" alt="" style="width:100px">
+                    <img src="{{ asset('storage/images/' . $news->image_path) }}" alt="" style="width:100px">
                 </div>
                 <div class="col-7">
                     <p class="fw-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit possimus cum tempora</p>
