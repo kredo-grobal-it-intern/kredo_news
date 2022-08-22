@@ -23,6 +23,8 @@ Auth::routes();
 Route::get('/', [NewsController::class, 'index'])->name('news.index');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+Route::get('/{news_id}',[NewsController::class, 'show'])->name('news.show');
+
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('news/create', [AdminNewsController::class, 'add'])->name('admin.news.add');
     Route::post('news/create', [AdminNewsController::class, 'create'])->name('admin.news.create');
