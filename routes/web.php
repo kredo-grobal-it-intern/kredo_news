@@ -27,10 +27,12 @@ Route::get('/{news_id}',[NewsController::class, 'show'])->name('news.show');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('news/create', [AdminNewsController::class, 'add'])->name('admin.news.add');
-    Route::post('news/create', [AdminNewsController::class, 'create'])->name('admin.news.create');
+    Route::post('news/store', [AdminNewsController::class, 'store'])->name('admin.news.store');
+    Route::get('news/edit/{news_id}', [AdminNewsController::class, 'edit'])->name('admin.news.edit');
+    Route::patch('news/{news_id}', [AdminNewsController::class, 'update'])->name('admin.news.update');;
+    // Route::post('news/create', [AdminNewsController::class, 'create'])->name('admin.news.create');
+
     Route::get('news', [AdminNewsController::class, 'index'])->name('admin.news');
-    Route::get('news/edit', [AdminNewsController::class, 'edit'])->name('admin.news.edit');
-    Route::get('news/edit', [AdminNewsController::class, 'update'])->name('admin.news.update');;
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
