@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Storage;
 class NewsController extends Controller
 {
     private $news;
-    const LOCAL_STORAGE_FOLDER = 'public/image/';
+    const LOCAL_STORAGE_FOLDER = 'public/images/';
 
     public function __construct(News $news)
     {
@@ -110,7 +110,7 @@ class NewsController extends Controller
           'published_at' => 'required',
           'author'       => 'required',
           'content'      => 'required',
-          'image_path'   => 'required|max:1048|mimes:png,jpg,jpeg,gif'
+          'image_path'   => 'max:1048|mimes:png,jpg,jpeg,gif'
         ]);
   
         $news->title        = $request->title;

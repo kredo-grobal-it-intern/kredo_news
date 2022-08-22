@@ -64,7 +64,7 @@
 
       
       <label for="image-path" class="form-label mt-4 fs-4 ">■Image</label>
-      <img src="{{ asset('storage/image/' . $news->image_path) }}" alt="{{ $news->image_path }}" class="w-50 d-block ms-3">
+      <img src="{{ asset('storage/images/' . $news->image_path) }}" alt="{{ $news->image_path }}" class="w-50 d-block ms-3">
       <input type="file" name="image_path" id="image-path" class="d-block ms-3 mt-2">
       @error('image_path')
       <p class="text-danger small ms-3">Image is required.</p>
