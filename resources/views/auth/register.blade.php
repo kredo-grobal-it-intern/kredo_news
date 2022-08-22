@@ -16,7 +16,7 @@
                 <p class="h4 text-white text-center">Create your CCC acount</p>
                 <div class="form-check text-white mb-4 text-center">
                     <p class="me-4">Already have an account?
-                        <a href="" class="text-white">Sign up</a>
+                        <a href="" class="text-white">Sign in</a>
                     </p>
                 </div>
 
