@@ -20,4 +20,10 @@ class NewsController extends Controller
         return view('user.news.detail')
             ->with('news',$news);
     }
+    public function filter(){
+        // tentative method
+        $all_news = News::all();
+        return view('user.news.filter')
+            ->with('all_news', $all_news);
+    }
 }
