@@ -7,11 +7,10 @@
 @section('content')
 <div class="container-fluid  justify-content-center text-center" style="margin-top:100px;">
     <div class="col-md-4 mx-auto col-sm-12">
-        <img src="{{asset('/storage/image/logo3.PNG')}}" alt="logo2" style="height:auto; width:100px;">
         <p class="h4 text-white text-center">Log in to your CCC account</p>
-        <div class="form-check text-white mb-4 text-center ms-0">
+        <div class="form-check text-white mb-4 text-center ps-0">
             <p class="ms-0">Not member yet?
-                <a href="" class="text-white">Sign up</a>
+                <a href="{{ route('register') }}" class="text-white">Sign up</a>
             </p>
         </div>
             <form method="POST" action="{{ route('login') }}">
@@ -49,6 +48,13 @@
                     </div>
                 </div>
         </form>
+        <div class="form-check text-white mt-3 text-center ps-0">
+            <p>Or Login with:</p>
+        </div>
+        <div class="row mt-3 d-block">
+            <a href="" ><i class="fab fa-facebook-square fs-1 text-white"></i></a>
+            <a href="" ><i class="fa-brands fa-google fs-1 text-white"></i></a>
+        </div>
     </div>
 </div>
 @endsection
