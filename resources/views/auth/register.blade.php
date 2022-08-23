@@ -16,7 +16,7 @@
                 <p class="h4 text-white text-center">Create your CCC acount</p>
                 <div class="form-check text-white mb-4 text-center">
                     <p class="me-4">Already have an account?
-                        <a href="" class="text-white">Sign in</a>
+                        <a href="{{ route('login') }}" class="text-white">Sign in</a>
                     </p>
                 </div>
 
@@ -28,8 +28,8 @@
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
-                        @enderror  
-                    </div> 
+                        @enderror
+                    </div>
                 </div>
 
                 <div class="row mb-3">
@@ -51,7 +51,7 @@
                                 <option> text 1 </option>
                                 <option> text 2 </option>
                                 <option> text 3 </option>
-                        </select> 
+                        </select>
 
                          {{-- <select class="form-control" name="country">
                         <option value="">Select a country</option>
@@ -60,7 +60,7 @@
                         @endforeach
                     </select> --}}
 
-                        
+
 
                         @error('nationality')
                             <span class="invalid-feedback" role="alert">
@@ -77,7 +77,7 @@
                             <option> text 1 </option>
                             <option> text 2 </option>
                             <option> text 3 </option>
-                    </select> 
+                    </select>
 
                     {{-- <select class="form-control" name="country">
                         <option value="">Select a country</option>
@@ -115,7 +115,7 @@
                 <div class="row mb-0">
                     <div class="col-md-10 offset-md-1">
                         <button type="submit" class="btn btn-danger w-100">
-                            {{ __('Create account') }} 
+                            {{ __('Create account') }}
                         </button>
                     </div>
                 </div>
