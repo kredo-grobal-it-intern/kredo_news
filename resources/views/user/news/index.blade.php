@@ -17,6 +17,7 @@
                     <p>Author: {{ $news->author }}</p>
                     <p>Link: {{ $news->url }}</p>
                     <p>Published At: {{ $news->published_at }}</p>
+                    <a href="{{ route('admin.news.edit', $news->id) }}">Detail</a>
                 </div>
             @endforeach
         </div>
