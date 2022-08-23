@@ -9,7 +9,7 @@
 @section('content')
 <div class="container justify-content-center text-center" style="margin-top:100px">
     <div class="row justify-content-center">
-        <div class="col-4 mx-auto">
+        <div class="col-md-4 mx-auto col-sm-12">
             <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <img src="{{asset('/images/logo3.PNG')}}" alt="logo2" style="height:100px; width:100px;">
