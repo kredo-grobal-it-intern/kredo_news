@@ -68,9 +68,20 @@
             </nav>
             {{-- ここまでナビゲーションバー --}}
 
-            <main class="py-4">
+            <main>
                 {{-- コンテンツをここに入れるため、@yieldで空けておきます。 --}}
-                @yield('content')
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-2 " style="background-color:#052962; height:100vh;">
+                      <img src="{{ asset('storage/images/logo_transparent.png') }}" alt="" class="w-50 d-block mx-auto">
+                      <a href="{{ route('admin.show.dashboard') }}" class="btn d-block text-decoration-none text-white">Dashboard</a>
+                      <a href="" class="btn d-block text-decoration-none text-white">News</a>
+                      <a href="" class="btn d-block text-decoration-none text-white">Comments</a>
+                      <a href="" class="btn d-block text-decoration-none text-white">Users</a>
+                    </div>
+                    <div class="col-10 mt-5">
+                      @yield('content')
+                  </div>
             </main>
         </div>
     </body>

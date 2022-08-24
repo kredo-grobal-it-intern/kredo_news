@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+  <a href="{{ route('admin.show.dashboard') }}" class="btn small">Admin Dashboard(Tentative)</a>
     <div class="row justify-content-center">
         <div class="col-md-8">
             @foreach ($all_news as $news)
@@ -17,7 +18,7 @@
                     <p>Author: {{ $news->author }}</p>
                     <p>Link: {{ $news->url }}</p>
                     <p>Published At: {{ $news->published_at }}</p>
-                    <a href="{{ route('admin.news.edit', $news->id) }}">Detail</a>
+                    <a href="{{ route('admin.news.edit', $news->id) }}">Edit</a>
                 </div>
             @endforeach
         </div>

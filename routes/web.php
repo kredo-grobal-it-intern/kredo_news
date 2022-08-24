@@ -27,14 +27,19 @@ Route::get('/{news_id}',[NewsController::class, 'show'])->name('news.show');
 // tentative route to filtered page for user
 Route::get('/search/category',[NewsController::class, 'filter'])->name('news.filter');
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
-    Route::get('news/create', [AdminNewsController::class, 'add'])->name('admin.news.add');
-    Route::post('news/store', [AdminNewsController::class, 'store'])->name('admin.news.store');
-    Route::get('news/edit/{news_id}', [AdminNewsController::class, 'edit'])->name('admin.news.edit');
-    Route::patch('news/{news_id}', [AdminNewsController::class, 'update'])->name('admin.news.update');;
-    // Route::post('news/create', [AdminNewsController::class, 'create'])->name('admin.news.create');
+Route::group(['middleware' => 'auth'],function(){
 
-    Route::get('news', [AdminNewsController::class, 'index'])->name('admin.news');
+  Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+      Route::get('news/create', [AdminNewsController::class, 'create'])->name('news.create');
+      Route::post('news/store', [AdminNewsController::class, 'store'])->name('news.store');
+      Route::get('news/edit/{news_id}', [AdminNewsController::class, 'edit'])->name('news.edit');
+      Route::patch('news/{news_id}', [AdminNewsController::class, 'update'])->name('news.update');;
+
+      Route::get('dashboard', [AdminNewsController::class, 'showDashboard'])->name('show.dashboard');
+      Route::get('news/show', [AdminNewsController::class, 'showNewsList'])->name('show.news.list');
+
+  });
+
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
