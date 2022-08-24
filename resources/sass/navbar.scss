@@ -1,0 +1,23 @@
+.navbar-custom {
+    background-color: #052962;
+
+    .logo-area {
+        width: 90px;
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+        }
+    }
+
+    .search {
+        color: #c8c0c0;
+        background-color: #2A4382;
+        text-decoration: none;
+        display: inline-block;
+        padding: 8px 0;
+        width: 200px;
+        border-radius: 10px;
+    }
+}
