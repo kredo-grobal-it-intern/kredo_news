@@ -5,7 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\User\NewsController;
-
+use App\Http\Controllers\User\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +25,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/{news_id}',[NewsController::class, 'show'])->name('news.show');
 // tentative route to filtered page for user
-Route::get('/search/category',[NewsController::class, 'filter'])->name('news.filter');
+Route::get('/profile/{user_id}',[UserController::class, 'index'])->name('user.profile.index');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('news/create', [AdminNewsController::class, 'add'])->name('admin.news.add');
