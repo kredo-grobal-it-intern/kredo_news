@@ -17,37 +17,37 @@ class CategorySeeder extends Seeder
         DB::table('categories')->insert([
             [
                 'name' => 'Politics',
-                'image' => 'politics.png',
+                'image' => 'politics.jpg',
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ],
             [
                 'name' =>  'Bussiness',
-                'image' => 'business.png',
+                'image' => 'business.jpg',
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ],
             [
                 'name' => 'Sports',
-                'image' => 'sports.png',
+                'image' => 'sports.jpg',
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ],
             [
                 'name' => 'Travel',
-                'image' => 'travel.png',
+                'image' => 'travel.jpg',
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ],
             [
                 'name' => 'Health',
-                'image' => 'health.png',
+                'image' => 'health.jpg',
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ],
             [
                 'name' => 'Entertainment',
-                'image' => 'entertainment.png',
+                'image' => 'entertainment.jpg',
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ],

@@ -15,7 +15,11 @@
         @foreach ($all_news as $news)
         <div class="col-lg-3 col-md-6 mb-4">
             <div class="card">
+                @if($news->image_path)
                 <img src="{{asset('images/' . $news->image_path)}}" alt="" class="card-img-top news-img">
+                @else
+                <img src="{{asset('images/no_image.png')}}" alt="" class="card-img-top news-img">
+                @endif
                 <div class="card-body">
                     <p class="fw-bold h2">{{$news->title}}</p>
                     <p class="mb-0">{{$news->description}}</p>
