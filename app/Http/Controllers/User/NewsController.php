@@ -26,4 +26,11 @@ class NewsController extends Controller
         return view('user.news.filter')
             ->with('all_news', $all_news);
     }
+
+    public function favorites()
+    {
+
+        return view('favorite.index')
+            ->with('favorites', []);
+    }
 }

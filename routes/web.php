@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\User\NewsController;
+use Illuminate\Support\Facades\Auth;
+
 
 
 /*
@@ -46,3 +48,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('profile/edit', [ProfileController::class, 'edit'])->name('admin.profile.edit');
     Route::get('profile/post', [ProfileController::class, 'update'])->name('admin.profile.post');
 });
+ 
+Route::get('/favorites', [NewsController::class,'favorites'])->name('user.news.favorites');
