@@ -4,7 +4,9 @@
             <div class="modal-content p-4">
                 <div class="search-header pb-2">
                     <h5 class="modal-title text-center fw-bold">Search Filter</h5>
-                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                    <div class="text-end">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
                 </div>
                 <div class="search-body px-2">
                     <form action="">

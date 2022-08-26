@@ -27846,6 +27846,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/sass/category.scss":
+/*!**************************************!*\
+  !*** ./resources/sass/category.scss ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./resources/sass/navbar.scss":
 /*!************************************!*\
   !*** ./resources/sass/navbar.scss ***!
@@ -40299,6 +40312,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			"css/profile": 0,
 /******/ 			"css/admin": 0,
 /******/ 			"css/navbar": 0,
+/******/ 			"css/category": 0,
 /******/ 			"css/register": 0
 /******/ 		};
 /******/ 		
@@ -40349,13 +40363,14 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/login","css/profile","css/admin","css/navbar","css/register"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/login","css/profile","css/admin","css/navbar","css/register"], () => (__webpack_require__("./resources/sass/app.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/login","css/profile","css/admin","css/navbar","css/register"], () => (__webpack_require__("./resources/sass/admin.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/login","css/profile","css/admin","css/navbar","css/register"], () => (__webpack_require__("./resources/sass/profile.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/login","css/profile","css/admin","css/navbar","css/register"], () => (__webpack_require__("./resources/sass/login.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/login","css/profile","css/admin","css/navbar","css/register"], () => (__webpack_require__("./resources/sass/register.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/login","css/profile","css/admin","css/navbar","css/register"], () => (__webpack_require__("./resources/sass/navbar.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/login","css/profile","css/admin","css/navbar","css/category","css/register"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/login","css/profile","css/admin","css/navbar","css/category","css/register"], () => (__webpack_require__("./resources/sass/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/login","css/profile","css/admin","css/navbar","css/category","css/register"], () => (__webpack_require__("./resources/sass/admin.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/login","css/profile","css/admin","css/navbar","css/category","css/register"], () => (__webpack_require__("./resources/sass/profile.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/login","css/profile","css/admin","css/navbar","css/category","css/register"], () => (__webpack_require__("./resources/sass/login.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/login","css/profile","css/admin","css/navbar","css/category","css/register"], () => (__webpack_require__("./resources/sass/register.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/login","css/profile","css/admin","css/navbar","css/category","css/register"], () => (__webpack_require__("./resources/sass/category.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/login","css/profile","css/admin","css/navbar","css/category","css/register"], () => (__webpack_require__("./resources/sass/navbar.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
