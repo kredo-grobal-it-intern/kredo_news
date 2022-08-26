@@ -7,6 +7,7 @@
 @section('content')
 <div class="container-fluid  justify-content-center text-center" style="margin-top:100px;">
     <div class="col-md-4 mx-auto col-sm-12">
+        <img src="{{asset('/images/logo3.PNG')}}" alt="logo2" style="height:auto; width:100px;">
         <p class="h4 text-white text-center">Log in to your CCC account</p>
         <div class="form-check text-white mb-4 text-center ps-0">
             <p class="ms-0">Not member yet?

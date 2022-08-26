@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }} | @yield('title')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -24,9 +24,9 @@
 </head>
 <body id="@yield('body_id', 'default')">
     <div id="app">
-        
+
         <header>
-            @include('layouts.body.header')
+            @include('layouts.body.navbar')
         </header>
 
         <main class="py-4">
