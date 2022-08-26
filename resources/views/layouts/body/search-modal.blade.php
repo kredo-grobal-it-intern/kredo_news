@@ -33,38 +33,7 @@
                                 <div class="mb-3">
                                     <label class="form-label fw-bold d-block">America</label>
 
-                                    <div class="d-lg-flex justify-content-between flex-wrap p-2">
-                                        <div class="form-check form-check-inline">
-                                            <input type="checkbox" class="form-check-input">
-                                            <label for="" class="form-check-lebel">America</label>
-                                        </div>
-
-                                        <div class="form-check form-check-inline">
-                                            <input type="checkbox" class="form-check-input">
-                                            <label for="" class="form-check-lebel">America</label>
-                                        </div>
-
-                                        <div class="form-check form-check-inline">
-                                            <input type="checkbox" class="form-check-input">
-                                            <label for="" class="form-check-lebel">America</label>
-                                        </div>
-
-                                        <div class="form-check form-check-inline">
-                                            <input type="checkbox" class="form-check-input">
-                                            <label for="" class="form-check-lebel">America</label>
-                                        </div>
-
-                                        <div class="form-check form-check-inline">
-                                            <input type="checkbox" class="form-check-input">
-                                            <label for="" class="form-check-lebel">America</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label fw-bold d-block">America</label>
-
-                                    <div class="d-lg-flex justify-content-between flex-wrap p-2">
+                                    <div class="d-flex justify-content-between flex-wrap p-2">
                                         <div class="form-check form-check-inline">
                                             <input type="checkbox" class="form-check-input">
                                             <label for="" class="form-check-lebel">America</label>
@@ -126,7 +95,7 @@
                                 <div class="mb-3">
                                     <label class="form-label fw-bold d-block">America</label>
 
-                                    <div class="d-lg-flex justify-content-between flex-wrap p-2">
+                                    <div class="d-flex justify-content-between flex-wrap p-2">
                                         <div class="form-check form-check-inline">
                                             <input type="checkbox" class="form-check-input">
                                             <label for="" class="form-check-lebel">America</label>
@@ -157,7 +126,38 @@
                                 <div class="mb-3">
                                     <label class="form-label fw-bold d-block">America</label>
 
-                                    <div class="d-lg-flex justify-content-between flex-wrap p-2">
+                                    <div class="d-flex justify-content-between flex-wrap p-2">
+                                        <div class="form-check form-check-inline">
+                                            <input type="checkbox" class="form-check-input">
+                                            <label for="" class="form-check-lebel">America</label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline">
+                                            <input type="checkbox" class="form-check-input">
+                                            <label for="" class="form-check-lebel">America</label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline">
+                                            <input type="checkbox" class="form-check-input">
+                                            <label for="" class="form-check-lebel">America</label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline">
+                                            <input type="checkbox" class="form-check-input">
+                                            <label for="" class="form-check-lebel">America</label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline">
+                                            <input type="checkbox" class="form-check-input">
+                                            <label for="" class="form-check-lebel">America</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold d-block">America</label>
+
+                                    <div class="d-flex justify-content-between flex-wrap p-2">
                                         <div class="form-check form-check-inline">
                                             <input type="checkbox" class="form-check-input">
                                             <label for="" class="form-check-lebel">America</label>
