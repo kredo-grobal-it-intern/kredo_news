@@ -15,14 +15,15 @@ class News extends Model
         'body' => 'required',
     );
     protected $fillable = [
+        'country_id',
+        'category_id',
         'source_id',
-        'source_name',
         'title',
         'description',
         'content',
         'author',
         'url',
-        'image_path',
+        'image',
         'published_at',
     ];
 

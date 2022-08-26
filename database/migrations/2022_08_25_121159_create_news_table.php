@@ -15,17 +15,36 @@ class CreateNewsTable extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('source_id')->nullable(); // for API
-            $table->string('source_name')->nullable(); // for API
+            $table->unsignedBigInteger('country_id')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->unsignedBigInteger('source_id')->nullable();
             $table->text('title');
             $table->text('description');
             $table->text('content');
             $table->string('author');
             $table->string('url');
-            $table->string('image_path')->nullable();
+            $table->string('image')->nullable();
             $table->date('published_at');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('country_id')
+                ->references('id')
+                ->on('countries')
+                ->onDelete('set null')
+                ->onUpdate('cascade');
+
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->onDelete('set null')
+                ->onUpdate('cascade');
+
+            $table->foreign('source_id')
+                ->references('id')
+                ->on('sources')
+                ->onDelete('set null')
+                ->onUpdate('cascade');
         });
     }
 
