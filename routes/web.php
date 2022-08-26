@@ -29,7 +29,7 @@ Route::get('/{news_id}',[NewsController::class, 'show'])->name('news.show');
 // tentative route to filtered page for user
 Route::get('/search/category',[NewsController::class, 'filter'])->name('news.filter');
 
-Route::get('/category/{id}',[CategoryController::class, 'show'])->name('news.category');
+Route::get('/category/{category_id}',[CategoryController::class, 'show'])->name('news.category');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('news/create', [AdminNewsController::class, 'add'])->name('admin.news.add');
@@ -54,4 +54,5 @@ Route::group(['middleware' => 'auth'],function(){
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('profile/edit', [ProfileController::class, 'edit'])->name('admin.profile.edit');
     Route::get('profile/post', [ProfileController::class, 'update'])->name('admin.profile.post');
+    });
 });
