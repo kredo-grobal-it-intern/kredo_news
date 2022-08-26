@@ -21,21 +21,17 @@ class NewsController extends Controller
       $this->news = $news;
     }
 
-    public function add()
+    public function showDashboard()
     {
-        return view('admin.news.create');
+      return view('admin.dashboard');
     }
 
-
-    public function index(Request $request)
+    public function showNewsList(Request $request)
     {
-        $cond_title = $request->cond_title;
-        if ($cond_title != '') {
-            $posts = News::where('title', $cond_title)->get();
-        } else {
-            $posts = News::all();
-        }
-        return view('admin.news.index', ['posts' => $posts, 'cond_title' => $cond_title]);
+
+      $all_news = $this->news->orderBy('published_at')->paginate(10);
+      return view('admin.news.show')
+                ->with('all_news', $all_news);
     }
 
     public function create(Request $request)
