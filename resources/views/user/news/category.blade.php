@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row justify-content-center back">
         <img src="{{asset('images/' . $category->image)}}" alt="{{$category->name}}">
-        <h1 class="text-center fw-bold">{{$category->name}}</h1>
+        <h1 class="text-center fw-bold category_title">{{$category->name}}</h1>
     </div>
 </div>
 <div class="container-fluid">
