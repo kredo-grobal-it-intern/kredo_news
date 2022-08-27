@@ -39,13 +39,11 @@
                     @include('layouts.body.search-modal')
                 </li>
                 @guest
-                    @if (Route::has('login'))
+                    @if (!Route::is('login') && !Route::is('register'))
                         <li class="nav-item me-4">
                             <a class="nav-link text-white fw-bold" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
-                    @endif
 
-                    @if (Route::has('register'))
                         <li class="nav-item">
                             <a class="nav-link text-white fw-bold" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
@@ -53,7 +51,7 @@
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle text-white fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}
+                            {{ Auth::user()->username }}
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
