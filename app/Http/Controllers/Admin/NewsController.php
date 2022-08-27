@@ -26,12 +26,17 @@ class NewsController extends Controller
       return view('admin.dashboard');
     }
 
-    public function showNewsList(Request $request)
+    public function showNewsList()
     {
 
       $all_news = $this->news->orderBy('published_at')->paginate(10);
       return view('admin.news.show')
                 ->with('all_news', $all_news);
+    }
+
+    public function showUsersList()
+    {
+      return view('admin.users.show');
     }
 
     public function create(Request $request)

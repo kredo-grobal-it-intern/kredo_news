@@ -76,13 +76,13 @@
                 {{-- コンテンツをここに入れるため、@yieldで空けておきます。 --}}
                 <div class="container-fluid">
                   <div class="row">
-                    <div class="col-2 " style="background-color:#052962; height:100％;">
+                    <div class="col-2 " style="background-color:#052962; min-height:100vh; height:100％;">
                       <img src="{{ asset('storage/images/logo_transparent.png') }}" alt="" class="w-50 d-block mx-auto">
                       <a href="{{ route('news.index') }}" class="btn d-block text-decoration-none text-white">Top</a>
                       <a href="{{ route('admin.show.dashboard') }}" class="btn d-block text-decoration-none text-white">Dashboard</a>
                       <a href="{{ route('admin.show.news.list') }}" class="btn d-block text-decoration-none text-white">News</a>
                       <a href="" class="btn d-block text-decoration-none text-white">Comments</a>
-                      <a href="" class="btn d-block text-decoration-none text-white">Users</a>
+                      <a href="{{ route('admin.show.users.list') }}" class="btn d-block text-decoration-none text-white">Users</a>
                     </div>
                     <div class="col-10 mt-5">
                       @yield('content')

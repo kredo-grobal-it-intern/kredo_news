@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\CommentController as AdminCommentController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\User\NewsController;
 use App\Http\Controllers\User\CategoryController;
@@ -31,13 +33,6 @@ Route::get('/search/category',[NewsController::class, 'filter'])->name('news.fil
 
 Route::get('/category/{category_id}',[CategoryController::class, 'show'])->name('news.category');
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
-    Route::get('news/create', [AdminNewsController::class, 'add'])->name('admin.news.add');
-    Route::post('news/store', [AdminNewsController::class, 'store'])->name('admin.news.store');
-    Route::get('news/edit/{news_id}', [AdminNewsController::class, 'edit'])->name('admin.news.edit');
-    Route::patch('news/{news_id}', [AdminNewsController::class, 'update'])->name('admin.news.update');;
-    // Route::post('news/create', [AdminNewsController::class, 'create'])->name('admin.news.create');
-
 Route::group(['middleware' => 'auth'],function(){
 
   Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
@@ -47,12 +42,26 @@ Route::group(['middleware' => 'auth'],function(){
       Route::patch('news/{news_id}', [AdminNewsController::class, 'update'])->name('news.update');;
 
       Route::get('dashboard', [AdminNewsController::class, 'showDashboard'])->name('show.dashboard');
-      Route::get('news/show', [AdminNewsController::class, 'showNewsList'])->name('show.news.list');
+      
+    Route::group(['prefix' => 'news', 'as' => 'news.'], function () {
+      Route::get('show', [AdminNewsController::class, 'show'])->name('show');
+
+    });
+    Route::group(['prefix' => 'comments', 'as' => 'comments.'], function () {
+      Route::get('show', [AdminCommentController::class, 'show'])->name('show');
+
+    });
+
+    Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
+      Route::get('show', [AdminUserController::class, 'show'])->name('show');
+
+    });
+
+
   });
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('profile/edit', [ProfileController::class, 'edit'])->name('admin.profile.edit');
     Route::get('profile/post', [ProfileController::class, 'update'])->name('admin.profile.post');
-    });
 });
