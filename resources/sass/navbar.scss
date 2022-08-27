@@ -1,0 +1,59 @@
+/* ----------------------------------------------------------
+navbar
+---------------------------------------------------------- */
+
+.navbar-custom {
+    background-color: #052962;
+
+    .logo-area {
+        width: 90px;
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+        }
+    }
+
+    .search {
+        color: #c8c0c0;
+        background-color: #2A4382;
+        text-decoration: none;
+        display: inline-block;
+        padding: 8px 0;
+        width: 200px;
+        border-radius: 10px;
+    }
+}
+
+/* ----------------------------------------------------------
+search-modal
+---------------------------------------------------------- */
+
+
+.search-header {
+    border-bottom: 1px solid #B5AAAA;
+}
+
+.btn-custom {
+    padding: 10px 0px;
+    width: 220px;
+    color: #fff;
+    background-color: #052962;
+    border-radius: 12px;
+
+    &:hover {
+        opacity: 0.7;
+    }
+}
+
+/* ----------------------------------------------------------
+search-modal-responsive
+---------------------------------------------------------- */
+
+
+@media (min-width:992px) {
+    .modal-dialog-custom {
+        max-width: 50%;
+    }
+}
