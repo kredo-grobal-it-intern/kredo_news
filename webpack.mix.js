@@ -17,5 +17,6 @@ const mix = require('laravel-mix');
  .sass('resources/sass/login.scss', 'public/css')
  .sass('resources/sass/register.scss', 'public/css')
  .sass('resources/sass/favorite.scss', 'public/css')
- .sass('resources/sass/category.scss', 'public/css');
+ .sass('resources/sass/category.scss', 'public/css')
+ .sass('resources/sass/navbar.scss', 'public/css');
 
