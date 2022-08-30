@@ -27,10 +27,10 @@ class NewsController extends Controller
             ->with('all_news', $all_news);
     }
 
-    public function favorites()
+    public function showFavoritePage()
     {
-
-        return view('favorite.index')
-            ->with('favorites', []);
+        $all_news = News::all();
+        return view('user.news.favorite')->with('all_news',$all_news);
+           
     }
 }
