@@ -36,14 +36,14 @@ Route::get('/category/{category_id}',[CategoryController::class, 'show'])->name(
 Route::group(['middleware' => 'auth'],function(){
 
   Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-      Route::get('news/create', [AdminNewsController::class, 'create'])->name('news.create');
-      Route::post('news/store', [AdminNewsController::class, 'store'])->name('news.store');
-      Route::get('news/edit/{news_id}', [AdminNewsController::class, 'edit'])->name('news.edit');
-      Route::patch('news/{news_id}', [AdminNewsController::class, 'update'])->name('news.update');;
-
-      Route::get('dashboard', [AdminNewsController::class, 'showDashboard'])->name('show.dashboard');
-      
+    
+    Route::get('dashboard', [AdminNewsController::class, 'showDashboard'])->name('show.dashboard');
+    
     Route::group(['prefix' => 'news', 'as' => 'news.'], function () {
+      Route::get('create', [AdminNewsController::class, 'create'])->name('create');
+      Route::post('store', [AdminNewsController::class, 'store'])->name('store');
+      Route::get('edit/{news_id}', [AdminNewsController::class, 'edit'])->name('edit');
+      Route::patch('{news_id}', [AdminNewsController::class, 'update'])->name('update');;
       Route::get('show', [AdminNewsController::class, 'show'])->name('show');
 
     });
@@ -54,14 +54,15 @@ Route::group(['middleware' => 'auth'],function(){
 
     Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
       Route::get('show', [AdminUserController::class, 'show'])->name('show');
-
+      Route::delete('destroy/{user_id}', [AdminUserController::class, 'destroy'])->name('destroy');
+      
     });
 
 
+    Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
+        Route::get('edit', [ProfileController::class, 'edit'])->name('edit');
+        Route::get('post', [ProfileController::class, 'update'])->name('post');
+    });
   });
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
-    Route::get('profile/edit', [ProfileController::class, 'edit'])->name('admin.profile.edit');
-    Route::get('profile/post', [ProfileController::class, 'update'])->name('admin.profile.post');
-});
