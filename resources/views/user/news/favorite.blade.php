@@ -2,10 +2,18 @@
 
 
 @section('title', 'My favorite')
-
+@section('style')
+<link href="{{ mix('css/favorite.css') }}" rel="stylesheet">
+@endsection
 @section('content')
+    
   <div class="container-fluid">
+
     <div class="row ">
+        <div class="col-md-12">
+            <hr>
+            <h2 class="header-newstitle">News site</h2>
+        </div>
         @foreach ($all_news as $news)
         <div class="col-lg-3 col-md-6 mb-4">
             <div class="card">
