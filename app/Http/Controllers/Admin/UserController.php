@@ -60,10 +60,17 @@ class UserController extends Controller
      */
     public function destroy($user_id)
     {
-      $this->user->destroy($user_id);
+      if($this->user->destroy($user_id)) {
+        return response()->json([
+          'message' => 'User deactivated successfully',
+        ], 200);
+      } else {
+        return response()->json([
+          'message' => 'Error deactivating user'
+        ], 500);
+      }
       // $this->user->delete($user_id);
       // User::destroy($user_id);
 
-      return redirect()->back();
     }
 }

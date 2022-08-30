@@ -59,3 +59,29 @@
   </div>
 
 @endsection
+
+
+@section('script')
+<script
+  src="https://code.jquery.com/jquery-3.6.1.min.js"
+  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+  crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function() {
+    $('.deactivate').click(function() {
+      var token = $("meta[name='csrf-token']").attr("content");
+      // todo: make the user id dynamic
+      $.ajax({
+        'url': '/admin/users/6',
+        'method': 'delete',
+        'data': {
+          _token: token
+        },
+        success: function(response) {
+          console.log(response)
+        }
+      })
+    });
+  })
+</script>
+@endsection

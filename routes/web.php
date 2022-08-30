@@ -38,7 +38,7 @@ Route::group(['middleware' => 'auth'],function(){
   Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     
     Route::get('dashboard', [AdminNewsController::class, 'showDashboard'])->name('show.dashboard');
-    
+
     Route::group(['prefix' => 'news', 'as' => 'news.'], function () {
       Route::get('create', [AdminNewsController::class, 'create'])->name('create');
       Route::post('store', [AdminNewsController::class, 'store'])->name('store');
@@ -54,8 +54,7 @@ Route::group(['middleware' => 'auth'],function(){
 
     Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
       Route::get('show', [AdminUserController::class, 'show'])->name('show');
-      Route::delete('destroy/{user_id}', [AdminUserController::class, 'destroy'])->name('destroy');
-      
+      Route::delete('{user_id}', [AdminUserController::class, 'destroy'])->name('destroy');
     });
 
 
