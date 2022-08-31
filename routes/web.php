@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\User\NewsController;
 use App\Http\Controllers\User\CategoryController;
+use App\Http\Controllers\User\CountryController;
 
 
 /*
@@ -28,8 +29,9 @@ Route::get('/{news_id}',[NewsController::class, 'show'])->name('news.show');
 
 // tentative route to filtered page for user
 Route::get('/search/category',[NewsController::class, 'filter'])->name('news.filter');
-
 Route::get('/category/{category_id}',[CategoryController::class, 'show'])->name('news.category');
+Route::get('/country/{country_id}',[CountryController::class, 'show'])->name('news.country');
+
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('news/create', [AdminNewsController::class, 'add'])->name('admin.news.add');
@@ -39,6 +41,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     // Route::post('news/create', [AdminNewsController::class, 'create'])->name('admin.news.create');
 
 Route::group(['middleware' => 'auth'],function(){
+
 
   Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
       Route::get('news/create', [AdminNewsController::class, 'create'])->name('news.create');
