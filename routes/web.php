@@ -28,7 +28,10 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/{news_id}',[NewsController::class, 'show'])->name('news.show');
 
 // tentative route to filtered page for user
-Route::get('/profile/{user_id}',[UserController::class, 'index'])->name('user.profile.index');
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
+Route::get('/profile/edit',[UserController::class, 'edit'])->name('user.profile.edit');
+Route::get('/profile/{user_id}',[UserController::class, 'show'])->name('user.profile.show');
+});
 
 Route::get('/category/{category_id}',[CategoryController::class, 'show'])->name('news.category');
 
