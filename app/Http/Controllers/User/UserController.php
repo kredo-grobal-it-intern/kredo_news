@@ -8,6 +8,7 @@ use App\Models\News;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Country;
+use App\Models\Source;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -23,9 +24,11 @@ class UserController extends Controller
     public function edit(){
         $user_id = Auth::user()->id;
         $user = User::findOrFail($user_id);
-
-
-        return view('user.profile.edit')->with('user',$user);
+        $sources = Source::all();
+            return view('user.profile.edit', [
+                'user' => $user,
+                'sources' => $sources
+             ]);
 
     }
 

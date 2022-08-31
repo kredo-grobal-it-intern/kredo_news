@@ -57,27 +57,16 @@
     <label for="newssite" class="fw-bold fs-4 favorite">Favorite News Site</label>
 </div>
             <div class="my-5">
+                @foreach ($sources as $source )
                 <div class="form-check form-check-inline">
-                    <input type="checkbox" name="" id="" value="" class="form-check-input">
-                    <label for="bbc" class="form-check-label">BBC</label>
+                    <input type="checkbox" name="" id="{{$source->name}}-{{$source->id}}" value="{{$source->id}}" class="form-check-input">
+                    <label for="{{$source->name}}-{{$source->id}}" class="form-check-label">{{$source->name}}</label>
                 </div>
-                <div class="form-check form-check-inline">
-                    <input type="checkbox" name="" id="" value="" class="form-check-input">
-                    <label for="bbc" class="form-check-label">BBC</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input type="checkbox" name="" id="" value="" class="form-check-input">
-                    <label for="bbc" class="form-check-label">BBC</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input type="checkbox" name="" id="" value="" class="form-check-input">
-                    <label for="bbc" class="form-check-label">BBC</label>
-                </div>
+                @endforeach
             </div>
-<div class="row">
-     <label for="favorite Country" class="fw-bold fs-4 favorite">Favorite Country</label>
-</div>
-
+        <div class="row">
+            <label for="favorite Country" class="fw-bold fs-4 favorite">Favorite Country</label>
+        </div>
             <div class="multiselect mt-5">
             <div class="selectBox" onclick="showCheckboxes()">
                 <select>
@@ -142,8 +131,7 @@
     font-weight: bold;
     color: 686666;
     opacity:0.5;
-    border-radius: 8px
-    border:solid pink 1px;
+    border-radius: 8px;
 
   }
 
