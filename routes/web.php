@@ -54,7 +54,8 @@ Route::group(['middleware' => 'auth'],function(){
 
     Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
       Route::get('show', [AdminUserController::class, 'show'])->name('show');
-      Route::delete('{user_id}', [AdminUserController::class, 'destroy'])->name('destroy');
+      Route::delete('destroy/{user_id}', [AdminUserController::class, 'destroy'])->name('destroy');
+      Route::get('restore/{user_id}', [AdminUserController::class, 'restore'])->name('restore');
     });
 
 

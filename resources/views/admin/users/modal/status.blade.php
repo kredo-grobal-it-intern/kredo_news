@@ -1,6 +1,6 @@
 <div class="modal fade" id="deactivate-user-{{ $user->id }}">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-content border-dange">
       <div class="modal-header border-danger">
         <h5 class="modal-title text-danger">Deactivate user</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

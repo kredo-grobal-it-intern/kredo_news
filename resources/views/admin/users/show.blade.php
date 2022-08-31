@@ -37,21 +37,21 @@
           <td>{{ $user->nationality->name }}</td>
           <td>
             @if ($user->deleted_at)
-                <p class="text-danger m-0">Deactivate</p>
+                <p class="text-danger m-0">Inactive</p>
             @else
-              <p class="text-dange text-primary m-0">Activate</p>
+              <p class="text-dange text-primary m-0">Active</p>
             @endif
           </td>
           <td>
             @if ($user->deleted_at)
-              <p class="text-danger">Activate</p>
+              <a href="{{ route('admin.users.restore', $user->id) }}" class="btn shadow-none text-primary border-0 px-0">Activate</a>
             @else
               <button class="btn shadow-none text-danger border-0 px-0" data-bs-toggle="modal" data-bs-target="#deactivate-user-{{ $user->id }}">Deactivate</button>
             @endif
+            @include('admin.users.modal.status')
           </td>
-          @include('admin.users.modal.status')
         </tr>
-      @endforeach
+        @endforeach
         
       </tbody>
     </table>
@@ -61,7 +61,9 @@
 @endsection
 
 
-@section('script')
+{{-- Extra function --}}
+
+{{-- @section('script')
 <script
   src="https://code.jquery.com/jquery-3.6.1.min.js"
   integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
@@ -84,4 +86,4 @@
     });
   })
 </script>
-@endsection
+@endsection --}}
