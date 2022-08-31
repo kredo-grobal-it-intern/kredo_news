@@ -13,6 +13,11 @@
         <div class="col-md-12">
             <hr>
             <h2 class="header-newstitle">News site</h2>
+            <a href="https://edition.cnn.com/">CNN</a>
+        </div>
+        <div class="col-md-12">
+            <hr>
+            <h2 class="header-newstitle">Country</h2>
         </div>
         @foreach ($all_news as $news)
         <div class="col-lg-3 col-md-6 mb-4">

@@ -20,14 +20,17 @@
 }
 
 .header-newstitle{
-    display: block;
+    display: inline;
     text-align: center;
-    margin-top: -35px;
-    background-color: #fff;
-
+    background-color: #f8fafc;
+    margin: -35px auto 0 auto;
+    position: absolute;
+    width: 180px;
+    left: 0;
+    right: 0;
 }
 
 hr{
-    border-top: 3px solid rgba(217, 217, 6, 0.774);
-
+    border-top: 3px solid yellow;
+    opacity: 1;
 }
