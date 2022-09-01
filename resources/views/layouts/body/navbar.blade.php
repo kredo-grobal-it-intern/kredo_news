@@ -20,15 +20,59 @@
                         My Favorite
                     </a>
                 </li>
-                <li class="nav-item me-4">
-                    <a href="" class="nav-link text-white fw-bold">
+                <li class="nav-item dropdown me-4">
+                    <a id="categoriesDropdown" class="nav-link dropdown-toggle text-white fw-bold" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                         Categories
                     </a>
+
+                    <!-- category dropdown list -->
+                    <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                        <a href="" class="dropdown-item">
+                            Politics
+                        </a>
+                        <a href="" class="dropdown-item">
+                            Business
+                        </a>
+                        <a href="" class="dropdown-item">
+                            Sports
+                        </a>
+                        <a href="" class="dropdown-item">
+                            Travel
+                        </a>
+                        <a href="" class="dropdown-item">
+                            Health
+                        </a>
+                        <a href="" class="dropdown-item">
+                            Entertainment
+                        </a>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link text-white fw-bold">
+                <li class="nav-item dropdown me-4">
+                    <a id="countriesDropdown" class="nav-link dropdown-toggle text-white fw-bold" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                         Countries
                     </a>
+
+                    <!-- category dropdown list -->
+                    <ul class="dropdown-menu" aria-labelledby="countriesDropdown">
+                        <a href="" class="dropdown-item">
+                            America
+                        </a>
+                        <a href="" class="dropdown-item">
+                            Japan
+                        </a>
+                        <a href="" class="dropdown-item">
+                            UK
+                        </a>
+                        <a href="" class="dropdown-item">
+                            Brazil
+                        </a>
+                        <a href="" class="dropdown-item">
+                            Spain
+                        </a>
+                        <a href="" class="dropdown-item">
+                            China
+                        </a>
+                    </ul>
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto">
