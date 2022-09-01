@@ -5,19 +5,6 @@
 @section('title',"$country->name Category")
 @section('content')
 <div class="container">
-    <div class="row text-center">
-        @forelse ($user->countryUser as $key=>$favorite)
-        @break($key==5)
-        <div class="col">
-                <a href="{{ route('news.country',$favorite->country_id)}}" class="text-decoration-none fw-bold text-dark">
-                    <p class="h4"> {{$favorite->country->name}}</p>
-                </a>
-            </div>
-        @empty
-            {{-- tentative --}}
-            <h2>You can add your favorite country</h2>
-        @endforelse
-    </div>
     <div class="row justify-content-center back">
         @if ($country->image)
         <img src="{{asset('images/countries/' . $country->image)}}" alt="{{$country->name}}">
