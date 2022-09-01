@@ -30,7 +30,7 @@ class NewsController extends Controller
     public function show()
     {
 
-      $all_news = $this->news->orderBy('published_at')->paginate(10);
+      $all_news = $this->news->orderBy('published_at')->withTrashed()->paginate(10);
       return view('admin.news.show')
                 ->with('all_news', $all_news);
     }
@@ -114,10 +114,18 @@ class NewsController extends Controller
         return redirect()->route('news.index');
       }
 
-    public function delete(Request $request)
-    {
-        $news = News::find($request->id);
-        $news->delete();
-        return redirect('admin/news/');
-    }
+      public function destroy($news_id)
+      {
+        News::destroy($news_id);
+  
+        return redirect()->back();
+      }
+  
+      public function restore($news_id)
+      {
+        News::withTrashed()->where('id', $news_id)->restore();
+  
+        return redirect()->back();
+      }
+
 }
