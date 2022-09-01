@@ -8,16 +8,24 @@
 @section('content')
     
   <div class="container-fluid">
-
     <div class="row ">
         <div class="col-md-12">
             <hr>
             <h2 class="header-newstitle">News site</h2>
-            <a href="https://edition.cnn.com/">CNN</a>
+            <br/>
+            @foreach ( $sources as $source  )
+                <a href="" class="source_name">{{ $source->name }}</a>
+            @endforeach
+            <br/>
         </div>
         <div class="col-md-12">
             <hr>
             <h2 class="header-newstitle">Country</h2>
+            <br/>
+            @foreach ( $countries as $country )
+                <a href="" class="source_name">{{ $country->id }}</a>
+            @endforeach
+            <br/>
         </div>
         @foreach ($all_news as $news)
         <div class="col-lg-3 col-md-6 mb-4">
