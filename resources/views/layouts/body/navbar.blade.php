@@ -27,24 +27,11 @@
 
                     <!-- category dropdown list -->
                     <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
-                        <a href="" class="dropdown-item">
-                            Politics
-                        </a>
-                        <a href="" class="dropdown-item">
-                            Business
-                        </a>
-                        <a href="" class="dropdown-item">
-                            Sports
-                        </a>
-                        <a href="" class="dropdown-item">
-                            Travel
-                        </a>
-                        <a href="" class="dropdown-item">
-                            Health
-                        </a>
-                        <a href="" class="dropdown-item">
-                            Entertainment
-                        </a>
+                        @foreach ($categories as $category)
+                            <a href="" class="dropdown-item">
+                                {{ $category->name }}
+                            </a>
+                        @endforeach
                     </ul>
                 </li>
                 <li class="nav-item dropdown me-4">
