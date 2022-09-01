@@ -34,7 +34,7 @@
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item text-start me-4">
                     <!-- search bar -->
-                    <button type="button" class="search border-0 text-center" data-bs-toggle="modal" data-bs-target="#search"><i class="fa fa-search" aria-hidden="true"></i>search</button>
+                    <a href="" class="nav-link text-white fw-bold border-0" data-bs-toggle="modal" data-bs-target="#search">Search</a>
                     <!-- search modal -->
                     @include('layouts.body.search-modal')
                 </li>
