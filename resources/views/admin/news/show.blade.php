@@ -20,7 +20,7 @@
       @foreach ($all_news as $news)
       <tr>
         <td>{{ $all_news->firstItem() + $loop->index }}</td>
-        <td><img src="{{ asset('storage/images/' . $news->image_path) }}" alt="{{ $news->image_path }}" style="height:100px; width:100px; object-fit:cover;"></td>
+        <td><img src="{{ asset('storage/images/' . $news->image) }}"  alt="{{ $news->image }}" style="height:100px; width:100px; object-fit:cover;"/></td>
         <td><a href="" class="text-decoration-none text-black">{{ $news->title }}</a></td>
         <td>{{ $news->description }}</td>
         <td>Display or Hidden</td>
