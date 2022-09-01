@@ -7,6 +7,8 @@ use App\Http\Requests\NewsStoreUpdateRequest;
 use Illuminate\Http\Request;
 
 use App\Models\News;
+use App\Models\User;
+use App\Models\Comment;
 use App\Models\History;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
@@ -24,7 +26,20 @@ class NewsController extends Controller
 
     public function showDashboard()
     {
-      return view('admin.dashboard');
+      $news             = News::all();
+      $users            = User::all();
+      $comments         = Comment::all();
+      $news_deleted     = News::onlyTrashed()->get();
+      $users_deleted    = User::onlyTrashed()->get();
+      $comments_deleted = Comment::onlyTrashed()->get();
+
+      return view('admin.dashboard')
+                ->with('news', $news)
+                ->with('users', $users)
+                ->with('comments', $comments)
+                ->with('news_deleted', $news_deleted)
+                ->with('users_deleted', $users_deleted)
+                ->with('comments_deleted', $comments_deleted);
     }
 
     public function show()
