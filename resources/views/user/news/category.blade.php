@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('style')
-<link href="{{ asset('css/category.css') }}" rel="stylesheet">
+<link href="{{ mix('css/category.css') }}" rel="stylesheet">
 @endsection
 @section('title',"$category->name Category")
 @section('content')

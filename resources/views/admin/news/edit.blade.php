@@ -23,10 +23,10 @@
 
       <h1 class="fs-4 mt-3">■Published Information</h1>
       <div class="form-group row mt-2 ms-2">
-        <label for="source-name" class="col-form-label col-2">News site:</label>
+        <label for="source-id" class="col-form-label col-2">News site:</label>
         <div class="col-10 ps-0">
-          <input type="text" name="source_name" id="source-name" class="form-control w-50" value="{{ old('source_name', $news->source_name) }}">
-          @error('source_name')
+          <input type="text" name="source_id" id="source-id" class="form-control w-50" value="{{ old('source_id', $news->source_id) }}">
+          @error('source_id')
           <p class="text-danger small">News site is required.</p>
           @enderror  
         </div>
@@ -63,10 +63,10 @@
       </div>
 
       
-      <label for="image-path" class="form-label mt-4 fs-4 ">■Image</label>
-      <img src="{{ asset('storage/images/' . $news->image_path) }}" alt="{{ $news->image_path }}" class="w-50 d-block ms-3">
-      <input type="file" name="image_path" id="image-path" class="d-block ms-3 mt-2">
-      @error('image_path')
+      <label for="image" class="form-label mt-4 fs-4 ">■Image</label>
+      <img src="{{ asset('storage/images/' . $news->image) }}" alt="{{ $news->image }}" class="w-50 d-block ms-3">
+      <input type="file" name="image" id="image" class="d-block ms-3 mt-2">
+      @error('image')
       <p class="text-danger small ms-3">Image is required.</p>
       @enderror  
 
