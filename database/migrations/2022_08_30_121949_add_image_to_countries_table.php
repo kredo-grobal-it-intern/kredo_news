@@ -26,7 +26,8 @@ class AddImageToCountriesTable extends Migration
     public function down()
     {
         Schema::table('countries', function (Blueprint $table) {
-            //
+            $table->dropColumn('image');
+
         });
     }
 }
