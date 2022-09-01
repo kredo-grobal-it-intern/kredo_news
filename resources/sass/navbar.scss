@@ -4,17 +4,27 @@ navbar
 
 .navbar-custom {
     background-color: #052962;
+    height: 80px;
+    border-bottom: 1px solid #fff;
+}
 
-    .logo-area {
-        width: 90px;
+.nav-item-custom {
+    transition: border-bottom 0.4s;
+}
 
-        .logo {
-            width: 70px;
-            height: 70px;
-            object-fit: contain;
-        }
+.nav-item-custom:hover {
+    border-bottom: 1px solid #fff;
+}
+
+/* ----------------------------------------------------------
+navbar-responsive
+---------------------------------------------------------- */
+
+@media (max-width:992px) {
+    .navbar-custom {
+        height: auto;
+        padding: 21.5px 0;
     }
-
 }
 
 /* ----------------------------------------------------------
