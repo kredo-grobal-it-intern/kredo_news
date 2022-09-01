@@ -48,7 +48,9 @@ class CommentController extends Controller
      */
     public function show()
     {
-      return view('admin.comments.show');
+      $comments = Comment::orderBy('created_at')->withTrashed()->paginate(10);
+
+      return view('admin.comments.show')->with('comments', $comments);
     }
 
     /**
@@ -80,8 +82,17 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($comment_id)
     {
-        //
+      Comment::destroy($comment_id);
+
+      return redirect()->back();    
+    }
+
+    public function restore($comment_id)
+    {
+      Comment::withTrashed()->where('id', $comment_id)->restore();
+
+      return redirect()->back();
     }
 }
