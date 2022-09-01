@@ -48,6 +48,8 @@ Route::group(['middleware' => 'auth'],function(){
       Route::get('edit/{news_id}', [AdminNewsController::class, 'edit'])->name('edit');
       Route::patch('{news_id}', [AdminNewsController::class, 'update'])->name('update');;
       Route::get('show', [AdminNewsController::class, 'show'])->name('show');
+      Route::delete('destroy/{user_id}', [AdminNewsController::class, 'destroy'])->name('destroy');
+      Route::get('restore/{user_id}', [AdminNewsController::class, 'restore'])->name('restore');
 
     });
     Route::group(['prefix' => 'comments', 'as' => 'comments.'], function () {
