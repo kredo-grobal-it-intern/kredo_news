@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CommentController as AdminCommentController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\User\NewsController;
 use App\Http\Controllers\User\CategoryController;
+use App\Http\Controllers\User\CountryController;
 
 
 /*
@@ -30,10 +31,12 @@ Route::get('/{news_id}',[NewsController::class, 'show'])->name('news.show');
 
 // tentative route to filtered page for user
 Route::get('/search/category',[NewsController::class, 'filter'])->name('news.filter');
-
 Route::get('/category/{category_id}',[CategoryController::class, 'show'])->name('news.category');
+Route::get('/country/{country_id}',[CountryController::class, 'show'])->name('news.country');
+
 
 Route::group(['middleware' => 'auth'],function(){
+
 
   Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     
