@@ -81,7 +81,7 @@
                       <a href="{{ route('news.index') }}" class="btn d-block text-decoration-none text-white">Top</a>
                       <a href="{{ route('admin.show.dashboard') }}" class="btn d-block text-decoration-none text-white">Dashboard</a>
                       <a href="{{ route('admin.news.show') }}" class="btn d-block text-decoration-none text-white">News</a>
-                      <a href="" class="btn d-block text-decoration-none text-white">Comments</a>
+                      <a href="{{ route('admin.comments.show') }}" class="btn d-block text-decoration-none text-white">Comments</a>
                       <a href="{{ route('admin.users.show') }}" class="btn d-block text-decoration-none text-white">Users</a>
                     </div>
                     <div class="col-10 mt-5">

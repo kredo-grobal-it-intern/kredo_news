@@ -49,6 +49,8 @@ Route::group(['middleware' => 'auth'],function(){
     });
     Route::group(['prefix' => 'comments', 'as' => 'comments.'], function () {
       Route::get('show', [AdminCommentController::class, 'show'])->name('show');
+      Route::delete('destroy/{user_id}', [AdminCommentController::class, 'destroy'])->name('destroy');
+      Route::get('restore/{user_id}', [AdminCommentController::class, 'restore'])->name('restore');
 
     });
 
