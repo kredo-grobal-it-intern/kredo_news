@@ -45,12 +45,4 @@
     @include('admin.news.modal.status')
     {{ $all_news->links() }}
   </div>
-
-  <!-- Button trigger modal -->
-
-  
-  <!-- Modal -->
-
-  
-
 @endsection

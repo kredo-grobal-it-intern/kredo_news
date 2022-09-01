@@ -29,7 +29,7 @@
                 </a>
               </div>
             @else  
-                <a href="" class="text-decoration-none text-black" style="display: flex; align-items: center;"><i class="fa-solid fa-circle-user display-6 me-2"></i><span class="" style="">{{ $user->username }}</span></a>
+                <a href="" class="text-decoration-none text-black" style="display: flex; align-items: center;"><i class="fa-solid fa-circle-user fs-2 me-2"></i><span class="" style="">{{ $user->username }}</span></a>
             @endif
 
           </td>

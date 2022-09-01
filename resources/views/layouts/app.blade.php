@@ -20,6 +20,7 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ mix('css/navbar.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/footer.css') }}" rel="stylesheet">
     @yield('style')
 </head>
 <body id="@yield('body_id', 'default')">
@@ -32,6 +33,10 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <footer class="back-blue">
+            @include('layouts.body.footer')
+        </footer>
     </div>
 </body>
 </html>
