@@ -72,12 +72,3 @@ Route::group(['middleware' => 'auth'],function(){
     });
   });
 });
-
-
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
-    Route::get('profile/edit', [ProfileController::class, 'edit'])->name('admin.profile.edit');
-    Route::get('profile/post', [ProfileController::class, 'update'])->name('admin.profile.post');
-    });
-
- 
-

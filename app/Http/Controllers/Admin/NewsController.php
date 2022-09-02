@@ -26,20 +26,20 @@ class NewsController extends Controller
 
     public function showDashboard()
     {
-      $news             = News::all();
-      $users            = User::all();
-      $comments         = Comment::all();
-      $news_deleted     = News::onlyTrashed()->get();
-      $users_deleted    = User::onlyTrashed()->get();
-      $comments_deleted = Comment::onlyTrashed()->get();
+      $news     = News::withTrashed()->get();
+      $users    = User::withTrashed()->get();
+      $comments = Comment::withTrashed()->get();
+
+      $comments_hidden = Comment::withTrashed()
+                                  ->leftJoin('users', 'comments.user_id', 'users.id')
+                                  ->select('comments.id', 'comments.deleted_at as c_deleted_at', 'users.deleted_at as u_deleted_at')
+                                  ->get();
 
       return view('admin.dashboard')
                 ->with('news', $news)
                 ->with('users', $users)
                 ->with('comments', $comments)
-                ->with('news_deleted', $news_deleted)
-                ->with('users_deleted', $users_deleted)
-                ->with('comments_deleted', $comments_deleted);
+                ->with('comments_hidden', $comments_hidden);
     }
 
     public function show()
