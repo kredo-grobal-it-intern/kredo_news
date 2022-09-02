@@ -27,16 +27,13 @@ class UserController extends Controller
         $user_id = Auth::user()->id;
         $user = User::findOrFail($user_id);
         $sources = Source::all();
-        $countries = Country::where('continent','=','america')
-                                        ->orWhere('continent','=','asia')
-                                        ->orWhere('continent','=','europe')
-                                        ->orWhere('continent','=','africa')
-                                        ->orWhere('continent','=','oceania')
-                                        ->get();
+        $countries = Country::whereIn('continent', [ 'America','Asia','Europe','Oceania','Africa' ])->get();
+        $continents =[ 'America','Asia','Europe','Oceania','Africa' ];
          return view('user.profile.edit', [
                 'user' => $user,
                 'sources' => $sources,
-                'countries' => $countries
+                'countries' => $countries,
+                'continents' => $continents
         ]);
 
     }

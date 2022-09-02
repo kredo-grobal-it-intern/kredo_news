@@ -19,4 +19,5 @@ const mix = require('laravel-mix');
  .sass('resources/sass/favorite.scss', 'public/css')
  .sass('resources/sass/category.scss', 'public/css')
  .sass('resources/sass/navbar.scss', 'public/css')
+ .sass('resources/sass/footer.scss', 'public/css')
  .sass('resources/sass/multi_select.scss', 'public/css');
