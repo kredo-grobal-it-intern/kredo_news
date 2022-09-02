@@ -14,7 +14,7 @@ class AddContinentToCountriesTable extends Migration
     public function up()
     {
         Schema::table('countries', function ($table) {
-                    $table->string('continent')->after('name');
+                    $table->string('continent')->after('name')->nullable();
         });
     }
 
