@@ -34,9 +34,11 @@
             @yield('content')
         </main>
 
-        <footer class="back-blue">
-            @include('layouts.body.footer')
-        </footer>
+        @if (!Route::is('login') && !Route::is('register'))
+            <footer class="back-blue">
+                @include('layouts.body.footer')
+            </footer>
+        @endif
     </div>
 </body>
 </html>
