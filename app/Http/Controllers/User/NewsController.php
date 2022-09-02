@@ -5,6 +5,8 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\News;
+use App\Models\Source;
+use App\Models\Country;
 
 class NewsController extends Controller
 {
@@ -25,5 +27,14 @@ class NewsController extends Controller
         $all_news = News::all();
         return view('user.news.filter')
             ->with('all_news', $all_news);
+    }
+
+    public function showFavoritePage()
+    {
+        $all_news = News::all();
+        $sources = Source::all();
+        $country = Country::all();
+        return view('user.news.favorite')->with('all_news',$all_news)->with('sources', $sources)->with('countries', $country);
+           
     }
 }

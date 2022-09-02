@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\NewsStoreUpdateRequest;
 use Illuminate\Http\Request;
 
 use App\Models\News;
@@ -26,12 +27,17 @@ class NewsController extends Controller
       return view('admin.dashboard');
     }
 
-    public function showNewsList(Request $request)
+    public function show()
     {
 
-      $all_news = $this->news->orderBy('published_at')->paginate(10);
+      $all_news = $this->news->orderBy('published_at')->withTrashed()->paginate(10);
       return view('admin.news.show')
                 ->with('all_news', $all_news);
+    }
+
+    public function showUsersList()
+    {
+      return view('admin.users.show');
     }
 
     public function create(Request $request)
@@ -40,28 +46,17 @@ class NewsController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(NewsStoreUpdateRequest $request)
     {
       $news = $this->news;
 
-      $request->validate([
-        'title'        => 'required',
-        'description'  => 'required',
-        'source_name'  => 'required',
-        'url'          => 'required',
-        'published_at' => 'required',
-        'author'       => 'required',
-        'content'      => 'required',
-        'image_path'   => 'required|max:1048|mimes:png,jpg,jpeg,gif'
-      ]);
-
       $news->title        = $request->title;
       $news->description  = $request->description;
-      $news->source_name  = $request->source_name;
+      $news->source_id    = $request->source_id;
       $news->url          = $request->url;
       $news->published_at = $request->published_at;
-      $news->author = $request->author;
-      $news->image_path   = $this->saveImage($request);
+      $news->author       = $request->author;
+      $news->image        = $this->saveImage($request);
       $news->content      = $request->content;
 
       $news->save();
@@ -71,16 +66,16 @@ class NewsController extends Controller
 
     public function saveImage($request)
     {
-        $image_name = time() . '.' . $request->image_path->extension();
+        $image_name = time() . '.' . $request->image->extension();
   
-        $request->image_path->storeAs(self::LOCAL_STORAGE_FOLDER, $image_name);
+        $request->image->storeAs(self::LOCAL_STORAGE_FOLDER, $image_name);
         
         return $image_name;
     }
 
-    public function deleteImage($image_path)
+    public function deleteImage($image)
     {
-      $image_name = self::LOCAL_STORAGE_FOLDER . $image_path;
+      $image_name = self::LOCAL_STORAGE_FOLDER . $image;
 
       if(Storage::disk('local')->exists($image_name)){
         Storage::disk('local')->delete($image_name);
@@ -94,35 +89,24 @@ class NewsController extends Controller
       return view('admin.news.edit', compact('news'));
     }
 
-    public function update(Request $request, $news_id)
+    public function update(NewsStoreUpdateRequest $request, $news_id)
     {
         $news = $this->news->findOrFail($news_id);
-
-        $request->validate([
-          'title'        => 'required',
-          'description'  => 'required',
-          'source_name'  => 'required',
-          'url'          => 'required',
-          'published_at' => 'required',
-          'author'       => 'required',
-          'content'      => 'required',
-          'image_path'   => 'max:1048|mimes:png,jpg,jpeg,gif'
-        ]);
   
         $news->title        = $request->title;
         $news->description  = $request->description;
-        $news->source_name  = $request->source_name;
+        $news->source_id    = $request->source_id;
         $news->url          = $request->url;
         $news->published_at = $request->published_at;
         $news->author       = $request->author;
         $news->content      = $request->content;
 
-        if($request->image_path){
-          if($news->image_path){
-            $this->deleteImage($news->image_path);
-            $news->image_path = $this->saveImage($request);
+        if($request->image){
+          if($news->image){
+            $this->deleteImage($news->image);
+            $news->image = $this->saveImage($request);
           }else{
-            $news->image_path = $this->saveImage($request);
+            $news->image = $this->saveImage($request);
           }};
   
         $news->save();
@@ -130,10 +114,18 @@ class NewsController extends Controller
         return redirect()->route('news.index');
       }
 
-    public function delete(Request $request)
-    {
-        $news = News::find($request->id);
-        $news->delete();
-        return redirect('admin/news/');
-    }
+      public function destroy($news_id)
+      {
+        News::destroy($news_id);
+  
+        return redirect()->back();
+      }
+  
+      public function restore($news_id)
+      {
+        News::withTrashed()->where('id', $news_id)->restore();
+  
+        return redirect()->back();
+      }
+
 }
