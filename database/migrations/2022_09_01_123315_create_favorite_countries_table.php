@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFavoriteCountryTable extends Migration
+class FavoriteCountries extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateFavoriteCountryTable extends Migration
      */
     public function up()
     {
-        Schema::create('favorite_country', function (Blueprint $table) {
+        Schema::create('favorite_countries', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
             $table->integer('country_id');
-            $table->timestamps('date_aquired');
+            $table->timestamps();
         });
     }
 
@@ -28,6 +28,6 @@ class CreateFavoriteCountryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('favorite_country');
+        Schema::dropIfExists('favorite_countries');
     }
 }

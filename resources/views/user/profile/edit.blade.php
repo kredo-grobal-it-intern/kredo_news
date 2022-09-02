@@ -1,5 +1,9 @@
 @extends('layouts.app')
 @section('title','NEWS')
+@section('style')
+ <link href="{{ mix('css/multi_select.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
 <div class="container justify-content-center px-auto">
     <form action="#" method="post" class="form" enctype="multipart/form-data">
@@ -56,7 +60,7 @@
 <div class="row">
     <label for="newssite" class="fw-bold fs-4 favorite">Favorite News Site</label>
 </div>
-            <div class="my-5">
+           <div class="my-5">
                 @foreach ($sources as $source )
                 <div class="form-check form-check-inline">
                     <input type="checkbox" name="" id="{{$source->name}}-{{$source->id}}" value="{{$source->id}}" class="form-check-input">
@@ -67,7 +71,18 @@
         <div class="row">
             <label for="favorite Country" class="fw-bold fs-4 favorite">Favorite Country</label>
         </div>
-            <div class="multiselect mt-5">
+        <p class="fw-bold">America</p>
+            <div>
+                @foreach ($countries as $country)
+                    {{-- @if ( {{$country->continent}} == "america" ) --}}
+                        <div class="form-check form-check-inline">
+                            <label for="{{$country->name}}-{{$country->id}}" class="form-check-label"><input type="checkbox" id="{{$country->name}}-{{$country->id}}" name="{{$country->name}}-{{$country->id}}" class="form-check-input" />{{$country->name}}</label>
+                        </div>
+                    {{-- @endif --}}
+                @endforeach
+            </div>
+
+            {{-- <div class="multiselect mt-5">
             <div class="selectBox" onclick="showCheckboxes()">
                 <select>
                 <option>Select Your Favorite Country</option>
@@ -77,12 +92,12 @@
             <div id="checkboxes">
                 <p class="fw-bold">America</p>
                 <div class="ms-3">
-                    <label for="America"><input type="checkbox" id="country" />America</label>
-                    <label for="Canada"><input type="checkbox" id="country" />Canada</label>
-                    <label for="mexico"><input type="checkbox" id="country" />Mexico</label>
-                    <label for="cuba"><input type="checkbox" id="country" />Cuba</label>
-                    <label for="Panama"><input type="checkbox" id="country" />Panama</label>
-                    <label for="brazil"><input type="checkbox" id="countryl" />Brazil</label>
+                    <label for="America"><input type="checkbox" id="america" />America</label>
+                    <label for="Canada"><input type="checkbox" id="canada" />Canada</label>
+                    <label for="mexico"><input type="checkbox" id="mexico" />Mexico</label>
+                    <label for="cuba"><input type="checkbox" id="cuba" />Cuba</label>
+                    <label for="Panama"><input type="checkbox" id="panama" />Panama</label>
+                    <label for="brazil"><input type="checkbox" id="brazil" />Brazil</label>
                 </div>
                 <hr>
                 <p class="fw-bold">Asia</p>
@@ -112,63 +127,12 @@
                     <label for="southafrica"><input type="checkbox" id="southafrica" />South Africa</label>
                 </div>
             </div>
-            </div>
+            </div>  --}}
 <button type="submit" class="form-control btn btn-outline-secondary mt-5">UPDATE</button>
 
     </form>
 </div>
 @endsection
-
-<style>
-.multiselect {
-    width: 550px;
-    margin-left:17%;
-  }
-
-  .selectBox select {
-    width: 80%;
-    height:40px;
-    font-weight: bold;
-    color: 686666;
-    opacity:0.5;
-    border-radius: 8px;
-
-  }
-
-  .overSelect {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-  }
-  .profile_head{
-    height:100px;
-    /* border:solid black 1px; */
-    padding:15px
-    }
-  .favorite{
-    color:white;
-    background-color: #052962;
-  }
-
-
-  #checkboxes {
-    display: none;
-    border: 1px #dadada solid;
-    opacity: 0.8;
-  }
-
-  #checkboxes label {
-    display: block;
-  }
-
-  #checkboxes label:hover {
-    background-color: #052962;
-    color:white;
-  }
-
-</style>
 
 <script>
 var expanded = false;
@@ -183,5 +147,104 @@ function showCheckboxes() {
     expanded = false;
   }
 }
-
 </script>
+{{-- ---------------------------------------------------------------------- --}}
+{{-- <!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>jquery-multi-select</title>
+    <link rel="stylesheet" type="text/css" href="../src/example-styles.css">
+    <link rel="stylesheet" type="text/css" href="demo-styles.css">
+</head>
+<body>
+
+    <form class="demo-example">
+        <label for="people">Select people:</label>
+        <select id="people" name="people" multiple>
+            <option value="alice">Alice</option>
+            <option value="bob">Bob</option>
+            <option value="carol">Carol</option>
+        </select>
+    </form>
+
+    <form class="demo-example">
+        <label for="categories">Show:</label>
+        <select id="categories" name="categories" multiple>
+            <option value="a">Abandoned vehicles</option>
+            <option value="b">Bus stops</option>
+            <option value="c">Car parking</option>
+            <option value="d">Dog fouling</option>
+        </select>
+    </form>
+
+    <form class="demo-example">
+        <label for="ice-cream">Build an ice cream:</label>
+        <select id="ice-cream" name="ice-cream" multiple>
+            <option value="Cone">Just a cone</option>
+            <optgroup label="Flavours">
+                <option value="Vanilla">Vanilla</option>
+                <option value="Chocolate">Chocolate</option>
+                <option value="Pistachio">Pistachio</option>
+            </optgroup>
+            <optgroup label="Toppings">
+                <option value="Sprinkles">Sprinkles</option>
+                <option value="Chocolate chips">Chocolate chips</option>
+            </optgroup>
+            <optgroup label="Sauces">
+                <option value="Strawberry sauce">Strawberry sauce</option>
+                <option value="Chocolate sauce">Chocolate sauce</option>
+            </optgroup>
+        </select>
+    </form>
+
+    <div class="demo-example position-menu-within">
+        <label for="line-wrap-example">Line wrap example</label>
+        <select id="line-wrap-example" multiple>
+            <option>The final option…</option>
+            <option>Should wrap onto…</option>
+            <option>Multiple lines, to avoid expanding outside the grey wrapper</option>
+        </select>
+    </div>
+
+    <form class="demo-example modal-example">
+        <label for="modal-example">Modal example</label>
+        <select id="modal-example" name="inventors" multiple>
+            <option value="al">Ada Lovelace</option>
+            <option value="gh">Grace Hopper</option>
+            <option value="hl">Hedy Lamarr</option>
+            <option value="mk">Margaret E. Knight</option>
+            <option value="sj">Shirley Ann Jackson</option>
+        </select>
+    </form>
+
+    <script type="text/javascript" src="../src/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="../src/jquery.multi-select.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        $('#people').multiSelect();
+        $('#ice-cream').multiSelect();
+        $('#line-wrap-example').multiSelect({
+            positionMenuWithin: $('.position-menu-within')
+        });
+        $('#categories').multiSelect({
+            noneText: 'All categories',
+            presets: [
+                {
+                    name: 'All categories',
+                    all: true
+                },
+                {
+                    name: 'My categories',
+                    options: ['a', 'c']
+                }
+            ]
+        });
+        $('#modal-example').multiSelect({
+            'modalHTML': '<div class="multi-select-modal">'
+        });
+    });
+    </script>
+
+</body>
+</html> --}}

@@ -16,6 +16,8 @@ class UserController extends Controller
     //
     public function show(){
         // tentative method
+        // $user_id = Auth::user()->id;
+        // $user = User::findOrFail($user_id);
         $all_news = News::all();
         return view('user.profile.index')
             ->with('all_news', $all_news);
@@ -25,15 +27,26 @@ class UserController extends Controller
         $user_id = Auth::user()->id;
         $user = User::findOrFail($user_id);
         $sources = Source::all();
-            return view('user.profile.edit', [
+        $countries = Country::where('continent','=','america')
+                                        ->orWhere('continent','=','asia')
+                                        ->orWhere('continent','=','europe')
+                                        ->orWhere('continent','=','africa')
+                                        ->orWhere('continent','=','oceania')
+                                        ->get();
+         return view('user.profile.edit', [
                 'user' => $user,
-                'sources' => $sources
-             ]);
+                'sources' => $sources,
+                'countries' => $countries
+        ]);
 
     }
 
     public function update(Request $request){
+//update user detail
 
+// remove pre selected favorite site
+
+// insert new favorite from form
 
     }
 
