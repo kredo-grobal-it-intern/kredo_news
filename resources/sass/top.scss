@@ -1,0 +1,45 @@
+.country-section {
+    border-bottom: 1px solid #999;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+
+    &:nth-child(5) {
+        border: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+}
+
+.country {
+    display: inline-block;
+    border-bottom: 2px solid #000;
+    font-size: 2.4rem;
+}
+
+.top-article {
+
+    .top-heading {
+        font-size: 1.7rem;
+    }
+
+    .top-description {
+        font-size: 1.1rem;
+    }
+    .top-image {
+        height: 260px;
+        object-fit: cover;
+    }
+}
+
+.sub-article {
+
+    .sub-image {
+        height: 140px;
+        object-fit: cover;
+    }
+}
+
+.aside-heading {
+    font-weight: bold;
+    text-decoration: underline;
+}
