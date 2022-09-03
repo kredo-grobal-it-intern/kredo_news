@@ -44,3 +44,4 @@ class NewsController extends Controller
         return view('user.news.non_user')->with('countries', $country);
     }
 }
+

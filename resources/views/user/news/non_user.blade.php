@@ -8,9 +8,9 @@
 
 @section('content')
 <div class="container justify-content-center text-center" style="margin-top:100px">
-    <h2 class="text-white">This is your favorite page. 
-        <br> Sign up to save your favorite category and country. 
-        <br>Then news show up.
+        <h2 class="text-white">This is your favorite page. 
+            <br> Sign up to save your favorite category and country. 
+            <br>Then news show up.
         </h2>
     <div class="row justify-content-center">
         <div class="col-md-4 mx-auto col-sm-12">
@@ -51,12 +51,12 @@
 
                 <div class="row mb-3">
                     <div class="col-md-10 offset-md-1">
-                         <select class="form-control text-muted" name="country">
-                        <option hidden>Nationality</option>
-                        @foreach($countries as $country)
-                            <option value="{{ $country->id }}">{{ $country->name }}</option>
-                        @endforeach
-                    </select>
+                        <select class="form-control text-muted" name="country">
+                            <option hidden>Nationality</option>
+                            @foreach($countries as $country)
+                                <option value="{{ $country->id }}">{{ $country->name }}</option>
+                            @endforeach
+                        </select>
 
 
 
@@ -70,12 +70,12 @@
 
                 <div class="row mb-3">
                     <div class="col-md-10 offset-md-1">
-                    <select class="form-control text-muted" name="country">
-                        <option hidden>Country </option>
-                        @foreach($countries as $country)
-                            <option value="{{ $country->id }}">{{ $country->name }}</option>
-                        @endforeach
-                    </select>
+                        <select class="form-control text-muted" name="country">
+                            <option hidden>Country </option>
+                            @foreach($countries as $country)
+                                <option value="{{ $country->id }}">{{ $country->name }}</option>
+                            @endforeach
+                        </select>
 
                         @error('contry')
                             <span class="invalid-feedback" role="alert">
