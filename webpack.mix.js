@@ -20,4 +20,7 @@ const mix = require('laravel-mix');
  .sass('resources/sass/category.scss', 'public/css')
  .sass('resources/sass/navbar.scss', 'public/css')
  .sass('resources/sass/footer.scss', 'public/css')
- .sass('resources/sass/multi_select.scss', 'public/css');
+ .sass('resources/sass/multi_select.scss', 'public/css')
+ .sass('resources/sass/country.scss', 'public/css')
+ .sass('resources/sass/top.scss', 'public/css');
+
