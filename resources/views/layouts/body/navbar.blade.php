@@ -90,6 +90,12 @@
                                 <i class="fa-solid fa-user"></i>&nbsp;My Profile
                             </a>
 
+                            @if (Auth::user()->is_admin)
+                                <a href="{{ route('admin.show.dashboard') }}" class="dropdown-item">
+                                    <i class="fa-solid fa-inbox"></i>Dashboard
+                                </a>
+                            @endif
+
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
