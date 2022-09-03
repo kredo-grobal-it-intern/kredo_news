@@ -70,7 +70,7 @@
                     @include('layouts.body.search-modal')
                 </li>
                 @guest
-                    @if (!Route::is('login') && !Route::is('register'))
+                    @unless (Route::is('login') || Route::is('register'))
                         <li class="nav-item nav-item-custom me-4">
                             <a class="nav-link text-white fw-bold" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
@@ -78,7 +78,7 @@
                         <li class="nav-item nav-item-custom">
                             <a class="nav-link text-white fw-bold" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
-                    @endif
+                    @endunless
                 @else
                     <li class="nav-item nav-item-custom dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle text-white fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -89,6 +89,12 @@
                             <a href="" class="dropdown-item">
                                 <i class="fa-solid fa-user"></i>&nbsp;My Profile
                             </a>
+
+                            @if (Auth::user()->is_admin)
+                                <a href="{{ route('admin.show.dashboard') }}" class="dropdown-item">
+                                    <i class="fa-solid fa-inbox"></i>Dashboard
+                                </a>
+                            @endif
 
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
