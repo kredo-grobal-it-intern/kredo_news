@@ -79,5 +79,5 @@ Route::group(['middleware' => 'auth'],function(){
         Route::get('post', [ProfileController::class, 'update'])->name('post');
     });
   });
-<<<<<<< HEAD
+
 });
