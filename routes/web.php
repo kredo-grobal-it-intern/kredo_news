@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\User\CountryController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +29,7 @@ Route::get('/', [NewsController::class, 'index'])->name('news.index');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/favorite', [NewsController::class,'showFavoritePage'])->name('user.news.favorite');
 Route::get('/non_user', [NewsController::class,'showNonUser'])->name('user.news.non_user');
+Route::get('/search', [NewsController::class,'showSearch'])->name('news.search');
 Route::get('/{news_id}',[NewsController::class, 'show'])->name('news.show');
 
 // tentative route to filtered page for user
