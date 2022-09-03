@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Models\Category;
-use App\Models\Country;
 use Illuminate\Support\ServiceProvider;
 
 class NavbarServiceProvider extends ServiceProvider

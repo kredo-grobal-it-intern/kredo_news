@@ -18,8 +18,8 @@ class UserController extends Controller
      */
     public function show()
     {
-      $users = User::where('is_admin', 0)->withTrashed()->paginate(10);
-      return view('admin.users.show')->with('users', $users);
+        $users = User::where('is_admin', 0)->withTrashed()->paginate(10);
+        return view('admin.users.show')->with('users', $users);
     }
 
     /**
@@ -53,16 +53,16 @@ class UserController extends Controller
      */
     public function destroy($user_id)
     {
-      User::destroy($user_id);
+        User::destroy($user_id);
 
-      return redirect()->back();
+        return redirect()->back();
     }
 
     public function restore($user_id)
     {
-      User::withTrashed()->where('id', $user_id)->restore();
+        User::withTrashed()->where('id', $user_id)->restore();
 
-      return redirect()->back();
+        return redirect()->back();
     }
     
 
@@ -80,6 +80,4 @@ class UserController extends Controller
     //   }
 
     // }
-
-
 }

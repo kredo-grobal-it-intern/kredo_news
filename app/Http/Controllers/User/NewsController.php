@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\News;
 use App\Models\Source;
 use App\Models\Country;
@@ -17,12 +16,14 @@ class NewsController extends Controller
             ->with('all_news', $all_news);
     }
 
-    public function show($news_id){
+    public function show($news_id)
+    {
         $news = News::findOrFail($news_id);
         return view('user.news.detail')
-            ->with('news',$news);
+            ->with('news', $news);
     }
-    public function filter(){
+    public function filter()
+    {
         // tentative method
         $all_news = News::all();
         return view('user.news.filter')
@@ -34,8 +35,7 @@ class NewsController extends Controller
         $all_news = News::all();
         $sources = Source::all();
         $country = Country::all();
-        return view('user.news.favorite')->with('all_news',$all_news)->with('sources', $sources)->with('countries', $country);
-    
+        return view('user.news.favorite')->with('all_news', $all_news)->with('sources', $sources)->with('countries', $country);
     }
 
     public function showNonUser()
@@ -47,7 +47,6 @@ class NewsController extends Controller
     public function showSearch()
     {
         $all_news = News::all();
-        return view('user.news.search') ->with('all_news', $all_news);
+        return view('user.news.search')->with('all_news', $all_news);
     }
 }
-
