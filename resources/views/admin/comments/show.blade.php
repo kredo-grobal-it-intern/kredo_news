@@ -35,18 +35,18 @@
           @endif
         </td>
         <td>
-          @if ($comment->deleted_at)
             @if ($comment->user->deleted_at)
               <p class="text-danger m-0">Hidden<br><span class="small">(Deactive user)</span></p>
-            @else
+            @elseif($comment->deleted_at)
               <p class="text-danger m-0">Hidden</p>
+            @else
+                <p class="text-dange text-primary m-0">Display</p>
             @endif
-          @else
-            <p class="text-dange text-primary m-0">Display</p>
-          @endif
         </td>
         <td>        
-          @if ($comment->deleted_at)
+          @if ($comment->user->deleted_at)
+            <a href="{{ route('admin.users.restore', $comment->user->id) }}" class="btn shadow-none text-primary border-0 px-0">Activate<br><span class="small">(User)</span></a>
+          @elseif ($comment->deleted_at)
             <a href="{{ route('admin.comments.restore', $comment->id) }}" class="btn shadow-none text-primary border-0 px-0">Display</a>  
           @else
             <button class="btn shadow-none text-danger border-0 px-0" data-bs-toggle="modal" data-bs-target="#hide-comment-{{ $comment->id }}">Hide</button>
