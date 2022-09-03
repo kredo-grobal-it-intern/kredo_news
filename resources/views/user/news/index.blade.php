@@ -22,10 +22,10 @@
                         <h3 class="fw-bold top-heading"><a href="" class="text-danger text-decoration-none">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat, eius?</a></h3>
                         <p class="mt-3 top-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea doloremque omnis praesentium quae at.</p>
                         <p class="mt-3">
-                            <a href="" class="me-2 text-decoration-none text-dark">1000 &#x1f44d;</a>
-                            <a href="" class="me-2 text-decoration-none text-dark">200 &#x1f44e;</a>
-                            <a href="" class="me-2 text-decoration-none text-dark">100 &#x1f4ac;</a>
-                            <a href="" class="text-decoration-none">&#x1f6a9;</a>
+                            <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
+                            <a href="" class="me-2 text-decoration-none text-dark">200 <i class="fa-regular fa-thumbs-down"></i></a>
+                            <a href="" class="me-2 text-decoration-none text-dark">100 <i class="fa-regular fa-comment-dots"></i></a>
+                            <a href="" class="text-decoration-none text-dark"><i class="fa-regular fa-bookmark"></i></a>
                         </p>
                     </div>
                     <div class="col-7">
@@ -41,10 +41,10 @@
                         <h5 class="sub-heading fw-bold mt-3"><a href="" class="text-danger text-decoration-none">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, debitis?</a></h5>
                         <p class="sub-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea doloremque omnis praesentium quae at.</p>
                         <p class="mt-1">
-                            <a href="" class="me-2 text-decoration-none text-dark">1000 &#x1f44d;</a>
-                            <a href="" class="me-2 text-decoration-none text-dark">200 &#x1f44e;</a>
-                            <a href="" class="me-2 text-decoration-none text-dark">100 &#x1f4ac;</a>
-                            <a href="" class="text-decoration-none">&#x1f6a9;</a>
+                            <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
+                            <a href="" class="me-2 text-decoration-none text-dark">200 <i class="fa-regular fa-thumbs-down"></i></a>
+                            <a href="" class="me-2 text-decoration-none text-dark">100 <i class="fa-regular fa-comment-dots"></i></a>
+                            <a href="" class="text-decoration-none text-dark"><i class="fa-regular fa-bookmark"></i></a>
                         </p>
                     </div>
                     <div class="col-3">
@@ -53,10 +53,10 @@
                         <h5 class="sub-heading fw-bold mt-3"><a href="" class="text-danger text-decoration-none">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, debitis?</a></h5>
                         <p class="sub-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea doloremque omnis praesentium quae at.</p>
                         <p class="mt-1">
-                            <a href="" class="me-2 text-decoration-none text-dark">1000 &#x1f44d;</a>
-                            <a href="" class="me-2 text-decoration-none text-dark">200 &#x1f44e;</a>
-                            <a href="" class="me-2 text-decoration-none text-dark">100 &#x1f4ac;</a>
-                            <a href="" class="text-decoration-none">&#x1f6a9;</a>
+                            <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
+                            <a href="" class="me-2 text-decoration-none text-dark">200 <i class="fa-regular fa-thumbs-down"></i></a>
+                            <a href="" class="me-2 text-decoration-none text-dark">100 <i class="fa-regular fa-comment-dots"></i></a>
+                            <a href="" class="text-decoration-none text-dark"><i class="fa-regular fa-bookmark"></i></a>
                         </p>
                     </div>
                     <div class="col-3">
@@ -65,10 +65,10 @@
                         <h5 class="sub-heading fw-bold mt-3"><a href="" class="text-danger text-decoration-none">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, debitis?</a></h5>
                         <p class="sub-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea doloremque omnis praesentium quae at.</p>
                         <p class="mt-1">
-                            <a href="" class="me-2 text-decoration-none text-dark">1000 &#x1f44d;</a>
-                            <a href="" class="me-2 text-decoration-none text-dark">200 &#x1f44e;</a>
-                            <a href="" class="me-2 text-decoration-none text-dark">100 &#x1f4ac;</a>
-                            <a href="" class="text-decoration-none">&#x1f6a9;</a>
+                            <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
+                            <a href="" class="me-2 text-decoration-none text-dark">200 <i class="fa-regular fa-thumbs-down"></i></a>
+                            <a href="" class="me-2 text-decoration-none text-dark">100 <i class="fa-regular fa-comment-dots"></i></a>
+                            <a href="" class="text-decoration-none text-dark"><i class="fa-regular fa-bookmark"></i></a>
                         </p>
                     </div>
                     <div class="col-3">
@@ -77,10 +77,10 @@
                         <h5 class="sub-heading fw-bold mt-3"><a href="" class="text-danger text-decoration-none">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, debitis?</a></h5>
                         <p class="sub-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea doloremque omnis praesentium quae at.</p>
                         <p class="mt-1">
-                            <a href="" class="me-2 text-decoration-none text-dark">1000 &#x1f44d;</a>
-                            <a href="" class="me-2 text-decoration-none text-dark">200 &#x1f44e;</a>
-                            <a href="" class="me-2 text-decoration-none text-dark">100 &#x1f4ac;</a>
-                            <a href="" class="text-decoration-none">&#x1f6a9;</a>
+                            <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
+                            <a href="" class="me-2 text-decoration-none text-dark">200 <i class="fa-regular fa-thumbs-down"></i></a>
+                            <a href="" class="me-2 text-decoration-none text-dark">100 <i class="fa-regular fa-comment-dots"></i></a>
+                            <a href="" class="text-decoration-none text-dark"><i class="fa-regular fa-bookmark"></i></a>
                         </p>
                     </div>
                 </div>
@@ -94,46 +94,46 @@
                     <li>
                         <p><a href="" class="text-dark aside-heading">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi, libero?</a></p>
                         <p>
-                            <a href="" class="me-2 text-decoration-none text-dark">1000 &#x1f44d;</a>
-                            <a href="" class="me-2 text-decoration-none text-dark">200 &#x1f44e;</a>
-                            <a href="" class="me-2 text-decoration-none text-dark">100 &#x1f4ac;</a>
-                            <a href="" class="text-decoration-none">&#x1f6a9;</a>
+                            <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
+                            <a href="" class="me-2 text-decoration-none text-dark">200 <i class="fa-regular fa-thumbs-down"></i></a>
+                            <a href="" class="me-2 text-decoration-none text-dark">100 <i class="fa-regular fa-comment-dots"></i></a>
+                            <a href="" class="text-decoration-none text-dark"><i class="fa-regular fa-bookmark"></i></a>
                         </p>
                     </li>
                     <li>
                         <p><a href="" class="text-dark aside-heading">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi, libero?</a></p>
                         <p>
-                            <a href="" class="me-2 text-decoration-none text-dark">1000 &#x1f44d;</a>
-                            <a href="" class="me-2 text-decoration-none text-dark">200 &#x1f44e;</a>
-                            <a href="" class="me-2 text-decoration-none text-dark">100 &#x1f4ac;</a>
-                            <a href="" class="text-decoration-none">&#x1f6a9;</a>
+                            <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
+                            <a href="" class="me-2 text-decoration-none text-dark">200 <i class="fa-regular fa-thumbs-down"></i></a>
+                            <a href="" class="me-2 text-decoration-none text-dark">100 <i class="fa-regular fa-comment-dots"></i></a>
+                            <a href="" class="text-decoration-none text-dark"><i class="fa-regular fa-bookmark"></i></a>
                         </p>
                     </li>
                     <li>
                         <p><a href="" class="text-dark aside-heading">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi, libero?</a></p>
                         <p>
-                            <a href="" class="me-2 text-decoration-none text-dark">1000 &#x1f44d;</a>
-                            <a href="" class="me-2 text-decoration-none text-dark">200 &#x1f44e;</a>
-                            <a href="" class="me-2 text-decoration-none text-dark">100 &#x1f4ac;</a>
-                            <a href="" class="text-decoration-none">&#x1f6a9;</a>
+                            <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
+                            <a href="" class="me-2 text-decoration-none text-dark">200 <i class="fa-regular fa-thumbs-down"></i></a>
+                            <a href="" class="me-2 text-decoration-none text-dark">100 <i class="fa-regular fa-comment-dots"></i></a>
+                            <a href="" class="text-decoration-none text-dark"><i class="fa-regular fa-bookmark"></i></a>
                         </p>
                     </li>
                     <li>
                         <p><a href="" class="text-dark aside-heading">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi, libero?</a></p>
                         <p>
-                            <a href="" class="me-2 text-decoration-none text-dark">1000 &#x1f44d;</a>
-                            <a href="" class="me-2 text-decoration-none text-dark">200 &#x1f44e;</a>
-                            <a href="" class="me-2 text-decoration-none text-dark">100 &#x1f4ac;</a>
-                            <a href="" class="text-decoration-none">&#x1f6a9;</a>
+                            <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
+                            <a href="" class="me-2 text-decoration-none text-dark">200 <i class="fa-regular fa-thumbs-down"></i></a>
+                            <a href="" class="me-2 text-decoration-none text-dark">100 <i class="fa-regular fa-comment-dots"></i></a>
+                            <a href="" class="text-decoration-none text-dark"><i class="fa-regular fa-bookmark"></i></a>
                         </p>
                     </li>
                     <li>
                         <p><a href="" class="text-dark aside-heading">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi, libero?</a></p>
                         <p>
-                            <a href="" class="me-2 text-decoration-none text-dark">1000 &#x1f44d;</a>
-                            <a href="" class="me-2 text-decoration-none text-dark">200 &#x1f44e;</a>
-                            <a href="" class="me-2 text-decoration-none text-dark">100 &#x1f4ac;</a>
-                            <a href="" class="text-decoration-none">&#x1f6a9;</a>
+                            <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
+                            <a href="" class="me-2 text-decoration-none text-dark">200 <i class="fa-regular fa-thumbs-down"></i></a>
+                            <a href="" class="me-2 text-decoration-none text-dark">100 <i class="fa-regular fa-comment-dots"></i></a>
+                            <a href="" class="text-decoration-none text-dark"><i class="fa-regular fa-bookmark"></i></a>
                         </p>
                     </li>
                 </ol>
