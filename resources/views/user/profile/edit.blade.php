@@ -78,10 +78,13 @@
                         $countries = App\Models\Country::where('continent', $continent)->get();
                     @endphp
                     @foreach($countries as $country)
-                    <div class="form-check form-check-inline">
-                        <label for="{{$country->name}}-{{$country->id}}" class="form-check-label"><input type="checkbox" id="{{$country->name}}-{{$country->id}}" name="{{$country->name}}-{{$country->id}}" class="form-check-input" />{{$country->name}}</label>
-                    </div>
+                        <div class="form-check form-check-inline my-2">
+                            <input type="checkbox" name="{{$country->name}}-{{$country->id}}" id="{{$country->name}}-{{$country->id}}" value="{{$country->id}}" class="form-check-input">
+                            <label for="{{$country->name}}-{{$country->id}}" class="form-check-label">{{$country->name}}</label>
+                        </div>
                     @endforeach
                 @endforeach
-            </div>
-            @endsection
+        <button type="submit"class="form-control fw-bold fs-5 btn btn-sm btn-secondary text-white save">SAVE</button>
+    </form>
+</div>
+@endsection
