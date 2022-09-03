@@ -3,9 +3,9 @@
     <div class="row">
         <div class="col-lg-3 back-gray d-flex justify-content-center align-items-center">
             <!-- Logo -->
-            <img src="{{ asset('images/logo.png') }}" alt="" width="200" class="">
+            <img src="{{ asset('images/logo.png') }}" alt="" width="170" class="">
         </div>
-        <div class="col-lg-9 p-5">
+        <div class="col-lg-9 px-5 pt-4 pb-3">
             <div class="row border border-gray border-3 rounded-pill ps-5">
                 <!-- Subscribe Now! -->
                 <div class="col-7 py-2">
@@ -17,7 +17,7 @@
                     </p>
                 </div>
             </div>
-            <div class="row mt-5 px-3">
+            <div class="row mt-4 px-3">
                 <div class="col-lg-4 footer-content">
                     <!-- Shortcuts -->
                     <h6 class="fw-bold text-white">Shortcuts</h6>
