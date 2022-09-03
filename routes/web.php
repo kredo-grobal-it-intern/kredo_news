@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\User\CountryController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,13 +30,15 @@ Route::get('/', [NewsController::class, 'index'])->name('news.index');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/favorite', [NewsController::class,'showFavoritePage'])->name('user.news.favorite');
 Route::get('/non_user', [NewsController::class,'showNonUser'])->name('user.news.non_user');
+Route::get('/search', [NewsController::class,'showSearch'])->name('news.search');
 Route::get('/{news_id}',[NewsController::class, 'show'])->name('news.show');
-
+Route::get('/search/category',[NewsController::class, 'filter'])->name('news.filter');
 // tentative route to filtered page for user
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 Route::get('/profile/edit',[UserController::class, 'edit'])->name('user.profile.edit');
 Route::get('/profile/{user_id}',[UserController::class, 'show'])->name('user.profile.show');
 });
+
 Route::get('/category/{category_id}',[CategoryController::class, 'show'])->name('news.category');
 Route::get('/country/{country_id}',[CountryController::class, 'show'])->name('news.country');
 
@@ -76,13 +79,5 @@ Route::group(['middleware' => 'auth'],function(){
         Route::get('post', [ProfileController::class, 'update'])->name('post');
     });
   });
+<<<<<<< HEAD
 });
-
-
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
-    Route::get('profile/edit', [ProfileController::class, 'edit'])->name('admin.profile.edit');
-    Route::get('profile/post', [ProfileController::class, 'update'])->name('admin.profile.post');
-    });
-
-
-
