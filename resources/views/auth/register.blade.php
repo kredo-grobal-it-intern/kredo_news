@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-lg-6 col-md-10 col-sm-12 mx-auto">
             <img src="{{ asset('images/logo3.png') }}" alt="logo3" class="logo">
-            <p class="h4 text-center">Log in to your CCC acount</p>
+            <p class="h4 text-center">Create your CCC acount</p>
             <p>
                 <span>Already have an account?</span>
                 <a href="{{ route('login') }}" class="text-white ms-2">Sign in</a>
@@ -85,7 +85,7 @@
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password"  placeholder="Password Confirm">
                     </div>
                     <button type="submit" class="btn btn-danger fw-bold w-100">
-                        Login
+                        Register
                     </button>
                 </div>
             </form>
