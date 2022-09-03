@@ -43,5 +43,11 @@ class NewsController extends Controller
         $country = Country::all();
         return view('user.news.non_user')->with('countries', $country);
     }
+
+    public function showSearch()
+    {
+        $all_news = News::all();
+        return view('user.news.search') ->with('all_news', $all_news);
+    }
 }
 
