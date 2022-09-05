@@ -48,9 +48,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function nationality()
-    {
-      return $this->belongsTo(Country::class);
+    public function category(){
+        return $this->belongsTo(Category::class);
     }
 
+    public function country(){
+        return $this->belongsTo(Country::class);
+    }
+
+    public function nationality(){
+        return $this->belongsTo(Country::class);
+    }
 }
