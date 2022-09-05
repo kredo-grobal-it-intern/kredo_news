@@ -52,8 +52,7 @@ class NewsController extends Controller
     }
 
 
-    public function store(NewsStoreUpdateRequest $request)
-    {
+    public function store(NewsStoreUpdateRequest $request){
         $news = $this->news;
 
         $news->title        = $request->title;
