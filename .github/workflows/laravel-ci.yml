@@ -1,16 +1,10 @@
-name: Laravel
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-    
+on: push
+name: CI
 jobs:
   phpunit:
     runs-on: ubuntu-latest
     container:
-      image: kirschbaumdevelopment/laravel-test-runner:7.4
+      image: kirschbaumdevelopment/laravel-test-runner:7.4-beta
 
     services:
       mysql:
