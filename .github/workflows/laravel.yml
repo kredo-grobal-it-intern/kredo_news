@@ -27,10 +27,11 @@ jobs:
       run: |
         mkdir -p database
         touch database/database.sqlite
-    - name: Generate key
-      run: php artisan key:generate
+    
     - name: Migrate database and run seeder
       run: php artisan migrate --seed
+    - name: Generate key
+      run: php artisan key:generate
     - name: Check code sniffer
       run: vendor/bin/phpcs
     - name: Execute tests (Unit and Feature tests) via PHPUnit
