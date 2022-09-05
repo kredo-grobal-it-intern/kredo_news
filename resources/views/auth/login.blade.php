@@ -41,7 +41,7 @@
             <p>Or Login with:</p>
             <div class="row d-block">
                 <a href="" ><i class="fab fa-facebook-square fs-1 text-white"></i></a>
-                <a href="" ><i class="fa-brands fa-google fs-1 text-white"></i></a>
+                <a href="{{ route('google.login') }}" ><i class="fa-brands fa-google fs-1 text-white"></i></a>
             </div>
         </div>
     </div>
