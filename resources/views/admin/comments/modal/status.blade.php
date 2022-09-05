@@ -8,7 +8,7 @@
       <div class="modal-body border-danger">
         <p>Are you sure to hide this comment?</p>
         <div>
-          <p>{{ $comment->body }}</p>
+          <p>"{{ $comment->body }}"</p>
         </div>
       </div>
       <div class="modal-footer border-0">
