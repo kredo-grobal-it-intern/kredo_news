@@ -8,7 +8,10 @@ on:
 
 jobs:
   laravel-tests:
-    
+    env:
+        DB_CONNECTION: sqlite
+        DB_HOST: mysql
+        DB_DATABASE: database/database.sqlite
     runs-on: ubuntu-latest
 
     steps:
@@ -35,8 +38,5 @@ jobs:
     - name: Check code sniffer
       run: vendor/bin/phpcs
     - name: Execute tests (Unit and Feature tests) via PHPUnit
-      env:
-        DB_CONNECTION: sqlite
-        DB_HOST: mysql
-        DB_DATABASE: database/database.sqlite
+      
       run: vendor/bin/phpunit
