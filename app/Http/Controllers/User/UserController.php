@@ -26,7 +26,7 @@ class UserController extends Controller
     }
 
     public function edit(){
-        $user_id = Auth::user()->id;
+        $user_id = Auth::id();
         $user = User::findOrFail($user_id);
         $sources = Source::all();
         $continents = [ 'America','Asia','Europe','Oceania','Africa' ];
@@ -39,46 +39,5 @@ class UserController extends Controller
                 'countries' => $countries
         ]);
     }
-
-    public function update(Request $request,User $user){
-//update user detail
-    $user_id = Auth::user()->id;
-    $user = User::findOrFail($user_id);
-
-    $user->username = $request->username;
-    $user->email = $request->email;
-    $user->nationality = $request->nationality;
-    $user->country = $request->country;
-
-    // $favorite_source = $request->fav_source;
-    // $favorite_country->fav_country = $request->fav_country;
-
-// remove pre selected favorite site/country
-        if($request->avatar):
-            $this->deleteAvatar($user->avatar);
-            $user->avatar = $this->saveAvatar($request);
-        endif;
-
-
-// insert new favorite from form
-        $user->save();
-        return redirect()->route('user.profile.show');
-
-    }
-
-    public function saveAvatar($request){
-        $avatar_name = time().".".$request->avatar->extension();
-        $request->avatar->storeAs(self::LOCAL_STORAGE_FOLDER,$avatar_name);
-        return $avatar_name;
-    }
-
-    public function deleteAvatar($avatar_name){
-        $image_path=self::LOCAL_STORAGE_FOLDER.$avatar_name;
-        if(Storage::disk('local')->exists($image_path)):
-           Storage::disk('local')->delete($image_path);
-        endif;
-    }
-
-
 
 }
