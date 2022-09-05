@@ -48,9 +48,9 @@ class CommentController extends Controller
      */
     public function show()
     {
-      $comments = Comment::orderBy('created_at')->withTrashed()->paginate(10);
+        $comments = Comment::orderBy('created_at')->withTrashed()->paginate(10);
 
-      return view('admin.comments.show')->with('comments', $comments);
+        return view('admin.comments.show')->with('comments', $comments);
     }
 
     /**
@@ -84,15 +84,15 @@ class CommentController extends Controller
      */
     public function destroy($comment_id)
     {
-      Comment::destroy($comment_id);
+        Comment::destroy($comment_id);
 
-      return redirect()->back();    
+        return redirect()->back();
     }
 
     public function restore($comment_id)
     {
-      Comment::withTrashed()->where('id', $comment_id)->restore();
+        Comment::withTrashed()->where('id', $comment_id)->restore();
 
-      return redirect()->back();
+        return redirect()->back();
     }
 }

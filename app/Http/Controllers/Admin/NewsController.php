@@ -9,10 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\News;
 use App\Models\User;
 use App\Models\Comment;
-use App\Models\History;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
-
 
 class NewsController extends Controller
 {
@@ -86,7 +83,7 @@ class NewsController extends Controller
     {
         $image_name = self::LOCAL_STORAGE_FOLDER . $image;
 
-        if(Storage::disk('local')->exists($image_name)){
+        if (Storage::disk('local')->exists($image_name)) {
             Storage::disk('local')->delete($image_name);
         }
     }
@@ -110,13 +107,14 @@ class NewsController extends Controller
         $news->author       = $request->author;
         $news->content      = $request->content;
 
-        if($request->image){
-            if($news->image){
-            $this->deleteImage($news->image);
-            $news->image = $this->saveImage($request);
-            }else{
+        if ($request->image) {
+            if ($news->image) {
+                $this->deleteImage($news->image);
                 $news->image = $this->saveImage($request);
-        }};
+            } else {
+                $news->image = $this->saveImage($request);
+            }
+        };
     
         $news->save();
 
@@ -136,5 +134,4 @@ class NewsController extends Controller
 
         return redirect()->back();
     }
-
 }
