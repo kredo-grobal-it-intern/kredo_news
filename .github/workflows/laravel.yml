@@ -24,8 +24,8 @@ jobs:
     - name: Prepare Laravel Application
       run: |
         cp .env.ci .env
-        php artisan migrate
-        php artisan key:generate
+        #php artisan migrate
+        #php artisan key:generate
  
-    - name: Run Testsuite
-      run: vendor/bin/phpunit
+    #- name: Run Testsuite
+      #run: vendor/bin/phpunit
