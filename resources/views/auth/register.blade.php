@@ -7,119 +7,87 @@
 @endsection
 
 @section('content')
-<div class="container justify-content-center text-center" style="margin-top:100px">
-    <div class="row justify-content-center">
-        <div class="col-md-4 mx-auto col-sm-12">
-            <form method="POST" action="{{ route('register') }}">
+<div class="container text-center container-custom">
+    <div class="row">
+        <div class="col-lg-6 col-md-10 col-sm-12 mx-auto">
+            <img src="{{ asset('images/logo3.png') }}" alt="logo3" class="logo">
+            <p class="h4 text-center">Create your CCC acount</p>
+            <p>
+                <span>Already have an account?</span>
+                <a href="{{ route('login') }}" class="text-white ms-2">Sign in</a>
+            </p>
+            <form action="{{ route('register') }}" method="post">
                 @csrf
-                <img src="{{asset('/images/logo3.PNG')}}" alt="logo2" style="height:100px; width:100px;">
-                <p class="h4 text-white text-center">Create your CCC acount</p>
-                <div class="form-check text-white mb-4 text-center">
-                    <p class="me-4">Already have an account?
-                        <a href="{{ route('login') }}" class="text-white">Sign in</a>
-                    </p>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-md-10 offset-md-1">
-                        <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="Username">
-
+                <div class="w-75 mx-auto mb-3">
+                    <div class="form mb-3">
+                        <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" placeholder="Username" required autocomplete="username" autofocus>
                         @error('username')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-md-10 offset-md-1">
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="E-mail">
-
+                    <div class="form mb-3">
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="E-mail" required autocomplete="email">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-md-10 offset-md-1">
+                    <div class="form mb-3">
                         <select class="form-control text-muted">
-                                <option hidden >Nationality</option>
-                                <option> text 1 </option>
-                                <option> text 2 </option>
-                                <option> text 3 </option>
+                            <option hidden>Nationality</option>
+                            <option> text 1 </option>
+                            <option> text 2 </option>
+                            <option> text 3 </option>
                         </select>
-
-                         {{-- <select class="form-control" name="country">
-                        <option value="">Select a country</option>
-                        @foreach($countries as $country)
-                            <option value="{{ $country->id }}">{{ $country->name }}</option>
-                        @endforeach
-                    </select> --}}
-
-
-
+                        {{-- <select class="form-control" name="country">
+                            <option value="">Select a country</option>
+                            @foreach($countries as $country)
+                                <option value="{{ $country->id }}">{{ $country->name }}</option>
+                            @endforeach
+                        </select> --}}
                         @error('nationality')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-md-10 offset-md-1">
-                        <select class="form-control text-muted ">
-                            <option hidden >Country</option>
+                    <div class="form mb-3">
+                        <select class="form-control text-muted">
+                            <option hidden>Country</option>
                             <option> text 1 </option>
                             <option> text 2 </option>
                             <option> text 3 </option>
-                    </select>
-
-                    {{-- <select class="form-control" name="country">
-                        <option value="">Select a country</option>
-                        @foreach($countries as $country)
-                            <option value="{{ $country->id }}">{{ $country->name }}</option>
-                        @endforeach
-                    </select> --}}
-
+                        </select>
+                        {{-- <select class="form-control" name="country">
+                            <option value="">Select a country</option>
+                            @foreach($countries as $country)
+                                <option value="{{ $country->id }}">{{ $country->name }}</option>
+                            @endforeach
+                        </select> --}}
                         @error('contry')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                         @enderror
                     </div>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-md-10 offset-md-1">
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password"  placeholder="Password">
-
+                    <div class="form mb-3">
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="current-password">
                         @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-md-10 offset-md-1">
+                    <div class="form mb-3">
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password"  placeholder="Password Confirm">
                     </div>
+                    <button type="submit" class="btn btn-danger fw-bold w-100">
+                        Register
+                    </button>
                 </div>
-
-                <div class="row mb-0">
-                    <div class="col-md-10 offset-md-1">
-                        <button type="submit" class="btn btn-danger w-100">
-                            {{ __('Create account') }}
-                        </button>
-                    </div>
-                </div>
-
             </form>
         </div>
     </div>
