@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\News;
 use App\Models\User;
-use App\Models\Category;
-use App\Models\Country;
 use App\Models\Source;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -15,9 +13,10 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    const LOCAL_STORAGE_FOLDER ='public/avatars/';
+    const LOCAL_STORAGE_FOLDER = 'public/avatars/';
 
-    public function show(){
+    public function show()
+    {
         // tentative method
         // $user_id = Auth::user()->id;
         // $user = User::findOrFail($user_id);
@@ -26,7 +25,8 @@ class UserController extends Controller
             ->with('all_news', $all_news);
     }
 
-    public function edit(){
+    public function edit()
+    {
         $user_id = Auth::id();
         $user = User::findOrFail($user_id);
         dd($user->favoriteSources);
@@ -39,10 +39,11 @@ class UserController extends Controller
                 'sources' => $sources,
                 'continents' => $continents,
                 // 'countries' => $countries
-        ]);
+         ]);
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         //update user detail
         $user = Auth::user();
         $user->username = $request->username;
@@ -51,45 +52,47 @@ class UserController extends Controller
         $user->country_id = $request->country;
         $sources = $request->sources ?? [];
         $favorite_sources = [];
-            foreach($sources as $source) {
+        foreach ($sources as $source) {
             $favorite_sources[] = [
             'user_id' => $request->id,
             'source_id' => $source
             ];
-            }
+        }
             DB::table('favorite_sources')->where('user_id', $user->id)->delete();
             DB::table('favorite_sources')->insert($favorite_sources);
         $countries = $request->countries ?? [];
         $favorite_countries = [];
-            foreach($countries as $country){
-                $favorite_countries[] = [
-                    'user_id' => $request->id,
-                    'country_id' => $country
-                ];
-            }
+        foreach ($countries as $country) {
+            $favorite_countries[] = [
+                'user_id' => $request->id,
+                'country_id' => $country
+            ];
+        }
             DB::table('favorite_countries')->where('user_id', $user->id)->delete();
             DB::table('favorite_countries')->insert($favorite_countries);
 
-        if($request->avatar):
+        if ($request->avatar) :
             $this->deleteAvatar($user->avatar);
             $user->avatar = $this->saveAvatar($request);
         endif;
 
         $user->save();
 
-        return redirect()->route('user.profile.show', ['user_id' =>$user->id]);
+        return redirect()->route('user.profile.show', ['user_id' => $user->id]);
     }
 
-    public function saveAvatar($request){
+    public function saveAvatar($request)
+    {
         $avatar_name = time().".".$request->avatar->extension();
-        $request->avatar->storeAs(self::LOCAL_STORAGE_FOLDER,$avatar_name);
+        $request->avatar->storeAs(self::LOCAL_STORAGE_FOLDER, $avatar_name);
         return $avatar_name;
     }
 
-    public function deleteAvatar($avatar_name){
-        $image_path=self::LOCAL_STORAGE_FOLDER.$avatar_name;
-        if(Storage::disk('local')->exists($image_path)):
-           Storage::disk('local')->delete($image_path);
+    public function deleteAvatar($avatar_name)
+    {
+        $image_path = self::LOCAL_STORAGE_FOLDER.$avatar_name;
+        if (Storage::disk('local')->exists($image_path)) :
+            Storage::disk('local')->delete($image_path);
         endif;
     }
 }
