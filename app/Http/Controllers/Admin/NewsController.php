@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\NewsStoreUpdateRequest;
-use Illuminate\Http\Request;
 
 use App\Models\News;
 use App\Models\User;
