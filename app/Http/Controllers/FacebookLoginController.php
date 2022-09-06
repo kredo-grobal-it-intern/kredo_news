@@ -23,7 +23,7 @@ class FacebookLoginController extends Controller
         if ($user === null) {
             $user = $this->createUserByFacebook($facebook_user);
         }
-        Auth::login($user, true);
+        Auth::login($user);
         return redirect()->route('news.index');
     }
 
@@ -31,6 +31,7 @@ class FacebookLoginController extends Controller
         $user = User::create([
             'username' => $facebook_user->name,
             'email' => $facebook_user->email,
+            'facebook_id' => $facebook_user->id,
             'password' => Hash::make('password'),
         ]);
         return $user;

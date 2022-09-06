@@ -23,7 +23,7 @@ class GoogleLoginController extends Controller
         if ($user === null) {
             $user = $this->createUserByGoogle($google_user);
         }
-        Auth::login($user, true);
+        Auth::login($user);
         return redirect()->route('news.index');
     }
 
@@ -31,6 +31,7 @@ class GoogleLoginController extends Controller
         $user = User::create([
             'username' => $google_user->name,
             'email' => $google_user->email,
+            'google_id' => $google_user->id,
             'password' => Hash::make('password'),
         ]);
         return $user;
