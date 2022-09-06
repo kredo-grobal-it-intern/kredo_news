@@ -6,13 +6,13 @@
 
 @section('content')
 <div class="container justify-content-center px-auto">
-    <form action="#" method="post" class="form" enctype="multipart/form-data">
+    <form action="{{ route('user.profile.update', ['id'=> Auth::id()]) }}" method="post" class="form" enctype="multipart/form-data">
         @csrf
         @method('patch')
         <div class="row mt-5 profile_head">
             <div class="col-3">
                 @if ($user->avatar)
-                <img src="{{asset('/storage/avatars/'.$user->avatar)}}" alt="" class="rounded-circle nav-avatar" style="width:200px;height:200px">
+                    <img src="{{asset('/storage/avatars/'.$user->avatar)}}" alt="" class="rounded-circle nav-avatar" style="width:200px;height:200px">
                 @else
                     <i class="fa-solid fa-circle-user text-secondary d-block text-center profile-icon"></i>
                 @endif
@@ -44,17 +44,49 @@
             <div class="col-2">
                 <label class="label" class="form-label d-block fw-bold">Nationality</label>
             </div>
-            <div class="col-6">
-                <input type="text" name="Nationality" id="nationality" class="form-control my-2" value="{{$user->nationality->name}}">
-            </div>
+            <div class="col-6 input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01" name="nationality">
+                  {{-- <option selected>{{$user->nationality->name}}</option> --}}
+                    @foreach($continents as $continent)
+                        <p class="fw-bold">{{ $continent }}</p>
+                        @php
+                            $countries = App\Models\Country::where('continent', $continent)->get();
+                        @endphp
+                        @foreach($countries as $country)
+                            <div class="form-check form-check-inline my-2">
+                                <option value="{{$country->id}}" {{ $country->id == Auth::user()->nationality_id ? 'selected' : '' }}>{{$country->name}}</option>
+                            </div>
+                        @endforeach
+                    @endforeach
+                </select>
+              </div>
         </div>
         <div class="row mb-5">
             <div class="col-2">
                 <label class="label" class="form-label d-block fw-bold">Country of Residence</label>
             </div>
-            <div class="col-6">
-                <input type="text" name="country" id="country" class="form-control my-2" value="{{$user->country->name}}">
-            </div>
+            <div class="col-6 input-group form-control mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01" name="country">
+                  {{-- <option selected>{{$user->country->name}}</option> --}}
+                    @foreach($continents as $continent)
+                        <p class="fw-bold">{{ $continent }} </p>
+                        @php
+                            $countries = App\Models\Country::where('continent', $continent)->get();
+                        @endphp
+                        @foreach($countries as $country)
+                            <div class="form-check form-check-inline my-2">
+                                <option value="{{$country->id}}" {{ $country->id == Auth::user()->country_id ? 'selected' : '' }}>{{$country->name}}</option>
+                            </div>
+                        @endforeach
+                    @endforeach
+                </select>
+              </div>
         </div>
     </div>
 <div class="row">
@@ -62,10 +94,10 @@
 </div>
            <div class="my-5">
                 @foreach ($sources as $source )
-                <div class="form-check form-check-inline">
-                    <input type="checkbox" name="" id="{{$source->name}}-{{$source->id}}" value="{{$source->id}}" class="form-check-input">
-                    <label for="{{$source->name}}-{{$source->id}}" class="form-check-label">{{$source->name}}</label>
-                </div>
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" name="sources[]" id="{{$source->name}}-{{$source->id}}" value="{{$source->id}}" class="form-check-input">
+                        <label for="{{$source->name}}-{{$source->id}}" class="form-check-label">{{$source->name}}</label>
+                    </div>
                 @endforeach
             </div>
         <div class="row">
@@ -79,7 +111,7 @@
                     @endphp
                     @foreach($countries as $country)
                         <div class="form-check form-check-inline my-2">
-                            <input type="checkbox" name="{{$country->name}}-{{$country->id}}" id="{{$country->name}}-{{$country->id}}" value="{{$country->id}}" class="form-check-input">
+                            <input type="checkbox" name="countries[]" id="{{$country->name}}-{{$country->id}}" value="{{$country->id}}" class="form-check-input">
                             <label for="{{$country->name}}-{{$country->id}}" class="form-check-label">{{$country->name}}</label>
                         </div>
                     @endforeach

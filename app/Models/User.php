@@ -59,4 +59,8 @@ class User extends Authenticatable
     public function nationality(){
         return $this->belongsTo(Country::class);
     }
+
+    public function favoriteSources(){
+        return $this->belongsToMany(User::class,'favorite_sources','user_id');
+    }
 }

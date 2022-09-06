@@ -11,6 +11,7 @@ use App\Models\Country;
 use App\Models\Source;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -28,16 +29,67 @@ class UserController extends Controller
     public function edit(){
         $user_id = Auth::id();
         $user = User::findOrFail($user_id);
+        dd($user->favoriteSources);
         $sources = Source::all();
         $continents = [ 'America','Asia','Europe','Oceania','Africa' ];
-        $countries = Country::whereIn('continent', [ 'america', 'asia', 'europe','oceania','africa' ])->get();
+        // $countries = Country::whereIn('continent', [ 'america', 'asia', 'europe','oceania','africa' ])->get();
 
          return view('user.profile.edit', [
                 'user' => $user,
                 'sources' => $sources,
                 'continents' => $continents,
-                'countries' => $countries
+                // 'countries' => $countries
         ]);
     }
 
+    public function update(Request $request){
+        //update user detail
+        $user = Auth::user();
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->nationality_id = $request->nationality;
+        $user->country_id = $request->country;
+        $sources = $request->sources ?? [];
+        $favorite_sources = [];
+            foreach($sources as $source) {
+            $favorite_sources[] = [
+            'user_id' => $request->id,
+            'source_id' => $source
+            ];
+            }
+            DB::table('favorite_sources')->where('user_id', $user->id)->delete();
+            DB::table('favorite_sources')->insert($favorite_sources);
+        $countries = $request->countries ?? [];
+        $favorite_countries = [];
+            foreach($countries as $country){
+                $favorite_countries[] = [
+                    'user_id' => $request->id,
+                    'country_id' => $country
+                ];
+            }
+            DB::table('favorite_countries')->where('user_id', $user->id)->delete();
+            DB::table('favorite_countries')->insert($favorite_countries);
+
+        if($request->avatar):
+            $this->deleteAvatar($user->avatar);
+            $user->avatar = $this->saveAvatar($request);
+        endif;
+
+        $user->save();
+
+        return redirect()->route('user.profile.show', ['user_id' =>$user->id]);
+    }
+
+    public function saveAvatar($request){
+        $avatar_name = time().".".$request->avatar->extension();
+        $request->avatar->storeAs(self::LOCAL_STORAGE_FOLDER,$avatar_name);
+        return $avatar_name;
+    }
+
+    public function deleteAvatar($avatar_name){
+        $image_path=self::LOCAL_STORAGE_FOLDER.$avatar_name;
+        if(Storage::disk('local')->exists($image_path)):
+           Storage::disk('local')->delete($image_path);
+        endif;
+    }
 }
