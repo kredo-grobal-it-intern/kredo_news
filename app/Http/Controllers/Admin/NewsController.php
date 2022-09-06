@@ -46,7 +46,7 @@ class NewsController extends Controller
         return view('admin.users.show');
     }
 
-    public function create(Request $request)
+    public function create()
     {
         return view('admin.news.create');
     }
