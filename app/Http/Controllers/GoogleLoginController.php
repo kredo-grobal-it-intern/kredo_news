@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
@@ -27,7 +26,8 @@ class GoogleLoginController extends Controller
         return redirect()->route('news.index');
     }
 
-    public function createUserByGoogle($google_user) {
+    public function createUserByGoogle($google_user)
+    {
         $user = User::create([
             'username' => $google_user->name,
             'email' => $google_user->email,

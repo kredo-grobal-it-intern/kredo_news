@@ -3,20 +3,18 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\News;
 use App\Models\User;
-use App\Models\Category;
 use App\Models\Country;
 use App\Models\Source;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    const LOCAL_STORAGE_FOLDER ='public/avatars/';
+    const LOCAL_STORAGE_FOLDER = 'public/avatars/';
 
-    public function show(){
+    public function show()
+    {
         // tentative method
         // $user_id = Auth::user()->id;
         // $user = User::findOrFail($user_id);
@@ -25,19 +23,19 @@ class UserController extends Controller
             ->with('all_news', $all_news);
     }
 
-    public function edit(){
+    public function edit()
+    {
         $user_id = Auth::id();
         $user = User::findOrFail($user_id);
         $sources = Source::all();
         $continents = [ 'America','Asia','Europe','Oceania','Africa' ];
-        $countries = Country::whereIn('continent', [ 'america', 'asia', 'europe','oceania','africa' ])->get();
+        $countries = Country::whereIn('continent', [ 'america', 'asia', 'europe', 'oceania', 'africa' ])->get();
 
          return view('user.profile.edit', [
                 'user' => $user,
                 'sources' => $sources,
                 'continents' => $continents,
                 'countries' => $countries
-        ]);
+         ]);
     }
-
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
@@ -27,7 +26,8 @@ class FacebookLoginController extends Controller
         return redirect()->route('news.index');
     }
 
-    public function createUserByFacebook($facebook_user) {
+    public function createUserByFacebook($facebook_user)
+    {
         $user = User::create([
             'username' => $facebook_user->name,
             'email' => $facebook_user->email,
