@@ -26,8 +26,12 @@
                         @enderror
                     </div>
                     <div class="form mb-3">
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="current-password">
-                        @error('password')
+                        <p>
+
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="current-password">
+                            <i class="fa-solid fa-eye" id="toggleBtn" onclick="toggePassword()"></i>
+                        </p>
+                            @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -46,4 +50,19 @@
         </div>
     </div>
 </div>
+<script>
+    function toggePassword() {
+                var upass = document.getElementById('password');
+                var toggleBtn = document.getElementById('toggleBtn');
+                if (upass.type == "password") {
+                    upass.type = "text";
+                    toggleBtn.classList.toggle('fa-eye-slash');
+                    toggleBtn.classList.add('fa-eye');
+                } else {
+                    upass.type = "Password";
+                    toggleBtn.classList.toggle('fa-eye-slash');
+                    toggleBtn.classList.add('fa-eye');
+                }
+            }
+</script>
 @endsection
