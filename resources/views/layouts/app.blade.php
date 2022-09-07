@@ -23,7 +23,7 @@
     <link href="{{ mix('css/footer.css') }}" rel="stylesheet">
     @yield('style')
 </head>
-<body id="@yield('body_id', 'default')">
+<body>
     <div id="app">
 
         <header>

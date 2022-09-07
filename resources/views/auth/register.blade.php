@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
-@section('body_id', 'back-blue')
-
 @section('style')
-<link href="{{ asset('css/register.css') }}" rel="stylesheet">
+<link href="{{ mix('css/register.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
