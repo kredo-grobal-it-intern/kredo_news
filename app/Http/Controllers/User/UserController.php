@@ -35,6 +35,8 @@ class UserController extends Controller
                 'user' => $user,
                 'sources' => $sources,
                 'continents' => $continents,
+                'favorite_sources_ids' => $favorite_sources_ids,
+                'favorite_countries_ids' => $favorite_countries_ids
          ]);
     }
 
