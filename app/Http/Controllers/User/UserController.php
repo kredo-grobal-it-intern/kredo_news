@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\News;
 use App\Models\User;
+use App\Models\Country;
 use App\Models\Source;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -17,9 +18,6 @@ class UserController extends Controller
 
     public function show()
     {
-        // tentative method
-        // $user_id = Auth::user()->id;
-        // $user = User::findOrFail($user_id);
         $all_news = News::all();
         return view('user.profile.index')
             ->with('all_news', $all_news);
@@ -29,22 +27,31 @@ class UserController extends Controller
     {
         $user_id = Auth::id();
         $user = User::findOrFail($user_id);
-        dd($user->favoriteSources);
+        $favorite_sources_ids = $user->favoriteSources->pluck('id')->toArray();
         $sources = Source::all();
         $continents = [ 'America','Asia','Europe','Oceania','Africa' ];
-        // $countries = Country::whereIn('continent', [ 'america', 'asia', 'europe','oceania','africa' ])->get();
+<<<<<<< Updated upstream
 
+
+=======
+        $favorite_countries_ids = $user->favoriteCountries->pluck('id')->toArray();
+>>>>>>> Stashed changes
          return view('user.profile.edit', [
                 'user' => $user,
                 'sources' => $sources,
                 'continents' => $continents,
-                // 'countries' => $countries
+<<<<<<< Updated upstream
+
+         ]);
+    }
+=======
+                'favorite_sources_ids' => $favorite_sources_ids,
+                'favorite_countries_ids' => $favorite_countries_ids
          ]);
     }
 
     public function update(Request $request)
     {
-        //update user detail
         $user = Auth::user();
         $user->username = $request->username;
         $user->email = $request->email;
@@ -95,4 +102,5 @@ class UserController extends Controller
             Storage::disk('local')->delete($image_path);
         endif;
     }
+>>>>>>> Stashed changes
 }

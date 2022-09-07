@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\NewsStoreUpdateRequest;
-use Illuminate\Http\Request;
 
 use App\Models\News;
 use App\Models\User;
@@ -46,7 +45,7 @@ class NewsController extends Controller
         return view('admin.users.show');
     }
 
-    public function create(Request $request)
+    public function create()
     {
         return view('admin.news.create');
     }

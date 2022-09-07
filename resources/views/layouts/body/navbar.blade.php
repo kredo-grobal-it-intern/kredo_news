@@ -29,6 +29,9 @@
 
                     <!-- category dropdown list -->
                     <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                        @php
+                            $categories = App\Models\Category::all();
+                        @endphp
                         @foreach ($categories as $category)
                             <a href="" class="dropdown-item">
                                 {{ $category->name }}
