@@ -12,23 +12,27 @@ class NewsController extends Controller
     public function index()
     {
         $articles = [
-            'america' => [
+            'America' => [
                 'latest' => $this->getLatestArticle(1),
                 'sub' => $this->getArticlesBySource(1),
             ],
-            'asia' => [
+
+            'Asia' => [
                 'latest' => $this->getLatestArticle(2),
                 'sub' => $this->getArticlesBySource(2),
             ],
-            'europe' => [
+
+            'Europe' => [
                 'latest' => $this->getLatestArticle(3),
                 'sub' => $this->getArticlesBySource(3),
             ],
-            'africa' => [
+
+            'Africa' => [
                 'latest' => $this->getLatestArticle(4),
                 'sub' => $this->getArticlesBySource(4),
             ],
-            'oceania' => [
+            
+            'Oceania' => [
                 'latest' => $this->getLatestArticle(5),
                 'sub' => $this->getArticlesBySource(5),
             ],
@@ -44,7 +48,7 @@ class NewsController extends Controller
 
     public function getArticlesBySource($source_id)
     {
-        return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->offset(1)->limit(5)->get();
+        return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->offset(1)->limit(4)->get();
     }
 
     public function show($news_id)
