@@ -27,8 +27,7 @@ class News extends Model
         'published_at',
     ];
 
-    public function histories()
-    {
-        return $this->hasMany('App\Models\History');
+    public function country() {
+        return $this->belongsTo(Country::class);
     }
 }

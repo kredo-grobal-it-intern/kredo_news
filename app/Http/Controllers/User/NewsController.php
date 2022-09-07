@@ -11,9 +11,40 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $all_news = News::all();
-        return view('user.news.index')
-            ->with('all_news', $all_news);
+        $articles = [
+            'america' => [
+                'latest' => $this->getLatestArticle(1),
+                'sub' => $this->getArticlesBySource(1),
+            ],
+            'asia' => [
+                'latest' => $this->getLatestArticle(2),
+                'sub' => $this->getArticlesBySource(2),
+            ],
+            'europe' => [
+                'latest' => $this->getLatestArticle(3),
+                'sub' => $this->getArticlesBySource(3),
+            ],
+            'africa' => [
+                'latest' => $this->getLatestArticle(4),
+                'sub' => $this->getArticlesBySource(4),
+            ],
+            'oceania' => [
+                'latest' => $this->getLatestArticle(5),
+                'sub' => $this->getArticlesBySource(5),
+            ],
+        ];
+        // dd($articles['america']['latest']);
+        return view('user.news.index')->with('articles', $articles);
+    }
+
+    public function getLatestArticle($source_id)
+    {
+        return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->limit(1)->first();
+    }
+
+    public function getArticlesBySource($source_id)
+    {
+        return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->offset(1)->limit(5)->get();
     }
 
     public function show($news_id)
