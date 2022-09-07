@@ -30,23 +30,11 @@ class UserController extends Controller
         $favorite_sources_ids = $user->favoriteSources->pluck('id')->toArray();
         $sources = Source::all();
         $continents = [ 'America','Asia','Europe','Oceania','Africa' ];
-<<<<<<< Updated upstream
-
-
-=======
         $favorite_countries_ids = $user->favoriteCountries->pluck('id')->toArray();
->>>>>>> Stashed changes
          return view('user.profile.edit', [
                 'user' => $user,
                 'sources' => $sources,
                 'continents' => $continents,
-<<<<<<< Updated upstream
-
-         ]);
-    }
-=======
-                'favorite_sources_ids' => $favorite_sources_ids,
-                'favorite_countries_ids' => $favorite_countries_ids
          ]);
     }
 
@@ -102,5 +90,4 @@ class UserController extends Controller
             Storage::disk('local')->delete($image_path);
         endif;
     }
->>>>>>> Stashed changes
 }
