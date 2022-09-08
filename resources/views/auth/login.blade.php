@@ -6,6 +6,13 @@
 @endsection
 @section('content')
 <div class="container text-center container-custom">
+    @if (session('login_needed'))
+        <div class="text-center mb-3">
+            <span class="alert alert-danger" role="alert">
+                {{ session('login_needed') }}
+            </span>
+        </div>
+    @endif
     <div class="row">
         <div class="col-lg-6 col-md-10 col-sm-12 mx-auto">
             <img src="{{ asset('images/logo3.png') }}" alt="logo3" class="logo">
