@@ -27,7 +27,13 @@ class News extends Model
         'published_at',
     ];
 
-    public function country() {
-        return $this->belongsTo(Country::class);
+    public static function getLatestArticle($source_id)
+    {
+        return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->limit(1)->first();
+    }
+
+    public static function getArticlesBySource($source_id)
+    {
+        return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->offset(1)->limit(4)->get();
     }
 }

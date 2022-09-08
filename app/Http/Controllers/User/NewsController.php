@@ -9,46 +9,43 @@ use App\Models\Country;
 
 class NewsController extends Controller
 {
+    private $sources = [
+        'CNN' => 1,
+        'ASIA TIMES' => 2,
+        'BBC' => 3,
+        'africanews' => 4,
+        'ABC' => 5,
+    ];
+    
     public function index()
     {
         $articles = [
             'America' => [
-                'latest' => $this->getLatestArticle(1),
-                'sub' => $this->getArticlesBySource(1),
+                'latest' => News::getLatestArticle($this->sources['CNN']),
+                'sub' => News::getArticlesBySource($this->sources['CNN']),
             ],
 
             'Asia' => [
-                'latest' => $this->getLatestArticle(2),
-                'sub' => $this->getArticlesBySource(2),
+                'latest' => News::getLatestArticle($this->sources['ASIA TIMES']),
+                'sub' => News::getArticlesBySource($this->sources['ASIA TIMES']),
             ],
 
             'Europe' => [
-                'latest' => $this->getLatestArticle(3),
-                'sub' => $this->getArticlesBySource(3),
+                'latest' => News::getLatestArticle($this->sources['BBC']),
+                'sub' => News::getArticlesBySource($this->sources['BBC']),
             ],
 
             'Africa' => [
-                'latest' => $this->getLatestArticle(4),
-                'sub' => $this->getArticlesBySource(4),
+                'latest' => News::getLatestArticle($this->sources['africanews']),
+                'sub' => News::getArticlesBySource($this->sources['africanews']),
             ],
-            
+
             'Oceania' => [
-                'latest' => $this->getLatestArticle(5),
-                'sub' => $this->getArticlesBySource(5),
+                'latest' => News::getLatestArticle($this->sources['ABC']),
+                'sub' => News::getArticlesBySource($this->sources['ABC']),
             ],
         ];
-        // dd($articles['america']['latest']);
         return view('user.news.index')->with('articles', $articles);
-    }
-
-    public function getLatestArticle($source_id)
-    {
-        return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->limit(1)->first();
-    }
-
-    public function getArticlesBySource($source_id)
-    {
-        return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->offset(1)->limit(4)->get();
     }
 
     public function show($news_id)

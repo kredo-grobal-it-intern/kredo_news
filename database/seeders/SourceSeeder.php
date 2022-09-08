@@ -18,7 +18,7 @@ class SourceSeeder extends Seeder
             ['name' => 'CNN'],
             ['name' => 'ASIA TIMES'],
             ['name' => 'BBC'],
-            ['name' => 'afrecanews.'],
+            ['name' => 'africanews.'],
             ['name' => 'ABC'],
 
         ]);
