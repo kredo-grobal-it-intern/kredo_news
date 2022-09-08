@@ -7,7 +7,7 @@
 <div class="container text-center container-custom">
     <div class="row">
         <div class="col-lg-6 col-md-10 col-sm-12 mx-auto">
-            <img src="{{ mix('images/logo3.PNG') }}" alt="logo3" class="logo">
+            <img src="{{ asset('images/logo3.PNG') }}" alt="logo3" class="logo">
             <p class="h4 text-center">Log in to your CCC acount</p>
             <p>
                 <span>Not member yet?</span>
