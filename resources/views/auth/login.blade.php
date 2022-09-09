@@ -3,16 +3,15 @@
 @section('body_id', 'back-blue')
 @section('style')
 <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endsection
+
+@section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+@endsection
+
 @section('content')
 <div class="container text-center container-custom">
-    @if (session('login_needed'))
-        <div class="text-center mb-3">
-            <span class="alert alert-danger" role="alert">
-                {{ session('login_needed') }}
-            </span>
-        </div>
-    @endif
     <div class="row">
         <div class="col-lg-6 col-md-10 col-sm-12 mx-auto">
             <img src="{{ asset('images/logo3.png') }}" alt="logo3" class="logo">
@@ -53,4 +52,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        toastr.options = {
+            "timeOut": "5000",
+        }
+        @if (Session::has('login_needed'))
+            toastr.error('{{ Session::get('login_needed') }}');
+        @endif
+    });
+</script>
 @endsection
