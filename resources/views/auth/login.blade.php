@@ -55,6 +55,9 @@
     </div>
 </div>
 
+<!--
+    This script should be inside js file, but I couldn't since I'm using blade directives in here. If I come up with solution, I'll move it to js file.
+-->
 <script>
     $(document).ready(function() {
         toastr.options = {
