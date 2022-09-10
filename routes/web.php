@@ -13,6 +13,7 @@ use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\User\CountryController;
+use App\Http\Controllers\User\MediaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 });
 Route::get('/category/{category_id}', [CategoryController::class, 'show'])->name('news.category');
 Route::get('/country/{country_id}', [CountryController::class, 'show'])->name('news.country');
+Route::get('/media/{media_id}', [MediaController::class, 'show'])->name('news.media');
 // Route::get('/favorite', [NewsController::class, 'showFavoritePage'])->name('user.news.favorite');
 // Route::get('/non_user', [NewsController::class, 'showNonUser'])->name('user.news.non_user');
 // Route::get('/search', [NewsController::class, 'showSearch'])->name('news.search');
