@@ -178,7 +178,7 @@ return [
         /*
          * Custmized Service Providers...
          */
-        App\Providers\NavbarServiceProvider::class,
+        // App\Providers\NavbarServiceProvider::class,
 
     ],
 
