@@ -30,8 +30,7 @@ Auth::routes();
 
 Route::get('/', [NewsController::class, 'index'])->name('news.index');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/favorite', [NewsController::class, 'showFavoritePage'])->name('user.news.favorite');
-Route::get('/non_user', [NewsController::class, 'showNonUser'])->name('user.news.non_user');
+Route::get('/favorite', [NewsController::class, 'showFavoritePage'])->middleware('auth')->name('user.news.favorite');
 Route::get('/search', [NewsController::class, 'showSearch'])->name('news.search');
 Route::get('/{news_id}', [NewsController::class, 'show'])->name('news.show');
 Route::get('/search/category', [NewsController::class, 'filter'])->name('news.filter');
@@ -42,12 +41,13 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 });
 Route::get('/category/{category_id}', [CategoryController::class, 'show'])->name('news.category');
 Route::get('/country/{country_id}', [CountryController::class, 'show'])->name('news.country');
-Route::get('/favorite', [NewsController::class, 'showFavoritePage'])->name('user.news.favorite');
-Route::get('/non_user', [NewsController::class, 'showNonUser'])->name('user.news.non_user');
-Route::get('/search', [NewsController::class, 'showSearch'])->name('news.search');
-Route::get('/{news_id}', [NewsController::class, 'show'])->name('news.show');
-Route::get('/search/category', [NewsController::class, 'filter'])->name('news.filter');
-Route::get('/country/{country_id}', [CountryController::class, 'show'])->name('news.country');
+// Route::get('/favorite', [NewsController::class, 'showFavoritePage'])->name('user.news.favorite');
+// Route::get('/non_user', [NewsController::class, 'showNonUser'])->name('user.news.non_user');
+// Route::get('/search', [NewsController::class, 'showSearch'])->name('news.search');
+// Route::get('/{news_id}', [NewsController::class, 'show'])->name('news.show');
+// Route::get('/search/category', [NewsController::class, 'filter'])->name('news.filter');
+// Route::get('/country/{country_id}', [CountryController::class, 'show'])->name('news.country');
+
 
 Route::group(['middleware' => 'auth'],function(){
     Route::post('/thumbs_up', [ReactionController::class, 'thumbs_up'])->name('user.thumbs_up');
@@ -56,6 +56,9 @@ Route::group(['middleware' => 'auth'],function(){
   Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::get('dashboard', [AdminNewsController::class, 'showDashboard'])->name('show.dashboard');
+
+Route::group(['middleware' => 'admin'], function () {
+    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
         Route::group(['prefix' => 'news', 'as' => 'news.'], function () {
             Route::get('create', [AdminNewsController::class, 'create'])->name('create');

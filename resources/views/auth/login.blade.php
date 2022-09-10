@@ -2,10 +2,13 @@
 
 @section('script')
 <script src="{{ mix('js/_login.js') }}" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @endsection
 @section('style')
-<link href="{{ mix('css/login.css') }}" rel="stylesheet">
+<link href="{{ asset('css/login.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endsection
+
 @section('content')
 <div class="container text-center container-custom">
     <div class="row">
@@ -51,4 +54,18 @@
         </div>
     </div>
 </div>
+
+<!--
+    This script should be inside js file, but I couldn't since I'm using blade directives in here. If I come up with solution, I'll move it to js file.
+-->
+<script>
+    $(document).ready(function() {
+        toastr.options = {
+            "timeOut": "5000",
+        }
+        @if (Session::has('login_needed'))
+            toastr.error('{{ Session::get('login_needed') }}');
+        @endif
+    });
+</script>
 @endsection

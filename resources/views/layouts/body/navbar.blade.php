@@ -89,7 +89,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a href="" class="dropdown-item">
+                            <a href="{{route('user.profile.show', Auth::id())}}" class="dropdown-item">
                                 <i class="fa-solid fa-user"></i>&nbsp;My Profile
                             </a>
 
