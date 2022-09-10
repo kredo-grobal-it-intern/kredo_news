@@ -17,6 +17,9 @@ class CheckAdmin
      */
     public function handle(Request $request, Closure $next)
     {
+        if (!Auth::user()) {
+            return redirect()->route('login');
+        }
         if (!Auth::user()->is_admin) {
             return redirect()->route('news.index');
         }
