@@ -37,6 +37,7 @@ Route::get('/search/category', [NewsController::class, 'filter'])->name('news.fi
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('/profile/edit', [UserController::class, 'edit'])->name('user.profile.edit');
     Route::get('/profile/{user_id}', [UserController::class, 'show'])->name('user.profile.show');
+    Route::patch('/profile/{id}', [UserController::class, 'update'])->name('user.profile.update');
 });
 Route::get('/category/{category_id}', [CategoryController::class, 'show'])->name('news.category');
 Route::get('/country/{country_id}', [CountryController::class, 'show'])->name('news.country');
