@@ -29,7 +29,7 @@
                     <div class="mt-4">
                         <label class="form-label fw-bold">Favorite Country</label>
 
-                        <div class="country px-3">
+                        <div class="px-3">
 
                             <div class="mb-3">
                                 <label class="form-label fw-bold d-block">America</label>
