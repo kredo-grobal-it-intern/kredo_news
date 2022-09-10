@@ -4,10 +4,19 @@
 <div class="container justify-content-center mx-5">
     <div class="row mt-5">
         <div class="col-md-4">
+            @if ($user->avatar)
+            <img src="{{asset('/storage/avatars/'.$user->avatar)}}" alt="" class="rounded-circle nav-avatar ps-3" style="width:40%; height:130px">
+            @else
             <i class="fa-solid fa-circle-user text-secondary d-block text-center profile-icon"></i>
+            @endif
         </div>
         <div class="col-8">
-            <div class="row my-3"><h2 class="fw-bold">Username</h2></div>
+            <div class="row my-3">
+                <h2 class="fw-bold">Username</h2>
+                @if (Auth::user()->id === $user->id)
+                    <a href="{{route('user.profile.edit')}}" class="text-decoration-none text-secondary">Edit Profile</a>
+                @endif
+            </div>
                 <div class="row fw-bold">
                     <div class="col">68 Comments</div>
                     <div class="col">100 Follower</div>
@@ -21,11 +30,11 @@
         </div>
     </div>
 
-    <div class="row mt-5">
+    <div class="row mt-5 ps-2">
         @foreach ( $all_news as $news)
         <div class="col-3 mb-5">
             @if ($news->image_path === null)
-                <img src="{{ asset('images/no_image.png') }}" alt="NO IMAGE" style="width:300px; height:300px">
+                <img src="{{ asset('images/dummy.jpg') }}" alt="NO IMAGE" style="width:300px; height:300px">
             @else
                 <img src="{{ asset('storage/images/' . $news->image_path) }}" alt="News Image" style="width:300px; height:300px">
             @endif
