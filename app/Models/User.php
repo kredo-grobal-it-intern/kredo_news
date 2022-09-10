@@ -21,6 +21,8 @@ class User extends Authenticatable
     protected $fillable = [
         'username',
         'email',
+        'google_id',
+        'facebook_id',
         'password',
         'nationality_id',
         'country_id',
@@ -58,5 +60,13 @@ class User extends Authenticatable
 
     public function nationality(){
         return $this->belongsTo(Country::class);
+    }
+
+    public function favoriteSources(){
+        return $this->belongsToMany(Source::class, 'favorite_sources', 'user_id', 'source_id');
+    }
+
+    public function favoriteCountries(){
+        return $this->belongsToMany(Country::class, 'favorite_countries', 'user_id', 'country_id');
     }
 }

@@ -15,12 +15,12 @@ class SourceSeeder extends Seeder
     public function run()
     {
         DB::table('sources')->insert([
-            ['name' => 'BBC'],
             ['name' => 'CNN'],
-            ['name' => 'Japan Times'],
-            ['name' => 'VOX'],
+            ['name' => 'ASIA TIMES'],
+            ['name' => 'BBC'],
+            ['name' => 'africanews.'],
             ['name' => 'ABC'],
-            
+
         ]);
     }
 }
