@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\CommentController as AdminCommentController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\FacebookLoginController;
+use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\User\NewsController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -47,6 +49,7 @@ Route::get('/country/{country_id}', [CountryController::class, 'show'])->name('n
 
 Route::group(['middleware' => 'admin'], function () {
     Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+
         Route::get('dashboard', [AdminNewsController::class, 'showDashboard'])->name('show.dashboard');
         Route::group(['prefix' => 'news', 'as' => 'news.'], function () {
             Route::get('create', [AdminNewsController::class, 'create'])->name('create');
@@ -87,3 +90,17 @@ Route::group(['middleware' => 'admin'], function () {
         Route::get('post', [ProfileController::class, 'update'])->name('post');
     });
 });
+
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    Route::get('profile/edit', [ProfileController::class, 'edit'])->name('admin.profile.edit');
+    Route::get('profile/post', [ProfileController::class, 'update'])->name('admin.profile.post');
+});
+
+// Google Authentication
+Route::get('/login/google', [GoogleLoginController::class, 'getGoogleAuth'])->name('google.login');
+Route::get('/login/google/callback', [GoogleLoginController::class, 'authGoogleCallback']);
+
+// Facebook Authentication
+Route::get('/login/facebook', [FacebookLoginController::class, 'getFacebookAuth'])->name('facebook.login');
+Route::get('login/facebook/callback', [FacebookLoginController::class, 'authFacebookCallback']);

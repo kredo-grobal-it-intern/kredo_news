@@ -250,7 +250,7 @@ class CountrySeeder extends Seeder
             ['name' => 'Uganda'],
             ['name' => 'Ukraine','image'=>'ukraine.jpg'],
             ['name' => 'United Arab Emirates'],
-            ['name' => 'United Kingdom','image'=>'uk.jpg'],
+            ['name' => 'United Kingdom','image'=>'uk.jpg', 'continent' => 'Europe'],
             ['name' => 'United States','image'=>'america.jpg','continent' => 'America'],
             ['name' => 'United States Minor Outlying Islands'],
             ['name' => 'Uruguay'],
