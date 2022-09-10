@@ -1,10 +1,12 @@
 @extends('layouts.admin')
 
-
 @section('title', 'Create News')
 
 @section('content')
   <div class="container w-50">
+    {{-- <form method="post">
+        <textarea id="myeditorinstance">Hello, World!</textarea>
+    </form> --}}
     <form action="{{ route('admin.news.store') }}" method="post" enctype="multipart/form-data">
       @csrf
 
@@ -69,11 +71,12 @@
       @enderror  
 
       <label for="content" class="form-label mt-4 fs-4">■Content</label>
-      <textarea name="content" id="content" cols="30" rows="20" class="form-control">{{ old('content') }}</textarea>
+      {{-- <textarea name="content" id="content" cols="30" rows="20" class="form-control">{{ old('content') }}</textarea>
       @error('content')
       <p class="text-danger small">Content is required.</p>
-      @enderror  
-
+      @enderror   --}}
+      
+    <textarea id="myeditorinstance" name="content">Hello, World!</textarea>
       <button type="submit" class="btn btn-primary w-50 mt-2 mx-auto d-block">Save</button>
     </form>
 

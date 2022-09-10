@@ -24,8 +24,13 @@
         <!-- fontawesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    </head>
-    <body>
+
+        <!-- Insert the blade containing the TinyMCE configuration and source script -->
+        <x-head.tinymce-config/>
+
+</body>
+</head>
+<body>
         <div id="app">
             <nav class="navbar navbar-expand-md navbar-dark navbar-laravel">
                 <div class="container">
@@ -74,6 +79,7 @@
 
             <main>
                 {{-- コンテンツをここに入れるため、@yieldで空けておきます。 --}}
+
                 <div class="container-fluid">
                   <div class="row">
                     <div class="col-2 " style="background-color:#052962; min-height:100vh; height:100％;">
@@ -86,6 +92,11 @@
                     </div>
                     <div class="col-10 mt-5">
                       @yield('content')
+                      {{-- <div class="w-75 mx-auto">
+                          <x-forms.tinymce-editor/>
+
+                      </div> --}}
+
                   </div>
             </main>
         </div>
