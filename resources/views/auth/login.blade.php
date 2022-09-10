@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('script')
+<script src="{{ mix('js/_login.js') }}" defer></script>
+@endsection
 @section('style')
 <link href="{{ mix('css/login.css') }}" rel="stylesheet">
 @endsection
@@ -19,16 +22,15 @@
                     <div class="form mb-3">
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="E-mail" required autocomplete="email" autofocus>
                         @error('email')
-                            <span class="invalid-feedback" role="alert">
+                        <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
                     <div class="form mb-3">
                         <p>
-
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="current-password">
-                            <i class="fa-solid fa-eye" id="toggleBtn" onclick="toggePassword()"></i>
+                            <i class="fa-solid fa-eye" id="toggleBtn" onclick="togglePassword()"></i>
                         </p>
                             @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -49,19 +51,4 @@
         </div>
     </div>
 </div>
-<script>
-    function toggePassword() {
-                var upass = document.getElementById('password');
-                var toggleBtn = document.getElementById('toggleBtn');
-                if (upass.type == "password") {
-                    upass.type = "text";
-                    toggleBtn.classList.toggle('fa-eye-slash');
-                    toggleBtn.classList.add('fa-eye');
-                } else {
-                    upass.type = "Password";
-                    toggleBtn.classList.toggle('fa-eye-slash');
-                    toggleBtn.classList.add('fa-eye');
-                }
-            }
-</script>
 @endsection
