@@ -15,11 +15,13 @@ class UserController extends Controller
 {
     const LOCAL_STORAGE_FOLDER = 'public/avatars/';
 
-    public function show()
+    public function show($user_id)
     {
+        $user= User::findOrFail($user_id);
         $all_news = News::all();
         return view('user.profile.index')
-            ->with('all_news', $all_news);
+            ->with('all_news', $all_news)
+            ->with('user',$user);
     }
 
     public function edit()
