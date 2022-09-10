@@ -11,7 +11,9 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/_ajaxreact.js') }}" defer></script>
     @yield('script')
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

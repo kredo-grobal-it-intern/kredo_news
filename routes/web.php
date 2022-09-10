@@ -13,6 +13,7 @@ use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\User\CountryController;
+use App\Http\Controllers\User\ReactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,10 +49,14 @@ Route::get('/{news_id}', [NewsController::class, 'show'])->name('news.show');
 Route::get('/search/category', [NewsController::class, 'filter'])->name('news.filter');
 Route::get('/country/{country_id}', [CountryController::class, 'show'])->name('news.country');
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+Route::group(['middleware' => 'auth'],function(){
+    Route::post('/thumbs_up', [ReactionController::class, 'thumbs_up'])->name('user.thumbs_up');
+    Route::post('/thumbs_down', [ReactionController::class, 'thumbs_down'])->name('user.thumbs_down');
 
-        Route::get('dashboard', [AdminNewsController::class, 'showDashboard'])->name('show.dashboard');
+  Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+
+    Route::get('dashboard', [AdminNewsController::class, 'showDashboard'])->name('show.dashboard');
+
         Route::group(['prefix' => 'news', 'as' => 'news.'], function () {
             Route::get('create', [AdminNewsController::class, 'create'])->name('create');
             Route::post('store', [AdminNewsController::class, 'store'])->name('store');
@@ -93,6 +98,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
+
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('profile/edit', [ProfileController::class, 'edit'])->name('admin.profile.edit');
     Route::get('profile/post', [ProfileController::class, 'update'])->name('admin.profile.post');
@@ -105,3 +111,9 @@ Route::get('/login/google/callback', [GoogleLoginController::class, 'authGoogleC
 // Facebook Authentication
 Route::get('/login/facebook', [FacebookLoginController::class, 'getFacebookAuth'])->name('facebook.login');
 Route::get('login/facebook/callback', [FacebookLoginController::class, 'authFacebookCallback']);
+
+    Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    Route::get('profile/edit', [ProfileController::class, 'edit'])->name('admin.profile.edit');
+    Route::get('profile/post', [ProfileController::class, 'update'])->name('admin.profile.post');
+});
+
