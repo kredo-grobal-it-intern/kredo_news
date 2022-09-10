@@ -1,16 +1,14 @@
 @extends('layouts.app')
 
-@section('body_id', 'back-blue')
-
 @section('style')
-<link href="{{ asset('css/register.css') }}" rel="stylesheet">
+<link href="{{ mix('css/register.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
 <div class="container text-center container-custom">
     <div class="row">
         <div class="col-lg-6 col-md-10 col-sm-12 mx-auto">
-            <img src="{{ asset('images/logo3.png') }}" alt="logo3" class="logo">
+            <img src="{{ asset('images/logo3.PNG') }}" alt="logo3" class="logo">
             <p class="h4 text-center">Create your CCC acount</p>
             <p>
                 <span>Already have an account?</span>

@@ -1,20 +1,19 @@
 @extends('layouts.app')
 
-@section('body_id', 'back-blue')
+@section('script')
+<script src="{{ mix('js/_login.js') }}" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+@endsection
 @section('style')
 <link href="{{ asset('css/login.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-@endsection
-
-@section('js')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @endsection
 
 @section('content')
 <div class="container text-center container-custom">
     <div class="row">
         <div class="col-lg-6 col-md-10 col-sm-12 mx-auto">
-            <img src="{{ asset('images/logo3.png') }}" alt="logo3" class="logo">
+            <img src="{{ asset('images/logo3.PNG') }}" alt="logo3" class="logo">
             <p class="h4 text-center">Log in to your CCC acount</p>
             <p>
                 <span>Not member yet?</span>
@@ -26,14 +25,17 @@
                     <div class="form mb-3">
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="E-mail" required autocomplete="email" autofocus>
                         @error('email')
-                            <span class="invalid-feedback" role="alert">
+                        <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
                     <div class="form mb-3">
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="current-password">
-                        @error('password')
+                        <p>
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="current-password">
+                            <i class="fa-solid fa-eye" id="toggleBtn" onclick="togglePassword()"></i>
+                        </p>
+                            @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

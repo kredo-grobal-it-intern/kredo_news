@@ -47,7 +47,7 @@ Route::get('/country/{country_id}', [CountryController::class, 'show'])->name('n
 // Route::get('/search/category', [NewsController::class, 'filter'])->name('news.filter');
 // Route::get('/country/{country_id}', [CountryController::class, 'show'])->name('news.country');
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'admin'], function () {
     Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
         Route::get('dashboard', [AdminNewsController::class, 'showDashboard'])->name('show.dashboard');
