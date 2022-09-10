@@ -37,17 +37,18 @@ Route::get('/search/category', [NewsController::class, 'filter'])->name('news.fi
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('/profile/edit', [UserController::class, 'edit'])->name('user.profile.edit');
     Route::get('/profile/{user_id}', [UserController::class, 'show'])->name('user.profile.show');
+    Route::patch('/profile/{id}', [UserController::class, 'update'])->name('user.profile.update');
 });
 Route::get('/category/{category_id}', [CategoryController::class, 'show'])->name('news.category');
 Route::get('/country/{country_id}', [CountryController::class, 'show'])->name('news.country');
-Route::get('/favorite', [NewsController::class, 'showFavoritePage'])->name('user.news.favorite');
-Route::get('/non_user', [NewsController::class, 'showNonUser'])->name('user.news.non_user');
-Route::get('/search', [NewsController::class, 'showSearch'])->name('news.search');
-Route::get('/{news_id}', [NewsController::class, 'show'])->name('news.show');
-Route::get('/search/category', [NewsController::class, 'filter'])->name('news.filter');
-Route::get('/country/{country_id}', [CountryController::class, 'show'])->name('news.country');
+// Route::get('/favorite', [NewsController::class, 'showFavoritePage'])->name('user.news.favorite');
+// Route::get('/non_user', [NewsController::class, 'showNonUser'])->name('user.news.non_user');
+// Route::get('/search', [NewsController::class, 'showSearch'])->name('news.search');
+// Route::get('/{news_id}', [NewsController::class, 'show'])->name('news.show');
+// Route::get('/search/category', [NewsController::class, 'filter'])->name('news.filter');
+// Route::get('/country/{country_id}', [CountryController::class, 'show'])->name('news.country');
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'admin'], function () {
     Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
         Route::get('dashboard', [AdminNewsController::class, 'showDashboard'])->name('show.dashboard');
