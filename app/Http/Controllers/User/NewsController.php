@@ -81,14 +81,14 @@ class NewsController extends Controller
     public function showSearch(Request $request)
 
     {
-        $request->keyword;
         $keyword = $request->keyword;
         $all_news = News::where('description', 'like', "%{$keyword}%")
             ->orWhere('content', 'like',"%{$keyword}%")
-            ->orWhere('title', 'like', "%{$keyword}%")->with()->get();
-            dd($all_news);
+            ->orWhere('title', 'like', "%{$keyword}%")->with('country', 'category')->get()
+            ->filter(function($news) use($request){
+                return $news->category_id == $request->category && in_array($news->country_id, $request->countries ?? []);
+            });
             return view('user.news.search')->with('all_news', $all_news);
-        
-}
+    }
 
 }

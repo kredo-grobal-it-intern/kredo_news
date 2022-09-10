@@ -31,4 +31,19 @@ class News extends Model
     {
         return $this->hasMany('App\Models\History');
     }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function source()
+    {
+        return $this->belongsTo(Source::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
