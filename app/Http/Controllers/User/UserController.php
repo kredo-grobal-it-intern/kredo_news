@@ -17,11 +17,11 @@ class UserController extends Controller
 
     public function show($user_id)
     {
-        $user= User::findOrFail($user_id);
+        $user = User::findOrFail($user_id);
         $all_news = News::all();
         return view('user.profile.index')
             ->with('all_news', $all_news)
-            ->with('user',$user);
+            ->with('user', $user);
     }
 
     public function edit()
