@@ -10,11 +10,43 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
+    private $sources = [
+        'CNN' => 1,
+        'ASIA TIMES' => 2,
+        'BBC' => 3,
+        'africanews' => 4,
+        'ABC' => 5,
+    ];
+    
     public function index()
     {
-        $all_news = News::all();
-        return view('user.news.index')
-            ->with('all_news', $all_news);
+        $articles = [
+            'America' => [
+                'latest' => News::getLatestArticle($this->sources['CNN']),
+                'sub' => News::getArticlesBySource($this->sources['CNN']),
+            ],
+
+            'Asia' => [
+                'latest' => News::getLatestArticle($this->sources['ASIA TIMES']),
+                'sub' => News::getArticlesBySource($this->sources['ASIA TIMES']),
+            ],
+
+            'Europe' => [
+                'latest' => News::getLatestArticle($this->sources['BBC']),
+                'sub' => News::getArticlesBySource($this->sources['BBC']),
+            ],
+
+            'Africa' => [
+                'latest' => News::getLatestArticle($this->sources['africanews']),
+                'sub' => News::getArticlesBySource($this->sources['africanews']),
+            ],
+
+            'Oceania' => [
+                'latest' => News::getLatestArticle($this->sources['ABC']),
+                'sub' => News::getArticlesBySource($this->sources['ABC']),
+            ],
+        ];
+        return view('user.news.index')->with('articles', $articles);
     }
 
     public function show($news_id)
@@ -39,6 +71,7 @@ class NewsController extends Controller
         return view('user.news.favorite')->with('all_news', $all_news)->with('sources', $sources)->with('countries', $country);
     }
 
+
     public function showNonUser()
     {
         $country = Country::all();
@@ -46,6 +79,7 @@ class NewsController extends Controller
     }
 
     public function showSearch(Request $request)
+
     {
         $request->keyword;
         $keyword = $request->keyword;
