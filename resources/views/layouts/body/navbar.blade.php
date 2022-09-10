@@ -44,12 +44,12 @@
                     <!-- category dropdown list -->
                     <ul class="dropdown-menu" aria-labelledby="countriesDropdown">
                         @php
-                        $countries = App\Models\Country::all();
+                            $countries = App\Models\Country::whereNotNull('continent' )->get();
                         @endphp
                         @foreach ($countries as $country )
-                        <a href="{{ route('news.country' , $country->id) }}" class="dropdown-item">
-                            {{ $country->name }}
-                        </a>
+                            <a href="{{ route('news.country' , $country->id) }}" class="dropdown-item">
+                                {{ $country->name }}
+                            </a>
                         @endforeach
                     </ul>
                 </li>
