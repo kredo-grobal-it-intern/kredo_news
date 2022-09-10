@@ -8,12 +8,12 @@
                 </div>
             </div>
             <div class="search-body px-2">
-                <form action="">
+                <form action="{{ route('news.search')}}" method="POST">
                     @csrf
 
                     <div class="mt-4">
                         <label class="form-label fw-bold">Search by Keyword</label>
-                        <input type="text" class="form-control" placeholder="Enter News Key Word">
+                        <input type="text" class="form-control" name="search_keyword" placeholder="Enter News Key Word" >
                     </div>
 
                     <div class="mt-4">
@@ -185,16 +185,13 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
                         </div>
                     </div>
-                </form>
             </div>
             <div class="search-footer">
-                <button type="button" class="d-block mx-auto border-0 btn-custom">SEARCH</button>
+                <input type="submit" class="d-block mx-auto border-0 btn-custom" value="SEARCH">
             </div>
+        </form>
         </div>
     </div>
 </div>

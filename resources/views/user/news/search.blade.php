@@ -3,16 +3,16 @@
 
 @section('title', 'Search')
 @section('style')
-<link href="{{ mix('css/favorite.css') }}" rel="stylesheet">
+<link href="{{ mix('css/search.css') }}" rel="stylesheet">
 @endsection
 @section('content')
-    
+
   <div class="container-fluid">
     <div class="row ">
-        <div class="col-md-12">
-            <h4>Showing results for</h4>
-            <h4>Category</h4>
-            <h4>Country</h4>
+        <div class="col-md-12 result-holder">
+            <h4 class="">Showing results for</h4>
+            <h4 class="">Category</h4>
+            <h4 class="">Country</h4>
         </div>
         
         @foreach ($all_news as $news)
@@ -37,5 +37,4 @@
   </div>
 </div>
 @endsection
-
 

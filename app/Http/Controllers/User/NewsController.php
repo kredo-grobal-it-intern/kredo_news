@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\News;
 use App\Models\Source;
 use App\Models\Country;
+use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
@@ -44,9 +45,16 @@ class NewsController extends Controller
         return view('user.news.non_user')->with('countries', $country);
     }
 
-    public function showSearch()
+    public function showSearch(Request $request)
     {
-        $all_news = News::all();
-        return view('user.news.search')->with('all_news', $all_news);
-    }
+        $request->search_keyword;
+        $search_keyword = $request->search_keyword;
+        $all_news = News::where('description', 'like', "%{$search_keyword}%")
+            ->orWhere('content', 'like',"%{$search_keyword}%")
+            ->orWhere('title', 'like', "%{$search_keyword}%")->with()->get();
+            dd($all_news);
+            return view('user.news.search')->with('all_news', $all_news);
+        
+}
+
 }
