@@ -6,8 +6,8 @@
 
 @section('content')
 <div class="container">
-    @isset($articles)
-        @foreach ($articles as $country_name => $country_articles)
+    @foreach ($articles as $country_name => $country_articles)
+        @isset($country_articles['latest']) <!-- tentative condition -->
             <section class="country-section">
                 <div class="text-center my-4">
                     <h2 class="country fw-bold">{{ $country_name }}</h2>
@@ -37,7 +37,7 @@
                     </aside>
                 </div>
             </section>
-        @endforeach
-    @endisset
+        @endisset
+    @endforeach
 </div>
 @endsection
