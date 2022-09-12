@@ -41,6 +41,33 @@
                 </li>
                 <li class="nav-item nav-item-custom dropdown me-4">
                     <a id="countriesDropdown" class="nav-link dropdown-toggle text-white fw-bold" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                        Media
+                    </a>
+
+                    <!-- category dropdown list -->
+                    <ul class="dropdown-menu" aria-labelledby="countriesDropdown">
+                        <a href="" class="dropdown-item">
+                            America
+                        </a>
+                        <a href="" class="dropdown-item">
+                            Japan
+                        </a>
+                        <a href="" class="dropdown-item">
+                            UK
+                        </a>
+                        <a href="" class="dropdown-item">
+                            Brazil
+                        </a>
+                        <a href="" class="dropdown-item">
+                            Spain
+                        </a>
+                        <a href="" class="dropdown-item">
+                            China
+                        </a>
+                    </ul>
+                </li>
+                <li class="nav-item nav-item-custom dropdown me-4">
+                    <a id="countriesDropdown" class="nav-link dropdown-toggle text-white fw-bold" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                         Countries
                     </a>
 
