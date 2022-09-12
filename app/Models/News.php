@@ -27,6 +27,10 @@ class News extends Model
         'published_at',
     ];
 
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
     public static function getLatestArticle($source_id)
     {
         return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->limit(1)->first();

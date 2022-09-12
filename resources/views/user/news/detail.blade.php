@@ -90,11 +90,12 @@
                         <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
                     </div>
                 </div>
-                <form action="#">
+                <form action="{{ route('user.comment.store', $news->id) }}" method="post">
+                    @csrf
                     <div class="mb-3 mt-5">
-                    <label for="comment" class="fw-bold text-dark">Comment</label>
-                    <textarea class="form-control mt-3" name="" id="" rows="3"></textarea>
-                    <button type="submit" class="btn btn-outline-secondary btn-sm mt-2 float-end">Post Comment</button>
+                        <label for="comment" class="fw-bold text-dark">Comment</label>
+                        <textarea class="form-control mt-3" name="comment" id="comment" rows="3"></textarea>
+                        <button type="submit" class="btn btn-outline-secondary btn-sm mt-2 float-end">Post Comment</button>
                     </div>
                 </form>
             </div>
