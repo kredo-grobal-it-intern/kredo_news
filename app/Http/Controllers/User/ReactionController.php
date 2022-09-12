@@ -8,73 +8,54 @@ use App\Models\Reaction;
 use Illuminate\Support\Facades\Auth;
 use App\Models\News;
 
-
 class ReactionController extends Controller
 {
     private $reaction;
 
     public function __construct(Reaction $reaction)
     {
-        $this->reaction=$reaction;
+        $this->reaction = $reaction;
     }
 
-    public function thumbs_up(Request $request){
-        $user_id =Auth::user()->id;
-        $news_id=$request->news_id;
-        $news=News::findOrFail($news_id);
-        $like_user=Reaction::where(['user_id'=>$user_id,'news_id'=>$news_id])->first();
-        if(!isset($like_user->status)){
-            $this->reaction->user_id =Auth::user()->id;
-            $this->reaction->news_id=$news_id;
-            $this->reaction->status=1;
-            $this->reaction->save();
-        }else{
-            if($like_user->status==0||$like_user->status==2){
-                Reaction::where(['user_id'=>$user_id,'news_id'=>$news_id])->update([
-                'status'=>1
-                ]);
-            }elseif($like_user->status==1){
-                Reaction::where(['user_id'=>$user_id,'news_id'=>$news_id])->update([
-                'status'=>0
-            ]);
+    public function thumbs_up(Request $request)
+    {
+        $user_id = Auth::user()->id;
+        $news_id = $request->news_id;
+        $status = Reaction::GOOD;
+        $news = News::findOrFail($news_id);
+        $like_user = Reaction::where(['user_id' => $user_id, 'news_id' => $news_id])->first();
+        if (!isset($like_user->status)) {
+            $this->reaction->store($user_id, $news_id, $status);
+        } else {
+            $this->reaction->changeStatusForThumbsUp($user_id, $news_id, $like_user);
         }
-    }
-    $newsLikesCount=$news->like_reactions()->count();
-    $newsDislikesCount=$news->dislike_reactions()->count();
-        $json=[
-            'newsLikesCount'=>$newsLikesCount,
-            'newsDislikesCount'=>$newsDislikesCount,
-        ];
+        $json = $this->countReactions($news);
         return response()->json($json);
     }
-    public function thumbs_down(Request $request){
-        $user_id =Auth::user()->id;
-        $news_id=$request->news_id;
-        $news=News::findOrFail($news_id);
-        $like_user=Reaction::where(['user_id'=>$user_id,'news_id'=>$news_id])->first();
-        if(!isset($like_user->status)){
-            $this->reaction->user_id =Auth::user()->id;
-            $this->reaction->news_id=$news_id;
-            $this->reaction->status=2;
-            $this->reaction->save();
-        }else{
-            if($like_user->status==0||$like_user->status==1){
-                Reaction::where(['user_id'=>$user_id,'news_id'=>$news_id])->update([
-                    'status'=>2
-                ]);
-        }elseif($like_user->status==2){
-            Reaction::where(['user_id'=>$user_id,'news_id'=>$news_id])->update([
-                'status'=>0
-            ]);
+    public function thumbs_down(Request $request)
+    {
+        $user_id = Auth::user()->id;
+        $news_id = $request->news_id;
+        $status = Reaction::BAD;
+        $news = News::findOrFail($news_id);
+        $like_user = Reaction::where(['user_id' => $user_id, 'news_id' => $news_id])->first();
+        if (!isset($like_user->status)) {
+            $this->reaction->store($user_id, $news_id, $status);
+        } else {
+            $this->reaction->changeStatusForThumbsDown($user_id, $news_id, $like_user);
         }
+        $json = $this->countReactions($news);
+        return response()->json($json);
     }
-    $newsDislikesCount=$news->dislike_reactions()->count();
-    $newsLikesCount=$news->like_reactions()->count();
+    private function countReactions($news)
+    {
+        $newsDislikesCount = $news->dislike_reactions()->count();
+        $newsLikesCount = $news->like_reactions()->count();
 
-    $json=[
-        'newsDislikesCount'=>$newsDislikesCount,
-        'newsLikesCount'=>$newsLikesCount,
-    ];
-    return response()->json($json);
+        $json = [
+            'newsDislikesCount' => $newsDislikesCount,
+            'newsLikesCount' => $newsLikesCount,
+        ];
+        return $json;
     }
 }
