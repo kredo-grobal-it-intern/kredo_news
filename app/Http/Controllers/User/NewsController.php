@@ -16,7 +16,7 @@ class NewsController extends Controller
         'africanews' => 4,
         'ABC' => 5,
     ];
-    
+
     public function index()
     {
         $articles = [
