@@ -29,71 +29,35 @@
                 </p>
 {{-- Comments section --}}
                 <div class="fw-bold mt-5"> Comment</div>
-                {{-- @foreach() --}}
-                <div class="row mt-3">
-                    <div class="col-2">
-                        {{-- avatar --}}
-                        <i class="fa-solid fa-circle-user text-secondary d-block text-center profile-icon"></i>
+                @foreach($comments as $comment)
+                    <div class="row mt-3">
+                        <div class="col-2">
+                            {{-- avatar --}}
+                            <i class="fa-solid fa-circle-user text-secondary d-block text-center profile-icon"></i>
+                        </div>
+                        <div class="col-9">
+                        {{-- comment --}}
+                            {{ $comment->body }}
+                        </div>
+                        <div class="col-1 pe-2">
+                            @auth
+                                @if ($comment->user_id === Auth::user()->id)
+                                    <form action="{{ route('user.comment.destroy', $comment->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                            <button type="submit" class="btn btn-outline-danger">Delete</button>
+                                    </form>
+                                @endif
+                            @endauth
+                            <i class="fa-solid fa-ellipsis"></i>
+                            <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
+                        </div>
                     </div>
-                    <div class="col-9">
-                    {{-- comment --}}
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore, deleniti.
-                    </div>
-                    <div class="col-1 pe-2">
-                        <i class="fa-solid fa-ellipsis"></i>
-                        <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
-                    </div>
-                </div>
-                {{-- @endforeach --}}
-                <hr>
-                <div class="row mt-3">
-                    <div class="col-2">
-                        {{-- avatar --}}
-                        <i class="fa-solid fa-circle-user text-secondary d-block text-center profile-icon"></i>
-                    </div>
-                    <div class="col-9">
-                    {{-- comment --}}
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore, deleniti.
-                    </div>
-                    <div class="col-1 pe-2">
-                        <i class="fa-solid fa-ellipsis"></i>
-                        <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
-                    </div>
-                </div>
-                <hr>
-                <div class="row mt-3">
-                    <div class="col-2">
-                        {{-- avatar --}}
-                        <i class="fa-solid fa-circle-user text-secondary d-block text-center profile-icon"></i>
-                    </div>
-                    <div class="col-9">
-                    {{-- comment --}}
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore, deleniti.
-                    </div>
-                    <div class="col-1 pe-2">
-                        <i class="fa-solid fa-ellipsis"></i>
-                        <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
-                    </div>
-                </div>
-                <hr>
-                <div class="row mt-3">
-                    <div class="col-2">
-                        {{-- avatar --}}
-                        <i class="fa-solid fa-circle-user text-secondary d-block text-center profile-icon"></i>
-                    </div>
-                    <div class="col-9">
-                    {{-- comment --}}
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore, deleniti.
-                    </div>
-                    <div class="col-1 pe-2">
-                        <i class="fa-solid fa-ellipsis"></i>
-                        <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
-                    </div>
-                </div>
+                    <hr>
+                @endforeach
                 <form action="{{ route('user.comment.store', $news->id) }}" method="post">
                     @csrf
                     <div class="mb-3 mt-5">
-                        <label for="comment" class="fw-bold text-dark">Comment</label>
                         <textarea class="form-control mt-3" name="comment" id="comment" rows="3"></textarea>
                         <button type="submit" class="btn btn-outline-secondary btn-sm mt-2 float-end">Post Comment</button>
                     </div>

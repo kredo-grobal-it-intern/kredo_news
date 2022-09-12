@@ -38,6 +38,7 @@ Route::get('/country/{country_id}', [CountryController::class, 'show'])->name('n
 Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'auth'], function () {
     Route::get('/favorite', [NewsController::class, 'showFavoritePage'])->name('news.favorite');
     Route::post('/{news_id}/comment', [CommentController::class, 'store'])->name('comment.store');
+    Route::delete('/comment/{comment_id}', [CommentController::class, 'destroy'])->name('comment.destroy');
     Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
         Route::get('/edit', [UserController::class, 'edit'])->name('edit');
         Route::get('/{user_id}', [UserController::class, 'show'])->name('show');

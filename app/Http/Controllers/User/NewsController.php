@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\Models\News;
 use App\Models\Source;
 use App\Models\Country;
+use PHP_CodeSniffer\Util\Common;
 
 class NewsController extends Controller
 {
@@ -51,8 +53,10 @@ class NewsController extends Controller
     public function show($news_id)
     {
         $news = News::findOrFail($news_id);
+        $comments = Comment::where('news_id', '=', $news_id)->get();
         return view('user.news.detail')
-            ->with('news', $news);
+            ->with('news', $news)
+            ->with('comments', $comments);
     }
     public function filter()
     {
