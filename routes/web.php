@@ -1,16 +1,17 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ApiController;
+use App\Http\Controllers\User\NewsController;
+use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\GoogleLoginController;
+use App\Http\Controllers\User\CountryController;
+use App\Http\Controllers\FacebookLoginController;
+use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\CommentController as AdminCommentController;
-use App\Http\Controllers\FacebookLoginController;
-use App\Http\Controllers\GoogleLoginController;
-use App\Http\Controllers\User\NewsController;
-use App\Http\Controllers\User\UserController;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\User\CategoryController;
-use App\Http\Controllers\User\CountryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ use App\Http\Controllers\User\CountryController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/api-news', [ApiController::class, 'getApiNews'])->name('news.api');
 Auth::routes();
 
 // All user
