@@ -11,6 +11,7 @@ use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\User\CountryController;
+use App\Http\Controllers\User\MediaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,7 @@ Route::get('/{news_id}', [NewsController::class, 'show'])->name('news.show');
 Route::get('/search/category', [NewsController::class, 'filter'])->name('news.filter');
 Route::get('/category/{category_id}', [CategoryController::class, 'show'])->name('news.category');
 Route::get('/country/{country_id}', [CountryController::class, 'show'])->name('news.country');
+Route::get('/media/{media_id}', [MediaController::class, 'show'])->name('news.media');
 
 // Logged in user
 Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'auth'], function () {
