@@ -16,7 +16,7 @@ class NewsController extends Controller
         'africanews' => 4,
         'ABC' => 5,
     ];
-    
+
     public function index()
     {
         $articles = [
@@ -68,12 +68,6 @@ class NewsController extends Controller
         $sources = Source::all();
         $country = Country::all();
         return view('user.news.favorite')->with('all_news', $all_news)->with('sources', $sources)->with('countries', $country);
-    }
-
-    public function showNonUser()
-    {
-        $country = Country::all();
-        return view('user.news.non_user')->with('countries', $country);
     }
 
     public function showSearch()
