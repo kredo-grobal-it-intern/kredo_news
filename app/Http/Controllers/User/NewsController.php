@@ -17,7 +17,6 @@ class NewsController extends Controller
         'africanews' => 4,
         'ABC' => 5,
     ];
-    
     public function index()
     {
         $articles = [
@@ -71,15 +70,7 @@ class NewsController extends Controller
         return view('user.news.favorite')->with('all_news', $all_news)->with('sources', $sources)->with('countries', $country);
     }
 
-
-    public function showNonUser()
-    {
-        $country = Country::all();
-        return view('user.news.non_user')->with('countries', $country);
-    }
-
     public function showSearch(Request $request)
-
     {
         $keyword = $request->keyword;
         $all_news = News::where('description', 'like', "%{$keyword}%")

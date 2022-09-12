@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\NewsStoreUpdateRequest;
-use Illuminate\Http\Request;
 
 use App\Models\News;
 use App\Models\User;
@@ -14,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 class NewsController extends Controller
 {
     private $news;
-    const LOCAL_STORAGE_FOLDER = 'public/images/';
+    const LOCAL_STORAGE_FOLDER = 'public/images/news';
 
     public function __construct(News $news)
     {
@@ -26,7 +25,7 @@ class NewsController extends Controller
         $news     = News::withTrashed()->get();
         $users    = User::withTrashed()->get();
         $comments = Comment::withTrashed()->with('user')->get();
-        
+
         return view('admin.dashboard')
                 ->with('news', $news)
                 ->with('users', $users)
@@ -46,7 +45,7 @@ class NewsController extends Controller
         return view('admin.users.show');
     }
 
-    public function create(Request $request)
+    public function create()
     {
         return view('admin.news.create');
     }
@@ -75,7 +74,7 @@ class NewsController extends Controller
         $image_name = time() . '.' . $request->image->extension();
 
         $request->image->storeAs(self::LOCAL_STORAGE_FOLDER, $image_name);
-        
+
         return $image_name;
     }
 
@@ -115,7 +114,7 @@ class NewsController extends Controller
                 $news->image = $this->saveImage($request);
             }
         };
-    
+
         $news->save();
 
         return redirect()->route('news.index');

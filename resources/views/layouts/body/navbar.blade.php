@@ -29,6 +29,9 @@
 
                     <!-- category dropdown list -->
                     <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                        @php
+                            $categories = App\Models\Category::all();
+                        @endphp
                         @foreach ($categories as $category)
                             <a href="{{ route('news.category', $category->id) }}" class="dropdown-item">
                                 {{ $category->name }}
@@ -37,7 +40,34 @@
                     </ul>
                 </li>
                 <li class="nav-item nav-item-custom dropdown me-4">
-                    <a id="countriesDropdown" class="nav-link dropdown-toggle text-white fw-bold" href="" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a id="countriesDropdown" class="nav-link dropdown-toggle text-white fw-bold" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                        Media
+                    </a>
+
+                    <!-- category dropdown list -->
+                    <ul class="dropdown-menu" aria-labelledby="countriesDropdown">
+                        <a href="" class="dropdown-item">
+                            America
+                        </a>
+                        <a href="" class="dropdown-item">
+                            Japan
+                        </a>
+                        <a href="" class="dropdown-item">
+                            UK
+                        </a>
+                        <a href="" class="dropdown-item">
+                            Brazil
+                        </a>
+                        <a href="" class="dropdown-item">
+                            Spain
+                        </a>
+                        <a href="" class="dropdown-item">
+                            China
+                        </a>
+                    </ul>
+                </li>
+                <li class="nav-item nav-item-custom dropdown me-4">
+                    <a id="countriesDropdown" class="nav-link dropdown-toggle text-white fw-bold" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                         Countries
                     </a>
 
@@ -76,7 +106,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a href="" class="dropdown-item">
+                            <a href="{{route('user.profile.show', Auth::id())}}" class="dropdown-item">
                                 <i class="fa-solid fa-user"></i>&nbsp;My Profile
                             </a>
 

@@ -1,7 +1,18 @@
-#back-blue{
-    background-color:#052962;
+body{
+    background-color:#052962 !important;
 }
-
+.form{
+    position: relative;
+}
+#toggleBtn{
+    position:absolute;
+    top:70%;
+    right:10px;
+    transform: translateY(-50%);
+    width:30px;
+    height:30px;
+    color:black;
+}
 .container-custom {
     margin-top: 100px;
     color: #fff;
