@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\User\CommentController;
 use App\Http\Controllers\User\CountryController;
+use App\Http\Controllers\User\MediaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,7 @@ Route::get('/{news_id}', [NewsController::class, 'show'])->name('news.show');
 Route::get('/search/category', [NewsController::class, 'filter'])->name('news.filter');
 Route::get('/category/{category_id}', [CategoryController::class, 'show'])->name('news.category');
 Route::get('/country/{country_id}', [CountryController::class, 'show'])->name('news.country');
+Route::get('/media/{media_id}', [MediaController::class, 'show'])->name('news.media');
 
 // Logged in user
 Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'auth'], function () {
@@ -45,21 +47,6 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'auth'], func
         Route::patch('/{id}', [UserController::class, 'update'])->name('update');
     });
 });
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/favorite', [NewsController::class, 'showFavoritePage'])->name('user.news.favorite');
-Route::get('/non_user', [NewsController::class, 'showNonUser'])->name('user.news.non_user');
-Route::get('/search', [NewsController::class, 'showSearch'])->name('news.search');
-Route::get('/{news_id}', [NewsController::class, 'show'])->name('news.show');
-Route::get('/search/category', [NewsController::class, 'filter'])->name('news.filter');
-Route::get('/category/{category_id}', [CategoryController::class, 'show'])->name('news.category');
-Route::get('/country/{country_id}', [CountryController::class, 'show'])->name('news.country');
-Route::get('/favorite', [NewsController::class, 'showFavoritePage'])->name('user.news.favorite');
-Route::get('/non_user', [NewsController::class, 'showNonUser'])->name('user.news.non_user');
-Route::get('/search', [NewsController::class, 'showSearch'])->name('news.search');
-Route::get('/{news_id}', [NewsController::class, 'show'])->name('news.show');
-Route::get('/search/category', [NewsController::class, 'filter'])->name('news.filter');
-Route::get('/country/{country_id}', [CountryController::class, 'show'])->name('news.country');
 
 // Admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], function () {
