@@ -20,9 +20,9 @@
                             <label for="category" class="form-label fw-bold">Favorite Category</label>
                             <select name="category" id="category" class="form-select">
                                 <option hidden>-- Choose Category --</option>
-                                <option value="">Health</option>
-                                <option value="">Sports</option>
-                                <option value="1">Politics</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -36,7 +36,7 @@
                                 <div class="mb-3">
                                     @foreach ( $continents as $continent )
                                         <label class="form-label fw-bold d-block">{{ $continent }}</label>
-                                        <div class="d-flex justify-content-between flex-wrap p-2">
+                                        <div class="d-flex flex-wrap p-2">
                                             @php
                                                 $continent_countries = $countries->filter(function($country) use($continent) {
                                                     return $country->continent == $continent;
