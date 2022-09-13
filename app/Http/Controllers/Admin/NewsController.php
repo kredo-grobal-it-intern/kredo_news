@@ -12,7 +12,6 @@ use App\Models\Country;
 use App\Models\Source;
 use Illuminate\Support\Facades\Storage;
 
-
 class NewsController extends Controller
 {
     const LOCAL_STORAGE_FOLDER = 'public/images/news';
