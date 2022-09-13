@@ -5,8 +5,9 @@ console.log(Editor, 'test')
 
 const editor = new Editor({
     el: document.querySelector('#editor'),
+    previewStyle: 'vertical',
     height: '500px',
-    initialEditType: 'markdown'
+    initialValue: '# Example Content'
 });
 
 editor.getMarkdown();
