@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class NewsFactory extends Factory
 {
+    private static $id = 1;
     /**
      * Define the model's default state.
      *
@@ -40,6 +41,7 @@ class NewsFactory extends Factory
         ];
         $image = $images[rand(0, count($images) - 1)];
         return [
+            'id' => function () { return self::$id++; },
             'country_id' => $country_id,
             'category_id' => rand(1, 6),
             'source_id' => rand(1, 5),
