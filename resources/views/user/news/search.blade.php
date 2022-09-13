@@ -10,9 +10,17 @@
   <div class="container-fluid">
     <div class="row ">
         <div class="col-md-12 result-holder">
-            <h4 class="">Showing results for</h4>
-            <h4 class="">Category</h4>
-            <h4 class="">Country</h4>
+            <h4 class="">Showing results for "<span>{{ $keyword }}</span>"</h4>
+            @isset($selected_category)
+                <h4 class="">Category: &nbsp;"<span>{{ $selected_category->name }}</span>"</h4>
+            @endisset
+            @if(!empty($selected_countries))
+                <h4 class="">Country: &nbsp;
+                    @foreach ($selected_countries as $country)
+                        "<span>{{ $country->name }}</span>" &nbsp;
+                    @endforeach
+                </h4>
+            @endif
         </div>
 
         @foreach ($all_news as $news)

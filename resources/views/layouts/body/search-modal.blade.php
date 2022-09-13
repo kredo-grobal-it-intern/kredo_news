@@ -14,6 +14,9 @@
                         <div class="mt-4">
                             <label class="form-label fw-bold">Search by Keyword</label>
                             <input type="text" class="form-control" name="keyword" placeholder="Enter News Key Word" >
+                            @error('keyword')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <div class="mt-4">

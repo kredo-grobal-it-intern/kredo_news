@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\News;
 use App\Models\Source;
 use App\Models\Country;
@@ -88,6 +89,18 @@ class NewsController extends Controller
                     return true;
                 }
             });
-        return view('user.news.search')->with('all_news', $all_news);
+
+        $selected_category = Category::where('id', '=', $request->category)->first();
+        $selected_countries = [];
+        if (isset($request->countries)) {
+            foreach ($request->countries as $country_id) {
+                $selected_countries[] = Country::where('id', '=', $country_id)->first();
+            }
+        }
+        return view('user.news.search')
+            ->with('all_news', $all_news)
+            ->with('keyword', $request->keyword)
+            ->with('selected_category', $selected_category)
+            ->with('selected_countries', $selected_countries);
     }
 }
