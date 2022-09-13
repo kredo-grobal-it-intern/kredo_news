@@ -75,24 +75,19 @@ class NewsController extends Controller
         $request->validate([
             'keyword' => 'required|max:20'
         ]);
-        if (isset($request->countries) && isset($request->category)) {
-            $all_news = News::searchByKeyword($request->keyword)
-                ->filter(function($news) use($request) {
+
+        $all_news = News::searchByKeyword($request->keyword)
+            ->filter(function($news) use($request) {
+                if (isset($request->countries) && isset($request->category)) {
                     return in_array($news->country_id, $request->countries) && $news->category_id == $request->category;
-                });
-        } elseif (isset($request->countries)) {
-            $all_news = News::searchByKeyword($request->keyword)
-                ->filter(function($news) use($request) {
+                } elseif (isset($request->countries)) {
                     return in_array($news->country_id, $request->countries);
-                });
-        } elseif (isset($request->category)) {
-            $all_news = News::searchByKeyword($request->keyword)
-                ->filter(function($news) use($request) {
+                } elseif (isset($request->category)) {
                     return $news->category_id == $request->category;
-                });
-        } else {
-            $all_news = News::searchByKeyword($request->keyword);
-        }
+                } else {
+                    return true;
+                }
+            });
         return view('user.news.search')->with('all_news', $all_news);
     }
 }
