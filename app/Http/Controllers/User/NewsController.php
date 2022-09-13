@@ -8,6 +8,8 @@ use App\Models\Source;
 use App\Models\Country;
 use Illuminate\Http\Request;
 
+use function GuzzleHttp\Promise\all;
+
 class NewsController extends Controller
 {
     private $sources = [
@@ -77,8 +79,12 @@ class NewsController extends Controller
             ->orWhere('content', 'like',"%{$keyword}%")
             ->orWhere('title', 'like', "%{$keyword}%")->with('country', 'category')->get()
             ->filter(function($news) use($request){
-                return $news->category_id == $request->category && in_array($news->country_id, $request->countries ?? []);
+                if(!$request->category && !$request->countries) {
+                    return 1;
+                }
+                return $news->category_id == $request->category || in_array($news->country_id, $request->countries ?? []);
             });
+            // dd($all_news);
             return view('user.news.search')->with('all_news', $all_news);
     }
 
