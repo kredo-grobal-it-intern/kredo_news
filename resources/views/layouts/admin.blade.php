@@ -53,6 +53,9 @@
                         @guest
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                         @else
+                            <li>
+                                <a href="{{ route('admin.news.create') }}" class="text-decoration-none text-white nav-link">Create news</a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -81,23 +84,23 @@
                 {{-- コンテンツをここに入れるため、@yieldで空けておきます。 --}}
 
                 <div class="container-fluid">
-                  <div class="row">
-                    <div class="col-2 " style="background-color:#052962; min-height:100vh; height:100％;">
-                      <a href="{{ route('news.index') }}"><img src="{{ asset('storage/images/logo_transparent.png') }}" alt="" class="w-50 d-block mx-auto"></a>
-                      <a href="{{ route('news.index') }}" class="btn d-block text-decoration-none text-white">Top</a>
-                      <a href="{{ route('admin.show.dashboard') }}" class="btn d-block text-decoration-none text-white">Dashboard</a>
-                      <a href="{{ route('admin.news.show') }}" class="btn d-block text-decoration-none text-white">News</a>
-                      <a href="{{ route('admin.comments.show') }}" class="btn d-block text-decoration-none text-white">Comments</a>
-                      <a href="{{ route('admin.users.show') }}" class="btn d-block text-decoration-none text-white">Users</a>
+                    <div class="row">
+                        <div class="col-2 " style="background-color:#052962; min-height:100vh; height:100％;">
+                        <a href="{{ route('news.index') }}"><img src="{{ asset('storage/images/logo_transparent.png') }}" alt="" class="w-50 d-block mx-auto"></a>
+                        <a href="{{ route('news.index') }}" class="btn d-block text-decoration-none text-white">Top</a>
+                        <a href="{{ route('admin.show.dashboard') }}" class="btn d-block text-decoration-none text-white">Dashboard</a>
+                        <a href="{{ route('admin.news.show') }}" class="btn d-block text-decoration-none text-white">News</a>
+                        <a href="{{ route('admin.comments.show') }}" class="btn d-block text-decoration-none text-white">Comments</a>
+                        <a href="{{ route('admin.users.show') }}" class="btn d-block text-decoration-none text-white">Users</a>
+                        </div>
+                        <div class="col-10 mt-5">
+                        @yield('content')
+                        {{-- <div class="w-75 mx-auto">
+                            <x-forms.tinymce-editor/>
+
+                        </div> --}}
+
                     </div>
-                    <div class="col-10 mt-5">
-                      @yield('content')
-                      {{-- <div class="w-75 mx-auto">
-                          <x-forms.tinymce-editor/>
-
-                      </div> --}}
-
-                  </div>
             </main>
         </div>
     </body>
