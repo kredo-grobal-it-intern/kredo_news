@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\News;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,8 +19,10 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             CountrySeeder::class,
             SourceSeeder::class,
-            NewsSeeder::class,
+            // NewsSeeder::class,
             UserSeeder::class,
         ]);
+
+        News::factory(300)->create();
     }
 }
