@@ -72,14 +72,27 @@ class NewsController extends Controller
 
     public function showSearch(Request $request)
     {
-        $keyword = $request->keyword;
-        $all_news = News::where('description', 'like', "%{$keyword}%")
-            ->orWhere('content', 'like',"%{$keyword}%")
-            ->orWhere('title', 'like', "%{$keyword}%")->with('country', 'category')->get()
-            ->filter(function($news) use($request){
-                return $news->category_id == $request->category && in_array($news->country_id, $request->countries ?? []);
-            });
-            return view('user.news.search')->with('all_news', $all_news);
+        $request->validate([
+            'keyword' => 'required|max:20'
+        ]);
+        if (isset($request->countries) && isset($request->category)) {
+            $all_news = News::searchByKeyword($request->keyword)
+                ->filter(function($news) use($request) {
+                    return in_array($news->country_id, $request->countries) && $news->category_id == $request->category;
+                });
+        } elseif (isset($request->countries)) {
+            $all_news = News::searchByKeyword($request->keyword)
+                ->filter(function($news) use($request) {
+                    return in_array($news->country_id, $request->countries);
+                });
+        } elseif (isset($request->category)) {
+            $all_news = News::searchByKeyword($request->keyword)
+                ->filter(function($news) use($request) {
+                    return $news->category_id == $request->category;
+                });
+        } else {
+            $all_news = News::searchByKeyword($request->keyword);
+        }
+        return view('user.news.search')->with('all_news', $all_news);
     }
-
 }

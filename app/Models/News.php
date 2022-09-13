@@ -37,6 +37,14 @@ class News extends Model
         return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->offset(1)->limit(4)->get();
     }
 
+    public static function searchByKeyword($keyword)
+    {
+        return News::where('description', 'like', "%{$keyword}%")
+            ->orWhere('content', 'like',"%{$keyword}%")
+            ->orWhere('title', 'like', "%{$keyword}%")
+            ->get();
+    }
+
     public function country()
     {
         return $this->belongsTo(Country::class);

@@ -14,11 +14,11 @@
             <h4 class="">Category</h4>
             <h4 class="">Country</h4>
         </div>
-        
+
         @foreach ($all_news as $news)
         <div class="col-lg-3 col-md-6 mb-4">
             <div class="card">
-                <img src="{{asset('images/' . $news->image_path)}}" alt="" class="card-img-top news-img">
+                <img src="{{asset('images/news/' . $news->image)}}" alt="" class="card-img-top news-img">
                 <div class="card-body">
                     <p class="fw-bold h2">{{$news->title}}</p>
                     <p class="mb-0">{{$news->description}}</p>

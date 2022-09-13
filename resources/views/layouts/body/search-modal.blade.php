@@ -19,7 +19,7 @@
                         <div class="mt-4">
                             <label for="category" class="form-label fw-bold">Favorite Category</label>
                             <select name="category" id="category" class="form-select">
-                                <option hidden>-- Choose Category --</option>
+                                <option disabled selected>-- Choose Category --</option>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
@@ -44,8 +44,8 @@
                                             @endphp
                                             @foreach ( $continent_countries as $country )
                                                 <div class="form-check form-check-inline">
-                                                    <input type="checkbox" class="form-check-input" name="countries[]" value="{{ $country->id }}">
-                                                    <label for="" class="form-check-lebel">{{ $country->name }}</label>
+                                                    <input id="{{ $country->name }}" type="checkbox" class="form-check-input" name="countries[]" value="{{ $country->id }}">
+                                                    <label for="{{ $country->name }}" class="form-check-lebel">{{ $country->name }}</label>
                                                 </div>
                                             @endforeach
                                         </div>
