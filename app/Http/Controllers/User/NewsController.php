@@ -77,7 +77,7 @@ class NewsController extends Controller
         ]);
 
         $all_news = News::searchByKeyword($request->keyword)
-            ->filter(function($news) use($request) {
+            ->filter(function ($news) use ($request) {
                 if (isset($request->countries) && isset($request->category)) {
                     return in_array($news->country_id, $request->countries) && $news->category_id == $request->category;
                 } elseif (isset($request->countries)) {
