@@ -10,7 +10,7 @@
   <div class="container-fluid">
     <div class="row ">
         <div class="col-md-12 result-holder">
-            <h4 class="">Showing results for "<span>{{ $keyword }}</span>"</h4>
+            <h4 class="">Showing "<span>{{ $article_count }}</span>" articles searched by "<span>{{ $keyword }}</span>"</h4>
             @isset($selected_category)
                 <h4 class="">Category: &nbsp;"<span>{{ $selected_category->name }}</span>"</h4>
             @endisset

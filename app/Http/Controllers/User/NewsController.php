@@ -77,19 +77,8 @@ class NewsController extends Controller
             'keyword' => 'required|max:20'
         ]);
 
-        $all_news = News::searchByKeyword($request->keyword)
-            ->filter(function ($news) use ($request) {
-                if (isset($request->countries) && isset($request->category)) {
-                    return in_array($news->country_id, $request->countries) && $news->category_id == $request->category;
-                } elseif (isset($request->countries)) {
-                    return in_array($news->country_id, $request->countries);
-                } elseif (isset($request->category)) {
-                    return $news->category_id == $request->category;
-                } else {
-                    return true;
-                }
-            });
-
+        $all_news = News::search($request);
+        $article_count = $all_news->count();
         $selected_category = Category::where('id', '=', $request->category)->first();
         $selected_countries = [];
         if (isset($request->countries)) {
@@ -99,6 +88,7 @@ class NewsController extends Controller
         }
         return view('user.news.search')
             ->with('all_news', $all_news)
+            ->with('article_count', $article_count)
             ->with('keyword', $request->keyword)
             ->with('selected_category', $selected_category)
             ->with('selected_countries', $selected_countries);

@@ -37,12 +37,23 @@ class News extends Model
         return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->offset(1)->limit(4)->get();
     }
 
-    public static function searchByKeyword($keyword)
+    public static function search($request)
     {
-        return News::where('description', 'like', "%{$keyword}%")
-            ->orWhere('content', 'like',"%{$keyword}%")
-            ->orWhere('title', 'like', "%{$keyword}%")
-            ->get();
+        return News::where('description', 'like', "%{$request->keyword}%")
+            ->orWhere('content', 'like',"%{$request->keyword}%")
+            ->orWhere('title', 'like', "%{$request->keyword}%")
+            ->get()
+            ->filter(function ($news) use ($request) {
+                if (isset($request->countries) && isset($request->category)) {
+                    return in_array($news->country_id, $request->countries) && $news->category_id == $request->category;
+                } elseif (isset($request->countries)) {
+                    return in_array($news->country_id, $request->countries);
+                } elseif (isset($request->category)) {
+                    return $news->category_id == $request->category;
+                } else {
+                    return true;
+                }
+            });
     }
 
     public function country()
