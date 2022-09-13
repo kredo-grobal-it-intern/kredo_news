@@ -42,5 +42,7 @@
             </footer>
         @endif
     </div>
+
+    @yield('script-footer')
 </body>
 </html>

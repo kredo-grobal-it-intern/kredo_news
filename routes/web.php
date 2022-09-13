@@ -29,6 +29,7 @@ Auth::routes();
 // All user
 Route::get('/', [NewsController::class, 'index'])->name('news.index');
 Route::get('/search', [NewsController::class, 'showSearch'])->name('news.search');
+Route::get('/create-news', [NewsController::class, 'editor'])->name('news.editor');
 Route::get('/{news_id}', [NewsController::class, 'show'])->name('news.show');
 Route::get('/search/category', [NewsController::class, 'filter'])->name('news.filter');
 Route::get('/category/{category_id}', [CategoryController::class, 'show'])->name('news.category');

@@ -75,4 +75,11 @@ class NewsController extends Controller
         $all_news = News::all();
         return view('user.news.search')->with('all_news', $all_news);
     }
+
+    public function editor() {
+        $all_news = News::all();
+        $sources = Source::all();
+        $country = Country::all();
+        return view('user.news.editor')->with('all_news', $all_news)->with('sources', $sources)->with('countries', $country);;
+    }
 }
