@@ -17,10 +17,24 @@
                     <a href="{{route('user.profile.edit')}}" class="text-decoration-none text-secondary">Edit Profile</a>
                 @endif
             </div>
-                <div class="row fw-bold">
-                    <div class="col">68 Comments</div>
-                    <div class="col">100 Follower</div>
-                    <div class="col">50 Follow</div>
+                <div class="row">
+                    <div class="col-3">
+                        <button type="button" class="btn border-0 fs-5 m-0 p-0" data-bs-toggle="modal" data-bs-target="#follower">
+                            <span class="fw-bold fs-4">10</span> Comments
+                        </button>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn border-0 fs-5 m-0 p-0" data-bs-toggle="modal" data-bs-target="#follower">
+                            <span class="fw-bold fs-4">{{ $user->followers->count() }}</span> Followers
+                        </button>
+                    @include('user.profile.modal.follower')
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn border-0 fs-5 m-0 p-0" data-bs-toggle="modal" data-bs-target="#following">
+                            <span class="fw-bold fs-4">{{ $user->followings->count() }}</span> Followings
+                        </button>
+                        @include('user.profile.modal.following')
+                    </div>
                 </div>
                 <div class="row my-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia qui corporis dolorum, rerum debitis tempora? Modi consequuntur non magni aliquid.
                 </div>

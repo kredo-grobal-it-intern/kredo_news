@@ -69,4 +69,14 @@ class User extends Authenticatable
     public function favoriteCountries(){
         return $this->belongsToMany(Country::class, 'favorite_countries', 'user_id', 'country_id');
     }
+
+    public function followers()
+    {
+        return $this->hasMany(Follow::class, 'following_id');
+    }
+
+    public function followings()
+    {
+        return $this->hasMany(Follow::class, 'follower_id');
+    }
 }
