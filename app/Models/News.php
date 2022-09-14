@@ -40,4 +40,51 @@ class News extends Model
     {
         return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->offset(1)->limit(4)->get();
     }
+
+    public static function pregSplit($keyword)
+    {
+        $keyword = mb_convert_kana( $keyword, "s" );
+        return preg_split('/[\p{Z}\p{Cc}]++/u', $keyword, -1, PREG_SPLIT_NO_EMPTY);
+    }
+
+    public static function search($request)
+    {
+        $keywords = self::pregSplit($request->keyword);
+        $searched_news_array = collect([]);
+        foreach ($keywords as $keyword) {
+            $result = News::where('description', 'like', "%{$keyword}%")
+                ->orWhere('content', 'like',"%{$keyword}%")
+                ->orWhere('title', 'like', "%{$keyword}%")
+                ->orderBy('published_at', 'desc')
+                ->get()
+                ->filter(function ($news) use ($request) {
+                    if (isset($request->countries) && isset($request->category)) {
+                        return in_array($news->country_id, $request->countries) && $news->category_id == $request->category;
+                    } elseif (isset($request->countries)) {
+                        return in_array($news->country_id, $request->countries);
+                    } elseif (isset($request->category)) {
+                        return $news->category_id == $request->category;
+                    } else {
+                        return true;
+                    }
+                });
+            $searched_news_array = $searched_news_array->merge($result);
+        }
+        return $searched_news_array;
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function source()
+    {
+        return $this->belongsTo(Source::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
