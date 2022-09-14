@@ -14,8 +14,6 @@ class Comment extends Model
         'user_id',
         'news_id',
         'body',
-        'created_at',
-        'updated_at',
     ];
 
     public function news()
