@@ -4,10 +4,11 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\Category;
 use App\Models\News;
 use App\Models\Source;
 use App\Models\Country;
-use PHP_CodeSniffer\Util\Common;
+use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
@@ -18,7 +19,6 @@ class NewsController extends Controller
         'africanews' => 4,
         'ABC' => 5,
     ];
-
     public function index()
     {
         $articles = [
@@ -74,9 +74,23 @@ class NewsController extends Controller
         return view('user.news.favorite')->with('all_news', $all_news)->with('sources', $sources)->with('countries', $country);
     }
 
-    public function showSearch()
+    public function showSearch(Request $request)
     {
-        $all_news = News::all();
-        return view('user.news.search')->with('all_news', $all_news);
+        $request->validate([
+            'keyword' => 'required|max:20'
+        ]);
+
+        $searched_news_array = News::search($request);
+        $article_count = $searched_news_array->count();
+        $selected_category = Category::where('id', '=', $request->category)->first();
+        $countries = $request->countries ?? [];
+        $selected_countries = Country::whereIn('id', $countries)->get();
+
+        return view('user.news.search')
+            ->with('searched_news_array', $searched_news_array)
+            ->with('article_count', $article_count)
+            ->with('keyword', $request->keyword)
+            ->with('selected_category', $selected_category)
+            ->with('selected_countries', $selected_countries);
     }
 }
