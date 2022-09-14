@@ -32,19 +32,16 @@
                             </span>
                         @enderror
                     </div>
+                    @php
+                        $all_countries = App\Models\Country::all();
+                    @endphp
                     <div class="form mb-3">
-                        <select class="form-control text-muted">
-                            <option hidden>Nationality</option>
-                            <option> text 1 </option>
-                            <option> text 2 </option>
-                            <option> text 3 </option>
-                        </select>
-                        {{-- <select class="form-control" name="country">
-                            <option value="">Select a country</option>
-                            @foreach($countries as $country)
+                        <select class="form-select @error('nationality') is-invalid @enderror" name="nationality">
+                            <option disabled selected>-- Choose Nationality --</option>
+                            @foreach ($all_countries as $country)
                                 <option value="{{ $country->id }}">{{ $country->name }}</option>
                             @endforeach
-                        </select> --}}
+                        </select>
                         @error('nationality')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -52,19 +49,13 @@
                         @enderror
                     </div>
                     <div class="form mb-3">
-                        <select class="form-control text-muted">
-                            <option hidden>Country</option>
-                            <option> text 1 </option>
-                            <option> text 2 </option>
-                            <option> text 3 </option>
-                        </select>
-                        {{-- <select class="form-control" name="country">
-                            <option value="">Select a country</option>
-                            @foreach($countries as $country)
+                        <select class="form-select @error('country') is-invalid @enderror" name="country">
+                            <option class="text-muted" disabled selected>-- Choose Country --</option>
+                            @foreach ($all_countries as $country)
                                 <option value="{{ $country->id }}">{{ $country->name }}</option>
                             @endforeach
-                        </select> --}}
-                        @error('contry')
+                        </select>
+                        @error('country')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
