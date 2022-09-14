@@ -21,8 +21,8 @@ $(function () {
                     $(dislike).removeClass('text-primary');
                 }
                 $this.toggleClass('text-primary');
-                $this.siblings('.upCount').text(isNaN(parseInt(data.newsLikesCount)) ? '' : data.newsLikesCount);
-                $(dislike).siblings('.downCount').text(isNaN(parseInt(data.newsDislikesCount)) ? '' : data.newsDislikesCount);
+                $this.siblings('.upCount').text(parseInt(data.newsLikesCount) > 0 ? data.newsLikesCount : '');
+                $(dislike).siblings('.downCount').text(parseInt(data.newsDislikesCount) > 0 ? data.newsDislikesCount : '');
             })
             .fail(function (data, xhr, err) {
                 console.log('エラー');
@@ -56,9 +56,8 @@ $(function () {
                     $(like).removeClass('text-primary');
                 }
                 $this.toggleClass('text-primary');
-                console.log(data);
-                $this.siblings('.downCount').text(isNaN(parseInt(data.newsDislikesCount)) ? '' : data.newsDislikesCount);
-                $(like).siblings('.upCount').text(isNaN(parseInt(data.newsLikesCount)) ? '' : data.newsLikesCount);
+                $this.siblings('.downCount').text(parseInt(data.newsDislikesCount) > 0 ? data.newsDislikesCount : '');
+                $(like).siblings('.upCount').text(parseInt(data.newsLikesCount) > 0 ? data.newsLikesCount : '');
             })
             .fail(function (data, xhr, err) {
                 console.log('エラー');
