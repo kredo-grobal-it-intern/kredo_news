@@ -85,9 +85,7 @@ class NewsController extends Controller
         $selected_category = Category::where('id', '=', $request->category)->first();
         $selected_countries = [];
         if (isset($request->countries)) {
-            foreach ($request->countries as $country_id) {
-                $selected_countries[] = Country::where('id', '=', $country_id)->first();
-            }
+            $selected_countries = Country::whereIn('id', $request->countries)->get();
         }
         return view('user.news.search')
             ->with('searched_news_array', $searched_news_array)
