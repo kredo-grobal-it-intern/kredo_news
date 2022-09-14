@@ -42,23 +42,23 @@ class News extends Model
     }
     public function like_reactions() {
         return $this->reactions->filter(function($reaction) {
-            return $reaction->status == 1;
+            return $reaction->status == Reaction::GOOD;
         });
     }
     public function dislike_reactions() {
         return $this->reactions->filter(function($reaction) {
-            return $reaction->status == 2;
+            return $reaction->status == Reaction::BAD;
         });
     }
     public function isUp(){
         return $this->reactions()
-        ->where('status',1)
+        ->where('status',Reaction::GOOD)
         ->where('user_id',Auth::user()->id)
         ->exists();
     }
     public function isDown(){
         return $this->reactions()
-            ->where('status',2)
+            ->where('status',Reaction::BAD)
             ->where('user_id',Auth::user()->id)
             ->exists();
     }

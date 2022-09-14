@@ -24,16 +24,14 @@ $(function () {
                 $this.siblings('.upCount').text(data.newsLikesCount);
                 $(dislike).siblings('.downCount').text(data.newsDislikesCount);
             })
-
             .fail(function (data, xhr, err) {
                 console.log('エラー');
                 console.log(err);
                 console.log(xhr);
             });
-
         return false;
     });
-    });
+});
 
 $(function () {
     var dislike = $('.down-toggle');
@@ -61,13 +59,11 @@ $(function () {
                 $this.siblings('.downCount').text(data.newsDislikesCount);
                 $(like).siblings('.upCount').text(data.newsLikesCount);
             })
-
             .fail(function (data, xhr, err) {
                 console.log('エラー');
                 console.log(err);
                 console.log(xhr);
             });
-
         return false;
     });
-    });
+});
