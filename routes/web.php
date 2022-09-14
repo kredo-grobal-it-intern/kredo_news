@@ -10,6 +10,7 @@ use App\Http\Controllers\User\NewsController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\User\CategoryController;
+use App\Http\Controllers\User\CommentController;
 use App\Http\Controllers\User\CountryController;
 use App\Http\Controllers\User\MediaController;
 
@@ -38,6 +39,8 @@ Route::get('/media/{media_id}', [MediaController::class, 'show'])->name('news.me
 // Logged in user
 Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'auth'], function () {
     Route::get('/favorite', [NewsController::class, 'showFavoritePage'])->name('news.favorite');
+    Route::post('/{news_id}/comment', [CommentController::class, 'store'])->name('comment.store');
+    Route::delete('/comment/{comment_id}', [CommentController::class, 'destroy'])->name('comment.destroy');
     Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
         Route::get('/edit', [UserController::class, 'edit'])->name('edit');
         Route::get('/{user_id}', [UserController::class, 'show'])->name('show');

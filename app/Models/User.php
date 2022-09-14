@@ -58,6 +58,10 @@ class User extends Authenticatable
         return $this->belongsTo(Country::class);
     }
 
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
     public function nationality(){
         return $this->belongsTo(Country::class);
     }
