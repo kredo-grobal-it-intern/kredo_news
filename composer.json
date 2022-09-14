@@ -14,7 +14,8 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "slevomat/coding-standard": "^8.4",
-        "squizlabs/php_codesniffer": "*"
+        "squizlabs/php_codesniffer": "*",
+        "tinymce/tinymce": "^6.2"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

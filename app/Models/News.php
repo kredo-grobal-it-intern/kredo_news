@@ -51,6 +51,7 @@ class News extends Model
             $searched_news_array[] = News::where('description', 'like', "%{$keyword}%")
                 ->orWhere('content', 'like',"%{$keyword}%")
                 ->orWhere('title', 'like', "%{$keyword}%")
+                ->orderBy('published_at', 'desc')
                 ->get()
                 ->filter(function ($news) use ($request) {
                     if (isset($request->countries) && isset($request->category)) {

@@ -4,21 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\NewsStoreUpdateRequest;
-
+use App\Models\Category;
 use App\Models\News;
 use App\Models\User;
 use App\Models\Comment;
+use App\Models\Country;
+use App\Models\Source;
 use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
-    private $news;
     const LOCAL_STORAGE_FOLDER = 'public/images/news';
-
-    public function __construct(News $news)
-    {
-        $this->news = $news;
-    }
 
     public function showDashboard()
     {
@@ -35,7 +31,7 @@ class NewsController extends Controller
     public function show()
     {
 
-        $all_news = $this->news->orderBy('published_at')->withTrashed()->paginate(10);
+        $all_news = News::orderBy('published_at')->withTrashed()->paginate(10);
         return view('admin.news.show')
                     ->with('all_news', $all_news);
     }
@@ -47,16 +43,25 @@ class NewsController extends Controller
 
     public function create()
     {
-        return view('admin.news.create');
+        $all_media  = Source::all();
+        $categories = Category::all();
+        $countries  = Country::whereNotNull('continent')->get();
+
+        return view('admin.news.create')
+                ->with('all_media', $all_media)
+                ->with('categories', $categories)
+                ->with('countries', $countries);
     }
 
 
     public function store(NewsStoreUpdateRequest $request)
     {
-        $news = $this->news;
+        $news = new News;
 
         $news->title        = $request->title;
         $news->description  = $request->description;
+        $news->country_id  = $request->country_id;
+        $news->category_id  = $request->category_id;
         $news->source_id    = $request->source_id;
         $news->url          = $request->url;
         $news->published_at = $request->published_at;
@@ -89,14 +94,14 @@ class NewsController extends Controller
 
     public function edit($news_id)
     {
-        $news = $this->news->findOrFail($news_id);
+        $news = News::findOrFail($news_id);
 
         return view('admin.news.edit', compact('news'));
     }
 
     public function update(NewsStoreUpdateRequest $request, $news_id)
     {
-        $news = $this->news->findOrFail($news_id);
+        $news = News::findOrFail($news_id);
 
         $news->title        = $request->title;
         $news->description  = $request->description;
