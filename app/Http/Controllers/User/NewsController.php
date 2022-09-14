@@ -47,7 +47,18 @@ class NewsController extends Controller
                 'sub' => News::getArticlesBySource($this->sources['ABC']),
             ],
         ];
-        return view('user.news.index')->with('articles', $articles);
+
+        $whats_hot_articles = [
+            'America' => News::getWhatsHot($this->sources['CNN']),
+            'Asia' => News::getWhatsHot($this->sources['ASIA TIMES']),
+            'Europe' => News::getWhatsHot($this->sources['BBC']),
+            'Africa' => News::getWhatsHot($this->sources['africanews']),
+            'Oceania' => News::getWhatsHot($this->sources['ABC']),
+        ];
+
+        return view('user.news.index')
+            ->with('articles', $articles)
+            ->with('whats_hot_articles', $whats_hot_articles);
     }
 
     public function show($news_id)

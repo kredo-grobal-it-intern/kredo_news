@@ -73,6 +73,11 @@ class News extends Model
         return $searched_news_array;
     }
 
+    public static function getWhatsHot($source_id)
+    {
+        return News::where('source_id', '=', $source_id)->withCount('comments')->orderBy('comments_count', 'desc')->limit(5)->get();
+    }
+
     public function country()
     {
         return $this->belongsTo(Country::class);
