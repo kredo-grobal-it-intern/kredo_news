@@ -10,7 +10,7 @@ $(function () {
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: '/thumbs_up',
+                url: '/user/thumbs_up',
                 type: 'POST',
                 data: {
                     'news_id': likeNewsId
@@ -21,8 +21,8 @@ $(function () {
                     $(dislike).removeClass('text-primary');
                 }
                 $this.toggleClass('text-primary');
-                $this.siblings('.upCount').text(data.newsLikesCount);
-                $(dislike).siblings('.downCount').text(data.newsDislikesCount);
+                $this.siblings('.upCount').text(isNaN(parseInt(data.newsLikesCount)) ? '' : data.newsLikesCount);
+                $(dislike).siblings('.downCount').text(isNaN(parseInt(data.newsDislikesCount)) ? '' : data.newsDislikesCount);
             })
             .fail(function (data, xhr, err) {
                 console.log('エラー');
@@ -45,7 +45,7 @@ $(function () {
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: '/thumbs_down',
+                url: '/user/thumbs_down',
                 type: 'POST',
                 data: {
                     'news_id': likeNewsId
@@ -56,8 +56,9 @@ $(function () {
                     $(like).removeClass('text-primary');
                 }
                 $this.toggleClass('text-primary');
-                $this.siblings('.downCount').text(data.newsDislikesCount);
-                $(like).siblings('.upCount').text(data.newsLikesCount);
+                console.log(data);
+                $this.siblings('.downCount').text(isNaN(parseInt(data.newsDislikesCount)) ? '' : data.newsDislikesCount);
+                $(like).siblings('.upCount').text(isNaN(parseInt(data.newsLikesCount)) ? '' : data.newsLikesCount);
             })
             .fail(function (data, xhr, err) {
                 console.log('エラー');
