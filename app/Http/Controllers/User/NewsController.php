@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\News;
 use App\Models\Source;
 use App\Models\Country;
