@@ -12,11 +12,11 @@ class Comment extends Model
 
     public function news()
     {
-      return $this->belongsTo(News::class);
+        return $this->belongsTo(News::class);
     }
 
     public function user()
     {
-      return $this->belongsTo(User::class)->withTrashed();
+        return $this->belongsTo(User::class)->withTrashed();
     }
 }
