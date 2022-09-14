@@ -46,9 +46,9 @@ class News extends Model
     public static function search($request)
     {
         $keywords = self::pregSplit($request->keyword);
-        $searched_news_array = [];
+        $searched_news_array = collect([]);
         foreach ($keywords as $keyword) {
-            $searched_news_array[] = News::where('description', 'like', "%{$keyword}%")
+            $result = News::where('description', 'like', "%{$keyword}%")
                 ->orWhere('content', 'like',"%{$keyword}%")
                 ->orWhere('title', 'like', "%{$keyword}%")
                 ->orderBy('published_at', 'desc')
@@ -64,6 +64,7 @@ class News extends Model
                         return true;
                     }
                 });
+            $searched_news_array = $searched_news_array->merge($result);
         }
         return $searched_news_array;
     }
