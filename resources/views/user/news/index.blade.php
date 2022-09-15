@@ -18,12 +18,12 @@
                     <div class="col-9">
                         <!-- latest news -->
                         <div class="row top-news">
-                            @include('user.news.top-body.top_article')
+                            @include('user.news.layouts.top_news')
                         </div>
                         <!-- sub news -->
                         <div class="row mt-5 sub-news">
-                            @foreach ($country_news['sub'] as $news)
-                                @include('user.news.top-body.sub_articles')
+                            @foreach ($country_news['list'] as $news)
+                                @include('user.news.layouts.news_list')
                             @endforeach
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                         <h3>What's hot</h3>
                         <ol>
                             @foreach ($whats_hot_news[$country_name] as $news)
-                                @include('user.news.top-body.whats_hot')
+                                @include('user.news.layouts.whats_hot')
                             @endforeach
                         </ol>
                     </aside>

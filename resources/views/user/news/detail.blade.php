@@ -81,7 +81,7 @@
         <hr>
         <ol>
             @foreach ($whats_hot_news as $news)
-                @include('user.news.top-body.whats_hot')
+                @include('user.news.layouts.whats_hot')
             @endforeach
         </ol>
 {{-- latest in --}}

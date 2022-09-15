@@ -18,27 +18,27 @@ class NewsController extends Controller
         $news_list = [
             'America' => [
                 'latest' => News::getLatestNews(SourceConst::AMERICA),
-                'sub' => News::getNewsBySource(SourceConst::AMERICA),
+                'list' => News::getNewsBySource(SourceConst::AMERICA),
             ],
 
             'Asia' => [
                 'latest' => News::getLatestNews(SourceConst::ASIA),
-                'sub' => News::getNewsBySource(SourceConst::ASIA),
+                'list' => News::getNewsBySource(SourceConst::ASIA),
             ],
 
             'Europe' => [
                 'latest' => News::getLatestNews(SourceConst::EUROPE),
-                'sub' => News::getNewsBySource(SourceConst::EUROPE),
+                'list' => News::getNewsBySource(SourceConst::EUROPE),
             ],
 
             'Africa' => [
                 'latest' => News::getLatestNews(SourceConst::AFRICA),
-                'sub' => News::getNewsBySource(SourceConst::AFRICA),
+                'list' => News::getNewsBySource(SourceConst::AFRICA),
             ],
 
             'Oceania' => [
                 'latest' => News::getLatestNews(SourceConst::OCEANIA),
-                'sub' => News::getNewsBySource(SourceConst::OCEANIA),
+                'list' => News::getNewsBySource(SourceConst::OCEANIA),
             ],
         ];
         $whats_hot_news = News::getWhatsHot();
