@@ -32,7 +32,9 @@
                         <!-- what's hot -->
                         <h3>What's hot</h3>
                         <ol>
-                            @include('user.news.top-body.whats_hot')
+                            @foreach ($whats_hot_articles[$country_name] as $article)
+                                @include('user.news.top-body.whats_hot')
+                            @endforeach
                         </ol>
                     </aside>
                 </div>

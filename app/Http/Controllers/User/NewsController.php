@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Consts\SourceConst;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Comment;
@@ -12,48 +13,41 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
-    private $sources = [
-        'CNN' => 1,
-        'ASIA TIMES' => 2,
-        'BBC' => 3,
-        'africanews' => 4,
-        'ABC' => 5,
-    ];
     public function index()
     {
         $articles = [
             'America' => [
-                'latest' => News::getLatestArticle($this->sources['CNN']),
-                'sub' => News::getArticlesBySource($this->sources['CNN']),
+                'latest' => News::getLatestArticle(SourceConst::AMERICA),
+                'sub' => News::getArticlesBySource(SourceConst::AMERICA),
             ],
 
             'Asia' => [
-                'latest' => News::getLatestArticle($this->sources['ASIA TIMES']),
-                'sub' => News::getArticlesBySource($this->sources['ASIA TIMES']),
+                'latest' => News::getLatestArticle(SourceConst::ASIA),
+                'sub' => News::getArticlesBySource(SourceConst::ASIA),
             ],
 
             'Europe' => [
-                'latest' => News::getLatestArticle($this->sources['BBC']),
-                'sub' => News::getArticlesBySource($this->sources['BBC']),
+                'latest' => News::getLatestArticle(SourceConst::EUROPE),
+                'sub' => News::getArticlesBySource(SourceConst::EUROPE),
             ],
 
             'Africa' => [
-                'latest' => News::getLatestArticle($this->sources['africanews']),
-                'sub' => News::getArticlesBySource($this->sources['africanews']),
+                'latest' => News::getLatestArticle(SourceConst::AFRICA),
+                'sub' => News::getArticlesBySource(SourceConst::AFRICA),
             ],
 
             'Oceania' => [
-                'latest' => News::getLatestArticle($this->sources['ABC']),
-                'sub' => News::getArticlesBySource($this->sources['ABC']),
+                'latest' => News::getLatestArticle(SourceConst::OCEANIA),
+                'sub' => News::getArticlesBySource(SourceConst::OCEANIA),
             ],
         ];
 
         $whats_hot_articles = [
-            'America' => News::getWhatsHot($this->sources['CNN']),
-            'Asia' => News::getWhatsHot($this->sources['ASIA TIMES']),
-            'Europe' => News::getWhatsHot($this->sources['BBC']),
-            'Africa' => News::getWhatsHot($this->sources['africanews']),
-            'Oceania' => News::getWhatsHot($this->sources['ABC']),
+            'America' => News::getWhatsHot(SourceConst::AMERICA),
+            'Asia' => News::getWhatsHot(SourceConst::ASIA),
+            'Europe' => News::getWhatsHot(SourceConst::EUROPE),
+            'Africa' => News::getWhatsHot(SourceConst::AFRICA),
+            'Oceania' => News::getWhatsHot(SourceConst::OCEANIA),
         ];
 
         return view('user.news.index')
