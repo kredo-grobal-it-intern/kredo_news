@@ -6,24 +6,24 @@
 
 @section('content')
 <div class="container">
-    @foreach ($articles as $country_name => $country_articles)
-        @isset($country_articles['latest']) <!-- tentative condition -->
+    @foreach ($news_list as $country_name => $country_news)
+        @isset($country_news['latest']) <!-- tentative condition -->
             <section class="country-section">
                 <div class="text-center my-4">
                     <h2 class="country fw-bold">{{ $country_name }}</h2>
                 </div>
 
                 <div class="row">
-                    <!-- article area -->
+                    <!-- news area -->
                     <div class="col-9">
-                        <!-- latest article -->
-                        <div class="row top-article">
-                            @include('user.news.top-body.top_article')
+                        <!-- latest news -->
+                        <div class="row top-news">
+                            @include('user.news.layouts.top_news')
                         </div>
-                        <!-- sub articles -->
-                        <div class="row mt-5 sub-article">
-                            @foreach ($country_articles['sub'] as $sub_article)
-                                @include('user.news.top-body.sub_articles')
+                        <!-- sub news -->
+                        <div class="row mt-5 sub-news">
+                            @foreach ($country_news['list'] as $news)
+                                @include('user.news.layouts.news_list')
                             @endforeach
                         </div>
                     </div>
@@ -32,8 +32,8 @@
                         <!-- what's hot -->
                         <h3>What's hot</h3>
                         <ol>
-                            @foreach ($whats_hot_articles[$country_name] as $article)
-                                @include('user.news.top-body.whats_hot')
+                            @foreach ($whats_hot_news[$country_name] as $news)
+                                @include('user.news.layouts.whats_hot')
                             @endforeach
                         </ol>
                     </aside>
