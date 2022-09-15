@@ -48,11 +48,4 @@ class Reaction extends Model
             );
         }
     }
-    public function store($user_id,$news_id,$status){
-        return $this->save([
-            'user_id'=>$user_id,
-            'news_id'=>$news_id,
-            'status'=>$status,
-        ]);
-    }
 }
