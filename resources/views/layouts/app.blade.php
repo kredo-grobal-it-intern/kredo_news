@@ -39,7 +39,7 @@
         </main>
 
         @if (!Route::is('login') && !Route::is('register'))
-            <footer class="back-blue">
+            <footer class="back-blue mt-5">
                 @include('layouts.body.footer')
             </footer>
         @endif
