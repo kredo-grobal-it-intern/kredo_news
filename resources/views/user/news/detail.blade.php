@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('title','NEWS')
+@section('style')
+<link rel="stylesheet" href="{{ mix('css/detail.css') }}">
+@endsection
 @section('content')
 <div class="row justify-content-center">
     <div class="col-8">
@@ -76,7 +79,11 @@
         <hr>
             <h2 class="fw-bold text-decoration-underline">What's Hot</h2>
         <hr>
-        @include('user.news.top-body.whats_hot')
+        <ol>
+            @foreach ($whats_hot_articles as $article)
+                @include('user.news.top-body.whats_hot')
+            @endforeach
+        </ol>
 {{-- latest in --}}
         <hr>
             <h2 class="fw-bold text-decoration-underline">Latest In <span class="fw-bold">{{$news->source_name}}</span></h2>

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Consts\SourceConst;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -73,10 +74,24 @@ class News extends Model
         return $searched_news_array;
     }
 
-    public static function getWhatsHot($source_id)
+    public static function getWhatsHotBySource($source_id)
     {
         return News::where('source_id', '=', $source_id)->withCount('comments')->orderBy('comments_count', 'desc')->limit(5)->get();
     }
+
+    public static function getWhatsHot()
+    {
+        $whats_hot_articles = [
+            'America' => News::getWhatsHotBySource(SourceConst::AMERICA),
+            'Asia' => News::getWhatsHotBySource(SourceConst::ASIA),
+            'Europe' => News::getWhatsHotBySource(SourceConst::EUROPE),
+            'Africa' => News::getWhatsHotBySource(SourceConst::AFRICA),
+            'Oceania' => News::getWhatsHotBySource(SourceConst::OCEANIA),
+        ];
+        return $whats_hot_articles;
+    }
+
+
 
     public function country()
     {

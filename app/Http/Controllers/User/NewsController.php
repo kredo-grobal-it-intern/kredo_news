@@ -41,14 +41,7 @@ class NewsController extends Controller
                 'sub' => News::getArticlesBySource(SourceConst::OCEANIA),
             ],
         ];
-
-        $whats_hot_articles = [
-            'America' => News::getWhatsHot(SourceConst::AMERICA),
-            'Asia' => News::getWhatsHot(SourceConst::ASIA),
-            'Europe' => News::getWhatsHot(SourceConst::EUROPE),
-            'Africa' => News::getWhatsHot(SourceConst::AFRICA),
-            'Oceania' => News::getWhatsHot(SourceConst::OCEANIA),
-        ];
+        $whats_hot_articles = News::getWhatsHot();
 
         return view('user.news.index')
             ->with('articles', $articles)
@@ -58,9 +51,11 @@ class NewsController extends Controller
     public function show($news_id)
     {
         $news = News::findOrFail($news_id);
+        $whats_hot_articles = News::getWhatsHotBySource($news->source_id);
         $comments = Comment::where('news_id', '=', $news_id)->get();
         return view('user.news.detail')
             ->with('news', $news)
+            ->with('whats_hot_articles', $whats_hot_articles)
             ->with('comments', $comments);
     }
     public function filter()
