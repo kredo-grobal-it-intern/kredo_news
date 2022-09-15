@@ -117,7 +117,10 @@ class News extends Model
         return $whats_hot_news;
     }
 
-
+    public static function getLatestNewsList($source_id)
+    {
+        return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->limit(5)->get();
+    }
 
     public function country()
     {

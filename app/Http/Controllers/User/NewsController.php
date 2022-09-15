@@ -52,8 +52,8 @@ class NewsController extends Controller
     {
         $news = News::findOrFail($news_id);
         $whats_hot_news = News::getWhatsHotBySource($news->source_id);
-        $latest_news = News::where('source_id', '=', $news->source_id)->orderBy('published_at', 'desc')->limit(5)->get();
-        $comments = Comment::where('news_id', '=', $news_id)->get();
+        $latest_news = News::getLatestNewsList($news->source_id);
+        $comments = Comment::where('news_id', '=', $news_id)->orderBy('created_at', 'desc')->get();
         return view('user.news.detail')
             ->with('news', $news)
             ->with('whats_hot_news', $whats_hot_news)
