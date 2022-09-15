@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bookmark;
 use Illuminate\Http\Request;
 use App\Models\News;
 use App\Models\User;
 use App\Models\Source;
+use App\Models\Reaction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
@@ -15,14 +17,25 @@ class UserController extends Controller
 {
     const LOCAL_STORAGE_FOLDER = 'public/avatars/';
 
-    public function show($user_id)
+    public function showLikes($user_id)
     {
-        $user = User::findOrFail($user_id);
-        $all_news = News::all();
-        return view('user.profile.index')
-            ->with('all_news', $all_news)
-            ->with('user', $user);
+        $user      = User::findOrFail($user_id);
+        $reactions = Reaction::where('user_id', $user_id)->where('status', 1)->get();
+
+        return view('user.profile.show.likes')
+                ->with('reactions', $reactions)
+                ->with('user', $user);
     }
+
+    public function showBookmarks($user_id)
+    {
+        $user      = User::findOrFail($user_id);
+        $bookmarks = Bookmark::where('user_id', $user_id)->get();
+
+        return view('user.profile.show.bookmarks')
+                ->with('bookmarks', $bookmarks)
+                ->with('user', $user);
+        }
 
     public function edit()
     {
@@ -32,13 +45,13 @@ class UserController extends Controller
         $sources = Source::all();
         $continents = [ 'America','Asia','Europe','Oceania','Africa' ];
         $favorite_countries_ids = $user->favoriteCountries->pluck('id')->toArray();
-         return view('user.profile.edit', [
+        return view('user.profile.edit', [
                 'user' => $user,
                 'sources' => $sources,
                 'continents' => $continents,
                 'favorite_sources_ids' => $favorite_sources_ids,
                 'favorite_countries_ids' => $favorite_countries_ids
-         ]);
+        ]);
     }
 
     public function update(Request $request)

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Ui\Presets\React;
 
 class News extends Model
 {
@@ -83,4 +84,20 @@ class News extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function good()
+    {
+        return $this->hasMany(Reaction::class)->where('status', 1);
+    }
+
+    public function bad()
+    {
+        return $this->hasMany(Reaction::class)->where('status', 2);
+    }
+
 }
