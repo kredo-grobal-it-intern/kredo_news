@@ -23,7 +23,7 @@ class Reaction extends Model
     }
 
     public function changeStatusForThumbsUp($like_user,$user_id,$news_id){
-        if(empty($like_user)||$like_user->status==Reaction::BAD||$like_user->status==Reaction::DEFAULT){
+        if(empty($like_user)||$like_user->status!=Reaction::GOOD){
             Reaction::updateOrCreate(
                 ['user_id'=>$user_id,'news_id'=>$news_id],
                 ['status'=>Reaction::GOOD]
@@ -36,7 +36,7 @@ class Reaction extends Model
         }
     }
     public function changeStatusForThumbsDown($like_user,$user_id,$news_id){
-        if(empty($like_user)||$like_user->status==Reaction::GOOD||$like_user->status==Reaction::DEFAULT){
+        if(empty($like_user)||$like_user->status!=Reaction::BAD){
             Reaction::updateOrCreate(
                 ['user_id'=>$user_id,'news_id'=>$news_id],
                 ['status'=>Reaction::BAD]
