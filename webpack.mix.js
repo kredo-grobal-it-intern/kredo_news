@@ -12,6 +12,10 @@ const mix = require('laravel-mix');
  */
  mix.js('resources/js/app.js', 'public/js').vue()
  .js('resources/js/_login.js', 'public/js')
+ .js('resources/js/_ajaxreact.js', 'public/js')
+ .autoload({
+    "jquery": ['$', 'window.jQuery'],
+})
  .sass('resources/sass/app.scss', 'public/css')
  .sass('resources/sass/admin.scss', 'public/css')
  .sass('resources/sass/profile.scss', 'public/css')
@@ -27,6 +31,4 @@ const mix = require('laravel-mix');
  .sass('resources/sass/top.scss', 'public/css')
  .sass('resources/sass/detail.scss', 'public/css');
 
- mix.copyDirectory('vendor/tinymce/tinymce', 'public/js/tinymce');
-
-
+//  mix.copyDirectory('vendor/tinymce/tinymce', 'public/js/tinymce');

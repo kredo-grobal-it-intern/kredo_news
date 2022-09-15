@@ -6,6 +6,7 @@ use App\Consts\SourceConst;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class News extends Model
 {
@@ -40,6 +41,31 @@ class News extends Model
     public static function getArticlesBySource($source_id)
     {
         return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->offset(1)->limit(4)->get();
+    }
+    public function reactions(){
+        return $this->hasMany(Reaction::class);
+    }
+    public function like_reactions() {
+        return $this->reactions->filter(function($reaction) {
+            return $reaction->status == Reaction::GOOD;
+        });
+    }
+    public function dislike_reactions() {
+        return $this->reactions->filter(function($reaction) {
+            return $reaction->status == Reaction::BAD;
+        });
+    }
+    public function isUp(){
+        return $this->reactions()
+          ->where('status',Reaction::GOOD)
+          ->where('user_id',Auth::user()->id)
+          ->exists();
+    }
+    public function isDown(){
+        return $this->reactions()
+            ->where('status',Reaction::BAD)
+            ->where('user_id',Auth::user()->id)
+            ->exists();
     }
 
     public static function pregSplit($keyword)

@@ -25,12 +25,7 @@
                     <p class="mb-0">{{$news->description}}</p>
                     <small class="text-muted">{{$news->author}}</small>
                 </div>
-                <div class="row align-items-center">
-                    <p class="col offset-1 fs-5">1000 <i class="fa-regular fa-thumbs-up"></i></p>
-                    <p class="col fs-5">200 <i class="fa-regular fa-thumbs-down"></i></p>
-                    <p class="col fs-5">100 <i class="fa-regular fa-comment-dots"></i></p>
-                    <p class="col offset-1 fs-2"><i class="fa-regular fa-bookmark"></i></p>
-                </div>
+                @include('user/news/feature/reaction')
             </div>
         </div>
         @endforeach
