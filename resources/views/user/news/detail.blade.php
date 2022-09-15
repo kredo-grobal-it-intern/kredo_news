@@ -80,7 +80,7 @@
             <h2 class="fw-bold text-decoration-underline">What's Hot</h2>
         <hr>
         <ol>
-            @foreach ($whats_hot_articles as $article)
+            @foreach ($whats_hot_news as $news)
                 @include('user.news.top-body.whats_hot')
             @endforeach
         </ol>
