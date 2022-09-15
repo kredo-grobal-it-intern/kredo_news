@@ -21,7 +21,7 @@
                             @include('user.news.layouts.top_news')
                         </div>
                         <!-- sub news -->
-                        <div class="row mt-5 sub-news">
+                        <div class="row mt-5 news-list">
                             @foreach ($country_news['list'] as $news)
                                 @include('user.news.layouts.news_list')
                             @endforeach
