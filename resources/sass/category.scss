@@ -18,20 +18,3 @@
     margin:0;
     padding:0;
 }
-
-.news-image {
-    height: 140px;
-    object-fit: cover;
-}
-
-@media (max-width: 992px) {
-    .news-image {
-        height: 180px;
-    }
-}
-
-@media (max-width: 768px) {
-    .news-image {
-        height: 220px;
-    }
-}

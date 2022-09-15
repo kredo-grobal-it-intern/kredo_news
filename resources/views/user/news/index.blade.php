@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('style')
-<link rel="stylesheet" href="{{ mix('css/top.css') }}">
+<link href="{{ mix('css/top.css') }}" rel="stylesheet">
+<link href="{{ mix('css/news_list.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
