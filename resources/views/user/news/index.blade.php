@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('style')
-<link rel="stylesheet" href="{{ mix('css/top.css') }}">
+<link href="{{ mix('css/top.css') }}" rel="stylesheet">
+<link href="{{ mix('css/news_list.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -21,7 +22,7 @@
                             @include('user.news.layouts.top_news')
                         </div>
                         <!-- sub news -->
-                        <div class="row mt-5 sub-news">
+                        <div class="row mt-5 news-list">
                             @foreach ($country_news['list'] as $news)
                                 @include('user.news.layouts.news_list')
                             @endforeach

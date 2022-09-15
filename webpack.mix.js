@@ -26,6 +26,7 @@ const mix = require('laravel-mix');
  .sass('resources/sass/multi_select.scss', 'public/css')
  .sass('resources/sass/country.scss', 'public/css')
  .sass('resources/sass/top.scss', 'public/css')
- .sass('resources/sass/detail.scss', 'public/css');
+ .sass('resources/sass/detail.scss', 'public/css')
+ .sass('resources/sass/news_list.scss', 'public/css');
 
 //  mix.copyDirectory('vendor/tinymce/tinymce', 'public/js/tinymce');
