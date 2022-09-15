@@ -2,3 +2,41 @@
     font-weight: bold;
     text-decoration: underline;
 }
+
+.detail-image {
+    height: 550px;
+    object-fit: cover;
+}
+
+.news-content p {
+    line-height: 2.4;
+}
+
+.aside-title {
+    border-bottom: 1px solid #999;
+}
+
+.comment-title {
+    border-bottom: 1px solid #999;
+}
+
+.comment-list {
+    list-style-type: none;
+}
+
+.comment-list-item {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.comment-list-item:first-child {
+    border-top: none;
+}
+
+.comment-list-item:last-child {
+    border-bottom: none;
+}
+
+.comment-delete:hover {
+    text-decoration: underline;
+}
