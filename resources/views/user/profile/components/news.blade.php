@@ -3,7 +3,7 @@
         @if($all_news->news->image)
         <img src="{{asset('images/countries/' . $all_news->news->image)}}" alt="" class="card-img-top news-img">
         @else
-        <img src="{{asset('images/no_image.png')}}" alt="" class="card-img-top news-img">
+        <img src="{{asset('images/country.jpg')}}" alt="{{ $all_news->news->country->name }}" class="card-img-top news-img">
         @endif
         <div class="card-body">
             <p class="fw-bold h2">{{$all_news->news->title}}</p>

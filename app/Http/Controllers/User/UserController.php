@@ -56,12 +56,14 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
-        $user = Auth::user();
-        $user->username = $request->username;
-        $user->email = $request->email;
+        $user                 = Auth::user();
+        $user->username       = $request->username;
+        $user->email          = $request->email;
+        $user->description    = $request->description;
         $user->nationality_id = $request->nationality;
-        $user->country_id = $request->country;
-        $sources = $request->sources ?? [];
+        $user->country_id     = $request->country;
+        $sources              = $request->sources ?? [];
+        
         $favorite_sources = [];
         foreach ($sources as $source) {
             $favorite_sources[] = [
@@ -89,7 +91,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->route('user.profile.show', ['user_id' => $user->id]);
+        return redirect()->route('user.profile.show.likes', ['user_id' => $user->id]);
     }
 
     public function saveAvatar($request)

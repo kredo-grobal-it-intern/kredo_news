@@ -9,6 +9,11 @@ class Bookmark extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'news_id',
+    ];
+
     public function news()
     {
         return $this->belongsTo(News::class, 'news_id');

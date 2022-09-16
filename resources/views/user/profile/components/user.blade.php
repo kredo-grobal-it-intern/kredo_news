@@ -1,14 +1,14 @@
-<div class="row mt-5">
-    <div class="col-md-4">
+<div class="row mt-5 align-items-center ">
+    <div class="col-4">
         @if ($user->avatar)
-        <img src="{{asset('/storage/avatars/'.$user->avatar)}}" alt="" class="rounded-circle nav-avatar ps-3" style="width:40%; height:130px">
+            <img src="{{asset('/storage/avatars/'.$user->avatar)}}" alt="Image" class="rounded-circle d-block mx-auto" style="width:180px; height:180px; object-fit:cover;" >
         @else
-        <i class="fa-solid fa-circle-user text-secondary d-block text-center profile-icon"></i>
+        <i class="fa-solid fa-circle-user text-secondary d-block text-center" style="font-size:180px;"></i>
         @endif
     </div>
     <div class="col-8">
-        <div class="row my-3">
-            <h2 class="fw-bold">Username</h2>
+        <div class="row">
+            <h2 class="fw-bold">{{ $user->username }}</h2>
             @if (Auth::user()->id === $user->id)
                 <a href="{{route('user.profile.edit')}}" class="text-decoration-none text-secondary">Edit Profile</a>
             @endif
@@ -18,9 +18,15 @@
                 <div class="col">100 Follower</div>
                 <div class="col">50 Follow</div>
             </div>
-            <div class="row my-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia qui corporis dolorum, rerum debitis tempora? Modi consequuntur non magni aliquid.
+            <p class="my-3 w-75">{{ $user->description }}</p>
+            <div class="row">
+                <div class="col-2">
+                    <a href="{{ route('user.profile.show.likes', $user->id) }}" class="btn btn-sm text-white me-3 w-100" style="background-color: #052962;">Likes</a>
+                </div>
+                <div class="col-2">
+                    <a href="{{ route('user.profile.show.bookmarks', $user->id) }}" class="btn btn-sm text-white w-100" style="background-color: #052962;">Bookmarks</a>
+                </div>
             </div>
-            <a href="{{ route('user.profile.show.likes', $user->id) }}" class="btn btn-secondary me-3">News Liked by Username</a>
-            <a href="{{ route('user.profile.show.bookmarks', $user->id) }}" class="btn btn-secondary">Bookmarks</a>
     </div>
 </div>
+

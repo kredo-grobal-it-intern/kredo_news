@@ -84,6 +84,14 @@
                   </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-2">
+                <label class="label" id="description" class="d-block fw-bold">Description</label>
+            </div>
+            <div class="col-6">
+                <input type="text" name="description" id="description" class="form-control my-2" value="{{$user->description}}">
+            </div>
+        </div>
     </div>
 <div class="row">
     <label for="newssite" class="fw-bold fs-4 favorite">Favorite News Site</label>

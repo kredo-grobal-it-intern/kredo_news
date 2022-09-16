@@ -9,6 +9,12 @@ class Reaction extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'news_id',
+        'status',
+    ];
+
     public function news()
     {
         return $this->belongsTo(News::class, 'news_id');
