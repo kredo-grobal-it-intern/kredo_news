@@ -45,6 +45,9 @@ class News extends Model
     public function reactions(){
         return $this->hasMany(Reaction::class);
     }
+    public function bookmarks(){
+        return $this->hasMany(Bookmark::class);
+    }
     public function like_reactions() {
         return $this->reactions->filter(function($reaction) {
             return $reaction->status == Reaction::GOOD;
@@ -64,6 +67,11 @@ class News extends Model
     public function isDown(){
         return $this->reactions()
             ->where('status',Reaction::BAD)
+            ->where('user_id',Auth::user()->id)
+            ->exists();
+    }
+    public function isBookmarked(){
+        return $this->bookmarks()
             ->where('user_id',Auth::user()->id)
             ->exists();
     }
