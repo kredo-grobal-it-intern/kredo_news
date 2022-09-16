@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    const LOCAL_STORAGE_FOLDER = 'public/avatars/';
+    const LOCAL_STORAGE_FOLDER = 'public/images/avatars/';
 
     public function show($user_id)
     {

@@ -22,7 +22,7 @@
                 </div>
                 <div class="news-content px-3">
                     <p>{{ $news->content }}</p>
-                    <p>URL: &nbsp;{{ $news->url }}</p>
+                    <p>URL: &nbsp;<a href="{{ $news->url }}" class="text-dark">{{ $news->url }}</a></p>
                 </div>
             </section>
             <!-- Comment section -->
@@ -32,7 +32,11 @@
                     @foreach ($comments as $comment)
                         <li class="row comment-list-item pt-4 pb-3">
                             <div class="col-1">
-                                <a href="{{ route('user.profile.show', $comment->user->id) }}" class="text-decoration-none text-muted"><i class="fa-solid fa-circle-user fa-2x profile-icon"></i></a>
+                                @if ($comment->user->avatar)
+                                    <a href="{{ route('user.profile.show', $comment->user->id) }}" class="text-decoration-none text-muted"><img src="{{ asset('images/avatars/' . $comment->user->avatar) }}" alt="User Avatar" class="avatar"></a>
+                                @else
+                                    <a href="{{ route('user.profile.show', $comment->user->id) }}" class="text-decoration-none text-muted"><i class="fa-solid fa-circle-user fa-2x profile-icon"></i></a>
+                                @endif
                             </div>
                             <div class="col-11">
                                 <div class="profile">
