@@ -29,7 +29,10 @@
                     <p class="mb-0">{{$news->description}}</p>
                     <small class="text-muted">{{$news->author}}</small>
                 </div>
-                @include('user/news/feature/reaction')
+                <div class="row align-items-center">
+                    @include('user/news/feature/reaction')
+                    @include('user/news/feature/bookmark')
+                </div>
             </div>
         </div>
     </div>
