@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\CommentController as AdminCommentController;
 use App\Http\Controllers\FacebookLoginController;
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\User\NewsController;
 use App\Http\Controllers\User\UserController;
@@ -43,6 +44,8 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'auth'], func
         Route::get('/{user_id}', [UserController::class, 'show'])->name('show');
         Route::patch('/{id}', [UserController::class, 'update'])->name('update');
     });
+    Route::delete('/follower/destroy/{follower_id}', [FollowController::class, 'destroyFollower'])->name('destroy.follower');
+    Route::delete('/following/destroy/{following_id}', [FollowController::class, 'destroyFollowing'])->name('destroy.following');
 });
 
 // Admin
