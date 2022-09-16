@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('style')
 <link href="{{ mix('css/country.css') }}" rel="stylesheet">
+<link href="{{ mix('css/news_list.css') }}" rel="stylesheet">
 @endsection
 @section('title',"$country->name Category")
 @section('content')
@@ -14,8 +15,8 @@
         <h1 class="text-center fw-bold country_title">{{$country->name}}</h1>
     </div>
 </div>
-<div class="container-fluid">
-    <div class="row ">
+<div class="container">
+    <div class="row mt-4">
         @foreach ($all_news as $news)
         <div class="col-lg-3 col-md-6 mb-4">
             <div class="card">
@@ -36,6 +37,8 @@
             </div>
         </div>
     </div>
+            @include('user.news.layouts.news_list')
         @endforeach
+    </div>
 </div>
 @endsection

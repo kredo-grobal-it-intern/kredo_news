@@ -33,12 +33,12 @@ class News extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public static function getLatestArticle($source_id)
+    public static function getLatestNews($source_id)
     {
         return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->limit(1)->first();
     }
 
-    public static function getArticlesBySource($source_id)
+    public static function getNewsBySource($source_id)
     {
         return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->offset(1)->limit(4)->get();
     }
@@ -115,17 +115,20 @@ class News extends Model
 
     public static function getWhatsHot()
     {
-        $whats_hot_articles = [
+        $whats_hot_news = [
             'America' => News::getWhatsHotBySource(SourceConst::AMERICA),
             'Asia' => News::getWhatsHotBySource(SourceConst::ASIA),
             'Europe' => News::getWhatsHotBySource(SourceConst::EUROPE),
             'Africa' => News::getWhatsHotBySource(SourceConst::AFRICA),
             'Oceania' => News::getWhatsHotBySource(SourceConst::OCEANIA),
         ];
-        return $whats_hot_articles;
+        return $whats_hot_news;
     }
 
-
+    public static function getLatestNewsList($source_id)
+    {
+        return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->limit(5)->get();
+    }
 
     public function country()
     {

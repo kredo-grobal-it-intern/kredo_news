@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'nationality_id' => 1,
                 'country_id' => 2,
-                'avatar' => null,
+                'avatar' => 'avatar1.png',
                 'is_admin' => 1,
             ],
             [
@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'nationality_id' => 3,
                 'country_id' => 4,
-                'avatar' => null,
+                'avatar' => 'avatar2.png',
                 'is_admin' => 0,
             ],
             [
@@ -43,7 +43,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'nationality_id' => 5,
                 'country_id' => 6,
-                'avatar' => null,
+                'avatar' => 'avatar3.png',
                 'is_admin' => 0,
             ],
             [
@@ -53,7 +53,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'nationality_id' => 7,
                 'country_id' => 8,
-                'avatar' => null,
+                'avatar' => 'avatar4.png',
                 'is_admin' => 0,
             ],
             [
