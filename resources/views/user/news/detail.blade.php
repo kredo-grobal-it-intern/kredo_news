@@ -32,11 +32,11 @@
                     @foreach ($comments as $comment)
                         <li class="row comment-list-item pt-4 pb-3">
                             <div class="col-1">
-                                <i class="fa-solid fa-circle-user fa-2x profile-icon"></i>
+                                <a href="{{ route('user.profile.show', $comment->user->id) }}" class="text-decoration-none text-muted"><i class="fa-solid fa-circle-user fa-2x profile-icon"></i></a>
                             </div>
                             <div class="col-11">
                                 <div class="profile">
-                                    <h6 class="username fw-bold">{{ $comment->user->username }}</h6>
+                                    <h6 class="fw-bold"><a href="{{ route('user.profile.show', $comment->user->id) }}" class="username text-dark">{{ $comment->user->username }}</a></h6>
                                     <small class="text-muted">Soccer player / Musician / Science</small>
                                 </div>
                                 <div class="comment-content mt-3">

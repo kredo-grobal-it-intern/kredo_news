@@ -27,15 +27,24 @@
 .comment-list-item {
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
+
+    &:first-child {
+        border-top: none;
+    }
+
+    &:last-child {
+        border-bottom: none;
+    }
 }
 
-.comment-list-item:first-child {
-    border-top: none;
+.username {
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
-.comment-list-item:last-child {
-    border-bottom: none;
-}
 
 .comment-delete:hover {
     text-decoration: underline;
