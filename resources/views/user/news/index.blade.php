@@ -34,7 +34,7 @@
                         <h3>What's hot</h3>
                         <ol>
                             @foreach ($whats_hot_news[$country_name] as $news)
-                                @include('user.news.layouts.whats_hot')
+                                @include('user.news.layouts.side_content')
                             @endforeach
                         </ol>
                     </aside>

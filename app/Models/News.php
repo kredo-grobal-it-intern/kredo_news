@@ -42,6 +42,9 @@ class News extends Model
     public function reactions(){
         return $this->hasMany(Reaction::class);
     }
+    public function bookmarks(){
+        return $this->hasMany(Bookmark::class);
+    }
     public function like_reactions() {
         return $this->reactions->filter(function($reaction) {
             return $reaction->status == Reaction::GOOD;
@@ -61,6 +64,11 @@ class News extends Model
     public function isDown(){
         return $this->reactions()
             ->where('status',Reaction::BAD)
+            ->where('user_id',Auth::user()->id)
+            ->exists();
+    }
+    public function isBookmarked(){
+        return $this->bookmarks()
             ->where('user_id',Auth::user()->id)
             ->exists();
     }
@@ -114,7 +122,10 @@ class News extends Model
         return $whats_hot_news;
     }
 
-
+    public static function getLatestNewsList($source_id)
+    {
+        return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->limit(5)->get();
+    }
 
     public function country()
     {
