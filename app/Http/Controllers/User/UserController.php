@@ -5,7 +5,6 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Bookmark;
 use Illuminate\Http\Request;
-use App\Models\News;
 use App\Models\User;
 use App\Models\Source;
 use App\Models\Reaction;
@@ -35,7 +34,7 @@ class UserController extends Controller
         return view('user.profile.show.bookmarks')
                 ->with('bookmarks', $bookmarks)
                 ->with('user', $user);
-        }
+    }
 
     public function edit()
     {
