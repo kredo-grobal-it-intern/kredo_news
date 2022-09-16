@@ -15,17 +15,11 @@ $(function() {
                 'news_id': likeNewsId
             },
         })
-
         // success
         .done(function(data) {
             $this.toggleClass('text-success');
             $this.toggleClass('fa-solid');
             $this.toggleClass('fa-regular');
         })
-
-        // fail
-        .fail(function() {
-            console.log('fail');
-        });
     });
 });
