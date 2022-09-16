@@ -46,24 +46,14 @@
 
                     <!-- category dropdown list -->
                     <ul class="dropdown-menu" aria-labelledby="countriesDropdown">
-                        <a href="" class="dropdown-item">
-                            America
-                        </a>
-                        <a href="" class="dropdown-item">
-                            Japan
-                        </a>
-                        <a href="" class="dropdown-item">
-                            UK
-                        </a>
-                        <a href="" class="dropdown-item">
-                            Brazil
-                        </a>
-                        <a href="" class="dropdown-item">
-                            Spain
-                        </a>
-                        <a href="" class="dropdown-item">
-                            China
-                        </a>
+                        @php
+                            $sources = App\Models\Source::all();
+                        @endphp
+                        @foreach ($sources as $source)
+                            <a href="{{ route('news.media', $source->id) }}" class="dropdown-item">
+                                {{ $source->country->name }}
+                            </a>
+                        @endforeach
                     </ul>
                 </li>
                 <li class="nav-item nav-item-custom dropdown me-4">

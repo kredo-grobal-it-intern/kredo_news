@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Consts\SourceConst;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -28,17 +29,24 @@ class News extends Model
         'published_at',
     ];
 
-    public static function getLatestArticle($source_id)
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
+    public static function getLatestNews($source_id)
     {
         return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->limit(1)->first();
     }
 
-    public static function getArticlesBySource($source_id)
+    public static function getNewsBySource($source_id)
     {
         return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->offset(1)->limit(4)->get();
     }
     public function reactions(){
         return $this->hasMany(Reaction::class);
+    }
+    public function bookmarks(){
+        return $this->hasMany(Bookmark::class);
     }
     public function like_reactions() {
         return $this->reactions->filter(function($reaction) {
@@ -59,6 +67,11 @@ class News extends Model
     public function isDown(){
         return $this->reactions()
             ->where('status',Reaction::BAD)
+            ->where('user_id',Auth::user()->id)
+            ->exists();
+    }
+    public function isBookmarked(){
+        return $this->bookmarks()
             ->where('user_id',Auth::user()->id)
             ->exists();
     }
@@ -93,6 +106,28 @@ class News extends Model
             $searched_news_array = $searched_news_array->merge($result);
         }
         return $searched_news_array;
+    }
+
+    public static function getWhatsHotBySource($source_id)
+    {
+        return News::where('source_id', '=', $source_id)->withCount('comments')->orderBy('comments_count', 'desc')->limit(5)->get();
+    }
+
+    public static function getWhatsHot()
+    {
+        $whats_hot_news = [
+            'America' => News::getWhatsHotBySource(SourceConst::AMERICA),
+            'Asia' => News::getWhatsHotBySource(SourceConst::ASIA),
+            'Europe' => News::getWhatsHotBySource(SourceConst::EUROPE),
+            'Africa' => News::getWhatsHotBySource(SourceConst::AFRICA),
+            'Oceania' => News::getWhatsHotBySource(SourceConst::OCEANIA),
+        ];
+        return $whats_hot_news;
+    }
+
+    public static function getLatestNewsList($source_id)
+    {
+        return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->limit(5)->get();
     }
 
     public function country()
