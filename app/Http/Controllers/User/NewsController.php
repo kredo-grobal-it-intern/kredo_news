@@ -2,57 +2,63 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Consts\SourceConst;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Comment;
 use App\Models\News;
 use App\Models\Source;
 use App\Models\Country;
+use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
-    private $sources = [
-        'CNN' => 1,
-        'ASIA TIMES' => 2,
-        'BBC' => 3,
-        'africanews' => 4,
-        'ABC' => 5,
-    ];
-
     public function index()
     {
-        $articles = [
+        $news_list = [
             'America' => [
-                'latest' => News::getLatestArticle($this->sources['CNN']),
-                'sub' => News::getArticlesBySource($this->sources['CNN']),
+                'latest' => News::getLatestNews(SourceConst::AMERICA),
+                'list' => News::getNewsBySource(SourceConst::AMERICA),
             ],
 
             'Asia' => [
-                'latest' => News::getLatestArticle($this->sources['ASIA TIMES']),
-                'sub' => News::getArticlesBySource($this->sources['ASIA TIMES']),
+                'latest' => News::getLatestNews(SourceConst::ASIA),
+                'list' => News::getNewsBySource(SourceConst::ASIA),
             ],
 
             'Europe' => [
-                'latest' => News::getLatestArticle($this->sources['BBC']),
-                'sub' => News::getArticlesBySource($this->sources['BBC']),
+                'latest' => News::getLatestNews(SourceConst::EUROPE),
+                'list' => News::getNewsBySource(SourceConst::EUROPE),
             ],
 
             'Africa' => [
-                'latest' => News::getLatestArticle($this->sources['africanews']),
-                'sub' => News::getArticlesBySource($this->sources['africanews']),
+                'latest' => News::getLatestNews(SourceConst::AFRICA),
+                'list' => News::getNewsBySource(SourceConst::AFRICA),
             ],
 
             'Oceania' => [
-                'latest' => News::getLatestArticle($this->sources['ABC']),
-                'sub' => News::getArticlesBySource($this->sources['ABC']),
+                'latest' => News::getLatestNews(SourceConst::OCEANIA),
+                'list' => News::getNewsBySource(SourceConst::OCEANIA),
             ],
         ];
-        return view('user.news.index')->with('articles', $articles);
+        $whats_hot_news = News::getWhatsHot();
+
+        return view('user.news.index')
+            ->with('news_list', $news_list)
+            ->with('whats_hot_news', $whats_hot_news);
     }
 
     public function show($news_id)
     {
         $news = News::findOrFail($news_id);
+        $whats_hot_news = News::getWhatsHotBySource($news->source_id);
+        $latest_news = News::getLatestNewsList($news->source_id);
+        $comments = Comment::where('news_id', '=', $news_id)->orderBy('created_at', 'desc')->get();
         return view('user.news.detail')
-            ->with('news', $news);
+            ->with('news', $news)
+            ->with('whats_hot_news', $whats_hot_news)
+            ->with('latest_news', $latest_news)
+            ->with('comments', $comments);
     }
     public function filter()
     {
@@ -70,9 +76,23 @@ class NewsController extends Controller
         return view('user.news.favorite')->with('all_news', $all_news)->with('sources', $sources)->with('countries', $country);
     }
 
-    public function showSearch()
+    public function showSearch(Request $request)
     {
-        $all_news = News::all();
-        return view('user.news.search')->with('all_news', $all_news);
+        $request->validate([
+            'keyword' => 'required|max:20'
+        ]);
+
+        $searched_news_array = News::search($request);
+        $news_count = $searched_news_array->count();
+        $selected_category = Category::where('id', '=', $request->category)->first();
+        $countries = $request->countries ?? [];
+        $selected_countries = Country::whereIn('id', $countries)->get();
+
+        return view('user.news.search')
+            ->with('searched_news_array', $searched_news_array)
+            ->with('news_count', $news_count)
+            ->with('keyword', $request->keyword)
+            ->with('selected_category', $selected_category)
+            ->with('selected_countries', $selected_countries);
     }
 }

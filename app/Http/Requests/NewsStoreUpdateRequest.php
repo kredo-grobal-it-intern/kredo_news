@@ -27,6 +27,7 @@ class NewsStoreUpdateRequest extends FormRequest
             'title'        => 'required',
             'description'  => 'required',
             'source_id'    => 'required',
+            'category_id'    => 'required',
             'url'          => 'required',
             'published_at' => 'required',
             'author'       => 'required',
