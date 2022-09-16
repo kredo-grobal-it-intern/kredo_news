@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Consts\SourceConst;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Ui\Presets\React;
+use Illuminate\Support\Facades\Auth;
 
 class News extends Model
 {
@@ -28,14 +30,39 @@ class News extends Model
         'published_at',
     ];
 
-    public static function getLatestArticle($source_id)
+    public static function getLatestNews($source_id)
     {
         return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->limit(1)->first();
     }
 
-    public static function getArticlesBySource($source_id)
+    public static function getNewsBySource($source_id)
     {
         return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->offset(1)->limit(4)->get();
+    }
+    public function reactions(){
+        return $this->hasMany(Reaction::class);
+    }
+    public function like_reactions() {
+        return $this->reactions->filter(function($reaction) {
+            return $reaction->status == Reaction::GOOD;
+        });
+    }
+    public function dislike_reactions() {
+        return $this->reactions->filter(function($reaction) {
+            return $reaction->status == Reaction::BAD;
+        });
+    }
+    public function isUp(){
+        return $this->reactions()
+          ->where('status',Reaction::GOOD)
+          ->where('user_id',Auth::user()->id)
+          ->exists();
+    }
+    public function isDown(){
+        return $this->reactions()
+            ->where('status',Reaction::BAD)
+            ->where('user_id',Auth::user()->id)
+            ->exists();
     }
 
     public static function pregSplit($keyword)
@@ -69,6 +96,25 @@ class News extends Model
         }
         return $searched_news_array;
     }
+
+    public static function getWhatsHotBySource($source_id)
+    {
+        return News::where('source_id', '=', $source_id)->withCount('comments')->orderBy('comments_count', 'desc')->limit(5)->get();
+    }
+
+    public static function getWhatsHot()
+    {
+        $whats_hot_news = [
+            'America' => News::getWhatsHotBySource(SourceConst::AMERICA),
+            'Asia' => News::getWhatsHotBySource(SourceConst::ASIA),
+            'Europe' => News::getWhatsHotBySource(SourceConst::EUROPE),
+            'Africa' => News::getWhatsHotBySource(SourceConst::AFRICA),
+            'Oceania' => News::getWhatsHotBySource(SourceConst::OCEANIA),
+        ];
+        return $whats_hot_news;
+    }
+
+
 
     public function country()
     {

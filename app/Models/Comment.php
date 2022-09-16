@@ -10,6 +10,12 @@ class Comment extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = [
+        'user_id',
+        'news_id',
+        'body',
+    ];
+
     public function news()
     {
       return $this->belongsTo(News::class);

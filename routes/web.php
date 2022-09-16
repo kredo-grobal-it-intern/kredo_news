@@ -10,8 +10,10 @@ use App\Http\Controllers\User\NewsController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\User\CategoryController;
+use App\Http\Controllers\User\CommentController;
 use App\Http\Controllers\User\CountryController;
 use App\Http\Controllers\User\MediaController;
+use App\Http\Controllers\User\ReactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +39,11 @@ Route::get('/media/{media_id}', [MediaController::class, 'show'])->name('news.me
 
 // Logged in user
 Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'auth'], function () {
+    Route::post('/thumbs_up', [ReactionController::class, 'thumbs_up'])->name('thumbs_up');
+    Route::post('/thumbs_down', [ReactionController::class, 'thumbs_down'])->name('thumbs_down');
     Route::get('/favorite', [NewsController::class, 'showFavoritePage'])->name('news.favorite');
+    Route::post('/{news_id}/comment', [CommentController::class, 'store'])->name('comment.store');
+    Route::delete('/comment/{comment_id}', [CommentController::class, 'destroy'])->name('comment.destroy');
     Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
         Route::get('/edit', [UserController::class, 'edit'])->name('edit');
         Route::get('/show/likes/{user_id}', [UserController::class, 'showLikes'])->name('show.likes');

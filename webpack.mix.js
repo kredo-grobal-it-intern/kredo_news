@@ -12,6 +12,7 @@ const mix = require('laravel-mix');
  */
  mix.js('resources/js/app.js', 'public/js').vue()
  .js('resources/js/_login.js', 'public/js')
+ .js('resources/js/_ajaxreact.js', 'public/js')
  .sass('resources/sass/app.scss', 'public/css')
  .sass('resources/sass/admin.scss', 'public/css')
  .sass('resources/sass/news.scss', 'public/css')
@@ -25,8 +26,8 @@ const mix = require('laravel-mix');
  .sass('resources/sass/footer.scss', 'public/css')
  .sass('resources/sass/multi_select.scss', 'public/css')
  .sass('resources/sass/country.scss', 'public/css')
- .sass('resources/sass/top.scss', 'public/css');
+ .sass('resources/sass/top.scss', 'public/css')
+ .sass('resources/sass/detail.scss', 'public/css')
+ .sass('resources/sass/news_list.scss', 'public/css');
 
- mix.copyDirectory('vendor/tinymce/tinymce', 'public/js/tinymce');
-
-
+//  mix.copyDirectory('vendor/tinymce/tinymce', 'public/js/tinymce');

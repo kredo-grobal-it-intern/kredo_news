@@ -15,8 +15,9 @@ class NewsSeeder extends Seeder
     public function run()
     {
         DB::table('news')->insert([
+            // America
             [
-                // America
+                'id' => 1,
                 'country_id' => 11,
                 'category_id' => 1,
                 'source_id' => 1,
@@ -29,6 +30,7 @@ class NewsSeeder extends Seeder
                 'published_at' => '2022-08-01 00:00:00',
             ],
             [
+                'id' => 2,
                 'country_id' => 32,
                 'category_id' => 2,
                 'source_id' => 1,
@@ -40,7 +42,9 @@ class NewsSeeder extends Seeder
                 'image' => 'brazil.jpg',
                 'published_at' => '2022-08-02 00:00:00',
             ],
-            [   'country_id' => 40,
+            [
+                'id' => 3,
+                'country_id' => 40,
                 'category_id' => 3,
                 'source_id' => 1,
                 'title' => 'Lorem ipsum dolor sit amet',
@@ -51,7 +55,9 @@ class NewsSeeder extends Seeder
                 'image' => 'canada.jpg',
                 'published_at' => '2022-08-03 00:00:00',
             ],
-            [   'country_id' => 57,
+            [
+                'id' => 4,
+                'country_id' => 57,
                 'category_id' => 4,
                 'source_id' => 1,
                 'title' => 'Lorem ipsum dolor sit amet',
@@ -62,7 +68,9 @@ class NewsSeeder extends Seeder
                 'image' => 'cuba.jpg',
                 'published_at' => '2022-08-04 00:00:00',
             ],
-            [   'country_id' => 236,
+            [
+                'id' => 5,
+                'country_id' => 236,
                 'category_id' => 5,
                 'source_id' => 1,
                 'title' => 'Lorem ipsum dolor sit amet',
@@ -75,7 +83,9 @@ class NewsSeeder extends Seeder
             ],
 
             // Asia
-            [   'country_id' => 46,
+            [
+                'id' => 6,
+                'country_id' => 46,
                 'category_id' => 6,
                 'source_id' => 2,
                 'title' => 'Lorem ipsum dolor sit amet',
@@ -86,7 +96,9 @@ class NewsSeeder extends Seeder
                 'image' => 'china.jpg',
                 'published_at' => '2022-08-06 00:00:00',
             ],
-            [   'country_id' => 103,
+            [
+                'id' => 7,
+                'country_id' => 103,
                 'category_id' => 1,
                 'source_id' => 2,
                 'title' => 'Lorem ipsum dolor sit amet',
@@ -97,7 +109,9 @@ class NewsSeeder extends Seeder
                 'image' => 'india.jpg',
                 'published_at' => '2022-08-07 00:00:00',
             ],
-            [   'country_id' => 112,
+            [
+                'id' => 8,
+                'country_id' => 112,
                 'category_id' => 2,
                 'source_id' => 2,
                 'title' => 'Lorem ipsum dolor sit amet',
@@ -108,7 +122,9 @@ class NewsSeeder extends Seeder
                 'image' => 'japan.jpg',
                 'published_at' => '2022-08-08 00:00:00',
             ],
-            [   'country_id' => 175,
+            [
+                'id' => 9,
+                'country_id' => 175,
                 'category_id' => 2,
                 'source_id' => 2,
                 'title' => 'Lorem ipsum dolor sit amet',
@@ -119,7 +135,9 @@ class NewsSeeder extends Seeder
                 'image' => 'philippines.jpg',
                 'published_at' => '2022-08-09 00:00:00',
             ],
-            [   'country_id' => 109,
+            [
+                'id' => 10,
+                'country_id' => 109,
                 'category_id' => 2,
                 'source_id' => 2,
                 'title' => 'Lorem ipsum dolor sit amet',
@@ -132,7 +150,9 @@ class NewsSeeder extends Seeder
             ],
 
             // Europe
-            [   'country_id' => 76,
+            [
+                'id' => 11,
+                'country_id' => 76,
                 'category_id' => 2,
                 'source_id' => 3,
                 'title' => 'Lorem ipsum dolor sit amet',
@@ -143,7 +163,9 @@ class NewsSeeder extends Seeder
                 'image' => 'france.jpg',
                 'published_at' => '2022-08-11 00:00:00',
             ],
-            [   'country_id' => 166,
+            [
+                'id' => 12,
+                'country_id' => 166,
                 'category_id' => 2,
                 'source_id' => 3,
                 'title' => 'Lorem ipsum dolor sit amet',
@@ -154,7 +176,9 @@ class NewsSeeder extends Seeder
                 'image' => 'norway.jpg',
                 'published_at' => '2022-08-12 00:00:00',
             ],
-            [   'country_id' => 183,
+            [
+                'id' => 13,
+                'country_id' => 183,
                 'category_id' => 2,
                 'source_id' => 3,
                 'title' => 'Lorem ipsum dolor sit amet',
@@ -165,7 +189,9 @@ class NewsSeeder extends Seeder
                 'image' => 'russia.jpg',
                 'published_at' => '2022-08-13 00:00:00',
             ],
-            [   'country_id' => 209,
+            [
+                'id' => 14,
+                'country_id' => 209,
                 'category_id' => 2,
                 'source_id' => 3,
                 'title' => 'Lorem ipsum dolor sit amet',
@@ -176,7 +202,9 @@ class NewsSeeder extends Seeder
                 'image' => 'spain.jpg',
                 'published_at' => '2022-08-14 00:00:00',
             ],
-            [   'country_id' => 235,
+            [
+                'id' => 15,
+                'country_id' => 235,
                 'category_id' => 2,
                 'source_id' => 3,
                 'title' => 'Lorem ipsum dolor sit amet',
@@ -189,7 +217,9 @@ class NewsSeeder extends Seeder
             ],
 
             // Africa
-            [   'country_id' => 66,
+            [
+                'id' => 16,
+                'country_id' => 66,
                 'category_id' => 2,
                 'source_id' => 4,
                 'title' => 'Lorem ipsum dolor sit amet',
@@ -200,7 +230,9 @@ class NewsSeeder extends Seeder
                 'image' => 'egypt.jpg',
                 'published_at' => '2022-08-16 00:00:00',
             ],
-            [   'country_id' => 116,
+            [
+                'id' => 17,
+                'country_id' => 116,
                 'category_id' => 2,
                 'source_id' => 4,
                 'title' => 'Lorem ipsum dolor sit amet',
@@ -211,7 +243,9 @@ class NewsSeeder extends Seeder
                 'image' => 'kenya.jpg',
                 'published_at' => '2022-08-17 00:00:00',
             ],
-            [   'country_id' => 206,
+            [
+                'id' => 18,
+                'country_id' => 206,
                 'category_id' => 2,
                 'source_id' => 4,
                 'title' => 'Lorem ipsum dolor sit amet',
@@ -222,7 +256,9 @@ class NewsSeeder extends Seeder
                 'image' => 'southafrica.jpg',
                 'published_at' => '2022-08-18 00:00:00',
             ],
-            [   'country_id' => 205,
+            [
+                'id' => 19,
+                'country_id' => 205,
                 'category_id' => 2,
                 'source_id' => 4,
                 'title' => 'Lorem ipsum dolor sit amet',
@@ -233,7 +269,9 @@ class NewsSeeder extends Seeder
                 'image' => '',
                 'published_at' => '2022-08-19 00:00:00',
             ],
-            [   'country_id' => 211,
+            [
+                'id' => 20,
+                'country_id' => 211,
                 'category_id' => 2,
                 'source_id' => 4,
                 'title' => 'Lorem ipsum dolor sit amet',
@@ -246,7 +284,9 @@ class NewsSeeder extends Seeder
             ],
 
             // Oceania
-            [   'country_id' => 14,
+            [
+                'id' => 21,
+                'country_id' => 14,
                 'category_id' => 2,
                 'source_id' => 5,
                 'title' => 'Lorem ipsum dolor sit amet',
@@ -257,7 +297,9 @@ class NewsSeeder extends Seeder
                 'image' => 'australia.jpg',
                 'published_at' => '2022-08-21 00:00:00',
             ],
-            [   'country_id' => 159,
+            [
+                'id' => 22,
+                'country_id' => 159,
                 'category_id' => 2,
                 'source_id' => 5,
                 'title' => 'Lorem ipsum dolor sit amet',
@@ -268,7 +310,9 @@ class NewsSeeder extends Seeder
                 'image' => '',
                 'published_at' => '2022-08-22 00:00:00',
             ],
-            [   'country_id' => 14,
+            [
+                'id' => 23,
+                'country_id' => 14,
                 'category_id' => 2,
                 'source_id' => 5,
                 'title' => 'Lorem ipsum dolor sit amet',
@@ -279,7 +323,9 @@ class NewsSeeder extends Seeder
                 'image' => 'australia.jpg',
                 'published_at' => '2022-08-23 00:00:00',
             ],
-            [   'country_id' => 159,
+            [
+                'id' => 24,
+                'country_id' => 159,
                 'category_id' => 2,
                 'source_id' => 5,
                 'title' => 'Lorem ipsum dolor sit amet',
@@ -290,7 +336,9 @@ class NewsSeeder extends Seeder
                 'image' => '',
                 'published_at' => '2022-08-24 00:00:00',
             ],
-            [   'country_id' => 14,
+            [
+                'id' => 25,
+                'country_id' => 14,
                 'category_id' => 2,
                 'source_id' => 5,
                 'title' => 'Lorem ipsum dolor sit amet',

@@ -53,9 +53,22 @@ class User extends Authenticatable
     public function category(){
         return $this->belongsTo(Category::class);
     }
+    public function news()
+    {
+        return $this->hasMany(News::class);
+    }
+    public function reactions()
+    {
+        return $this->hasMany(Reaction::class);
+    }
+
 
     public function country(){
         return $this->belongsTo(Country::class);
+    }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
     }
 
     public function nationality(){
