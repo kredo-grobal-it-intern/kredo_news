@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             NewsSeeder::class,
             UserSeeder::class,
             BookmarkSeeder::class,
-            ReactionSeeder::class
+            ReactionSeeder::class,
             CommentSeeder::class,
         ]);
 
