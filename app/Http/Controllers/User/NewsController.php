@@ -103,7 +103,7 @@ class NewsController extends Controller
             $all_news = News::whereIn('source_id', $sources->pluck('id'))
             ->orWhere('country_id', $country->id)->get();
         }
-        
+
         return view('user.news.favorite')->with('all_news', $all_news)->with('sources', $sources)->with('countries', $countries);
     }
 
@@ -118,7 +118,7 @@ class NewsController extends Controller
             $all_news = News::where('source_id', $source->id)
             ->orWhereIn('country_id', $countries->pluck('id'))->get();
         }
-        
+
         return view('user.news.favorite')->with('all_news', $all_news)->with('sources', $sources)->with('countries', $countries);
     }
 
@@ -130,7 +130,7 @@ class NewsController extends Controller
 
         $searched_news_array = News::search($request);
         $news_count = $searched_news_array->count();
-        $selected_category = Category::where('id', '=', $request->category)->first();
+        $selected_category = Category::where('id', $request->category)->first();
         $countries = $request->countries ?? [];
         $selected_countries = Country::whereIn('id', $countries)->get();
 
