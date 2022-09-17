@@ -86,8 +86,4 @@ class User extends Authenticatable
         return $this->belongsToMany(Country::class, 'favorite_countries', 'user_id', 'country_id');
     }
 
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
-    }
 }

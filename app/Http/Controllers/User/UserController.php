@@ -19,31 +19,32 @@ class UserController extends Controller
     {
         $user = User::findOrFail($user_id);
         $all_news = News::all();
+        
         return view('user.profile.index')
             ->with('all_news', $all_news)
             ->with('user', $user);
     }
 
     public function edit()
-    {
-        $user_id = Auth::id();
-        $user = User::findOrFail($user_id);
+    {   
+        $user = User::findOrFail(Auth::id());
         $favorite_sources_ids = $user->favoriteSources->pluck('id')->toArray();
         $sources = Source::all();
         $continents = [ 'America','Asia','Europe','Oceania','Africa' ];
         $favorite_countries_ids = $user->favoriteCountries->pluck('id')->toArray();
-         return view('user.profile.edit', [
+
+        return view('user.profile.edit', [
                 'user' => $user,
                 'sources' => $sources,
                 'continents' => $continents,
                 'favorite_sources_ids' => $favorite_sources_ids,
                 'favorite_countries_ids' => $favorite_countries_ids
-         ]);
+        ]);
     }
 
     public function update(Request $request)
     {
-        $user = Auth::user();
+        $user = User::findOrFail(Auth::id());
         $user->username = $request->username;
         $user->email = $request->email;
         $user->nationality_id = $request->nationality;
