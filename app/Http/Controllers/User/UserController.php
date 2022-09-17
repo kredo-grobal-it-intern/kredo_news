@@ -38,12 +38,12 @@ class UserController extends Controller
 
     public function edit()
     {
-        $user_id = Auth::id();
-        $user = User::findOrFail($user_id);
+        $user = User::findOrFail(Auth::id());
         $favorite_sources_ids = $user->favoriteSources->pluck('id')->toArray();
         $sources = Source::all();
         $continents = [ 'America','Asia','Europe','Oceania','Africa' ];
         $favorite_countries_ids = $user->favoriteCountries->pluck('id')->toArray();
+
         return view('user.profile.edit', [
                 'user' => $user,
                 'sources' => $sources,
@@ -59,6 +59,9 @@ class UserController extends Controller
         $user->username       = $request->username;
         $user->email          = $request->email;
         $user->description    = $request->description;
+        $user = User::findOrFail(Auth::id());
+        $user->username = $request->username;
+        $user->email = $request->email;
         $user->nationality_id = $request->nationality;
         $user->country_id     = $request->country;
         $sources              = $request->sources ?? [];

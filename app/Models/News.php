@@ -32,12 +32,12 @@ class News extends Model
 
     public static function getLatestNews($source_id)
     {
-        return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->limit(1)->first();
+        return News::where('source_id', $source_id)->latest('published_at')->limit(1)->first();
     }
 
     public static function getNewsBySource($source_id)
     {
-        return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->offset(1)->limit(4)->get();
+        return News::where('source_id', $source_id)->latest('published_at')->offset(1)->limit(4)->get();
     }
     public function reactions(){
         return $this->hasMany(Reaction::class);
@@ -57,9 +57,9 @@ class News extends Model
     }
     public function isUp(){
         return $this->reactions()
-          ->where('status',Reaction::GOOD)
-          ->where('user_id',Auth::user()->id)
-          ->exists();
+            ->where('status',Reaction::GOOD)
+            ->where('user_id',Auth::user()->id)
+            ->exists();
     }
     public function isDown(){
         return $this->reactions()
@@ -87,7 +87,7 @@ class News extends Model
             $result = News::where('description', 'like', "%{$keyword}%")
                 ->orWhere('content', 'like',"%{$keyword}%")
                 ->orWhere('title', 'like', "%{$keyword}%")
-                ->orderBy('published_at', 'desc')
+                ->latest('published_at')
                 ->get()
                 ->filter(function ($news) use ($request) {
                     if (isset($request->countries) && isset($request->category)) {
@@ -107,7 +107,7 @@ class News extends Model
 
     public static function getWhatsHotBySource($source_id)
     {
-        return News::where('source_id', '=', $source_id)->withCount('comments')->orderBy('comments_count', 'desc')->limit(5)->get();
+        return News::where('source_id', $source_id)->withCount('comments')->orderBy('comments_count', 'desc')->limit(5)->get();
     }
 
     public static function getWhatsHot()
@@ -124,7 +124,7 @@ class News extends Model
 
     public static function getLatestNewsList($source_id)
     {
-        return News::where('source_id', '=', $source_id)->orderBy('published_at', 'desc')->limit(5)->get();
+        return News::where('source_id', $source_id)->latest('published_at')->limit(5)->get();
     }
 
     public function country()

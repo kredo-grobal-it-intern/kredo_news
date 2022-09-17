@@ -22,9 +22,10 @@ class ReactionController extends Controller
         $user_id = Auth::user()->id;
         $news_id = $request->news_id;
         $news = News::findOrFail($news_id);
+        $status = Reaction::GOOD;
         $like_user = Reaction::where(['user_id' => $user_id, 'news_id' => $news_id])->first();
 
-        $this->reaction->changeStatusForThumbsUp($like_user, $user_id, $news_id);
+        $this->reaction->changeStatus($like_user, $user_id, $news_id, $status);
 
         $json = $this->countReactions($news);
         return response()->json($json);
@@ -34,9 +35,10 @@ class ReactionController extends Controller
         $user_id = Auth::user()->id;
         $news_id = $request->news_id;
         $news = News::findOrFail($news_id);
+        $status = Reaction::BAD;
         $like_user = Reaction::where(['user_id' => $user_id, 'news_id' => $news_id])->first();
 
-        $this->reaction->changeStatusForThumbsDown($like_user, $user_id, $news_id);
+        $this->reaction->changeStatus($like_user, $user_id, $news_id, $status);
 
         $json = $this->countReactions($news);
         return response()->json($json);

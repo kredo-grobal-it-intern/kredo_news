@@ -17,12 +17,9 @@ $(function () {
                 },
         })
             .done(function (data) {
-                if($(dislike).hasClass('text-primary')){
-                    $(dislike).removeClass('text-primary');
-                }
                 $this.toggleClass('text-primary');
-                $this.siblings('.upCount').text(parseInt(data.newsLikesCount) > 0 ? data.newsLikesCount : '');
-                $(dislike).siblings('.downCount').text(parseInt(data.newsDislikesCount) > 0 ? data.newsDislikesCount : '');
+                $this.siblings('.upCount').text(data.newsLikesCount);
+                $this.closest('.status').find('.downCount').text(data.newsDislikesCount).siblings('.down-toggle').removeClass('text-primary');
             })
             .fail(function (data, xhr, err) {
                 console.log('エラー');
@@ -31,12 +28,6 @@ $(function () {
             });
         return false;
     });
-});
-
-$(function () {
-    var dislike = $('.down-toggle');
-    var like = $('.up-toggle');
-    var likeNewsId;
 
     dislike.on('click', function () {
         var $this = $(this);
@@ -52,12 +43,9 @@ $(function () {
                 },
         })
             .done(function (data) {
-                if($(like).hasClass('text-primary')){
-                    $(like).removeClass('text-primary');
-                }
                 $this.toggleClass('text-primary');
-                $this.siblings('.downCount').text(parseInt(data.newsDislikesCount) > 0 ? data.newsDislikesCount : '');
-                $(like).siblings('.upCount').text(parseInt(data.newsLikesCount) > 0 ? data.newsLikesCount : '');
+                $this.siblings('.downCount').text(data.newsDislikesCount);
+                $this.closest('.status').find('.upCount').text(data.newsLikesCount).siblings('.up-toggle').removeClass('text-primary');
             })
             .fail(function (data, xhr, err) {
                 console.log('エラー');
