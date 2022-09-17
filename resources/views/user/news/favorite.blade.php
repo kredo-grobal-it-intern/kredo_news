@@ -14,7 +14,7 @@
             <h2 class="header-newstitle">News site</h2>
             <br/>
             @foreach ( $sources as $source  )
-                <a href="" class="source_name">{{ $source->name }}</a>
+                <a href="{{ route('user.news.favorite.source',['id' => $source->id]) }}" class="source_name">{{ $source->name }}</a>
             @endforeach
             <br/>
         </div>
@@ -24,7 +24,7 @@
             <h2 class="header-newstitle">Country</h2>
             <br/>
             @foreach ( $countries as $country )
-                <a href="" class="source_name">{{ $country->name }}</a>
+                <a href="{{ route('user.news.favorite.country',['id' => $country->id]) }}" class="source_name">{{ $country->name }}</a>
             @endforeach
             <br/>
         </div>

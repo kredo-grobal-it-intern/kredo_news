@@ -73,10 +73,45 @@ class NewsController extends Controller
     public function showFavoritePage()
     {
         $user = Auth::user();
-        $all_news = News::all();
-        $sources = Source::all();
-        $country = $user->favoriteCountries;
-        return view('user.news.favorite')->with('all_news', $all_news)->with('sources', $sources)->with('countries', $country);
+        $sources = $user->favoriteSources;
+        $countries = $user->favoriteCountries;
+        if(!$countries->count() && !$sources->count()) {
+            $all_news = News::all();
+        } else {
+            $all_news = News::whereIn('source_id', $sources->pluck('id'))
+            ->orWhereIn('country_id', $countries->pluck('id'))->get();
+        }
+        return view('user.news.favorite')->with('all_news', $all_news)->with('sources', $sources)->with('countries', $countries);
+    }
+
+    public function showFavoritePageByCountry(Country $country)
+    {
+        $user = Auth::user();
+        $sources = $user->favoriteSources;
+        $countries = $user->favoriteCountries;
+        if(!$countries->count() && !$sources->count()) {
+            $all_news = News::all();
+        } else {
+            $all_news = News::whereIn('source_id', $sources->pluck('id'))
+            ->orWhere('country_id', $country->id)->get();
+        }
+        
+        return view('user.news.favorite')->with('all_news', $all_news)->with('sources', $sources)->with('countries', $countries);
+    }
+
+    public function showFavoritePageBySource(Source $source)
+    {
+        $user = Auth::user();
+        $sources = $user->favoriteSources;
+        $countries = $user->favoriteCountries;
+        if(!$countries->count() && !$sources->count()) {
+            $all_news = News::all();
+        } else {
+            $all_news = News::where('source_id', $source->id)
+            ->orWhereIn('country_id', $countries->pluck('id'))->get();
+        }
+        
+        return view('user.news.favorite')->with('all_news', $all_news)->with('sources', $sources)->with('countries', $countries);
     }
 
     public function showSearch(Request $request)
