@@ -22,7 +22,7 @@ class ReactionController extends Controller
         $user_id = Auth::user()->id;
         $news_id = $request->news_id;
         $news = News::findOrFail($news_id);
-        $status=Reaction::GOOD;
+        $status = Reaction::GOOD;
         $like_user = Reaction::where(['user_id' => $user_id, 'news_id' => $news_id])->first();
 
         $this->reaction->changeStatus($like_user, $user_id, $news_id, $status);
@@ -35,7 +35,7 @@ class ReactionController extends Controller
         $user_id = Auth::user()->id;
         $news_id = $request->news_id;
         $news = News::findOrFail($news_id);
-        $status=Reaction::BAD;
+        $status = Reaction::BAD;
         $like_user = Reaction::where(['user_id' => $user_id, 'news_id' => $news_id])->first();
 
         $this->reaction->changeStatus($like_user, $user_id, $news_id, $status);
