@@ -22,24 +22,11 @@ class Reaction extends Model
     return $this->belongsTo(User::class);
     }
 
-    public function changeStatusForThumbsUp($like_user,$user_id,$news_id){
-        if(empty($like_user)||$like_user->status!=Reaction::GOOD){
+    public function changeStatus($like_user,$user_id,$news_id,$status){
+        if(empty($like_user)||$like_user->status!=$status){
             Reaction::updateOrCreate(
                 ['user_id'=>$user_id,'news_id'=>$news_id],
-                ['status'=>Reaction::GOOD]
-            );
-        } else {
-            Reaction::updateOrCreate(
-                ['user_id'=>$user_id,'news_id'=>$news_id],
-                ['status'=>Reaction::DEFAULT]
-            );
-        }
-    }
-    public function changeStatusForThumbsDown($like_user,$user_id,$news_id){
-        if(empty($like_user)||$like_user->status!=Reaction::BAD){
-            Reaction::updateOrCreate(
-                ['user_id'=>$user_id,'news_id'=>$news_id],
-                ['status'=>Reaction::BAD]
+                ['status'=>$status]
             );
         } else {
             Reaction::updateOrCreate(

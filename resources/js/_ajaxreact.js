@@ -17,9 +17,6 @@ $(function () {
                 },
         })
             .done(function (data) {
-                if($this.hasClass('text-primary')){
-                    $this.removeClass('text-primary');
-                }
                 $this.toggleClass('text-primary');
                 $this.siblings('.upCount').text(parseInt(data.newsLikesCount) > 0 ? data.newsLikesCount : '');
                 $this.closest('.row').find('.downCount').text(parseInt(data.newsDislikesCount) > 0 ? data.newsDislikesCount : '').siblings('.down-toggle').removeClass('text-primary');
@@ -46,9 +43,6 @@ $(function () {
                 },
         })
             .done(function (data) {
-                if($this.hasClass('text-primary')){
-                    $this.removeClass('text-primary');
-                }
                 $this.toggleClass('text-primary');
                 $this.siblings('.downCount').text(parseInt(data.newsDislikesCount) > 0 ? data.newsDislikesCount : '');
                 $this.closest('.row').find('.upCount').text(parseInt(data.newsLikesCount) > 0 ? data.newsLikesCount : '').siblings('.up-toggle').removeClass('text-primary');
