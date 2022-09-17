@@ -29,7 +29,7 @@
             <section>
                 <h4 class="fw-bold pb-2 mb-2 comment-title">Comments</h4>
                 <ul class="comment-list px-3">
-                    @foreach ($comments as $comment)
+                    @foreach ($comments->take(5) as $comment)
                         <li class="row comment-list-item pt-4 pb-3">
                             <div class="col-1">
                                 @if ($comment->user->avatar)
@@ -39,30 +39,35 @@
                                 @endif
                             </div>
                             <div class="col-11">
+                                <!-- Comment header -->
                                 <div class="profile">
-                                    <h6 class="fw-bold"><a href="{{ route('user.profile.show', $comment->user->id) }}" class="username text-dark">{{ $comment->user->username }}</a></h6>
+                                    <div class="d-flex justify-content-between">
+                                        <h6 class="fw-bold"><a href="{{ route('user.profile.show', $comment->user->id) }}" class="username text-dark">{{ $comment->user->username }}</a></h6>
+                                        <div class="reaction-area text-end">
+                                            @auth
+                                                @if ($comment->user_id === Auth::user()->id)
+                                                    <form action="{{ route('user.comment.destroy', $comment->id) }}" method="post" class="d-inline">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                            <button type="submit" class="comment-delete text-danger border-0 bg-transparent">Delete</button>
+                                                    </form>
+                                                @endif
+                                            @endauth
+                                            <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
+                                            <a href="" class="me-2 text-decoration-none text-dark">200 <i class="fa-regular fa-thumbs-down"></i></a>
+                                        </div>
+                                    </div>
                                     <small class="text-muted">Soccer player / Musician / Science</small>
                                 </div>
+                                <!-- Comment body -->
                                 <div class="comment-content mt-3">
                                     <p>{{ $comment->body }}</p>
-                                </div>
-                                <div class="reaction text-end">
-                                    @auth
-                                        @if ($comment->user_id === Auth::user()->id)
-                                            <form action="{{ route('user.comment.destroy', $comment->id) }}" method="post" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                    <button type="submit" class="comment-delete text-danger border-0 bg-transparent">Delete</button>
-                                            </form>
-                                        @endif
-                                    @endauth
-                                    <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
-                                    <a href="" class="me-2 text-decoration-none text-dark">200 <i class="fa-regular fa-thumbs-down"></i></a>
                                 </div>
                             </div>
                         </li>
                     @endforeach
                 </ul>
+                <p class="view-all text-end"><a href="" class="text-dark">View All Comments</a></p>
                 <form action="{{ route('user.comment.store', $news->id) }}" method="post">
                     @csrf
                     <div class="mb-3 mt-5">
