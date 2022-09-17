@@ -33,6 +33,7 @@ Auth::routes();
 Route::get('/', [NewsController::class, 'index'])->name('news.index');
 Route::post('/search', [NewsController::class, 'showSearch'])->name('news.search');
 Route::get('/{news_id}', [NewsController::class, 'show'])->name('news.show');
+Route::get('/{news_id}/all-comments', [NewsController::class, 'showAllComments'])->name('news.all-comments');
 Route::get('/search/category', [NewsController::class, 'filter'])->name('news.filter');
 Route::get('/category/{category_id}', [CategoryController::class, 'show'])->name('news.category');
 Route::get('/country/{country_id}', [CountryController::class, 'show'])->name('news.country');

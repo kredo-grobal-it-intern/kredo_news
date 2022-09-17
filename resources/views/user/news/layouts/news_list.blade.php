@@ -5,7 +5,7 @@
     <p class="sub-description">{{ $news->description }}</p>
     <div class="d-flex mt-1 status">
         @include('user.news.feature.reaction')
-        <p class="me-2">{{ $news->comments->count() }} <i class="fa-regular fa-comment-dots"></i></p>
+        @include('user.news.feature.comment')
         @include('user.news.feature.bookmark')
     </div>
 </div>
