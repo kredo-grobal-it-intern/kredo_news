@@ -43,7 +43,11 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'auth'], func
     Route::post('/thumbs_up', [ReactionController::class, 'thumbs_up'])->name('thumbs_up');
     Route::post('/thumbs_down', [ReactionController::class, 'thumbs_down'])->name('thumbs_down');
     Route::post('/bookmark', [BookmarkController::class, 'bookmark'])->name('bookmark');
-    Route::get('/favorite', [NewsController::class, 'showFavoritePage'])->name('news.favorite');
+    Route::group(['prefix' => 'favorite', 'as' => 'news.'], function () {
+        Route::get('/', [NewsController::class, 'showFavoritePage'])->name('favorite');
+        Route::get('/country/{country}', [NewsController::class, 'showFavoritePageByCountry'])->name('favorite.country');
+        Route::get('/source/{source}', [NewsController::class, 'showFavoritePageBySource'])->name('favorite.source');
+    });
     Route::post('/{news_id}/comment', [CommentController::class, 'store'])->name('comment.store');
     Route::delete('/comment/{comment_id}', [CommentController::class, 'destroy'])->name('comment.destroy');
     Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {

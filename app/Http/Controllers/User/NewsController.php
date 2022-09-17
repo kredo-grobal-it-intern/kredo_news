@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Consts\SourceConst;
-use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Comment;
 use App\Models\News;
 use App\Models\Source;
+use App\Models\Comment;
 use App\Models\Country;
+use App\Models\Category;
+use App\Consts\SourceConst;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class NewsController extends Controller
 {
@@ -70,10 +71,46 @@ class NewsController extends Controller
 
     public function showFavoritePage()
     {
-        $all_news = News::all();
-        $sources = Source::all();
-        $country = Country::all();
-        return view('user.news.favorite')->with('all_news', $all_news)->with('sources', $sources)->with('countries', $country);
+        $user = Auth::user();
+        $sources = $user->favoriteSources;
+        $countries = $user->favoriteCountries;
+        if (!$countries->count() && !$sources->count()) {
+            $all_news = News::all();
+        } else {
+            $all_news = News::whereIn('source_id', $sources->pluck('id'))
+            ->orWhereIn('country_id', $countries->pluck('id'))->get();
+        }
+        return view('user.news.favorite')->with('all_news', $all_news)->with('sources', $sources)->with('countries', $countries);
+    }
+
+    public function showFavoritePageByCountry(Country $country)
+    {
+        $user = Auth::user();
+        $sources = $user->favoriteSources;
+        $countries = $user->favoriteCountries;
+        if (!$countries->count() && !$sources->count()) {
+            $all_news = News::all();
+        } else {
+            $all_news = News::whereIn('source_id', $sources->pluck('id'))
+            ->orWhere('country_id', $country->id)->get();
+        }
+        
+        return view('user.news.favorite')->with('all_news', $all_news)->with('sources', $sources)->with('countries', $countries);
+    }
+
+    public function showFavoritePageBySource(Source $source)
+    {
+        $user = Auth::user();
+        $sources = $user->favoriteSources;
+        $countries = $user->favoriteCountries;
+        if (!$countries->count() && !$sources->count()) {
+            $all_news = News::all();
+        } else {
+            $all_news = News::where('source_id', $source->id)
+            ->orWhereIn('country_id', $countries->pluck('id'))->get();
+        }
+        
+        return view('user.news.favorite')->with('all_news', $all_news)->with('sources', $sources)->with('countries', $countries);
     }
 
     public function showSearch(Request $request)
