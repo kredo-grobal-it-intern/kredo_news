@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Consts\SourceConst;
-use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Comment;
 use App\Models\News;
 use App\Models\Source;
+use App\Models\Comment;
 use App\Models\Country;
+use App\Models\Category;
+use App\Consts\SourceConst;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+
 
 class NewsController extends Controller
 {
@@ -70,9 +72,10 @@ class NewsController extends Controller
 
     public function showFavoritePage()
     {
+        $user = Auth::user();
         $all_news = News::all();
         $sources = Source::all();
-        $country = Country::all();
+        $country = $user->favoriteCountries;
         return view('user.news.favorite')->with('all_news', $all_news)->with('sources', $sources)->with('countries', $country);
     }
 
