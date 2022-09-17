@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title','NEWS')
 @section('style')
- <link href="{{ mix('css/multi_select.css') }}" rel="stylesheet">
+<link href="{{ mix('css/multi_select.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -70,6 +70,34 @@
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                       <label class="input-group-text" for="inputGroupSelect01">Options</label>
+
+        <section  class="mx-auto" style="width: 80%">
+            <h1 class="fw-bold fs-4 py-2 ps-2 mt-5 favorite">Favorite Media</h1>
+                <div class="row mx-0" style="border:1px solid #d9dce0; border-radius: 5px;">
+
+                @foreach ($sources as $source)
+                    <div class="col-2 mt-1">
+                        <div class="form-check my-1">
+                            <input type="checkbox" name="sources[]" id="{{ $source->name }}-{{$source->id}}" value="{{$source->id}}" class="form-check-input" {{ in_array($source->id, $favorite_sources_ids) ? 'checked' : '' }}>
+                            <label for="{{ $source->name }}-{{$source->id}}" class="form-check-label">{{$source->country->name}}</label>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+
+            <h1 class="mt-5 fw-bold fs-4 py-2 ps-2 favorite">Favorite Country</h1>
+                @foreach($continents as $continent)
+                    <p class="fw-bold fs-5 p-0 m-0 mt-4">{{ $continent }} </p>
+                    @php
+                        $countries = App\Models\Country::where('continent', $continent)->get();
+                    @endphp
+                <div class="row mx-0" style="border:1px solid #d9dce0; border-radius: 5px;">
+                {{-- @foreach($countries as $country) --}}
+
+                <div class="col-2 mt-1">
+                    <div class="form-check my-1">
+                        <input type="checkbox" name="countries[]" id="{{ $country->name }}-{{$country->id}}" value="{{$country->id}}" class="form-check-input" {{ in_array($country->id, $favorite_countries_ids) ? 'checked' : '' }}>
+                        <label for="{{ $country->name }}-{{$country->id}}" class="form-check-label">{{$country->name}}</label>
                     </div>
                     <select class="custom-select" id="inputGroupSelect01" name="country">
                             @php
@@ -80,9 +108,10 @@
                                     <option value="{{$country->id}}" {{ $country->id == Auth::user()->country_id ? 'selected' : '' }}>{{$country->name}}</option>
                                 </div>
                             @endforeach
-                    </select>
-                  </div>
-            </div>
+                        </select>
+                    </div>
+                </div>
+                @endforeach
         </div>
         <div class="row">
             <div class="col-2">
@@ -93,9 +122,9 @@
             </div>
         </div>
     </div>
-<div class="row">
-    <label for="newssite" class="fw-bold fs-4 favorite">Favorite News Site</label>
-</div>
+            <div class="row">
+                <label for="newssite" class="fw-bold fs-4 favorite">Favorite News Site</label>
+            </div>
            <div class="my-5">
                 @foreach ($sources as $source)
                 <div class="form-check form-check-inline">
