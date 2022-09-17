@@ -18,8 +18,8 @@ $(function () {
         })
             .done(function (data) {
                 $this.toggleClass('text-primary');
-                $this.siblings('.upCount').text(parseInt(data.newsLikesCount) > 0 ? data.newsLikesCount : '');
-                $this.closest('.row').find('.downCount').text(parseInt(data.newsDislikesCount) > 0 ? data.newsDislikesCount : '').siblings('.down-toggle').removeClass('text-primary');
+                $this.siblings('.upCount').text(data.newsLikesCount);
+                $this.closest('.status').find('.downCount').text(data.newsDislikesCount).siblings('.down-toggle').removeClass('text-primary');
             })
             .fail(function (data, xhr, err) {
                 console.log('エラー');
@@ -44,8 +44,8 @@ $(function () {
         })
             .done(function (data) {
                 $this.toggleClass('text-primary');
-                $this.siblings('.downCount').text(parseInt(data.newsDislikesCount) > 0 ? data.newsDislikesCount : '');
-                $this.closest('.row').find('.upCount').text(parseInt(data.newsLikesCount) > 0 ? data.newsLikesCount : '').siblings('.up-toggle').removeClass('text-primary');
+                $this.siblings('.downCount').text(data.newsDislikesCount);
+                $this.closest('.status').find('.upCount').text(data.newsLikesCount).siblings('.up-toggle').removeClass('text-primary');
             })
             .fail(function (data, xhr, err) {
                 console.log('エラー');
