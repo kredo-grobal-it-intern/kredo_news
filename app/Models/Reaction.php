@@ -9,29 +9,31 @@ class Reaction extends Model
 {
     use HasFactory;
 
-    const DEFAULT=0;
-    const GOOD=1;
-    const BAD=2;
+    const DEFAULT = 0;
+    const GOOD = 1;
+    const BAD = 2;
 
     protected $fillable = [
         'user_id',
         'news_id',
         'status',
     ];
-    public function user(){
-    return $this->belongsTo(User::class);
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
-    public function changeStatus($like_user,$user_id,$news_id,$status){
-        if(empty($like_user)||$like_user->status!=$status){
+    public function changeStatus($like_user, $user_id, $news_id, $status)
+    {
+        if (empty($like_user) || $like_user->status != $status) {
             Reaction::updateOrCreate(
-                ['user_id'=>$user_id,'news_id'=>$news_id],
-                ['status'=>$status]
+                ['user_id' => $user_id, 'news_id' => $news_id],
+                ['status' => $status]
             );
         } else {
             Reaction::updateOrCreate(
-                ['user_id'=>$user_id,'news_id'=>$news_id],
-                ['status'=>Reaction::DEFAULT]
+                ['user_id' => $user_id, 'news_id' => $news_id],
+                ['status' => Reaction::DEFAULT]
             );
         }
     }
