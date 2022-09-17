@@ -11,10 +11,10 @@
     <div class="row ">
         <div class="col-md-12">
             <hr>
-            <h2 class="header-newstitle">News site</h2>
+            <h2 class="header-newstitle">Media</h2>
             <br/>
             @foreach ( $sources as $source  )
-                <a href="{{ route('user.news.favorite.source',['source' => $source->id]) }}" class="source_name">{{ $source->name }}</a>
+                <a href="{{ route('user.news.favorite.source',['source' => $source->id]) }}" class="source_name">{{ $source->country->name }}</a>
             @endforeach
             <br/>
         </div>
