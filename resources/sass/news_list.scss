@@ -3,6 +3,10 @@
     object-fit: cover;
 }
 
+.reaction {
+    cursor: pointer;
+}
+
 @media (max-width: 992px) {
     .news-list-image {
         height: 180px;
