@@ -12,7 +12,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-
 class NewsController extends Controller
 {
     public function index()
@@ -75,7 +74,7 @@ class NewsController extends Controller
         $user = Auth::user();
         $sources = $user->favoriteSources;
         $countries = $user->favoriteCountries;
-        if(!$countries->count() && !$sources->count()) {
+        if (!$countries->count() && !$sources->count()) {
             $all_news = News::all();
         } else {
             $all_news = News::whereIn('source_id', $sources->pluck('id'))
@@ -89,7 +88,7 @@ class NewsController extends Controller
         $user = Auth::user();
         $sources = $user->favoriteSources;
         $countries = $user->favoriteCountries;
-        if(!$countries->count() && !$sources->count()) {
+        if (!$countries->count() && !$sources->count()) {
             $all_news = News::all();
         } else {
             $all_news = News::whereIn('source_id', $sources->pluck('id'))
@@ -104,7 +103,7 @@ class NewsController extends Controller
         $user = Auth::user();
         $sources = $user->favoriteSources;
         $countries = $user->favoriteCountries;
-        if(!$countries->count() && !$sources->count()) {
+        if (!$countries->count() && !$sources->count()) {
             $all_news = News::all();
         } else {
             $all_news = News::where('source_id', $source->id)

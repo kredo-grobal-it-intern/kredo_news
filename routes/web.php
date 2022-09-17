@@ -43,7 +43,7 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'auth'], func
     Route::post('/thumbs_up', [ReactionController::class, 'thumbs_up'])->name('thumbs_up');
     Route::post('/thumbs_down', [ReactionController::class, 'thumbs_down'])->name('thumbs_down');
     Route::post('/bookmark', [BookmarkController::class, 'bookmark'])->name('bookmark');
-    Route::group(['prefix' => 'favorite', 'as' => 'news.'], function () { 
+    Route::group(['prefix' => 'favorite', 'as' => 'news.'], function () {
         Route::get('/', [NewsController::class, 'showFavoritePage'])->name('favorite');
         Route::get('/country/{country}', [NewsController::class, 'showFavoritePageByCountry'])->name('favorite.country');
         Route::get('/source/{source}', [NewsController::class, 'showFavoritePageBySource'])->name('favorite.source');
