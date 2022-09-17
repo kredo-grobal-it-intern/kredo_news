@@ -49,8 +49,8 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
-        Route::model('id', Country::class);
-        Route::model('id', Source::class);
+        Route::model('country', Country::class);
+        Route::model('source', Source::class);
     }
 
     /**

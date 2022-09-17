@@ -45,8 +45,8 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'auth'], func
     Route::post('/bookmark', [BookmarkController::class, 'bookmark'])->name('bookmark');
     Route::group(['prefix' => 'favorite', 'as' => 'news.'], function () { 
         Route::get('/', [NewsController::class, 'showFavoritePage'])->name('favorite');
-        Route::get('/country/{id}', [NewsController::class, 'showFavoritePageByCountry'])->name('favorite.country');
-        Route::get('/source/{id}', [NewsController::class, 'showFavoritePageBySource'])->name('favorite.source');
+        Route::get('/country/{country}', [NewsController::class, 'showFavoritePageByCountry'])->name('favorite.country');
+        Route::get('/source/{source}', [NewsController::class, 'showFavoritePageBySource'])->name('favorite.source');
     });
     Route::post('/{news_id}/comment', [CommentController::class, 'store'])->name('comment.store');
     Route::delete('/comment/{comment_id}', [CommentController::class, 'destroy'])->name('comment.destroy');
