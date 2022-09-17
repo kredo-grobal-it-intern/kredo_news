@@ -1,7 +1,7 @@
 <div class="row mt-5 align-items-center ">
     <div class="col-4">
         @if ($user->avatar)
-            <img src="{{asset('/storage/avatars/'.$user->avatar)}}" alt="Image" class="rounded-circle d-block mx-auto" style="width:180px; height:180px; object-fit:cover;" >
+            <img src="{{asset('/images/avatars/'.$user->avatar)}}" alt="Image" class="rounded-circle d-block mx-auto" style="width:180px; height:180px; object-fit:cover;" >
         @else
         <i class="fa-solid fa-circle-user text-secondary d-block text-center" style="font-size:180px;"></i>
         @endif
