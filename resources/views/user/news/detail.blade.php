@@ -29,7 +29,7 @@
             <section>
                 <h4 class="fw-bold pb-2 mb-2 comment-title">Comments</h4>
                 <ul class="comment-list px-3">
-                    @foreach ($comments->take(5) as $comment)
+                    @foreach ($news->comments->take(5) as $comment)
                         <li class="row comment-list-item pt-4 pb-3">
                             <div class="col-1">
                                 @if ($comment->user->avatar)

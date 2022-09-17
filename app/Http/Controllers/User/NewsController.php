@@ -53,12 +53,10 @@ class NewsController extends Controller
         $news = News::findOrFail($news_id);
         $whats_hot_news = News::getWhatsHotBySource($news->source_id);
         $latest_news = News::getLatestNewsList($news->source_id);
-        $comments = Comment::where('news_id', '=', $news_id)->orderBy('created_at', 'desc')->get();
         return view('user.news.detail')
             ->with('news', $news)
             ->with('whats_hot_news', $whats_hot_news)
-            ->with('latest_news', $latest_news)
-            ->with('comments', $comments);
+            ->with('latest_news', $latest_news);
     }
     public function filter()
     {
