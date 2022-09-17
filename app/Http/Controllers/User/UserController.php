@@ -26,7 +26,7 @@ class UserController extends Controller
     }
 
     public function edit()
-    {   
+    {
         $user = User::findOrFail(Auth::id());
         $favorite_sources_ids = $user->favoriteSources->pluck('id')->toArray();
         $sources = Source::all();
