@@ -15,21 +15,11 @@
     <div class="row">
         <!-- Main content -->
         <div class="col-8">
-            <!-- News section -->
-            <section class="mb-5">
-                <div class="image-area mb-5 pe-3">
-                    <img src="{{ asset('images/news/' . $news->image) }}" alt="News Image" class="w-100 detail-image">
-                </div>
-                <div class="news-content px-3">
-                    <p>{{ $news->content }}</p>
-                    <p>URL: &nbsp;<a href="{{ $news->url }}" class="text-dark">{{ $news->url }}</a></p>
-                </div>
-            </section>
             <!-- Comment section -->
             <section>
                 <h4 class="fw-bold pb-2 mb-2 comment-title">Comments</h4>
                 <ul class="comment-list px-3">
-                    @foreach ($news->comments->take(5) as $comment)
+                    @foreach ($news->comments as $comment)
                         <li class="row comment-list-item pt-4 pb-3">
                             <div class="col-1">
                                 @if ($comment->user->avatar)
@@ -67,7 +57,6 @@
                         </li>
                     @endforeach
                 </ul>
-                <p class="view-all text-end"><a href="{{ route('news.all-comments', $news->id) }}" class="text-dark">View All Comments</a></p>
                 <form action="{{ route('user.comment.store', $news->id) }}" method="post">
                     @csrf
                     <div class="mb-3 mt-5">

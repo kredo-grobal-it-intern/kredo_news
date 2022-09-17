@@ -58,6 +58,18 @@ class NewsController extends Controller
             ->with('whats_hot_news', $whats_hot_news)
             ->with('latest_news', $latest_news);
     }
+
+    public function showAllComments($news_id)
+    {
+        $news = News::findOrFail($news_id);
+        $whats_hot_news = News::getWhatsHotBySource($news->source_id);
+        $latest_news = News::getLatestNewsList($news->source_id);
+        return view('user.news.detail_all_comments')
+            ->with('news', $news)
+            ->with('whats_hot_news', $whats_hot_news)
+            ->with('latest_news', $latest_news);
+    }
+
     public function filter()
     {
         // tentative method
