@@ -4,7 +4,6 @@ namespace App\Http\Controllers\User;
 
 use App\Models\News;
 use App\Models\Source;
-use App\Models\Comment;
 use App\Models\Country;
 use App\Models\Category;
 use App\Consts\SourceConst;
