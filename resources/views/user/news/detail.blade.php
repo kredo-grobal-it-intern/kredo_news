@@ -77,19 +77,21 @@
         </div>
         <!-- Side content -->
         <aside class="col-4">
+            <!-- What's hot -->
             <section class="mb-5">
                 <h3 class="aside-title pb-2 mb-4">What's hot</h3>
                 <ol>
                     @foreach ($whats_hot_news as $news)
-                        @include('user.news.layouts.side_content')
+                        @include('user.news.layouts.detail_side_content')
                     @endforeach
                 </ol>
             </section>
+            <!-- Latest in -->
             <section>
                 <h3 class="aside-title pb-2 mb-4">Latest in</h3>
                 <ol>
                     @foreach ($latest_news as $news)
-                        @include('user.news.layouts.side_content')
+                        @include('user.news.layouts.detail_side_content')
                     @endforeach
                 </ol>
             </section>
