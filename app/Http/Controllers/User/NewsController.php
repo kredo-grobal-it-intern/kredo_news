@@ -84,7 +84,8 @@ class NewsController extends Controller
         $sources = $user->favoriteSources;
         $countries = $user->favoriteCountries;
         if (!$countries->count() && !$sources->count()) {
-            $favorite_news = News::all();
+            session()->flash('favorite_none', 'Please add favorite before visiting this page.');
+            $favorite_news = collect();
         } else {
             $favorite_news = News::whereIn('source_id', $sources->pluck('id'))
             ->orWhereIn('country_id', $countries->pluck('id'))->get();

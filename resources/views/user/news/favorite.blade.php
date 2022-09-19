@@ -6,6 +6,11 @@
 @endsection
 @section('content')
 <div class="container">
+    @if (Session::has('favorite_none'))
+        <div class="flash-message bg-danger text-white text-center h5 py-3 my-0">
+            {{ session('favorite_none') }}
+        </div>
+    @endif
     <!-- Favorite media section -->
     @if ($sources->count())
         <section class="favorite-list text-center mb-4">
@@ -22,7 +27,7 @@
     @endif
     <!-- Favorite country section -->
     @if ($countries->count())
-        <section class="favorite-list text-center mb-5">
+        <section class="favorite-list text-center mb-3">
             <h2 class="favorite-header d-flex align-items-center mb-3">Country</h2>
             @foreach ( $countries as $country )
                 <a href="{{ route('user.news.favorite.country', $country->id) }}" class="favorite-name">
@@ -35,7 +40,7 @@
         </section>
     @endif
     <!-- Edit profile link -->
-    <div class="text-end">
+    <div class="text-end mt-3">
         <a href="{{ route('user.profile.edit') }}" class="favorite-edit"><i class="fa-solid fa-arrow-up-right-from-square me-2"></i>Edit your favorite</a>
     </div>
     <!-- News section -->
