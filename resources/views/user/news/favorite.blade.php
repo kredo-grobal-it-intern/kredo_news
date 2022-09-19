@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'My favorite')
+@section('title', 'My Favorite')
 @section('style')
 <link href="{{ mix('css/favorite.css') }}" rel="stylesheet">
 <link href="{{ mix('css/news_list.css') }}" rel="stylesheet">

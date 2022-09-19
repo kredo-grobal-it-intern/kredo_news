@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', "Register")
 @section('style')
 <link href="{{ mix('css/register.css') }}" rel="stylesheet">
 @endsection
