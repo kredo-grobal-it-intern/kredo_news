@@ -53,7 +53,8 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'auth'], func
     Route::delete('/comment/{comment_id}', [CommentController::class, 'destroy'])->name('comment.destroy');
     Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
         Route::get('/edit', [UserController::class, 'edit'])->name('edit');
-        Route::get('/{user_id}', [UserController::class, 'show'])->name('show');
+        Route::get('/show/likes/{user_id}', [UserController::class, 'showLikes'])->name('show.likes');
+        Route::get('/show/bookmarks/{user_id}', [UserController::class, 'showBookmarks'])->name('show.bookmarks');
         Route::patch('/{id}', [UserController::class, 'update'])->name('update');
     });
 });

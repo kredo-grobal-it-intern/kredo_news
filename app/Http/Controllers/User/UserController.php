@@ -4,7 +4,6 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\News;
 use App\Models\User;
 use App\Models\Source;
 use Illuminate\Support\Facades\Auth;
@@ -15,14 +14,26 @@ class UserController extends Controller
 {
     const LOCAL_STORAGE_FOLDER = 'public/images/avatars/';
 
-    public function show($user_id)
+    public function showLikes()
     {
-        $user = User::findOrFail($user_id);
-        $all_news = News::all();
-        
-        return view('user.profile.index')
-            ->with('all_news', $all_news)
-            ->with('user', $user);
+        $user      = Auth::user();
+        $reactions = $user->newsReactions->filter(function ($reaction) {
+            return $reaction->pivot->status == 1;
+        });
+
+        return view('user.profile.show.likes')
+                ->with('reactions', $reactions)
+                ->with('user', $user);
+    }
+
+    public function showBookmarks()
+    {
+        $user      = Auth::user();
+        $bookmarks = $user->newsBookmarks;
+
+        return view('user.profile.show.bookmarks')
+                ->with('bookmarks', $bookmarks)
+                ->with('user', $user);
     }
 
     public function edit()
@@ -44,12 +55,17 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
+        $user                 = Auth::user();
+        $user->username       = $request->username;
+        $user->email          = $request->email;
+        $user->description    = $request->description;
         $user = User::findOrFail(Auth::id());
         $user->username = $request->username;
         $user->email = $request->email;
         $user->nationality_id = $request->nationality;
-        $user->country_id = $request->country;
-        $sources = $request->sources ?? [];
+        $user->country_id     = $request->country;
+        $sources              = $request->sources ?? [];
+        
         $favorite_sources = [];
         foreach ($sources as $source) {
             $favorite_sources[] = [
@@ -77,7 +93,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->route('user.profile.show', ['user_id' => $user->id]);
+        return redirect()->route('user.profile.show.likes', ['user_id' => $user->id]);
     }
 
     public function saveAvatar($request)
