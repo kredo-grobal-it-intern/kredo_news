@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\Bookmark;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Source;
-use App\Models\Reaction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +17,7 @@ class UserController extends Controller
     public function showLikes($user_id)
     {
         $user      = User::findOrFail($user_id);
-        $reactions = $user->newsReactions->filter(function($reaction){
+        $reactions = $user->newsReactions->filter(function ($reaction) {
                     return $reaction->pivot->status == 1;
         });
 
