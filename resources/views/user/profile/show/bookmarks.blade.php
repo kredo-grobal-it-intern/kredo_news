@@ -6,7 +6,7 @@
     @include('user.profile.components.user')
 
     <div class="row mt-5">
-        @foreach ($bookmarks as $all_news )
+        @foreach ($bookmarks as $reaction )
             @include('user.profile.components.news')
         @endforeach
     </div>

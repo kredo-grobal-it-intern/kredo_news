@@ -13,6 +13,9 @@ class News extends Model
 {
     use HasFactory, SoftDeletes;
 
+    const LIKE = 1;
+    const DISLIKE = 2;
+
     public static $rules = array(
         'title' => 'required',
         'body' => 'required',
@@ -40,19 +43,20 @@ class News extends Model
         return News::where('source_id', $source_id)->latest('published_at')->offset(1)->limit(4)->get();
     }
     public function reactions(){
-        return $this->hasMany(Reaction::class);
+        return $this->belongsToMany(News::class, 'reactions', 'news_id')->withPivot('status');
     }
     public function bookmarks(){
         return $this->hasMany(Bookmark::class);
     }
+
     public function like_reactions() {
         return $this->reactions->filter(function($reaction) {
-            return $reaction->status == Reaction::GOOD;
+            return $reaction->pivot->status == self::LIKE;
         });
     }
     public function dislike_reactions() {
         return $this->reactions->filter(function($reaction) {
-            return $reaction->status == Reaction::BAD;
+            return $reaction->pivot->status == self::DISLIKE;
         });
     }
     public function isUp(){

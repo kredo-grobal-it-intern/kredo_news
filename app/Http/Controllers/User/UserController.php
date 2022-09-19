@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\Bookmark;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Source;
-use App\Models\Reaction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +17,9 @@ class UserController extends Controller
     public function showLikes($user_id)
     {
         $user      = User::findOrFail($user_id);
-        $reactions = Reaction::where('user_id', $user_id)->where('status', 1)->get();
+        $reactions = $user->newsReactions->filter(function ($reaction) {
+            return $reaction->pivot->status == 1;
+        });
 
         return view('user.profile.show.likes')
                 ->with('reactions', $reactions)
@@ -28,8 +28,8 @@ class UserController extends Controller
 
     public function showBookmarks($user_id)
     {
-        $user      = User::findOrFail($user_id);
-        $bookmarks = Bookmark::where('user_id', $user_id)->get();
+        $user      = Auth::user();
+        $bookmarks = $user->newsBookmarks;
 
         return view('user.profile.show.bookmarks')
                 ->with('bookmarks', $bookmarks)
