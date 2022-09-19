@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     const LOCAL_STORAGE_FOLDER = 'public/images/avatars/';
 
-    public function showLikes($user_id)
+    public function showLikes()
     {
         $user      = Auth::user();
         $reactions = $user->newsReactions->filter(function ($reaction) {
@@ -26,7 +26,7 @@ class UserController extends Controller
                 ->with('user', $user);
     }
 
-    public function showBookmarks($user_id)
+    public function showBookmarks()
     {
         $user      = Auth::user();
         $bookmarks = $user->newsBookmarks;
