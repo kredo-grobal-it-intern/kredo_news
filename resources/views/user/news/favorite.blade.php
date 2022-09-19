@@ -1,48 +1,34 @@
 @extends('layouts.app')
-
-
 @section('title', 'My favorite')
 @section('style')
 <link href="{{ mix('css/favorite.css') }}" rel="stylesheet">
+<link href="{{ mix('css/news_list.css') }}" rel="stylesheet">
 @endsection
 @section('content')
-
-  <div class="container-fluid">
-    <div class="row ">
-        <div class="col-md-12">
-            <hr>
-            <h2 class="header-newstitle">Media</h2>
-            <br/>
+<div class="container">
+    <!-- Favorite media section -->
+    @if ($sources->count())
+        <section class="favorite-list text-center mb-4">
+            <h2 class="favorite-header d-flex align-items-center mb-3">Media</h2>
             @foreach ( $sources as $source  )
-                <a href="{{ route('user.news.favorite.source',['source' => $source->id]) }}" class="source_name">{{ $source->country->name }}</a>
+                <a href="{{ route('user.news.favorite.source',['source' => $source->id]) }}" class="favorite-name">{{ $source->country->name }}</a>
             @endforeach
-            <br/>
-        </div>
-        @if ($countries->count())
-        <div class="col-md-12">
-            <hr>
-            <h2 class="header-newstitle">Country</h2>
-            <br/>
+        </section>
+    @endif
+    <!-- Favorite country section -->
+    @if ($countries->count())
+        <section class="favorite-list text-center mb-5">
+            <h2 class="favorite-header d-flex align-items-center mb-3">Country</h2>
             @foreach ( $countries as $country )
-                <a href="{{ route('user.news.favorite.country',['country' => $country->id]) }}" class="source_name">{{ $country->name }}</a>
+                <a href="{{ route('user.news.favorite.country',['country' => $country->id]) }}" class="favorite-name">{{ $country->name }}</a>
             @endforeach
-            <br/>
-        </div>
-        @endif
+        </section>
+    @endif
+    <!-- News section -->
+    <div class="row mt-4">
         @foreach ($all_news as $news)
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card">
-                <img src="{{asset('images/' . $news->image_path)}}" alt="" class="card-img-top news-img">
-                <div class="card-body">
-                    <p class="fw-bold h2">{{$news->title}}</p>
-                    <p class="mb-0">{{$news->description}}</p>
-                    <small class="text-muted">{{$news->author}}</small>
-                </div>
-                @include('user/news/feature/reaction')
-            </div>
-        </div>
+            @include('user.news.layouts.news_list')
         @endforeach
     </div>
-  </div>
 </div>
 @endsection
