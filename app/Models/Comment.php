@@ -10,13 +10,19 @@ class Comment extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = [
+        'user_id',
+        'news_id',
+        'body',
+    ];
+
     public function news()
     {
-      return $this->belongsTo(News::class);
+        return $this->belongsTo(News::class);
     }
 
     public function user()
     {
-      return $this->belongsTo(User::class)->withTrashed();
+        return $this->belongsTo(User::class)->withTrashed();
     }
 }

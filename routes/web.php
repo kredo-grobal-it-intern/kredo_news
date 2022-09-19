@@ -11,8 +11,11 @@ use App\Http\Controllers\User\NewsController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\User\CategoryController;
+use App\Http\Controllers\User\CommentController;
 use App\Http\Controllers\User\CountryController;
 use App\Http\Controllers\User\MediaController;
+use App\Http\Controllers\User\ReactionController;
+use App\Http\Controllers\User\BookmarkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,8 +32,9 @@ Auth::routes();
 
 // All user
 Route::get('/', [NewsController::class, 'index'])->name('news.index');
-Route::get('/search', [NewsController::class, 'showSearch'])->name('news.search');
+Route::post('/search', [NewsController::class, 'showSearch'])->name('news.search');
 Route::get('/{news_id}', [NewsController::class, 'show'])->name('news.show');
+Route::get('/{news_id}/all-comments', [NewsController::class, 'showAllComments'])->name('news.all-comments');
 Route::get('/search/category', [NewsController::class, 'filter'])->name('news.filter');
 Route::get('/category/{category_id}', [CategoryController::class, 'show'])->name('news.category');
 Route::get('/country/{country_id}', [CountryController::class, 'show'])->name('news.country');
@@ -38,7 +42,16 @@ Route::get('/media/{media_id}', [MediaController::class, 'show'])->name('news.me
 
 // Logged in user
 Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'auth'], function () {
-    Route::get('/favorite', [NewsController::class, 'showFavoritePage'])->name('news.favorite');
+    Route::post('/thumbs_up', [ReactionController::class, 'thumbs_up'])->name('thumbs_up');
+    Route::post('/thumbs_down', [ReactionController::class, 'thumbs_down'])->name('thumbs_down');
+    Route::post('/bookmark', [BookmarkController::class, 'bookmark'])->name('bookmark');
+    Route::group(['prefix' => 'favorite', 'as' => 'news.'], function () {
+        Route::get('/', [NewsController::class, 'showFavoritePage'])->name('favorite');
+        Route::get('/country/{country}', [NewsController::class, 'showFavoritePageByCountry'])->name('favorite.country');
+        Route::get('/source/{source}', [NewsController::class, 'showFavoritePageBySource'])->name('favorite.source');
+    });
+    Route::post('/{news_id}/comment', [CommentController::class, 'store'])->name('comment.store');
+    Route::delete('/comment/{comment_id}', [CommentController::class, 'destroy'])->name('comment.destroy');
     Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
         Route::get('/edit', [UserController::class, 'edit'])->name('edit');
         Route::get('/{user_id}', [UserController::class, 'show'])->name('show');

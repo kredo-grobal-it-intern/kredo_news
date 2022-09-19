@@ -6,27 +6,29 @@
 <link href="{{ mix('css/favorite.css') }}" rel="stylesheet">
 @endsection
 @section('content')
-    
+
   <div class="container-fluid">
     <div class="row ">
         <div class="col-md-12">
             <hr>
-            <h2 class="header-newstitle">News site</h2>
+            <h2 class="header-newstitle">Media</h2>
             <br/>
             @foreach ( $sources as $source  )
-                <a href="" class="source_name">{{ $source->name }}</a>
+                <a href="{{ route('user.news.favorite.source',['source' => $source->id]) }}" class="source_name">{{ $source->country->name }}</a>
             @endforeach
             <br/>
         </div>
+        @if ($countries->count())
         <div class="col-md-12">
             <hr>
             <h2 class="header-newstitle">Country</h2>
             <br/>
             @foreach ( $countries as $country )
-                <a href="" class="source_name">{{ $country->id }}</a>
+                <a href="{{ route('user.news.favorite.country',['country' => $country->id]) }}" class="source_name">{{ $country->name }}</a>
             @endforeach
             <br/>
         </div>
+        @endif
         @foreach ($all_news as $news)
         <div class="col-lg-3 col-md-6 mb-4">
             <div class="card">
@@ -36,12 +38,7 @@
                     <p class="mb-0">{{$news->description}}</p>
                     <small class="text-muted">{{$news->author}}</small>
                 </div>
-                <div class="row align-items-center">
-                    <p class="col-md-3 offset-1 fs-5">1000 <i class="fa-regular fa-thumbs-up"></i></p>
-                    <p class="col-md-3 fs-5">200 <i class="fa-regular fa-thumbs-down"></i></p>
-                    <p class="col-md-3 fs-5">100 <i class="fa-regular fa-comment-dots"></i></p>
-                    <p class="col fs-2"><i class="fa-regular fa-bookmark"></i></p>
-                </div>
+                @include('user/news/feature/reaction')
             </div>
         </div>
         @endforeach

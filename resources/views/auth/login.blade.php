@@ -32,7 +32,7 @@
                     <div class="form mb-3">
                         <p>
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="current-password">
-                            <i class="fa-solid fa-eye" id="toggleBtn" onclick="togglePassword()"></i>
+                            <i class="fa-solid fa-eye toggleBtn" id="toggleBtn"></i>
                         </p>
                             @error('password')
                             <span class="invalid-feedback" role="alert">

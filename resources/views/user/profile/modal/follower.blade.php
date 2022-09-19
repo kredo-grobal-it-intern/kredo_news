@@ -9,18 +9,18 @@
                 @foreach ($user->followers as $follower)
                     <div class="row align-items-center mb-3">
                         <div class="col-8">
-                            <a href="{{ route('user.profile.show', $follower->userFollower->id) }}" class="text-decoration-none d-flex align-items-center" >
-                                @if ($follower->userFollower->avatar)
-                                <img src="{{asset('/storage/avatars/'. $follower->userFollower->avatar)}}" alt="{{ $follower->userFollower->username }}" class="rounded-circle me-2" style="width:32px; height:32px; object-fit: cover; ">
+                            <a href="{{ route('user.profile.show', $follower->id) }}" class="text-decoration-none d-flex align-items-center" >
+                                @if ($follower->avatar)
+                                <img src="{{asset('/images/avatars/'. $follower->avatar)}}" alt="{{ $follower->username }}" class="rounded-circle me-2" style="width:32px; height:32px; object-fit: cover; ">
                                 @else
                                 <i class="fa-solid fa-circle-user text-secondary me-2" style="font-size: 32px"></i>
                                 @endif
-                                <span class="fs-6 fw-normal text-dark">{{ $follower->userFollower->username }}</span>
+                                <span class="fs-6 fw-normal text-dark">{{ $follower->username }}</span>
                             </a>
 
                         </div>
                         <div class="col-4">
-                            <form action="{{ route('user.destroy.follower', $follower->follower_id) }}" method="post">
+                            <form action="{{ route('user.destroy.follower', $follower->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
 

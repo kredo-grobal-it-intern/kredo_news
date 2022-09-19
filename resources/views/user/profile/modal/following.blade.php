@@ -9,23 +9,24 @@
                 @foreach ($user->followings as $following)
                     <div class="row align-items-center mb-3">
                         <div class="col-8">
-                            <a href="{{ route('user.profile.show', $following->userFollowing->id) }}" class="text-decoration-none d-flex align-items-center" >
-                                @if ($following->userFollowing->avatar)
-                                <img src="{{asset('/storage/avatars/'. $following->userFollowing->avatar)}}" alt="{{ $following->userFollowing->username }}" class="rounded-circle me-2" style="width:32px; height:32px; object-fit: cover; ">
+                            <a href="{{ route('user.profile.show', $following->id) }}" class="text-decoration-none d-flex align-items-center" >
+                                @if ($following->avatar)
+                                <img src="{{asset('/images/avatars/'. $following->avatar)}}" alt="{{ $following->username }}" class="rounded-circle me-2" style="width:32px; height:32px; object-fit: cover; ">
                                 @else
                                 <i class="fa-solid fa-circle-user text-secondary me-2" style="font-size: 32px"></i>
                                 @endif
-                                <span class="fs-6 fw-normal text-dark">{{ $following->userFollowing->username }}</span>
+                                <span class="fs-6 fw-normal text-dark">{{ $following->username }}</span>
                             </a>
 
                         </div>
                         <div class="col-4">
-                            <form action="{{ route('user.destroy.following', $following->following_id) }}" method="post">
+                            <form action="{{ route('user.destroy.following', $following->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
 
                                 <button type="submit" class="btn btn-white btn-sm btn-border-2 border-secondary fw-bold">Remove</button>
-                            </form>                        </div>
+                            </form>                        
+                        </div>
                     </div>
                 @endforeach
             </div>

@@ -19,11 +19,14 @@
             </div>
                 <div class="row">
                     <div class="col-3">
-                        <button type="button" class="btn border-0 fs-5 m-0 p-0" data-bs-toggle="modal" data-bs-target="#follower">
-                            <span class="fw-bold fs-4">10</span> Comments
-                        </button>
+                    <button type="button" class="btn border-0 fs-5 m-0 p-0" data-bs-toggle="modal" data-bs-target="#comment">
+                        <span class="fw-bold fs-4">10</span> Comments
+                    </button>
+                    @include('user.profile.modal.comments')
                     </div>
+
                     <div class="col-3">
+                        
                         <button type="button" class="btn border-0 fs-5 m-0 p-0" data-bs-toggle="modal" data-bs-target="#follower">
                             <span class="fw-bold fs-4">{{ $user->followers->count() }}</span> Followers
                         </button>
@@ -35,6 +38,7 @@
                         </button>
                         @include('user.profile.modal.following')
                     </div>
+                    </div>                    
                 </div>
                 <div class="row my-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia qui corporis dolorum, rerum debitis tempora? Modi consequuntur non magni aliquid.
                 </div>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -53,9 +54,25 @@ class User extends Authenticatable
     public function category(){
         return $this->belongsTo(Category::class);
     }
+    public function news()
+    {
+        return $this->hasMany(News::class);
+    }
+    public function reactions()
+    {
+        return $this->hasMany(Reaction::class);
+    }
+    public function bookmarks()
+    {
+        return $this->hasMany(Bookmark::class);
+    }
 
     public function country(){
         return $this->belongsTo(Country::class);
+    }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
     }
 
     public function nationality(){
@@ -72,11 +89,12 @@ class User extends Authenticatable
 
     public function followers()
     {
-        return $this->hasMany(Follow::class, 'following_id');
+        return $this->belongsToMany(User::class, 'follows', 'following_id', 'follower_id');
     }
 
     public function followings()
     {
-        return $this->hasMany(Follow::class, 'follower_id');
+        return $this->belongsToMany(User::class, 'follows', 'follower_id', 'following_id');
     }
+
 }
