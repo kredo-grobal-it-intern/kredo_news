@@ -19,7 +19,7 @@
 
 .favorite-list{
 
-    .favorite-name{
+    .favorite-name {
         font-size: 1.2rem;
         margin-left: 60px;
         color: #000;
@@ -32,4 +32,10 @@
             text-decoration: underline;
         }
     }
+}
+
+.favorite-edit {
+    font-size: 1.2rem;
+    margin-left: 60px;
+    color: #000;
 }
