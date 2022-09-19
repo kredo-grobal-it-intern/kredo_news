@@ -84,12 +84,12 @@ class NewsController extends Controller
         $sources = $user->favoriteSources;
         $countries = $user->favoriteCountries;
         if (!$countries->count() && !$sources->count()) {
-            $all_news = News::all();
+            $favorite_news = News::all();
         } else {
-            $all_news = News::whereIn('source_id', $sources->pluck('id'))
+            $favorite_news = News::whereIn('source_id', $sources->pluck('id'))
             ->orWhereIn('country_id', $countries->pluck('id'))->get();
         }
-        return view('user.news.favorite')->with('all_news', $all_news)->with('sources', $sources)->with('countries', $countries);
+        return view('user.news.favorite')->with('favorite_news', $favorite_news)->with('sources', $sources)->with('countries', $countries);
     }
 
     public function showFavoritePageByCountry(Country $country)
@@ -97,14 +97,12 @@ class NewsController extends Controller
         $user = Auth::user();
         $sources = $user->favoriteSources;
         $countries = $user->favoriteCountries;
-        if (!$countries->count() && !$sources->count()) {
-            $all_news = News::all();
-        } else {
-            $all_news = News::whereIn('source_id', $sources->pluck('id'))
-            ->orWhere('country_id', $country->id)->get();
-        }
-
-        return view('user.news.favorite')->with('all_news', $all_news)->with('sources', $sources)->with('countries', $countries);
+        $favorite_news = News::where('country_id', $country->id)->get();
+        return view('user.news.favorite')
+            ->with('favorite_news', $favorite_news)
+            ->with('sources', $sources)
+            ->with('countries', $countries)
+            ->with('selected_country', $country->id);
     }
 
     public function showFavoritePageBySource(Source $source)
@@ -112,14 +110,12 @@ class NewsController extends Controller
         $user = Auth::user();
         $sources = $user->favoriteSources;
         $countries = $user->favoriteCountries;
-        if (!$countries->count() && !$sources->count()) {
-            $all_news = News::all();
-        } else {
-            $all_news = News::where('source_id', $source->id)
-            ->orWhereIn('country_id', $countries->pluck('id'))->get();
-        }
-
-        return view('user.news.favorite')->with('all_news', $all_news)->with('sources', $sources)->with('countries', $countries);
+        $favorite_news = News::where('source_id', $source->id)->get();
+        return view('user.news.favorite')
+            ->with('favorite_news', $favorite_news)
+            ->with('sources', $sources)
+            ->with('countries', $countries)
+            ->with('selected_source', $source->id);
     }
 
     public function showSearch(Request $request)
