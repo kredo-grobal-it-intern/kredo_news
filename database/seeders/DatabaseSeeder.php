@@ -30,8 +30,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // News::factory(300)->create();  // Deactivated because this factory doesn't work in heroku. If you need it on local, please activate it and deactivate NewsSeeder.
-        // Bookmark::factory(300)->create(); // Bookmark model to be deleted in the future
-        // Reaction::factory(300)->create(); // Reaction model to be deleted in the future
+        // Bookmark::factory(300)->create();
+        // Reaction::factory(300)->create();
     
 
         // News::factory(300)->create();  // Deactivated because this factory doesn't work in heroku. If you need it on local, please activate it and deactivate NewsSeeder.
