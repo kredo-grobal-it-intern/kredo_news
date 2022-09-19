@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','NEWS')
+
 @section('style')
 <link href="{{ mix('css/multi_select.css') }}" rel="stylesheet">
 @endsection
