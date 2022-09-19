@@ -19,7 +19,9 @@ class UserController extends Controller
     public function showLikes($user_id)
     {
         $user      = User::findOrFail($user_id);
-        $reactions = Reaction::where('user_id', $user_id)->where('status', 1)->get();
+        $reactions = $user->newsReactions->filter(function($reaction){
+                    return $reaction->pivot->status == 1;
+        });
 
         return view('user.profile.show.likes')
                 ->with('reactions', $reactions)
@@ -29,7 +31,7 @@ class UserController extends Controller
     public function showBookmarks($user_id)
     {
         $user      = User::findOrFail($user_id);
-        $bookmarks = Bookmark::where('user_id', $user_id)->get();
+        $bookmarks = $user->newsBookmarks;
 
         return view('user.profile.show.bookmarks')
                 ->with('bookmarks', $bookmarks)

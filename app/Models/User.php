@@ -85,4 +85,12 @@ class User extends Authenticatable
     public function favoriteCountries(){
         return $this->belongsToMany(Country::class, 'favorite_countries', 'user_id', 'country_id');
     }
+
+    public function newsReactions() {
+        return $this->belongsToMany(News::class, 'reactions', 'user_id', 'news_id')->withPivot('status');
+    }
+    
+    public function newsBookmarks() {
+        return $this->belongsToMany(News::class, 'bookmarks', 'user_id', 'news_id');
+        }
 }
