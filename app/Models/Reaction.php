@@ -18,9 +18,14 @@ class Reaction extends Model
         'news_id',
         'status',
     ];
-    public function user()
+
+    public function news()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(News::class, 'news_id');
+    }
+
+    public function user(){
+    return $this->belongsTo(User::class);
     }
 
     public function changeStatus($like_user, $user_id, $news_id, $status)
