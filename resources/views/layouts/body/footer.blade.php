@@ -1,6 +1,6 @@
-<div class="container p-4 p-sm-0">
+<div class="container">
     <!-- Grid row -->
-    <div class="row mt-4 px-3 pt-4">
+    <div class="row mt-4 px-3">
         <div class="col-lg-3 col-md-6 col-12 mx-auto mb-4 mb-lg-0 footer-content">
             <!-- Shortcuts -->
             <h6 class="fw-bold text-white mb-3 footer-list-title">Shortcuts</h6>
