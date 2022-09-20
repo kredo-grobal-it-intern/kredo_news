@@ -18,12 +18,12 @@
                     </a>
                 </li>
                 <li class="nav-item nav-item-custom me-4">
-                    <a href="" class="nav-link text-white fw-bold">
+                    <a href="{{ route('user.news.favorite') }}" class="nav-link text-white fw-bold">
                         My Favorite
                     </a>
                 </li>
                 <li class="nav-item nav-item-custom dropdown me-4">
-                    <a id="categoriesDropdown" class="nav-link dropdown-toggle text-white fw-bold" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a id="categoriesDropdown" class="nav-link dropdown-toggle text-white fw-bold" href="" data-bs-toggle="dropdown" aria-expanded="false">
                         Categories
                     </a>
 
@@ -33,8 +33,25 @@
                             $categories = App\Models\Category::all();
                         @endphp
                         @foreach ($categories as $category)
-                            <a href="" class="dropdown-item">
+                            <a href="{{ route('news.category', $category->id) }}" class="dropdown-item">
                                 {{ $category->name }}
+                            </a>
+                        @endforeach
+                    </ul>
+                </li>
+                <li class="nav-item nav-item-custom dropdown me-4">
+                    <a id="countriesDropdown" class="nav-link dropdown-toggle text-white fw-bold" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                        Media
+                    </a>
+
+                    <!-- category dropdown list -->
+                    <ul class="dropdown-menu" aria-labelledby="countriesDropdown">
+                        @php
+                            $sources = App\Models\Source::all();
+                        @endphp
+                        @foreach ($sources as $source)
+                            <a href="{{ route('news.media', $source->id) }}" class="dropdown-item">
+                                {{ $source->country->name }}
                             </a>
                         @endforeach
                     </ul>
@@ -46,24 +63,14 @@
 
                     <!-- category dropdown list -->
                     <ul class="dropdown-menu" aria-labelledby="countriesDropdown">
-                        <a href="" class="dropdown-item">
-                            America
-                        </a>
-                        <a href="" class="dropdown-item">
-                            Japan
-                        </a>
-                        <a href="" class="dropdown-item">
-                            UK
-                        </a>
-                        <a href="" class="dropdown-item">
-                            Brazil
-                        </a>
-                        <a href="" class="dropdown-item">
-                            Spain
-                        </a>
-                        <a href="" class="dropdown-item">
-                            China
-                        </a>
+                        @php
+                            $countries = App\Models\Country::whereNotNull('continent' )->get();
+                        @endphp
+                        @foreach ($countries as $country )
+                            <a href="{{ route('news.country' , $country->id) }}" class="dropdown-item">
+                                {{ $country->name }}
+                            </a>
+                        @endforeach
                     </ul>
                 </li>
                 <li class="nav-item nav-item-custom text-start me-4">
@@ -89,7 +96,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a href="{{route('user.profile.show', Auth::id())}}" class="dropdown-item">
+                            <a href="{{route('user.profile.show.likes', Auth::id())}}" class="dropdown-item">
                                 <i class="fa-solid fa-user"></i>&nbsp;My Profile
                             </a>
 

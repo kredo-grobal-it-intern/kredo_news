@@ -1,156 +1,63 @@
 @extends('layouts.app')
-@section('title','NEWS')
+@section('title','Detail')
+@section('style')
+<link rel="stylesheet" href="{{ mix('css/detail.css') }}">
+@endsection
 @section('content')
-<div class="row justify-content-center">
-    <div class="col-8">
-        <div class="card ms-5 border-0 bg-transparent">
-            <div class="card-header bg-transparent border-bottom-0">
-{{-- Left side: News --}}
-                <h1 class="text-decoration-underline fw-bold"> {{$news->title}}</h1>
-                <div class="row m-0 py-0">
-                    <p>News site: {{$news->source_name}}</p>
-                </div>
-                <div class="row m-0 py-0">
-                    <p>Published: {{$news->published_at}}</p>
-                </div>
-                <div class="row m-0 py-0">
-                    <p class="fw-bold"> {{$news->author}}</p>
-                </div>
-            </div>
-
-            <div class="card-body justify-content-center mx-auto">
-                <img src="{{ asset('storage/images/dummy.jpg') }}" alt="">
-                <p>caption for image? description?</p>
-                <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum nisi fugiat ad similique et placeat neque. Aliquam nulla odit assumenda dignissimos sit quibusdam, optio ab delectus maxime fugit esse adipisci.
-                </p>
-                <p>
-                    URL: {{$news->url}}
-                </p>
-{{-- Comments section --}}
-                <div class="fw-bold mt-5"> Comment</div>
-                {{-- @foreach() --}}
-                <div class="row mt-3">
-                    <div class="col-2">
-                        {{-- avatar --}}
-                        <i class="fa-solid fa-circle-user text-secondary d-block text-center profile-icon"></i>
-                    </div>
-                    <div class="col-9">
-                    {{-- comment --}}
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore, deleniti.
-                    </div>
-                    <div class="col-1 pe-2">
-                        <i class="fa-solid fa-ellipsis"></i>
-                        <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
-                    </div>
-                </div>
-                {{-- @endforeach --}}
-                <hr>
-                <div class="row mt-3">
-                    <div class="col-2">
-                        {{-- avatar --}}
-                        <i class="fa-solid fa-circle-user text-secondary d-block text-center profile-icon"></i>
-                    </div>
-                    <div class="col-9">
-                    {{-- comment --}}
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore, deleniti.
-                    </div>
-                    <div class="col-1 pe-2">
-                        <i class="fa-solid fa-ellipsis"></i>
-                        <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
-                    </div>
-                </div>
-                <hr>
-                <div class="row mt-3">
-                    <div class="col-2">
-                        {{-- avatar --}}
-                        <i class="fa-solid fa-circle-user text-secondary d-block text-center profile-icon"></i>
-                    </div>
-                    <div class="col-9">
-                    {{-- comment --}}
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore, deleniti.
-                    </div>
-                    <div class="col-1 pe-2">
-                        <i class="fa-solid fa-ellipsis"></i>
-                        <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
-                    </div>
-                </div>
-                <hr>
-                <div class="row mt-3">
-                    <div class="col-2">
-                        {{-- avatar --}}
-                        <i class="fa-solid fa-circle-user text-secondary d-block text-center profile-icon"></i>
-                    </div>
-                    <div class="col-9">
-                    {{-- comment --}}
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore, deleniti.
-                    </div>
-                    <div class="col-1 pe-2">
-                        <i class="fa-solid fa-ellipsis"></i>
-                        <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
-                    </div>
-                </div>
-                <form action="#">
-                    <div class="mb-3 mt-5">
-                    <label for="comment" class="fw-bold text-dark">Comment</label>
-                    <textarea class="form-control mt-3" name="" id="" rows="3"></textarea>
-                    <button type="submit" class="btn btn-outline-secondary btn-sm mt-2 float-end">Post Comment</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+<div class="container my-4">
+    <!-- News header -->
+    <div class="news-header">
+        <h2 class="text-decoration-underline fw-bold"> {{ $news->title }}</h2>
+        <p>News site: &nbsp;{{ $news->source->name }}</p>
+        <p>Published: &nbsp;{{ $news->published_at }}</p>
+        <p class="fw-bold"> {{ $news->author }}</p>
     </div>
-
-{{-- Right side --}}
-    <div class="col-4">
-        <div class="card-body me-3">
-{{-- Whats hot --}}
-        <hr>
-            <h2 class="fw-bold text-decoration-underline">What's Hot</h2>
-        <hr>
-        @include('user.news.top-body.whats_hot')
-{{-- latest in --}}
-        <hr>
-            <h2 class="fw-bold text-decoration-underline">Latest In <span class="fw-bold">{{$news->source_name}}</span></h2>
-        <hr>
-        <div class="row">
-            <div class="col">
-                <p class="text-decoration-underline fw-bold"> {{$news->title}}</p>
-                <p>
-                    <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
-                    <a href="" class="me-2 text-decoration-none text-dark">200 <i class="fa-regular fa-thumbs-down"></i></a>
-                    <a href="" class="me-2 text-decoration-none text-dark">100 <i class="fa-regular fa-comment-dots"></i></a>
-                    <a href="" class="text-decoration-none text-dark"><i class="fa-regular fa-bookmark"></i></a>
-                </p>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col">
-                <p class="text-decoration-underline fw-bold"> {{$news->title}}</p>
-                <p>
-                    <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
-                    <a href="" class="me-2 text-decoration-none text-dark">200 <i class="fa-regular fa-thumbs-down"></i></a>
-                    <a href="" class="me-2 text-decoration-none text-dark">100 <i class="fa-regular fa-comment-dots"></i></a>
-                    <a href="" class="text-decoration-none text-dark"><i class="fa-regular fa-bookmark"></i></a>
-                </p>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col">
-                <p class="text-decoration-underline fw-bold"> {{$news->title}}</p>
-                <p>
-                    <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
-                    <a href="" class="me-2 text-decoration-none text-dark">200 <i class="fa-regular fa-thumbs-down"></i></a>
-                    <a href="" class="me-2 text-decoration-none text-dark">100 <i class="fa-regular fa-comment-dots"></i></a>
-                    <a href="" class="text-decoration-none text-dark"><i class="fa-regular fa-bookmark"></i></a>
-                </p>
+    <div class="row">
+        <!-- Main content -->
+        <div class="col-8">
+            <!-- News section -->
+            <section class="mb-5">
+                <div class="image-area mb-5 pe-3">
+                    <img src="{{ asset('images/news/' . $news->image) }}" alt="News Image" class="w-100 detail-image">
                 </div>
-            </div>
+                <div class="news-content px-3">
+                    <p>{!! $news->content !!}</p>
+                    <p>URL: &nbsp;<a href="{{ $news->url }}" class="text-dark">{{ $news->url }}</a></p>
+                </div>
+            </section>
+            <!-- Comment section -->
+            <section>
+                <h3 class="pb-2 mb-2 comment-title">Comments</h3>
+                <ul class="comment-list px-3">
+                    @foreach ($news->comments->take(5) as $comment)
+                        @include('user.news.layouts.comment_list')
+                    @endforeach
+                </ul>
+                <p class="view-all text-end"><a href="{{ route('news.all-comments', $news->id) }}" class="text-dark">View All Comments</a></p>
+                @include('user.news.feature.comment_post')
+            </section>
         </div>
-        <hr>
-        </div>
+        <!-- Side content -->
+        <aside class="col-4">
+            <!-- What's hot -->
+            <section class="mb-5">
+                <h3 class="aside-title pb-2 mb-4">What's hot</h3>
+                <ol>
+                    @foreach ($whats_hot_news as $news)
+                        @include('user.news.layouts.detail_side_content')
+                    @endforeach
+                </ol>
+            </section>
+            <!-- Latest in -->
+            <section>
+                <h3 class="aside-title pb-2 mb-4">Latest in</h3>
+                <ol>
+                    @foreach ($latest_news as $news)
+                        @include('user.news.layouts.detail_side_content')
+                    @endforeach
+                </ol>
+            </section>
+        </aside>
     </div>
 </div>
 @endsection

@@ -13,5 +13,10 @@ class Source extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
     
 }
