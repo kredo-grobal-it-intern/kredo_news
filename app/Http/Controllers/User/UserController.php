@@ -9,7 +9,6 @@ use App\Models\Source;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
-use function PHPUnit\Framework\returnSelf;
 
 class UserController extends Controller
 {
