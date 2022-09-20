@@ -1,48 +1,53 @@
 @extends('layouts.app')
-
 @section('title', 'My Favorite')
-
 @section('style')
 <link href="{{ mix('css/favorite.css') }}" rel="stylesheet">
+<link href="{{ mix('css/news_list.css') }}" rel="stylesheet">
 @endsection
 @section('content')
-
-  <div class="container-fluid">
-    <div class="row ">
-        <div class="col-md-12">
-            <hr>
-            <h2 class="header-newstitle">Media</h2>
-            <br/>
+<div class="container">
+    @if (Session::has('favorite_none'))
+        <div class="flash-message bg-danger text-white text-center h5 py-3 my-0">
+            {{ session('favorite_none') }}
+        </div>
+    @endif
+    <!-- Favorite media section -->
+    @if ($sources->count())
+        <section class="favorite-list text-center mb-4">
+            <h2 class="favorite-header d-flex align-items-center mb-3">Media</h2>
             @foreach ( $sources as $source  )
-                <a href="{{ route('user.news.favorite.source',['source' => $source->id]) }}" class="source_name">{{ $source->country->name }}</a>
+                <a href="{{ route('user.news.favorite.source', $source->id) }}" class="favorite-name">
+                    @if (isset($selected_source) && $source->id == $selected_source)
+                        <i class="fa-solid fa-star"></i>
+                    @endif
+                    {{ $source->country->name }}
+                </a>
             @endforeach
-            <br/>
-        </div>
-        @if ($countries->count())
-        <div class="col-md-12">
-            <hr>
-            <h2 class="header-newstitle">Country</h2>
-            <br/>
+        </section>
+    @endif
+    <!-- Favorite country section -->
+    @if ($countries->count())
+        <section class="favorite-list text-center mb-3">
+            <h2 class="favorite-header d-flex align-items-center mb-3">Country</h2>
             @foreach ( $countries as $country )
-                <a href="{{ route('user.news.favorite.country',['country' => $country->id]) }}" class="source_name">{{ $country->name }}</a>
+                <a href="{{ route('user.news.favorite.country', $country->id) }}" class="favorite-name">
+                    @if (isset($selected_country) && $country->id == $selected_country)
+                        <i class="fa-solid fa-star"></i>
+                    @endif
+                    {{ $country->name }}
+                </a>
             @endforeach
-            <br/>
-        </div>
-        @endif
-        @foreach ($all_news as $news)
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card">
-                <img src="{{asset('images/' . $news->image_path)}}" alt="" class="card-img-top news-img">
-                <div class="card-body">
-                    <p class="fw-bold h2">{{$news->title}}</p>
-                    <p class="mb-0">{{$news->description}}</p>
-                    <small class="text-muted">{{$news->author}}</small>
-                </div>
-                @include('user/news/feature/reaction')
-            </div>
-        </div>
+        </section>
+    @endif
+    <!-- Edit profile link -->
+    <div class="text-end mt-3">
+        <a href="{{ route('user.profile.edit') }}" class="favorite-edit"><i class="fa-solid fa-arrow-up-right-from-square me-2"></i>Edit your favorite</a>
+    </div>
+    <!-- News section -->
+    <div class="row mt-4">
+        @foreach ($favorite_news as $news)
+            @include('user.news.layouts.news_list')
         @endforeach
     </div>
-  </div>
 </div>
 @endsection
