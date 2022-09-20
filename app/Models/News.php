@@ -6,11 +6,15 @@ use App\Consts\SourceConst;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Ui\Presets\React;
 use Illuminate\Support\Facades\Auth;
 
 class News extends Model
 {
     use HasFactory, SoftDeletes;
+
+    const LIKE = 1;
+    const DISLIKE = 2;
 
     public static $rules = array(
         'title' => 'required',
@@ -29,10 +33,6 @@ class News extends Model
         'published_at',
     ];
 
-    public function comments(){
-        return $this->hasMany(Comment::class);
-    }
-
     public static function getLatestNews($source_id)
     {
         return News::where('source_id', $source_id)->latest('published_at')->limit(1)->first();
@@ -43,19 +43,20 @@ class News extends Model
         return News::where('source_id', $source_id)->latest('published_at')->offset(1)->limit(4)->get();
     }
     public function reactions(){
-        return $this->hasMany(Reaction::class);
+        return $this->belongsToMany(News::class, 'reactions', 'news_id')->withPivot('status');
     }
     public function bookmarks(){
         return $this->hasMany(Bookmark::class);
     }
+
     public function like_reactions() {
         return $this->reactions->filter(function($reaction) {
-            return $reaction->status == Reaction::GOOD;
+            return $reaction->pivot->status == self::LIKE;
         });
     }
     public function dislike_reactions() {
         return $this->reactions->filter(function($reaction) {
-            return $reaction->status == Reaction::BAD;
+            return $reaction->pivot->status == self::DISLIKE;
         });
     }
     public function isUp(){
@@ -144,4 +145,20 @@ class News extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function good()
+    {
+        return $this->hasMany(Reaction::class)->where('status', 1);
+    }
+
+    public function bad()
+    {
+        return $this->hasMany(Reaction::class)->where('status', 2);
+    }
+
 }
