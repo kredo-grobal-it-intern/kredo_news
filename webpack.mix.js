@@ -15,6 +15,7 @@ const mix = require('laravel-mix');
  .js('resources/js/editor.js', 'public/js')
  .js('resources/js/_ajaxreact.js', 'public/js')
  .js('resources/js/_ajaxbookmark.js', 'public/js')
+ .js('resources/js/_createnews.js', 'public/js')
  .sass('resources/sass/app.scss', 'public/css')
  .sass('resources/sass/admin.scss', 'public/css')
  .sass('resources/sass/news.scss', 'public/css')
