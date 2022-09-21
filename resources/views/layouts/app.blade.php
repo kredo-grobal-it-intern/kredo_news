@@ -31,19 +31,21 @@
 <body>
     <div id="app">
 
-        <header>
-            @include('layouts.body.navbar')
-        </header>
+        <div class="wrapper">'
+            <header>
+                @include('layouts.body.navbar')
+            </header>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+            <main class="py-4">
+                @yield('content')
+            </main>
 
-        @if (!Route::is('login') && !Route::is('register'))
-            <footer class="back-blue mt-5">
-                @include('layouts.body.footer')
-            </footer>
-        @endif
+            @if (!Route::is('login') && !Route::is('register'))
+                <footer class="back-blue mt-5 w-100 pt-4">
+                    @include('layouts.body.footer')
+                </footer>
+            @endif
+        </div>
     </div>
 </body>
 </html>
