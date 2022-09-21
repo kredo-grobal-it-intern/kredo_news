@@ -35,3 +35,31 @@
     font-weight: bold;
     text-decoration: underline;
 }
+
+.aside-title {
+    border-bottom: 1px solid #999;
+}
+
+@media (max-width: 992px) {
+    .top-news {
+
+        .top-heading {
+            font-size: 1.0rem;
+        }
+
+        .top-description {
+            font-size: 1.0rem;
+        }
+        .top-image {
+            height: 250px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .top-news {
+        .top-image {
+            height: 220px;
+        }
+    }
+}

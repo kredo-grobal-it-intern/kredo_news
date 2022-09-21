@@ -1,6 +1,16 @@
-.news-list-image {
-    height: 140px;
-    object-fit: cover;
+.news-list {
+    .news-list-image {
+        height: 140px;
+        object-fit: cover;
+    }
+
+    .sub-heading {
+        font-size: 1.2rem;
+    }
+
+    .sub-description {
+        font-size: 0.9rem;
+    }
 }
 
 .reaction {
@@ -8,8 +18,19 @@
 }
 
 @media (max-width: 992px) {
-    .news-list-image {
-        height: 180px;
+    .news-list {
+        .news-list-image {
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .sub-heading {
+            font-size: 1.0rem;
+        }
+
+        .sub-description {
+            font-size: 1.0rem;
+        }
     }
 }
 
