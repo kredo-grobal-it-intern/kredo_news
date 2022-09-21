@@ -1,10 +1,14 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('title', 'Create News')
+@section('script-footer')
+    <script src="{{ mix('js/editor.js') }}"></script>
+    <script src="{{ mix('js/_createnews.js') }}"></script>
+@endsection
 
 @section('content')
     <div class="container w-75">
-        <form action="{{ route('admin.news.store') }}" method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data">
         @csrf
 
         <label for="title" class="form-label fs-4">■Title</label>
@@ -126,14 +130,17 @@
         @enderror  
 
         <label for="content" class="form-label mt-4 fs-4">■Content</label>        
-        @error('content')
+        {{-- @error('content')
         <p class="text-danger small">Content is required.</p>
-        @enderror  
-        <textarea id="myeditorinstance" name="content">{{ old('content') }}</textarea>
-        <button type="submit" class="btn btn-primary w-50 mt-2 mx-auto d-block">Save</button>
+        @enderror   --}}
+        {{-- <textarea id="myeditorinstance" name="content">{{ old('content') }}</textarea> --}}
+        
+        <div id="editor"></div>
+        
+        <button class="btn btn-primary w-50 mt-2 mx-auto d-block">Save</button>
         </form>
 
-        
-    </div>
+  </div>
 @endsection
+
 
