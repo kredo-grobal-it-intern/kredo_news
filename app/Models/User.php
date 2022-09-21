@@ -53,9 +53,25 @@ class User extends Authenticatable
     public function category(){
         return $this->belongsTo(Category::class);
     }
+    public function news()
+    {
+        return $this->hasMany(News::class);
+    }
+    public function reactions()
+    {
+        return $this->hasMany(Reaction::class);
+    }
+    public function bookmarks()
+    {
+        return $this->hasMany(Bookmark::class);
+    }
 
     public function country(){
         return $this->belongsTo(Country::class);
+    }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
     }
 
     public function nationality(){
@@ -68,5 +84,13 @@ class User extends Authenticatable
 
     public function favoriteCountries(){
         return $this->belongsToMany(Country::class, 'favorite_countries', 'user_id', 'country_id');
+    }
+
+    public function newsReactions() {
+        return $this->belongsToMany(News::class, 'reactions', 'user_id', 'news_id')->withPivot('status');
+    }
+
+    public function newsBookmarks() {
+        return $this->belongsToMany(News::class, 'bookmarks', 'user_id', 'news_id');
     }
 }

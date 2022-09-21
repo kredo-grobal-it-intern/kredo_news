@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', "Login")
 @section('script')
 <script src="{{ mix('js/_login.js') }}" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -13,7 +13,6 @@
 <div class="container text-center container-custom">
     <div class="row">
         <div class="col-lg-6 col-md-10 col-sm-12 mx-auto">
-            <img src="{{ asset('images/logo3.PNG') }}" alt="logo3" class="logo">
             <p class="h4 text-center">Log in to your CCC acount</p>
             <p>
                 <span>Not member yet?</span>
@@ -33,7 +32,7 @@
                     <div class="form mb-3">
                         <p>
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="current-password">
-                            <i class="fa-solid fa-eye" id="toggleBtn" onclick="togglePassword()"></i>
+                            <i class="fa-solid fa-eye toggleBtn" id="toggleBtn"></i>
                         </p>
                             @error('password')
                             <span class="invalid-feedback" role="alert">
