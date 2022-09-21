@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','NEWS')
+@section('title','My Profile')
 @section('content')
 <div class="container justify-content-center mx-5">
     <div class="row mt-5">
@@ -17,8 +17,13 @@
                     <a href="{{route('user.profile.edit')}}" class="text-decoration-none text-secondary">Edit Profile</a>
                 @endif
             </div>
-                <div class="row fw-bold">
-                    <div class="col">68 Comments</div>
+                <div class="row">
+                    <div class="col-3">
+                        <button type="button" class="btn border-0 fs-5 m-0 p-0" data-bs-toggle="modal" data-bs-target="#comment">
+                            <span class="fw-bold fs-4">10</span> Comments
+                        </button>
+                    @include('user.profile.modal.comments')
+                    </div>                    
                     <div class="col">100 Follower</div>
                     <div class="col">50 Follow</div>
                 </div>
