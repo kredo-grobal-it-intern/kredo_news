@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Detail')
+@section('title', $news->title)
 @section('style')
 <link rel="stylesheet" href="{{ mix('css/detail.css') }}">
 @endsection
