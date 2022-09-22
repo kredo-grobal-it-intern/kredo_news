@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }} | @yield('title')</title>
+    <title>@yield('title')</title>
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
@@ -27,24 +27,27 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ mix('css/navbar.css') }}" rel="stylesheet">
     <link href="{{ mix('css/footer.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ asset('images/logo.png') }}">
     @yield('style')
 </head>
 <body>
     <div id="app">
 
-        <header>
-            @include('layouts.body.navbar')
-        </header>
+        <div class="wrapper">'
+            <header>
+                @include('layouts.body.navbar')
+            </header>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+            <main class="py-4">
+                @yield('content')
+            </main>
 
-        @if (!Route::is('login') && !Route::is('register'))
-            <footer class="back-blue mt-5">
-                @include('layouts.body.footer')
-            </footer>
-        @endif
+            @if (!Route::is('login') && !Route::is('register'))
+                <footer class="back-blue mt-5 w-100 pt-4">
+                    @include('layouts.body.footer')
+                </footer>
+            @endif
+        </div>
     </div>
 </body>
 </html>

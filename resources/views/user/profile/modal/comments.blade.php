@@ -15,8 +15,7 @@
                             </blockquote>
                         </div>
                         <div class="col-2 ps-0 pe-3">
-                            {{-- Add action when Haru create function --}}
-                            <form action="" method="post">
+                            <form action="{{ route('user.comment.destroy', $comment->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-white btn-sm btn-border-2 border-secondary fw-bold">Delete</button>

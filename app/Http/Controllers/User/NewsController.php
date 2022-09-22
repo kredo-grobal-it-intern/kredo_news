@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Consts\SourceConst;
-use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Comment;
 use App\Models\News;
 use App\Models\Source;
 use App\Models\Country;
+use App\Models\Category;
+use App\Consts\SourceConst;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class NewsController extends Controller
 {
@@ -53,13 +53,23 @@ class NewsController extends Controller
         $news = News::findOrFail($news_id);
         $whats_hot_news = News::getWhatsHotBySource($news->source_id);
         $latest_news = News::getLatestNewsList($news->source_id);
-        $comments = Comment::where('news_id', '=', $news_id)->orderBy('created_at', 'desc')->get();
         return view('user.news.detail')
             ->with('news', $news)
             ->with('whats_hot_news', $whats_hot_news)
-            ->with('latest_news', $latest_news)
-            ->with('comments', $comments);
+            ->with('latest_news', $latest_news);
     }
+
+    public function showAllComments($news_id)
+    {
+        $news = News::findOrFail($news_id);
+        $whats_hot_news = News::getWhatsHotBySource($news->source_id);
+        $latest_news = News::getLatestNewsList($news->source_id);
+        return view('user.news.detail_all_comments')
+            ->with('news', $news)
+            ->with('whats_hot_news', $whats_hot_news)
+            ->with('latest_news', $latest_news);
+    }
+
     public function filter()
     {
         // tentative method
@@ -70,10 +80,43 @@ class NewsController extends Controller
 
     public function showFavoritePage()
     {
-        $all_news = News::all();
-        $sources = Source::all();
-        $country = Country::all();
-        return view('user.news.favorite')->with('all_news', $all_news)->with('sources', $sources)->with('countries', $country);
+        $user = Auth::user();
+        $sources = $user->favoriteSources;
+        $countries = $user->favoriteCountries;
+        if (!$countries->count() && !$sources->count()) {
+            session()->flash('favorite_none', 'Please add favorite before visiting this page.');
+            $favorite_news = collect();
+        } else {
+            $favorite_news = News::whereIn('source_id', $sources->pluck('id'))
+            ->orWhereIn('country_id', $countries->pluck('id'))->get();
+        }
+        return view('user.news.favorite')->with('favorite_news', $favorite_news)->with('sources', $sources)->with('countries', $countries);
+    }
+
+    public function showFavoritePageByCountry(Country $country)
+    {
+        $user = Auth::user();
+        $sources = $user->favoriteSources;
+        $countries = $user->favoriteCountries;
+        $favorite_news = News::where('country_id', $country->id)->get();
+        return view('user.news.favorite')
+            ->with('favorite_news', $favorite_news)
+            ->with('sources', $sources)
+            ->with('countries', $countries)
+            ->with('selected_country', $country->id);
+    }
+
+    public function showFavoritePageBySource(Source $source)
+    {
+        $user = Auth::user();
+        $sources = $user->favoriteSources;
+        $countries = $user->favoriteCountries;
+        $favorite_news = News::where('source_id', $source->id)->get();
+        return view('user.news.favorite')
+            ->with('favorite_news', $favorite_news)
+            ->with('sources', $sources)
+            ->with('countries', $countries)
+            ->with('selected_source', $source->id);
     }
 
     public function showSearch(Request $request)
@@ -84,7 +127,7 @@ class NewsController extends Controller
 
         $searched_news_array = News::search($request);
         $news_count = $searched_news_array->count();
-        $selected_category = Category::where('id', '=', $request->category)->first();
+        $selected_category = Category::where('id', $request->category)->first();
         $countries = $request->countries ?? [];
         $selected_countries = Country::whereIn('id', $countries)->get();
 

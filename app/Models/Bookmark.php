@@ -14,6 +14,7 @@ class Bookmark extends Model
         'user_id',
         'news_id',
     ];
+    
     public function user()
     {
         return $this->belongsTo(User::class);

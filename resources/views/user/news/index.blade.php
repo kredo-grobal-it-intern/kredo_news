@@ -16,22 +16,22 @@
 
                 <div class="row">
                     <!-- news area -->
-                    <div class="col-9">
+                    <div class="col-12 col-lg-9">
                         <!-- latest news -->
                         <div class="row top-news">
                             @include('user.news.layouts.top_news')
                         </div>
                         <!-- sub news -->
-                        <div class="row mt-5 news-list">
+                        <div class="row mt-md-5 news-list">
                             @foreach ($country_news['list'] as $news)
                                 @include('user.news.layouts.news_list')
                             @endforeach
                         </div>
                     </div>
 
-                    <aside class="col-3">
+                    <aside class="d-none d-lg-block col-lg-3">
                         <!-- what's hot -->
-                        <h3>What's hot</h3>
+                        <h3 class="aside-title pb-2 mb-4">What's hot</h3>
                         <ol>
                             @foreach ($whats_hot_news[$country_name] as $news)
                                 @include('user.news.layouts.side_content')

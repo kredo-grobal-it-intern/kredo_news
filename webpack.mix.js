@@ -17,6 +17,7 @@ const mix = require('laravel-mix');
  .js('resources/js/_ajaxfollow.js', 'public/js')
  .sass('resources/sass/app.scss', 'public/css')
  .sass('resources/sass/admin.scss', 'public/css')
+ .sass('resources/sass/news.scss', 'public/css')
  .sass('resources/sass/profile.scss', 'public/css')
  .sass('resources/sass/login.scss', 'public/css')
  .sass('resources/sass/register.scss', 'public/css')

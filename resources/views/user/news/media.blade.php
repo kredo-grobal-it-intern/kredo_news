@@ -3,7 +3,7 @@
 <link href="{{ mix('css/country.css') }}" rel="stylesheet">
 <link href="{{ mix('css/news_list.css') }}" rel="stylesheet">
 @endsection
-@section('title',"$media->name Media")
+@section('title',"Media" . $media->country->name)
 @section('content')
 <div class="container">
     <div class="row justify-content-center back">

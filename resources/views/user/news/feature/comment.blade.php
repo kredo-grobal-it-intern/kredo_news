@@ -1,0 +1,1 @@
+<p class="me-2">{{ $news->comments->count() }} <i class="fa-regular fa-comment-dots"></i></p>
