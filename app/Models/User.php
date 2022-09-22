@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -86,6 +88,16 @@ class User extends Authenticatable
         return $this->belongsToMany(Country::class, 'favorite_countries', 'user_id', 'country_id');
     }
 
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'following_id', 'follower_id');
+    }
+
+    public function followings()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'follower_id', 'following_id');
+    }
+
     public function newsReactions() {
         return $this->belongsToMany(News::class, 'reactions', 'user_id', 'news_id')->withPivot('status');
     }
@@ -93,4 +105,5 @@ class User extends Authenticatable
     public function newsBookmarks() {
         return $this->belongsToMany(News::class, 'bookmarks', 'user_id', 'news_id');
     }
+
 }

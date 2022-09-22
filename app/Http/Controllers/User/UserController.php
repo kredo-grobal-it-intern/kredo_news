@@ -110,4 +110,24 @@ class UserController extends Controller
             Storage::disk('local')->delete($image_path);
         endif;
     }
+
+    public function destroyFollower($follower_id)
+    {
+        DB::table('follows')
+            ->where('following_id', Auth::id())
+            ->where('follower_id', $follower_id)
+            ->delete();
+
+        return redirect()->back();
+    }
+
+    public function destroyFollowing($following_id)
+    {
+        DB::table('follows')
+            ->where('following_id', $following_id)
+            ->where('follower_id', Auth::id())
+            ->delete();
+        
+        return redirect()->back();
+    }
 }

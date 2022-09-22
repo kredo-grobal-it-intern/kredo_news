@@ -20,18 +20,28 @@
                 </button>
             @include('user.profile.modal.comments')
             </div>                    
-            <div class="col">100 Follower</div>
-            <div class="col">50 Follow</div>
-        </div>
-            <p class="my-3 w-75">{{ $user->description }}</p>
-            <div class="row">
-                <div class="col-2">
-                    <a href="{{ route('user.profile.show.likes', $user->id) }}" class="btn btn-sm text-white me-3 w-100" style="background-color: #052962;">Likes</a>
-                </div>
-                <div class="col-2">
-                    <a href="{{ route('user.profile.show.bookmarks', $user->id) }}" class="btn btn-sm text-white w-100" style="background-color: #052962;">Bookmarks</a>
-                </div>
+            <div class="col-3">
+                <button type="button" class="btn border-0 fs-5 m-0 p-0" data-bs-toggle="modal" data-bs-target="#follower">
+                    <span class="fw-bold fs-4">{{ $user->followers->count() }}</span> Followers
+                </button>
+            @include('user.profile.modal.follower')
             </div>
+            <div class="col-3">
+                <button type="button" class="btn border-0 fs-5 m-0 p-0" data-bs-toggle="modal" data-bs-target="#following">
+                    <span class="fw-bold fs-4">{{ $user->followings->count() }}</span> Followings
+                </button>
+                @include('user.profile.modal.following')
+            </div>
+        </div>     
+        <p class="my-3 w-75">{{ $user->description }}</p>
+        <div class="row">
+            <div class="col-2">
+                <a href="{{ route('user.profile.show.likes', $user->id) }}" class="btn btn-sm text-white me-3 w-100" style="background-color: #052962;">Likes</a>
+            </div>
+            <div class="col-2">
+                <a href="{{ route('user.profile.show.bookmarks', $user->id) }}" class="btn btn-sm text-white w-100" style="background-color: #052962;">Bookmarks</a>
+            </div>
+        </div>
     </div>
 </div>
 
