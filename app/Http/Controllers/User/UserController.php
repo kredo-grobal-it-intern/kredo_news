@@ -113,18 +113,20 @@ class UserController extends Controller
 
     public function destroyFollower($follower_id)
     {
-        $user     = User::findOrFail(Auth::id());
-        $follower = $user->follower()->where('follower_id', $follower_id);
-        $follower->delete();
-        
+        DB::table('follows')
+            ->where('following_id', Auth::id())
+            ->where('follower_id', $follower_id)
+            ->delete();
+
         return redirect()->back();
     }
 
     public function destroyFollowing($following_id)
     {
-        $user      = User::findOrFail(Auth::id());
-        $following = $user->following()->where('following_id', $following_id);
-        $following->delete();
+        DB::table('follows')
+            ->where('following_id', $following_id)
+            ->where('follower_id', Auth::id())
+            ->delete();
         
         return redirect()->back();
     }
