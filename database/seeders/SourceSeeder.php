@@ -30,11 +30,11 @@ class SourceSeeder extends Seeder
             ['id' => 12, 'name' => 'Asian times', 'country_id' => 46],
             ['id' => 13, 'name' => 'EL PAIS', 'country_id' => 209],
             ['id' => 14, 'name' => 'Africannews', 'country_id' => 206],
-            ['id' => 14, 'name' => 'NORR', 'country_id' => 166],
-            ['id' => 14, 'name' => 'The Times of Israel', 'country_id' => 109],
-            ['id' => 14, 'name' => 'MIG', 'country_id' => 103],
-            ['id' => 14, 'name' => 'Egypt Today', 'country_id' => 66],
-            ['id' => 14, 'name' => 'Media Council of Kenya', 'country_id' => 116],
+            ['id' => 15, 'name' => 'NORR', 'country_id' => 166],
+            ['id' => 16, 'name' => 'The Times of Israel', 'country_id' => 109],
+            ['id' => 17, 'name' => 'MIG', 'country_id' => 103],
+            ['id' => 18, 'name' => 'Egypt Today', 'country_id' => 66],
+            ['id' => 19, 'name' => 'Media Council of Kenya', 'country_id' => 116],
         ]);
     }
 }
