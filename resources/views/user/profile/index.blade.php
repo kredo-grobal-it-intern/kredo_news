@@ -12,7 +12,8 @@
         </div>
         <div class="col-8">
             <div class="row my-3">
-                <h2 class="fw-bold">Username</h2>
+                <h2 class="fw-bold col">Username</h2>
+                @include('user/news/feature/follow')
                 @if (Auth::user()->id === $user->id)
                     <a href="{{route('user.profile.edit')}}" class="text-decoration-none text-secondary">Edit Profile</a>
                 @endif
@@ -23,7 +24,7 @@
                             <span class="fw-bold fs-4">10</span> Comments
                         </button>
                     @include('user.profile.modal.comments')
-                    </div>                    
+                    </div>
                     <div class="col">100 Follower</div>
                     <div class="col">50 Follow</div>
                 </div>

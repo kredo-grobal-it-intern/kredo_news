@@ -15,6 +15,7 @@ use App\Http\Controllers\User\CountryController;
 use App\Http\Controllers\User\MediaController;
 use App\Http\Controllers\User\ReactionController;
 use App\Http\Controllers\User\BookmarkController;
+use App\Http\Controllers\User\FollowController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,7 @@ Route::get('/media/{media_id}', [MediaController::class, 'show'])->name('news.me
 Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'auth'], function () {
     Route::post('/thumbs_up', [ReactionController::class, 'thumbs_up'])->name('thumbs_up');
     Route::post('/thumbs_down', [ReactionController::class, 'thumbs_down'])->name('thumbs_down');
+    Route::post('/follow', [FollowController::class, 'follow'])->name('follow');
     Route::post('/bookmark', [BookmarkController::class, 'bookmark'])->name('bookmark');
     Route::get('/favorite', [NewsController::class, 'showFavoritePage'])->name('news.favorite');
     Route::post('/{news_id}/comment', [CommentController::class, 'store'])->name('comment.store');
