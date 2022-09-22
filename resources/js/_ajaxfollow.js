@@ -4,14 +4,17 @@ $(function() {
     const follow = $('#follow');
     let userId;
 
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     follow.on('click', function() {
         let $this = $(this);
         userId = $this.data('userid');
 
         $.ajax({
-            headers: {
-                'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
-            },
             url: '/user/follow',
             method: 'POST',
             data: {
@@ -30,9 +33,6 @@ $(function() {
         userId = $this.data('userid');
 
         $.ajax({
-            headers: {
-                'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
-            },
             url: '/user/unfollow',
             method: 'POST',
             data: {
