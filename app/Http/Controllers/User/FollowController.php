@@ -11,23 +11,30 @@ class FollowController extends Controller
 {
     public function follow(Request $request)
     {
-        $user_id = Auth::user()->id;
-        $follower_id = $request->user_id;
-        $followed = Follow::withTrashed()->where('following_id', $user_id)->where('follower_id', $follower_id)->first();
-        if (empty($followed)) {
+        $follower_id = Auth::user()->id;
+        $following_id = $request->user_id;
+        $is_followed = Follow::withTrashed()->where('following_id', $following_id)->where('follower_id', $follower_id)->first();
+        if (empty($is_followed)) {
             Follow::create([
-                'following_id' => $user_id,
+                'following_id' => $following_id,
                 'follower_id' => $follower_id
             ]);
-        } elseif ($followed->trashed()) {
-            $this->restore($user_id, $follower_id);
-        } else {
-            Follow::where('following_id', $user_id)->where('follower_id', $follower_id)->delete();
+        } elseif ($is_followed->trashed()) {
+            $this->restore($following_id, $follower_id);
         }
         return response()->json();
     }
-    public function restore($user_id, $follower_id)
+
+    public function unfollow(Request $request)
     {
-        Follow::onlyTrashed()->where('following_id', $user_id)->where('follower_id', $follower_id)->restore();
+        $follower_id = Auth::user()->id;
+        $following_id = $request->user_id;
+        Follow::where('following_id', $following_id)->where('follower_id', $follower_id)->delete();
+        return response()->json();
+    }
+
+    public function restore($following_id, $follower_id)
+    {
+        Follow::onlyTrashed()->where('following_id', $following_id)->where('follower_id', $follower_id)->restore();
     }
 }

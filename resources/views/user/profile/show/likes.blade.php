@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title','Like News')
 <link href="{{ mix('css/news.css') }}" rel="stylesheet">
+<link href="{{ mix('css/follow.css') }}" rel="stylesheet">
 @section('content')
 <div class="container">
     @include('user.profile.components.user')

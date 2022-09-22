@@ -88,9 +88,9 @@ class User extends Authenticatable
     public function favoriteCountries(){
         return $this->belongsToMany(Country::class, 'favorite_countries', 'user_id', 'country_id');
     }
-    
+
     public function isFollowed(){
-        return $this->followings()->where('following_id',Auth::user()->id)->exists();
+        return $this->followers()->where('follower_id',Auth::user()->id)->exists();
     }
 
     public function followers()

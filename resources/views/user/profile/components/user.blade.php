@@ -12,6 +12,7 @@
             @if (Auth::user()->id === $user->id)
                 <a href="{{route('user.profile.edit')}}" class="text-decoration-none text-secondary">Edit Profile</a>
             @endif
+            @include('user.news.feature.follow')
         </div>
         <div class="row">
             <div class="col-3">
@@ -19,7 +20,7 @@
                     <span class="fw-bold fs-4">{{ $user->comments->count() }}</span> Comments
                 </button>
             @include('user.profile.modal.comments')
-            </div>                    
+            </div>
             <div class="col-3">
                 <button type="button" class="btn border-0 fs-5 m-0 p-0" data-bs-toggle="modal" data-bs-target="#follower">
                     <span class="fw-bold fs-4">{{ $user->followers->count() }}</span> Followers
@@ -32,7 +33,7 @@
                 </button>
                 @include('user.profile.modal.following')
             </div>
-        </div>     
+        </div>
         <p class="my-3 w-75">{{ $user->description }}</p>
         <div class="row">
             <div class="col-2">

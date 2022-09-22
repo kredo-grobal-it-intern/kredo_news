@@ -45,6 +45,7 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'auth'], func
     Route::post('/thumbs_up', [ReactionController::class, 'thumbs_up'])->name('thumbs_up');
     Route::post('/thumbs_down', [ReactionController::class, 'thumbs_down'])->name('thumbs_down');
     Route::post('/follow', [FollowController::class, 'follow'])->name('follow');
+    Route::post('/unfollow', [FollowController::class, 'unfollow'])->name('unfollow');
     Route::post('/bookmark', [BookmarkController::class, 'bookmark'])->name('bookmark');
     Route::group(['prefix' => 'favorite', 'as' => 'news.'], function () {
         Route::get('/', [NewsController::class, 'showFavoritePage'])->name('favorite');
