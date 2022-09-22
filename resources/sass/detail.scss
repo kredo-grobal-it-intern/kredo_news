@@ -8,6 +8,10 @@
     object-fit: cover;
 }
 
+.aside-title {
+    border-bottom: 1px solid #999;
+}
+
 .reaction {
     cursor: pointer;
 }
@@ -25,9 +29,6 @@
     line-height: 2.4;
 }
 
-.aside-title {
-    border-bottom: 1px solid #999;
-}
 
 .comment-title {
     border-bottom: 1px solid #999;
@@ -35,37 +36,58 @@
 
 .comment-list {
     list-style-type: none;
-}
 
-.comment-list-item {
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+    .comment-list-item {
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
 
-    &:first-child {
-        border-top: none;
+        &:first-child {
+            border-top: none;
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        .avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .username {
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .comment-delete:hover {
+            text-decoration: underline;
+        }
     }
-
-    &:last-child {
-        border-bottom: none;
-    }
 }
 
-.avatar {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.username {
-    text-decoration: none;
+.comment-post {
+    border: 1px solid #052962;
+    color: #052962;
 
     &:hover {
-        text-decoration: underline;
+        background-color: #052962;
+        color: #fff;
     }
 }
 
+@media (max-width: 992px) {
+    .detail-image {
+        height: 400px;
+    }
+}
 
-.comment-delete:hover {
-    text-decoration: underline;
+@media (max-width: 768px) {
+    .detail-image {
+        height: 320px;
+    }
 }

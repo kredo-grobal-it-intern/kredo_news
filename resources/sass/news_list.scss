@@ -3,13 +3,30 @@
     object-fit: cover;
 }
 
+.sub-heading {
+    font-size: 1.2rem;
+}
+
+.sub-description {
+    font-size: 0.9rem;
+}
+
 .reaction {
     cursor: pointer;
 }
 
 @media (max-width: 992px) {
     .news-list-image {
-        height: 180px;
+        height: 220px;
+        object-fit: cover;
+    }
+
+    .sub-heading {
+        font-size: 1.1rem;
+    }
+
+    .sub-description {
+        font-size: 1.0rem;
     }
 }
 
