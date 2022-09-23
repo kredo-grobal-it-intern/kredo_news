@@ -48,5 +48,7 @@
             @endif
         </div>
     </div>
+
+    @yield('script_footer')
 </body>
 </html>

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
@@ -86,6 +87,10 @@ class User extends Authenticatable
 
     public function favoriteCountries(){
         return $this->belongsToMany(Country::class, 'favorite_countries', 'user_id', 'country_id');
+    }
+
+    public function isFollowed(){
+        return $this->followers()->where('follower_id',Auth::user()->id)->exists();
     }
 
     public function followers()
