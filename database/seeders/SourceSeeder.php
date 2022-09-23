@@ -35,6 +35,8 @@ class SourceSeeder extends Seeder
             ['id' => 17, 'name' => 'MIG', 'country_id' => 103],
             ['id' => 18, 'name' => 'Egypt Today', 'country_id' => 66],
             ['id' => 19, 'name' => 'Media Council of Kenya', 'country_id' => 116],
+            ['id' => 20, 'name' => 'Ukrinform', 'country_id' => 233],
+
         ]);
     }
 }
