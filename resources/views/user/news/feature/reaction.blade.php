@@ -7,7 +7,7 @@
     <p class="me-2">
         <span class="upCount">{{ $news->like_reactions()->count() }}</span>
         <i class="reaction fa-regular fa-thumbs-up up-toggle"
-            @if (!Auth::check()) data-bs-toggle="modal" data-bs-target="#feature" @endif
+            @guest data-bs-toggle="modal" data-bs-target="#feature" @endguest
             data-newsid="{{ $news->id }}"></i>
     </p>
 @endif
@@ -20,7 +20,7 @@
     <p class="me-2">
         <span class="downCount">{{ $news->dislike_reactions()->count() }}</span>
         <i class="reaction fa-regular fa-thumbs-down down-toggle"
-            @if (!Auth::check()) data-bs-toggle="modal" data-bs-target="#feature" @endif
+            @guest  data-bs-toggle="modal" data-bs-target="#feature" @endguest
             data-newsid="{{ $news->id }}"></i>
     </p>
 @endif
