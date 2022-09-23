@@ -1,5 +1,4 @@
 $(function() {
-    $('.hide').hide();
     const unfollow = $('#unfollow');
     const follow = $('#follow');
     let userId;
@@ -23,8 +22,8 @@ $(function() {
         })
         // success
         .done(function(data) {
-            $this.hide();
-            unfollow.show();
+            $this.addClass('d-none');
+            unfollow.removeClass('d-none');
         })
     });
 
@@ -41,8 +40,8 @@ $(function() {
         })
         // success
         .done(function(data) {
-            $this.hide();
-            follow.show();
+            $this.addClass('d-none');
+            follow.removeClass('d-none');
         })
     });
 });
