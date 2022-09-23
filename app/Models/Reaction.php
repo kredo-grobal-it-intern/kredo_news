@@ -24,22 +24,8 @@ class Reaction extends Model
         return $this->belongsTo(News::class, 'news_id');
     }
 
-    public function user(){
-    return $this->belongsTo(User::class);
-    }
-
-    public function changeStatus($like_user, $user_id, $news_id, $status)
+    public function user()
     {
-        if (empty($like_user) || $like_user->status != $status) {
-            Reaction::updateOrCreate(
-                ['user_id' => $user_id, 'news_id' => $news_id],
-                ['status' => $status]
-            );
-        } else {
-            Reaction::updateOrCreate(
-                ['user_id' => $user_id, 'news_id' => $news_id],
-                ['status' => Reaction::DEFAULT]
-            );
-        }
+        return $this->belongsTo(User::class);
     }
 }
