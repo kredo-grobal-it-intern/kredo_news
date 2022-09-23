@@ -4,6 +4,6 @@
     </p>
 @else
     <p>
-        <i class="bookmark fa-regular fa-bookmark bookmark-toggle" data-newsid="{{ $news->id }}"></i>
+        <i class="bookmark fa-regular fa-bookmark" @if(!Auth::check()) data-bs-toggle="modal" data-bs-target="#feature" @else class="bookmark-toggle" @endif data-newsid="{{ $news->id }}"></i>
     </p>
 @endif
