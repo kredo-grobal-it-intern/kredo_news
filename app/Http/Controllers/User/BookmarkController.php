@@ -3,33 +3,23 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\Bookmark;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class BookmarkController extends Controller
 {
     public function bookmark(Request $request)
     {
-        $user_id = Auth::user()->id;
+        $user = Auth::user();
         $news_id = $request->news_id;
-        $bookmarked = Bookmark::withTrashed()->where('user_id', $user_id)->where('news_id', $news_id)->first();
-        if (empty($bookmarked)) {
-            Bookmark::create(
-                [
-                    'user_id' => $user_id,
-                    'news_id' => $news_id,
-                ]
-            );
-        } elseif ($bookmarked->trashed()) {
-            $this->restore($user_id, $news_id);
+        $bookmark = DB::table('bookmarks')->where('user_id', $user->id)->where('news_id', $news_id)->first();
+        if (!$bookmark) {
+            $user->bookmarks()->attach($news_id);
         } else {
-            Bookmark::where('news_id', $news_id)->where('user_id', $user_id)->delete();
+            $user->bookmarks()->detach($news_id);
         }
         return response()->json();
-    }
-    public function restore($user_id, $news_id)
-    {
-        Bookmark::onlyTrashed()->where('user_id', $user_id)->where('news_id', $news_id)->restore();
     }
 }
