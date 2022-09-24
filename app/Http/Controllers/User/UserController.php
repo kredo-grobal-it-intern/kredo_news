@@ -17,7 +17,7 @@ class UserController extends Controller
     public function showLikes(Request $request)
     {
         $user      = User::findOrFail($request->user_id);
-        $reactions = $user->newsReactions->filter(function ($reaction) {
+        $reactions = $user->reactions->filter(function ($reaction) {
             return $reaction->pivot->status == 1;
         });
 

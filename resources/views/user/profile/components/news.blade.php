@@ -11,8 +11,8 @@
             <small class="text-muted">{{$reaction->author}}</small>
         </div>
         <div class="row align-items-center">
-            <p class="col offset-1 fs-5">{{$reaction->good->count()}} <i class="fa-regular fa-thumbs-up"></i></p>
-            <p class="col fs-5">{{$reaction->bad->count()}} <i class="fa-regular fa-thumbs-down"></i></p>
+            <p class="col offset-1 fs-5">{{$reaction->like_reactions()->count()}} <i class="fa-regular fa-thumbs-up"></i></p>
+            <p class="col fs-5">{{$reaction->dislike_reactions()->count()}} <i class="fa-regular fa-thumbs-down"></i></p>
             <p class="col fs-5">{{$reaction->comments->count()}} <i class="fa-regular fa-comment-dots"></i></p>
             @if ($reaction->isBookmarked())
             <p class="col offset-1 fs-2"><i class="fa-solid fa-bookmark bookmark-toggle text-success"
@@ -20,7 +20,7 @@
             @else
                 <p class="col offset-1 fs-2"><i class="fa-regular fa-bookmark bookmark-toggle" data-newsid="{{ $reaction->id }}"></i>
                 </p>
-            @endif        
+            @endif
         </div>
         <div class="card-footer bg-white border-top-0">
             <div class="row">
