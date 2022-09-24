@@ -11,7 +11,7 @@ class BookmarkController extends Controller
     public function bookmark(Request $request)
     {
         $user = Auth::user();
-        $user_id = $user->id;
+        $user_id = Auth::id();
         $news_id = $request->news_id;
         $bookmarks = $user->bookmarks;
         $bookmark = $bookmarks->filter(function ($bookmark) use ($user_id, $news_id) {
