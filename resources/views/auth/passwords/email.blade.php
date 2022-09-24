@@ -28,6 +28,9 @@
                         <button type="submit" class="btn btn-danger fw-bold w-100">
                             {{ __('Send Password Reset Link') }}
                         </button>
+                        <div class="mt-3">
+                            <a href="{{ route('login') }}" class="text-white">Back to login page</a>
+                        </div>
                     </div>
                 </form>
             </div>
