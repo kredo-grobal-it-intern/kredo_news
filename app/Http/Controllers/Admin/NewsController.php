@@ -12,7 +12,6 @@ use App\Models\Country;
 use App\Models\Source;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\Builder;
 
 class NewsController extends Controller
 {
