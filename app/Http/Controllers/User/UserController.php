@@ -29,7 +29,7 @@ class UserController extends Controller
     public function showBookmarks()
     {
         $user      = Auth::user();
-        $bookmarks = $user->newsBookmarks;
+        $bookmarks = $user->bookmarks;
 
         return view('user.profile.show.bookmarks')
                 ->with('bookmarks', $bookmarks)

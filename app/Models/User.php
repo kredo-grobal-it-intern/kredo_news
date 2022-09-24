@@ -64,10 +64,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(Reaction::class);
     }
-    public function bookmarks()
-    {
-        return $this->hasMany(Bookmark::class);
-    }
 
     public function country(){
         return $this->belongsTo(Country::class);
@@ -107,7 +103,7 @@ class User extends Authenticatable
         return $this->belongsToMany(News::class, 'reactions', 'user_id', 'news_id')->withPivot('status');
     }
 
-    public function newsBookmarks() {
+    public function bookmarks() {
         return $this->belongsToMany(News::class, 'bookmarks', 'user_id', 'news_id');
     }
 
