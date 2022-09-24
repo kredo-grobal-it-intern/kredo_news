@@ -12,6 +12,7 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+        <script src="{{ mix('js/admin.js') }}"></script>
 
         <!-- Fonts -->
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -20,10 +21,11 @@
         <!-- Styles -->
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
         <link href="{{ mix('css/admin.css') }}" rel="stylesheet">
+        <link href="{{ mix('css/admin_navbar.css') }}" rel="stylesheet">
+        @yield('style')
         
         <!-- fontawesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 
         <!-- Insert the blade containing the TinyMCE configuration and source script -->
         <x-head.tinymce-config/>
@@ -32,76 +34,66 @@
 </head>
 <body>
         <div id="app">
-            <nav class="navbar navbar-expand-md navbar-dark navbar-laravel">
-                <div class="container">
-                    {{-- <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a> --}}
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <!-- Left Side Of Navbar -->
+            <div class="d-flex" id="wrapper">
+                <!-- Sidebar-->
+                <div class="sidebar" id="sidebar-wrapper">
+                    <div class="list-group">
+                        <a href="{{ route('news.index') }}"><img src="{{ asset('storage/images/logo_transparent.png') }}" alt="" class="list-group-item w-50 d-block mx-auto"></a>
+                        <a href="{{ route('news.index') }}" class="list list-group-item btn d-block text-decoration-none text-white"><span class="me-2"><i class="fa-solid fa-arrow-left"></i></span>Top</a>
+                        <a href="{{ route('admin.show.dashboard') }}" class="list list-group-item btn d-block text-decoration-none text-white"><span class="me-2"><i class="fa-solid fa-inbox"></i></span>Dashboard</a>
+                        <a href="{{ route('admin.news.show') }}" class="list list-group-item btn d-block text-decoration-none text-white"><span class="me-2"><i class="fa-solid fa-newspaper"></i></span>News</a>
+                        <a href="{{ route('admin.comments.show') }}" class="list list-group-item btn d-block text-decoration-none text-white"><span class="me-2"><i class="fa-solid fa-comments"></i></span>Comments</a>
+                        <a href="{{ route('admin.users.show') }}" class="list list-group-item btn d-block text-decoration-none text-white"><span class="me-2"><i class="fa-solid fa-users"></i></span>Users</a>
+                        <a href="{{ route('admin.news.create') }}" class="list list-group-item btn d-block text-decoration-none text-white"><span class="me-2"><i class="fa-solid fa-file-circle-plus"></i></span>Create news</a>
+                    </div>
+                </div>
+                <!-- Page content wrapper-->
+                <div id="page-content-wrapper">
+                    <!-- Top navigation-->
+                    <nav class="navbar navbar-expand-lg">
                         <ul class="navbar-nav me-auto">
-
+                            <button class="btn text-white fs-5" id="sidebarToggle">
+                                <i class="fa-solid fa-bars"></i>
+                            </button>
                         </ul>
-
-                        <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ms-auto">
-
-                        @guest
-                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                        @else
-                            <li>
-                                <a href="{{ route('admin.news.create') }}" class="text-decoration-none text-white nav-link">Create news</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                            <li class="nav-item nav-item-custom dropdown me-4">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->username }}
                                 </a>
-
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a href="{{route('user.profile.show.likes', Auth::id())}}" class="dropdown-item">
+                                        <i class="fa-solid fa-user"></i>&nbsp;My Profile
+                                    </a>
+        
+                                    @if (Auth::user()->is_admin)
+                                        <a href="{{ route('admin.show.dashboard') }}" class="dropdown-item">
+                                            <i class="fa-solid fa-inbox"></i> Dashboard
+                                        </a>
+                                    @endif
+        
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>
                             </li>
-                            @endguest
                         </ul>
-                    </div>
-                </div>
-            </nav>
-            {{-- ここまでナビゲーションバー --}}
-
-            <main>
-                {{-- コンテンツをここに入れるため、@yieldで空けておきます。 --}}
-
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-2 " style="background-color:#052962; min-height:100vh; height:100％;">
-                        <a href="{{ route('news.index') }}"><img src="{{ asset('storage/images/logo_transparent.png') }}" alt="" class="w-50 d-block mx-auto"></a>
-                        <a href="{{ route('news.index') }}" class="btn d-block text-decoration-none text-white">Top</a>
-                        <a href="{{ route('admin.show.dashboard') }}" class="btn d-block text-decoration-none text-white">Dashboard</a>
-                        <a href="{{ route('admin.news.show') }}" class="btn d-block text-decoration-none text-white">News</a>
-                        <a href="{{ route('admin.comments.show') }}" class="btn d-block text-decoration-none text-white">Comments</a>
-                        <a href="{{ route('admin.users.show') }}" class="btn d-block text-decoration-none text-white">Users</a>
-                        </div>
-                        <div class="col-10 mt-5">
+                    </nav>
+                    <!-- Page content-->
+                <main>
+                    <div class="container">
                         @yield('content')
-                        {{-- <div class="w-75 mx-auto">
-                            <x-forms.tinymce-editor/>
-
-                        </div> --}}
-
                     </div>
-            </main>
+                </main>
+                </div>
+            </div>
         </div>
     </body>
     @yield('script')

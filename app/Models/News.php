@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Ui\Presets\React;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
+
 
 class News extends Model
 {
@@ -126,6 +128,31 @@ class News extends Model
     public static function getLatestNewsList($source_id)
     {
         return News::where('source_id', $source_id)->latest('published_at')->limit(5)->get();
+    }
+
+    public static function getTopGoodNewsList()
+    {
+        return News::withCount(['reactions' => function (Builder $query) {
+                                $query->where('status', 1);
+                                }])
+                    ->orderBy('reactions_count', 'desc')
+                    ->limit(5)
+                    ->get();
+    }
+
+    public static function getWorstBadNewsList()
+    {
+        return News::withCount(['reactions' => function (Builder $query) {
+                                $query->where('status', 2);
+                                }])
+                    ->orderBy('reactions_count', 'desc')
+                    ->limit(5)
+                    ->get();
+    }
+
+    public static function getTopBookmarkNewsList()
+    {
+        return News::withCount('bookmarks')->orderBy('bookmarks_count', 'desc')->limit(5)->get();
     }
 
     public function country()
