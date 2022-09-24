@@ -5,7 +5,6 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class BookmarkController extends Controller
 {
@@ -14,7 +13,7 @@ class BookmarkController extends Controller
         $user = Auth::user();
         $user_id = $user->id;
         $news_id = $request->news_id;
-        $bookmark = $user->bookmarks->filter(function($bookmark) use($user_id, $news_id) {
+        $bookmark = $user->bookmarks->filter(function ($bookmark) use ($user_id, $news_id) {
             return $bookmark->pivot->news_id == $news_id && $bookmark->pivot->user_id == $user_id;
         })->first();
         $bookmarks = $user->bookmarks();
