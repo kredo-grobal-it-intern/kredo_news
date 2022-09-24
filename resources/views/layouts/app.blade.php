@@ -32,7 +32,7 @@
 <body>
     <div id="app">
 
-        <div class="wrapper">'
+        <div class="wrapper">
             <header>
                 @include('layouts.body.navbar')
             </header>
@@ -48,5 +48,7 @@
             @endif
         </div>
     </div>
+
+    @yield('script_footer')
 </body>
 </html>

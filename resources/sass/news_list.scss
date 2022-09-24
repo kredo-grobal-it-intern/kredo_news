@@ -3,13 +3,38 @@
     object-fit: cover;
 }
 
+.news-list-heading {
+    font-size: 1.2rem;
+}
+
+.news-list-heading-link{
+    text-decoration: none;
+    color: #000;
+    &:hover{
+        color: red;
+    }
+}
+
+.news-list-description {
+    font-size: 0.9rem;
+}
+
 .reaction {
     cursor: pointer;
 }
 
 @media (max-width: 992px) {
     .news-list-image {
-        height: 180px;
+        height: 220px;
+        object-fit: cover;
+    }
+
+    .news-list-heading {
+        font-size: 1.1rem;
+    }
+
+    .news-list-description {
+        font-size: 1.0rem;
     }
 }
 

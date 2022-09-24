@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Detail')
+@section('title', $news->title)
 @section('style')
 <link rel="stylesheet" href="{{ mix('css/detail.css') }}">
 @endsection
@@ -14,10 +14,10 @@
     </div>
     <div class="row">
         <!-- Main content -->
-        <div class="col-8">
+        <div class="col-lg-8">
             <!-- News section -->
             <section class="mb-5">
-                <div class="image-area mb-5 pe-3">
+                <div class="image-area mb-5 pe-lg-3">
                     <img src="{{ asset('images/news/' . $news->image) }}" alt="News Image" class="w-100 detail-image">
                 </div>
                 <div class="news-content px-3">
@@ -38,7 +38,7 @@
             </section>
         </div>
         <!-- Side content -->
-        <aside class="col-4">
+        <aside class="d-none d-lg-block col-lg-4">
             <!-- What's hot -->
             <section class="mb-5">
                 <h3 class="aside-title pb-2 mb-4">What's hot</h3>

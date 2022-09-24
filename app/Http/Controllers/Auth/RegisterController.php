@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -66,12 +67,25 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'username' => $data['username'],
             'email' => $data['email'],
             'nationality_id' => $data['nationality'],
             'country_id' => $data['country'],
             'password' => Hash::make($data['password']),
         ]);
+        // send the email here
+        $details = [
+            'name' => $user->username,
+            'appUrl' => config('app.url')
+        ];
+
+        Mail::send('user.emails.register-confirmation', $details, function ($message) use ($user) {
+            $message
+                ->from(env('MAIL_FROM_ADDRESS'), config('app.name'))
+                ->to($user->email, $user->username)
+                ->subject('Thank you for registering in CCC News App!');
+        });
+        return $user;
     }
 }

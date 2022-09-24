@@ -14,9 +14,9 @@ class UserController extends Controller
 {
     const LOCAL_STORAGE_FOLDER = 'public/images/avatars/';
 
-    public function showLikes()
+    public function showLikes(Request $request)
     {
-        $user      = Auth::user();
+        $user      = User::findOrFail($request->user_id);
         $reactions = $user->newsReactions->filter(function ($reaction) {
             return $reaction->pivot->status == 1;
         });
@@ -29,7 +29,7 @@ class UserController extends Controller
     public function showBookmarks()
     {
         $user      = Auth::user();
-        $bookmarks = $user->newsBookmarks;
+        $bookmarks = $user->bookmarks;
 
         return view('user.profile.show.bookmarks')
                 ->with('bookmarks', $bookmarks)
@@ -65,7 +65,7 @@ class UserController extends Controller
         $user->nationality_id = $request->nationality;
         $user->country_id     = $request->country;
         $sources              = $request->sources ?? [];
-        
+
         $favorite_sources = [];
         foreach ($sources as $source) {
             $favorite_sources[] = [
@@ -127,7 +127,7 @@ class UserController extends Controller
             ->where('following_id', $following_id)
             ->where('follower_id', Auth::id())
             ->delete();
-        
+
         return redirect()->back();
     }
 }

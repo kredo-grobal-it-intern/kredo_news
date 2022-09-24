@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
@@ -63,10 +64,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(Reaction::class);
     }
-    public function bookmarks()
-    {
-        return $this->hasMany(Bookmark::class);
-    }
 
     public function country(){
         return $this->belongsTo(Country::class);
@@ -88,6 +85,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Country::class, 'favorite_countries', 'user_id', 'country_id');
     }
 
+    public function isFollowed(){
+        return $this->followers()->where('follower_id',Auth::user()->id)->exists();
+    }
+
     public function followers()
     {
         return $this->belongsToMany(User::class, 'follows', 'following_id', 'follower_id');
@@ -102,7 +103,7 @@ class User extends Authenticatable
         return $this->belongsToMany(News::class, 'reactions', 'user_id', 'news_id')->withPivot('status');
     }
 
-    public function newsBookmarks() {
+    public function bookmarks() {
         return $this->belongsToMany(News::class, 'bookmarks', 'user_id', 'news_id');
     }
 
