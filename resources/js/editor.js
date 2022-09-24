@@ -3,7 +3,7 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 
 console.log(Editor, 'test')
 
-var editor = new Editor({
+const editor = new Editor({
     el: document.querySelector('#editor'),
     previewStyle: 'vertical',
     height: '500px',
@@ -11,3 +11,5 @@ var editor = new Editor({
 });
 
 editor.getMarkdown();
+
+window.editor = editor;

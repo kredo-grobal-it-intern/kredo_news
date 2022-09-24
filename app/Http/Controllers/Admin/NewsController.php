@@ -71,7 +71,9 @@ class NewsController extends Controller
 
         $news->save();
 
-        return redirect()->route('news.index');
+        return response()->json([
+            'news' => $news
+        ]);
     }
 
     public function saveImage($request)
