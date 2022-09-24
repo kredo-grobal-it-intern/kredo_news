@@ -1,0 +1,63 @@
+.card{
+    border-left:solid 2px #052962;
+    white-space:nowrap
+
+}
+.icon{
+    height:56px; 
+    width:56px; 
+    background-color:#052962;
+}
+
+.feature-line{
+    font-size: 12px;
+
+}
+
+h1{
+    background-color:#052962
+}
+
+ol.list{
+    counter-reset:list;
+    list-style-type:none;
+    padding:0;
+
+    li{
+        position:relative;
+        padding: 0 0 0 30px;
+        margin: 7px 0 7px 0px;
+        font-weight: bold;
+        font-size:14px;
+        line-height: 29px;
+        border: dashed 1px transparent;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -o-transition: 0.3s;
+        -ms-transition: 0.3s;
+        transition: 0.3s;
+      }
+      li:before{
+        counter-increment: list;
+        content: counter(list);
+        position: absolute;
+        left: -10px;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        color: #fff;
+        line-height:30px;
+        background:gray;
+        border-radius: 50%;
+        top: 50%;
+        -moz-transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+      }
+      li:hover{
+        border-bottom-color: #052962;
+      }
+    
+  }
