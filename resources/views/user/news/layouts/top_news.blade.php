@@ -5,7 +5,7 @@
 <!-- top news -->
 <div class="col-md-5 order-md-1 col-12">
     <!-- heading & description & reaction -->
-    <h3 class="fw-bold mt-3 mt-md-0 top-heading"><a href="{{ route('news.show', $country_news['latest']->id) }}" class="text-danger text-decoration-none">{{ $country_news['latest']->title }}</a></h3>
+    <h3 class="fw-bold mt-3 mt-md-0 top-heading"><a href="{{ route('news.show', $country_news['latest']->id) }}" class="top-heading-link">{{ $country_news['latest']->title }}</a></h3>
     <p class="top-description">{{ $country_news['latest']->description }}</p>
     <div class="d-flex mt-1 mt-md-3 status">
         @include('user.news.feature.reaction', ['news' => $country_news['latest']])
