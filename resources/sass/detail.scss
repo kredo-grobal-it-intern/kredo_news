@@ -12,6 +12,13 @@
     border-bottom: 1px solid #999;
 }
 
+.aside-news{
+    margin-bottom: 12px;
+    &:last-child{
+        margin-bottom: 0;
+    }
+}
+
 .reaction {
     cursor: pointer;
 }
