@@ -51,13 +51,13 @@ class News extends Model
             return $reaction->pivot->status == ReactionConst::DISLIKE;
         });
     }
-    public function isUp(){
+    public function isLiked(){
         return $this->reactions()
             ->where('status',ReactionConst::LIKE)
             ->where('user_id',Auth::user()->id)
             ->exists();
     }
-    public function isDown(){
+    public function isDisliked(){
         return $this->reactions()
             ->where('status',ReactionConst::DISLIKE)
             ->where('user_id',Auth::user()->id)
