@@ -16,6 +16,7 @@ use App\Http\Controllers\User\MediaController;
 use App\Http\Controllers\User\ReactionController;
 use App\Http\Controllers\User\BookmarkController;
 use App\Http\Controllers\User\FollowController;
+use App\Http\Controllers\Auth\VerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,10 +29,11 @@ use App\Http\Controllers\User\FollowController;
 |
 */
 
-Auth::routes();
+Auth::routes(['verify'=>true]);
 
 // All user
 Route::get('/', [NewsController::class, 'index'])->name('news.index');
+Route::get('/email/verify', [VerificationController::class,'show'])->name('verification.notice');
 Route::post('/search', [NewsController::class, 'showSearch'])->name('news.search');
 Route::get('/{news_id}', [NewsController::class, 'show'])->name('news.show');
 Route::get('/{news_id}/all-comments', [NewsController::class, 'showAllComments'])->name('news.all-comments');
@@ -41,7 +43,7 @@ Route::get('/country/{country_id}', [CountryController::class, 'show'])->name('n
 Route::get('/media/{media_id}', [MediaController::class, 'show'])->name('news.media');
 
 // Logged in user
-Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' =>'verified'], function () {
     Route::post('/thumbs_up', [ReactionController::class, 'thumbs_up'])->name('thumbs_up');
     Route::post('/thumbs_down', [ReactionController::class, 'thumbs_down'])->name('thumbs_down');
     Route::post('/follow', [FollowController::class, 'follow'])->name('follow');
