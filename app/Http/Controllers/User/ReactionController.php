@@ -19,13 +19,16 @@ class ReactionController extends Controller
             ->where('status', $status)->exists();
     }
 
-    public function thumbs_up(Request $request)
+    public function like(Request $request)
     {
         $user_id = Auth::id();
         $news_id = $request->news_id;
         $news = News::findOrFail($news_id);
 
-        $status = self::isDefault($user_id, $news_id, ReactionConst::LIKE) ? ReactionConst::NONE : ReactionConst::LIKE;
+        $status = self::isDefault($user_id, $news_id, ReactionConst::LIKE)
+        ? ReactionConst::NONE
+        : ReactionConst::LIKE;
+
         DB::table('reactions')->updateOrInsert(
             [
                 'user_id' => $user_id,
@@ -37,13 +40,17 @@ class ReactionController extends Controller
         $json = $this->countReactions($news);
         return response()->json($json);
     }
-    public function thumbs_down(Request $request)
+
+    public function dislike(Request $request)
     {
         $user_id = Auth::id();
         $news_id = $request->news_id;
         $news = News::findOrFail($news_id);
 
-        $status = self::isDefault($user_id, $news_id, ReactionConst::DISLIKE) ? ReactionConst::NONE : ReactionConst::DISLIKE;
+        $status = self::isDefault($user_id, $news_id, ReactionConst::DISLIKE)
+        ? ReactionConst::NONE
+        : ReactionConst::DISLIKE;
+
         DB::table('reactions')->updateOrInsert(
             [
                 'user_id' => $user_id,
@@ -55,6 +62,7 @@ class ReactionController extends Controller
         $json = $this->countReactions($news);
         return response()->json($json);
     }
+
     private function countReactions($news)
     {
         $newsDislikesCount = $news->getDislike()->count();
