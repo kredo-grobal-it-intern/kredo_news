@@ -23,7 +23,7 @@ class ReactionController extends Controller
         $user_id = Auth::id();
         $news_id = $request->news_id;
         $news = News::findOrFail($news_id);
-        
+
         $status = self::isDefault($user_id, $news_id, 1) ? 0 : 1;
         DB::table('reactions')->updateOrInsert(
             [
@@ -56,8 +56,8 @@ class ReactionController extends Controller
     }
     private function countReactions($news)
     {
-        $newsDislikesCount = $news->dislike_reactions()->count();
-        $newsLikesCount = $news->like_reactions()->count();
+        $newsDislikesCount = $news->getDislike()->count();
+        $newsLikesCount = $news->getLike()->count();
 
         $json = [
             'newsDislikesCount' => $newsDislikesCount,

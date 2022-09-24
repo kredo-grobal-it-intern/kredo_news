@@ -41,25 +41,25 @@ class News extends Model
         return News::where('source_id', $source_id)->latest('published_at')->offset(1)->limit(4)->get();
     }
 
-    public function like_reactions() {
+    public function getLike() {
         return $this->reactions->filter(function($reaction) {
-            return $reaction->pivot->status == ReactionConst::GOOD;
+            return $reaction->pivot->status == ReactionConst::LIKE;
         });
     }
-    public function dislike_reactions() {
+    public function getDislike() {
         return $this->reactions->filter(function($reaction) {
-            return $reaction->pivot->status == ReactionConst::BAD;
+            return $reaction->pivot->status == ReactionConst::DISLIKE;
         });
     }
     public function isUp(){
         return $this->reactions()
-            ->where('status',ReactionConst::GOOD)
+            ->where('status',ReactionConst::LIKE)
             ->where('user_id',Auth::user()->id)
             ->exists();
     }
     public function isDown(){
         return $this->reactions()
-            ->where('status',ReactionConst::BAD)
+            ->where('status',ReactionConst::DISLIKE)
             ->where('user_id',Auth::user()->id)
             ->exists();
     }
