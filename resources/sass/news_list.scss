@@ -3,11 +3,19 @@
     object-fit: cover;
 }
 
-.sub-heading {
+.news-list-heading {
     font-size: 1.2rem;
 }
 
-.sub-description {
+.news-list-heading-link{
+    text-decoration: none;
+    color: #000;
+    &:hover{
+        color: red;
+    }
+}
+
+.news-list-description {
     font-size: 0.9rem;
 }
 
@@ -21,11 +29,11 @@
         object-fit: cover;
     }
 
-    .sub-heading {
+    .news-list-heading {
         font-size: 1.1rem;
     }
 
-    .sub-description {
+    .news-list-description {
         font-size: 1.0rem;
     }
 }

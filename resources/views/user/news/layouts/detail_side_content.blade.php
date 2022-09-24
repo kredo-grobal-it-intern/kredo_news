@@ -1,4 +1,4 @@
-<li class="row mb-4">
+<li class="row  aside-news">
     <div class="col-5">
         <a href="{{ route('news.show', $news->id) }}"><img src="{{ asset('images/news/' . $news->image) }}" alt="News Image" class="w-100 shadow-lg aside-image"></a>
     </div>
