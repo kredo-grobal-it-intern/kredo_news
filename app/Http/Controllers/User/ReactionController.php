@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Consts\ReactionConst;
 use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,7 +25,7 @@ class ReactionController extends Controller
         $news_id = $request->news_id;
         $news = News::findOrFail($news_id);
 
-        $status = self::isDefault($user_id, $news_id, 1) ? 0 : 1;
+        $status = self::isDefault($user_id, $news_id, ReactionConst::LIKE) ? ReactionConst::NONE : ReactionConst::LIKE;
         DB::table('reactions')->updateOrInsert(
             [
                 'user_id' => $user_id,
@@ -42,7 +43,7 @@ class ReactionController extends Controller
         $news_id = $request->news_id;
         $news = News::findOrFail($news_id);
 
-        $status = self::isDefault($user_id, $news_id, 2) ? 0 : 2;
+        $status = self::isDefault($user_id, $news_id, ReactionConst::DISLIKE) ? ReactionConst::NONE : ReactionConst::DISLIKE;
         DB::table('reactions')->updateOrInsert(
             [
                 'user_id' => $user_id,
