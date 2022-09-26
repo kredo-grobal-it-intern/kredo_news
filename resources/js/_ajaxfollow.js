@@ -1,6 +1,6 @@
 $(function() {
-    const unfollow = $('#unfollow');
-    const follow = $('#follow');
+    const unfollow = $('.unfollow');
+    const follow = $('.follow');
     let userId;
 
     $.ajaxSetup({
@@ -23,7 +23,7 @@ $(function() {
         // success
         .done(function(data) {
             $this.addClass('d-none');
-            unfollow.removeClass('d-none');
+            $this.siblings('.unfollow').removeClass('d-none');
         })
     });
 
@@ -41,7 +41,7 @@ $(function() {
         // success
         .done(function(data) {
             $this.addClass('d-none');
-            follow.removeClass('d-none');
+            $this.siblings('.follow').removeClass('d-none');
         })
     });
 });

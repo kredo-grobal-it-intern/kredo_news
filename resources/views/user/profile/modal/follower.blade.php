@@ -19,14 +19,11 @@
                             </a>
 
                         </div>
-                        <div class="col-4">
-                            <form action="{{ route('user.destroy.follower', $follower->id) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-
-                                <button type="submit" class="btn btn-white btn-sm btn-border-2 border-secondary fw-bold">Remove</button>
-                            </form>
-                        </div>
+                        @if (Auth::user()->id !== $follower->id)
+                            <div class="col-4">
+                                @include('user.news.feature.follow', ['user' => $follower])
+                            </div>
+                        @endif
                     </div>
                 @endforeach
             </div>
