@@ -60,10 +60,6 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(News::class);
     }
-    public function reactions()
-    {
-        return $this->hasMany(Reaction::class);
-    }
 
     public function country(){
         return $this->belongsTo(Country::class);
@@ -99,7 +95,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(User::class, 'follows', 'follower_id', 'following_id');
     }
 
-    public function newsReactions() {
+    public function reactions() {
         return $this->belongsToMany(News::class, 'reactions', 'user_id', 'news_id')->withPivot('status');
     }
 

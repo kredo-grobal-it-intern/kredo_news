@@ -10,13 +10,13 @@
         <label for="title" class="form-label fs-4">■Title</label>
         <textarea name="title" id="title" cols="30" rows="2" class="form-control">{{ old('title') }}</textarea>
         @error('title')
-        <p class="text-danger small">Title is required.</p>
+        <p class="text-danger small">{{ $message }}</p>
         @enderror  
 
         <label for="description" class="form-label fs-4 mt-3">■Description</label>
         <textarea name="description" id="description" cols="30" rows="2" class="form-control">{{ old('description') }}</textarea>
         @error('description')
-        <p class="text-danger small mb-4">Description is required.</p>
+        <p class="text-danger small mb-4">{{ $message }}</p>
         @enderror  
 
         <h1 class="fs-4 mt-4">■About News</h1>
@@ -34,7 +34,7 @@
                     </select>
         
                     @error('country_id')
-                    <p class="text-danger small">Country is required.</p>
+                    <p class="text-danger small">{{ $message }}</p>
                     @enderror  
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                     </select>
         
                     @error('country_id')
-                    <p class="text-danger small">Country is required.</p>
+                    <p class="text-danger small">{{ $message }}</p>
                     @enderror  
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                     </select>
 
                     @error('source_id')
-                    <p class="text-danger small">News site is required.</p>
+                    <p class="text-danger small">{{ $message }}</p>
                     @enderror  
                     </div>
                 </div>
@@ -86,7 +86,7 @@
                     <div class="col-9 ps-0">
                     <input type="text" name="url" id="url" class="form-control" value="{{ old('url') }}">
                     @error('url')
-                    <p class="text-danger small">URL is required.</p>
+                    <p class="text-danger small">{{ $message }}</p>
                     @enderror  
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                     <div class="col-9 ps-0">
                     <input type="date" name="published_at" id="published-at" class="form-control" value="{{ old('published_at') }}">
                     @error('published_at')
-                    <p class="text-danger small">Published is required.</p>
+                    <p class="text-danger small">{{ $message }}</p>
                     @enderror  
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                     <div class="col-9 ps-0">
                     <input type="text" name="author" id="author" class="form-control" value="{{ old('author') }}">
                     @error('author')
-                    <p class="text-danger small">Author is required.</p>
+                    <p class="text-danger small">{{ $message }}</p>
                     @enderror  
                     </div>
                 </div>
@@ -122,12 +122,12 @@
         <label for="image" class="form-label mt-4 fs-4 ">■Image</label>
         <input type="file" name="image" id="image" class="d-block ms-3">
         @error('image')
-        <p class="text-danger small ms-3">Image is required.</p>
+        <p class="text-danger small ms-3">{{ $message }}</p>
         @enderror  
 
         <label for="content" class="form-label mt-4 fs-4">■Content</label>        
         @error('content')
-        <p class="text-danger small">Content is required.</p>
+        <p class="text-danger small">{{ $message }}</p>
         @enderror  
         <textarea id="myeditorinstance" name="content">{{ old('content') }}</textarea>
         <button type="submit" class="btn btn-primary w-50 mt-2 mx-auto d-block">Save</button>
@@ -136,4 +136,3 @@
         
     </div>
 @endsection
-
