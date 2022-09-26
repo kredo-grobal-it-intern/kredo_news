@@ -7,7 +7,7 @@
         @endif
     </div>
     <div class="col-12 col-lg-8">
-        <div class="profile-heading mb-2">
+        <div class="profile-heading mb-3">
             @if ($user->avatar)
                 <img src="{{asset('/images/avatars/'.$user->avatar)}}" alt="Image" class="profile-heading-icon rounded-circle me-2">
             @else
@@ -15,7 +15,7 @@
             @endif
             <h2 class="fw-bold mb-0">{{ $user->username }}</h2>
         </div>
-        <div class="profile-action mb-2">
+        <div class="profile-action mb-3">
             @if (Auth::user()->id === $user->id)
                 <a href="{{route('user.profile.edit')}}" class="text-decoration-none text-secondary">Edit Profile</a>
             @else
@@ -42,11 +42,13 @@
                 @include('user.profile.modal.following')
             </div>
         </div>
-        <p class="my-3">{{ $user->description }}</p>
-        <div class="profile-btn">
-            <a href="{{ route('user.profile.show.likes', $user->id) }}" class="profile-btn-like btn btn-sm me-3">Likes</a>
-            <a href="{{ route('user.profile.show.bookmarks', $user->id) }}" class="profile-btn-bookmark btn btn-sm">Bookmarks</a>
-        </div>
+        <p class="mt-3">{{ $user->description }}</p>
+        @if (Auth::user()->id === $user->id)
+            <div class="profile-btn mb-3">
+                <a href="{{ route('user.profile.show.likes', $user->id) }}" class="profile-btn-like btn btn-sm me-3">Likes</a>
+                <a href="{{ route('user.profile.show.bookmarks', $user->id) }}" class="profile-btn-bookmark btn btn-sm">Bookmarks</a>
+            </div>
+        @endif
     </div>
 </div>
 
