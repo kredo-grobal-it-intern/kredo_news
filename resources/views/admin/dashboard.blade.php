@@ -2,82 +2,154 @@
 
 @section('title', 'Dashboard')
 
+@section('style')
+    <link href="{{ mix('css/admin_dashboard.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
-        <div class="row justify-content-center text-primary">
-            <div class="col-3">
-                <div class="card text-center pb-0">
-                <div class="card-body py-3 display-5 fw-bold">{{ number_format($news->whereNull('deleted_at')->count()) }}</div>
-                <div class="card-footer bg-white">
-                    <a href="{{ route('admin.news.show') }}" class="text-decoration-none fs-2">News</a>
-                </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card text-center pb-0">
-                <div class="card-body  py-3 display-5 fw-bold">{{ number_format($users->whereNull('deleted_at')->count()) }}</div>
-                <div class="card-footer bg-white">
-                    <a href="{{ route('admin.users.show') }}" class="text-decoration-none fs-2">Users</a>
-                </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card text-center pb-0">
-                <div class="card-body  py-3 display-5 fw-bold">{{ number_format($comments->whereNull('deleted_at')->count()) }}</div>
-                <div class="card-footer bg-white">
-                    <a href="{{ route('admin.comments.show') }}" class="text-decoration-none fs-2">Comments</a>
-                </div>
-                </div>
-            </div>
-            </div>
+        <div class="row">
+            <div class="col-6 col-lg-4 mt-4">
+                <div class="card shadow">
+                    <div class="card-body py-3 fw-bold d-flex align-items-center">
+                        <div class="rounded-circle d-flex justify-content-center align-items-center icon">
+                            <span class="text-white fs-3"><i class="fa-solid fa-users"></i></span>
+                        </div>
+                        <div class="ms-3">
+                            <h2 class="m-0 p-0">{{ number_format($users->whereNull('deleted_at')->count()) }}</h2>
+                            <p class="feature-line m-0 p-0 fw-normal">Totla new users</p>
 
-            <div class="row justify-content-center mt-4 text-danger">
-            <div class="col-3">
-                <div class="card text-center pb-0 bg-light">
-                <div class="card-body  py-3 display-5 fw-bold">{{ number_format($news->whereNotNull('deleted_at')->count()) }}</div>
-                <div class="card-footer bg-light">
-                    <a href="{{ route('admin.news.show') }}" class="text-decoration-none text-danger fs-2">Hidden News</a>
-                </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card text-center pb-0 bg-light">
-                <div class="card-body  py-3 display-5 fw-bold">{{ number_format($users->whereNotNull('deleted_at')->count()) }}</div>
-                <div class="card-footer bg-light">
-                    <a href="{{ route('admin.users.show') }}" class="text-decoration-none text-danger fs-2">Deactivate Users</a>
-                </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card text-center pb-0 bg-light">
-                <div class="card-body  py-3 display-5 fw-bold">{{ number_format($comments->whereNotNull('user.deleted_at')->count() + $comments->whereNotNull('deleted_at')->whereNull('user.deleted_at')->count())  }}</div>
-                <div class="card-footer bg-light">
-                    <a href="{{ route('admin.comments.show') }}" class="text-decoration-none text-danger fs-2">Hide Comments</a>
-                </div>
-                </div>
-            </div>
-            </div>
-            
-            {{-- Add below if we create schedul and subscribe function  --}}
-
-            {{-- <div class="row justify-content-center mt-4">
-            <div class="col-3">
-                <div class="card text-center py-4 fs-2">
-                <div class="card-body py-4">100</div>
-                <div class="card-footer bg-white">
-                    <a href="" class="text-decoration-none text-black">Scheduled news</a>
-                </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="col-3">
-                <div class="card text-center py-4 fs-2">
-                <div class="card-body py-4">100</div>
-                <div class="card-footer bg-white">
-                    <a href="" class="text-decoration-none text-black">Subscribers</a>
-                </div>
+            <div class="col-6 col-lg-4 mt-4">
+                <div class="card shadow">
+                    <div class="card-body py-3 fw-bold d-flex align-items-center">
+                        <div class="rounded-circle d-flex justify-content-center align-items-center icon">
+                            <span class="text-white fs-3"><i class="fa-solid fa-newspaper"></i></span>
+                        </div>
+                        <div class="ms-3">
+                            <h2 class="m-0 p-0">{{ number_format($news->whereNull('deleted_at')->count()) }}</h2>
+                            <p class="feature-line m-0 p-0 fw-normal">Total published news</p>
+
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="col-3"></div>
-            </div> --}}
+            <div class="col-6 col-lg-4 mt-4">
+                <div class="card shadow">
+                    <div class="card-body py-3 fw-bold d-flex align-items-center">
+                        <div class="rounded-circle d-flex justify-content-center align-items-center icon">
+                            <span class="text-white fs-3"><i class="fa-solid fa-comments"></i></span>
+                        </div>
+                        <div class="ms-3">
+                            <h2 class="m-0 p-0">{{ number_format($news->whereNull('deleted_at')->count()) }}</h2>
+                            <p class="feature-line m-0 p-0 fw-normal">Total comments</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-lg-4 mt-4">
+                <div class="card shadow">
+                    <div class="card-body py-3 fw-bold d-flex align-items-center">
+                        <div class="rounded-circle d-flex justify-content-center align-items-center icon">
+                            <span class="text-white fs-3"><i class="fa-solid fa-thumbs-up"></i></span>
+                        </div>
+                        <div class="ms-3">
+                            <h2 class="m-0 p-0">{{ number_format($reactions->where('status', 1)->count()) }}</h2>
+                            <p class="feature-line m-0 p-0 fw-normal">Total good reactions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-lg-4 mt-4">
+                <div class="card shadow">
+                    <div class="card-body py-3 fw-bold d-flex align-items-center">
+                        <div class="rounded-circle d-flex justify-content-center align-items-center icon">
+                            <span class="text-white fs-3"><i class="fa-solid fa-thumbs-down"></i></span>
+                        </div>
+                        <div class="ms-3">
+                            <h2 class="m-0 p-0">{{ number_format($reactions->where('status', 2)->count()) }}</h2>
+                            <p class="feature-line m-0 p-0 fw-normal">Total bad reactions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-lg-4 mt-4">
+                <div class="card shadow">
+                    <div class="card-body py-3 fw-bold d-flex align-items-center">
+                        <div class="rounded-circle d-flex justify-content-center align-items-center icon">
+                            <span class="text-white fs-3"><i class="fa-solid fa-bookmark"></i></span>
+                        </div>
+                        <div class="ms-3">
+                            <h2 class="m-0 p-0">{{ number_format($bookmarks->count()) }}</h2>
+                            <p class="feature-line m-0 p-0 fw-normal">Total bookmarks</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="rounded mt-5 shadow">
+                    <h1 class="h5 rounded py-2 text-center text-white">Top 5 good news <i class="fa-solid fa-thumbs-up"></i></h1>
+                    <ol class="list ms-3 py-2">
+                        @foreach ($good_news as $news)
+                        <li class="mb-4" >
+                            <div class="row">
+                                <div class="col-10">
+                                    <a href="{{ route('news.show', $news->id) }}" class="text-black text-decoration-none">{{ $news->title }}</a>
+                                </div>
+                                
+                                <div class="col-2">{{ number_format($news->reactions_count)}}</div>
+                            </div>
+                        </li>
+                        @endforeach
+                    </ol>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+                    <div class="rounded mt-5 shadow">
+                    <h1 class="h5 rounded py-2 text-center text-white" style=" background-color:#052962">Worst 5 bad news <i class="fa-solid fa-thumbs-down"></i></h1>
+                    <ol class="list ms-3 py-2">
+                        @foreach ($bad_news as $news)
+                        <li class="mb-4" >
+                            <div class="row">
+                                <div class="col-10">
+                                    <a href="{{ route('news.show', $news->id) }}" class="text-black text-decoration-none">{{ $news->title }}</a>
+                                </div>
+                                
+                                <div class="col-2">{{ number_format($news->reactions_count)}}</div>
+                            </div>
+                        </li>
+                        @endforeach
+                    </ol>
+                </div>
+            </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="rounded mt-5 shadow">
+                        <h1 class="h5 rounded py-2 text-center text-white" style=" background-color:#052962">Top 5 bookmarked news <i class="fa-solid fa-bookmark"></i></h1>
+                        <ol class="list ms-3 py-2">
+                            @foreach ($bookmark_news as $news)
+                            <li class="mb-4" >
+                                <div class="row">
+                                    <div class="col-10">
+                                        <a href="{{ route('news.show', $news->id) }}" class="text-black text-decoration-none">{{ $news->title }}</a>
+                                    </div>
+                                    
+                                    <div class="col-2">{{ number_format($news->bookmarks_count)}}</div>
+                                </div>
+                            </li>
+                            @endforeach
+                        </ol>
+                    </div>
+                </div>
+        </div>
 @endsection

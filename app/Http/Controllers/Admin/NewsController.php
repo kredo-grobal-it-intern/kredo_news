@@ -11,6 +11,7 @@ use App\Models\Comment;
 use App\Models\Country;
 use App\Models\Source;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
@@ -18,14 +19,24 @@ class NewsController extends Controller
 
     public function showDashboard()
     {
-        $news     = News::withTrashed()->get();
-        $users    = User::withTrashed()->get();
-        $comments = Comment::withTrashed()->with('user')->get();
-
+        $news          = News::withTrashed()->get();
+        $users         = User::withTrashed()->get();
+        $comments      = Comment::withTrashed()->with('user')->get();
+        $reactions     = DB::table('reactions')->get();
+        $bookmarks     = DB::table('bookmarks')->get();
+        $good_news     = News::getTopGoodNewsList();
+        $bad_news      = News::getWorstBadNewsList();
+        $bookmark_news = News::getTopBookmarkNewsList();
+        
         return view('admin.dashboard')
                 ->with('news', $news)
                 ->with('users', $users)
-                ->with('comments', $comments);
+                ->with('comments', $comments)
+                ->with('reactions', $reactions)
+                ->with('good_news', $good_news)
+                ->with('bad_news', $bad_news)
+                ->with('bookmark_news', $bookmark_news)
+                ->with('bookmarks', $bookmarks);
     }
 
     public function show()
