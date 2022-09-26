@@ -44,8 +44,8 @@ Route::get('/media/{media_id}', [MediaController::class, 'show'])->name('news.me
 
 // Logged in user
 Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'verified'], function () {
-    Route::post('/thumbs_up', [ReactionController::class, 'thumbs_up'])->name('thumbs_up');
-    Route::post('/thumbs_down', [ReactionController::class, 'thumbs_down'])->name('thumbs_down');
+    Route::post('/like', [ReactionController::class, 'like'])->name('like');
+    Route::post('/dislike', [ReactionController::class, 'dislike'])->name('dislike');
     Route::post('/follow', [FollowController::class, 'follow'])->name('follow');
     Route::post('/unfollow', [FollowController::class, 'unfollow'])->name('unfollow');
     Route::post('/bookmark', [BookmarkController::class, 'bookmark'])->name('bookmark');

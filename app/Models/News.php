@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Consts\SourceConst;
+use App\Consts\ReactionConst;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,9 +15,6 @@ use Illuminate\Database\Eloquent\Builder;
 class News extends Model
 {
     use HasFactory, SoftDeletes;
-
-    const LIKE = 1;
-    const DISLIKE = 2;
 
     public static $rules = array(
         'title' => 'required',
@@ -44,29 +42,26 @@ class News extends Model
     {
         return News::where('source_id', $source_id)->latest('published_at')->offset(1)->limit(4)->get();
     }
-    public function reactions(){
-        return $this->belongsToMany(News::class, 'reactions', 'news_id')->withPivot('status');
-    }
 
-    public function like_reactions() {
+    public function getLike() {
         return $this->reactions->filter(function($reaction) {
-            return $reaction->pivot->status == self::LIKE;
+            return $reaction->pivot->status == ReactionConst::LIKE;
         });
     }
-    public function dislike_reactions() {
+    public function getDislike() {
         return $this->reactions->filter(function($reaction) {
-            return $reaction->pivot->status == self::DISLIKE;
+            return $reaction->pivot->status == ReactionConst::DISLIKE;
         });
     }
-    public function isUp(){
+    public function isLiked(){
         return $this->reactions()
-            ->where('status',Reaction::GOOD)
+            ->where('status',ReactionConst::LIKE)
             ->where('user_id',Auth::user()->id)
             ->exists();
     }
-    public function isDown(){
+    public function isDisliked(){
         return $this->reactions()
-            ->where('status',Reaction::BAD)
+            ->where('status',ReactionConst::DISLIKE)
             ->where('user_id',Auth::user()->id)
             ->exists();
     }
@@ -155,6 +150,10 @@ class News extends Model
         return News::withCount('bookmarks')->orderBy('bookmarks_count', 'desc')->limit(5)->get();
     }
 
+    /*
+    ** Relation -----------------------------------------------
+    */
+
     public function country()
     {
         return $this->belongsTo(Country::class);
@@ -179,14 +178,7 @@ class News extends Model
         return $this->belongsToMany(User::class, 'bookmarks', 'news_id', 'user_id');
     }
 
-    public function good()
-    {
-        return $this->hasMany(Reaction::class)->where('status', 1);
+    public function reactions(){
+        return $this->belongsToMany(User::class, 'reactions', 'news_id', 'user_id')->withPivot('status');
     }
-
-    public function bad()
-    {
-        return $this->hasMany(Reaction::class)->where('status', 2);
-    }
-
 }
