@@ -29,6 +29,13 @@
             background-color: #052962;
             color: white;
         }
+        &-to-modal {
+            border: 0;
+            font-size: 1.1rem;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
     }
 }
 
@@ -51,6 +58,12 @@
                 display: inline-block;
             }
         }
+    }
+}
+
+@media (max-width: 576px) {
+    .profile-btn-to-modal {
+        font-size: 0.9rem;
     }
 }
 

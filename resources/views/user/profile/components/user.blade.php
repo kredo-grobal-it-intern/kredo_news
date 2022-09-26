@@ -24,21 +24,21 @@
             @endif
         </div>
         <div class="row">
-            <div class="col-12 col-sm-4">
-                <button type="button" class="btn border-0 fs-5 m-0 p-0" data-bs-toggle="modal" data-bs-target="#comment">
-                    <span class="fw-bold fs-4">{{ $user->comments->count() }}</span> Comments
+            <div class="col-4">
+                <button type="button" class="btn profile-btn-to-modal" data-bs-toggle="modal" data-bs-target="#comment">
+                    <span class="fw-bold">{{ $user->comments->count() }}</span> Comments
                 </button>
                 @include('user.profile.modal.comments')
             </div>
-            <div class="col-12 col-sm-4">
-                <button type="button" class="btn border-0 fs-5 m-0 p-0" data-bs-toggle="modal" data-bs-target="#follower">
-                    <span class="fw-bold fs-4">{{ $user->followers->count() }}</span> Followers
+            <div class="col-4">
+                <button type="button" class="btn profile-btn-to-modal" data-bs-toggle="modal" data-bs-target="#follower">
+                    <span class="fw-bold">{{ $user->followers->count() }}</span> Followers
                 </button>
                 @include('user.profile.modal.follower')
             </div>
-            <div class="col-12 col-sm-4">
-                <button type="button" class="btn border-0 fs-5 m-0 p-0" data-bs-toggle="modal" data-bs-target="#following">
-                    <span class="fw-bold fs-4">{{ $user->followings->count() }}</span> Followings
+            <div class="col-4">
+                <button type="button" class="btn profile-btn-to-modal" data-bs-toggle="modal" data-bs-target="#following">
+                    <span class="fw-bold">{{ $user->followings->count() }}</span> Followings
                 </button>
                 @include('user.profile.modal.following')
             </div>
