@@ -7,7 +7,8 @@
         @endif
     </div>
     <div class="col-12 col-lg-8">
-        <div class="profile-heading mb-3">
+        <div class="profile-heading align-items-center mb-3">
+            <!-- For responsive -->
             @if ($user->avatar)
                 <img src="{{asset('/images/avatars/'.$user->avatar)}}" alt="Image" class="profile-heading-icon rounded-circle me-2">
             @else

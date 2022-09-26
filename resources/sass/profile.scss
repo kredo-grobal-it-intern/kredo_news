@@ -37,7 +37,6 @@
         width: 100%;
         &-avatar {
             display: none;
-            vertical-align: top;
         }
 
         &-heading {
@@ -53,4 +52,18 @@
             }
         }
     }
+}
+
+/*
+** Following modal
+*/
+
+.user-avatar-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+}
+
+.user-avatar-none {
+    font-size: 32px;
 }
