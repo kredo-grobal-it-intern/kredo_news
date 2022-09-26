@@ -11,8 +11,9 @@
             <h2 class="fw-bold">{{ $user->username }}</h2>
             @if (Auth::user()->id === $user->id)
                 <a href="{{route('user.profile.edit')}}" class="text-decoration-none text-secondary">Edit Profile</a>
+            @else
+                @include('user.news.feature.follow')
             @endif
-            @include('user.news.feature.follow')
         </div>
         <div class="row">
             <div class="col-3">

@@ -24,8 +24,8 @@
                                 @csrf
                                 @method('DELETE')
 
-                                <button type="submit" class="btn btn-white btn-sm btn-border-2 border-secondary fw-bold">Remove</button>
-                            </form>                        
+                                <button type="submit" class="btn btn-outline-danger btn-sm fw-bold">Unfollow</button>
+                            </form>
                         </div>
                     </div>
                 @endforeach
