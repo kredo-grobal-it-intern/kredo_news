@@ -1,52 +1,78 @@
 @extends('layouts.admin')
 
 @section('title', 'Admin News List')
+
+@section('style')
+    <link href="{{ mix('css/admin/table.css') }}" rel="stylesheet">
+@endsection
     
 @section('content')
-<div class="container px-5">
-
-    <table class="table align-middle">
+<div class="table-responsive">
+    <table class="table align-middle mt-4 text-nowrap">
         <thead >
-        <tr>
-            <th style="width:1%;">No.</th>
-            <th style="width:30%;">User</th>
-            <th style="width:30%;">E-mail</th>
-            <th style="width:20%;">Nationality</th>
-            <th style="width:10%;">Status</th>
-            <th style="width:9%;">Action</th>
-        </tr>
+            <tr>
+                <th>No.</th>
+                <th class="col-2">User</th>
+                <th class="col-2">E-mail</th>
+                <th class="col-2">Nationality</th>
+                <th class="col-2">Country</th>
+                <th class="col-1">Comments</th>
+                <th class="col-1">Follower</th>
+                <th class="col-1">Followings</th>
+                <th class="col-1">Status</th>
+                <th class="col-1">Action</th>
+            </tr>
         </thead>
         <tbody>
         @foreach ($users as $user)
             <tr>
-            <td>{{ $users->firstItem() + $loop->index }}</td>
+            <td class="text-center">{{ $users->firstItem() + $loop->index }}</td>
             <td>
                 @if ($user->avatar)
                 <div class="row align-items-center">
-                    <a href="" class="text-decoration-none text-black">
-                    <img src="" alt="" style="object-fit:cover;">
+                    <a href="{{ route('user.profile.show.likes', $user->id) }}" class="text-decoration-none text-black">
+                    <img src="{{ asset('images/avatars/' . $user->avatar) }}" alt="" class="avatar">
                     {{ $user->username }}
                     </a>
                 </div>
                 @else  
-                    <a href="" class="text-decoration-none text-black" style="display: flex; align-items: center;"><i class="fa-solid fa-circle-user fs-2 me-2"></i><span class="" style="">{{ $user->username }}</span></a>
+                    <a href="{{ route('user.profile.show.likes', $user->id) }}" class="text-decoration-none text-black avatar-name-align"><span class="fs-2 me-2"><i class="fa-solid fa-circle-user"></i></span>{{ $user->username }}</a>
                 @endif
 
             </td>
             <td>{{ $user->email }}</td>
-            <td>{{ $user->nationality->name }}</td>
+            <td>
+                @if ($user->country->national_flag)
+                    <img src="{{ asset('images/national_flags/'. $user->country->national_flag) }}" alt="{{ $user->country->name }}" class="shadow" style="width:24px;">
+                @else
+                    <span class="me-1"><i class="fa-solid fa-earth-americas"></i></span>
+                    
+                @endif
+                {{ $user->country->name }}
+            </td>
+            <td>
+                @if ($user->country->national_flag)
+                <img src="{{ asset('images/national_flags/'. $user->country->national_flag) }}" alt="{{ $user->country->name }}" class="shadow" style="width:24px;">
+                @else
+                <span class="me-1"><i class="fa-solid fa-earth-americas"></i></span>
+                @endif
+                {{ $user->nationality->name }}
+            </td>
+            <td>{{ $user->comments->count() }}</td>
+            <td>{{ $user->followers->count() }}</td>
+            <td>{{ $user->followings->count() }}</td>
             <td>
                 @if ($user->deleted_at)
-                    <p class="text-danger m-0">Inactive</p>
+                    <p class="badge bg-danger m-0">Inactive</p>
                 @else
-                <p class="text-dange text-primary m-0">Active</p>
+                <p class="badge bg-primary m-0">Active</p>
                 @endif
             </td>
             <td>
                 @if ($user->deleted_at)
-                <a href="{{ route('admin.users.restore', $user->id) }}" class="btn shadow-none text-primary border-0 px-0">Activate</a>
+                <a href="{{ route('admin.users.restore', $user->id) }}" class="btn shadow-none text-primary border-0 px-0 action-size"><span class="me-1"><i class="fa-solid fa-user"></i>Activate</a>
                 @else
-                <button class="btn shadow-none text-danger border-0 px-0" data-bs-toggle="modal" data-bs-target="#deactivate-user-{{ $user->id }}">Deactivate</button>
+                <button class="btn shadow-none text-danger border-0 px-0 action-size" data-bs-toggle="modal" data-bs-target="#deactivate-user-{{ $user->id }}"><span class="me-1"><i class="fa-solid fa-user-slash"></i>Deactivate</span></button>
                 @endif
                 @include('admin.users.modal.status')
             </td>
@@ -57,6 +83,7 @@
         </table>
         {{ $users->links() }}
     </div>
+ 
 
     @endsection
 
