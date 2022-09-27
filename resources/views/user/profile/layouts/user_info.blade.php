@@ -32,13 +32,13 @@
             </div>
             <div class="col-4">
                 <button type="button" class="btn profile-btn-to-modal" data-bs-toggle="modal" data-bs-target="#follower">
-                    <span class="fw-bold">{{ $user->followers->count() }}</span> Followers
+                    <span class="fw-bold @if(Auth::user()->id === $user->id) auth-follower-count @else user-follower-count @endif">{{ $user->followers->count() }}</span> Followers
                 </button>
                 @include('user.profile.modal.follower')
             </div>
             <div class="col-4">
                 <button type="button" class="btn profile-btn-to-modal" data-bs-toggle="modal" data-bs-target="#following">
-                    <span class="fw-bold">{{ $user->followings->count() }}</span> Followings
+                    <span class="fw-bold @if(Auth::user()->id === $user->id) auth-following-count @else user-following-count @endif">{{ $user->followings->count() }}</span> Followings
                 </button>
                 @include('user.profile.modal.following')
             </div>

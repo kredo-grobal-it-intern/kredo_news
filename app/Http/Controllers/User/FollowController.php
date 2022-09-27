@@ -21,14 +21,19 @@ class FollowController extends Controller
                 'follower_id' => $follower_id
             ]);
         }
-        return response()->json();
+
+        $param = User::getFollowCountForJson(Auth::user(), $user);
+        return response()->json($param);
     }
 
     public function unfollow(Request $request)
     {
         $follower_id = Auth::id();
         $following_id = $request->user_id;
+        $user = User::find($following_id);
         DB::table('follows')->where('following_id', $following_id)->where('follower_id', $follower_id)->delete();
-        return response()->json();
+        
+        $param = User::getFollowCountForJson(Auth::user(), $user);
+        return response()->json($param);
     }
 }

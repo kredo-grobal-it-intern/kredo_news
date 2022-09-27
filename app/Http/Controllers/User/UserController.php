@@ -27,28 +27,6 @@ class UserController extends Controller
             ->with('user', $user);
     }
 
-    public function showLikes(Request $request)
-    {
-        $user      = User::findOrFail($request->user_id);
-        $liked_news = $user->reactions->filter(function ($reaction) {
-            return $reaction->pivot->status == 1;
-        });
-
-        return view('user.profile.show.likes')
-                ->with('liked_news', $liked_news)
-                ->with('user', $user);
-    }
-
-    public function showBookmarks()
-    {
-        $user      = Auth::user();
-        $bookmarked_news = $user->bookmarks;
-
-        return view('user.profile.show.bookmarks')
-                ->with('bookmarked_news', $bookmarked_news)
-                ->with('user', $user);
-    }
-
     public function edit()
     {
         $user = User::findOrFail(Auth::id());
@@ -122,25 +100,5 @@ class UserController extends Controller
         if (Storage::disk('local')->exists($image_path)) :
             Storage::disk('local')->delete($image_path);
         endif;
-    }
-
-    public function destroyFollower($follower_id)
-    {
-        DB::table('follows')
-            ->where('following_id', Auth::id())
-            ->where('follower_id', $follower_id)
-            ->delete();
-
-        return redirect()->back();
-    }
-
-    public function destroyFollowing($following_id)
-    {
-        DB::table('follows')
-            ->where('following_id', $following_id)
-            ->where('follower_id', Auth::id())
-            ->delete();
-
-        return redirect()->back();
     }
 }

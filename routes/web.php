@@ -61,8 +61,6 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'verified'], 
         Route::get('/edit', [UserController::class, 'edit'])->name('edit');
         Route::patch('/{id}', [UserController::class, 'update'])->name('update');
     });
-    Route::delete('/follower/destroy/{follower_id}', [UserController::class, 'destroyFollower'])->name('destroy.follower');
-    Route::delete('/following/destroy/{following_id}', [UserController::class, 'destroyFollowing'])->name('destroy.following');
 });
 
 // Admin

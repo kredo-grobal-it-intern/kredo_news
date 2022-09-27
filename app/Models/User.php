@@ -53,6 +53,24 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    public static function getFollowCountForJson($logged_in_user, $user) {
+        $auth_following_count = $logged_in_user->followings->count();
+        $auth_follower_count = $logged_in_user->followers->count();
+        $user_following_count = $user->followings->count();
+        $user_follower_count = $user->followers->count();
+
+        return [
+            'authFollowingCount' => $auth_following_count,
+            'authFollowerCount' => $auth_follower_count,
+            'userFollowingCount' => $user_following_count,
+            'userFollowerCount' => $user_follower_count
+        ];
+    }
+
+    /*
+    ** Relation -----------------------------------------------
+    */
+
     public function category(){
         return $this->belongsTo(Category::class);
     }
