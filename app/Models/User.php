@@ -53,9 +53,14 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public static function getFollowCountForJson($logged_in_user, $user) {
-        $auth_following_count = $logged_in_user->followings->count();
-        $auth_follower_count = $logged_in_user->followers->count();
+
+    public function isFollowed(){
+        return $this->followers()->where('follower_id',Auth::user()->id)->exists();
+    }
+
+    public static function getFollowCountForJson(User $user) {
+        $auth_following_count = Auth::user()->followings->count();
+        $auth_follower_count = Auth::user()->followers->count();
         $user_following_count = $user->followings->count();
         $user_follower_count = $user->followers->count();
 
@@ -97,10 +102,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function favoriteCountries(){
         return $this->belongsToMany(Country::class, 'favorite_countries', 'user_id', 'country_id');
-    }
-
-    public function isFollowed(){
-        return $this->followers()->where('follower_id',Auth::user()->id)->exists();
     }
 
     public function followers()
