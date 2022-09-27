@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('style')
-    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/login.css') }}" rel="stylesheet">
 @endsection
 @section('content')
     <div class="container text-center container-custom">
