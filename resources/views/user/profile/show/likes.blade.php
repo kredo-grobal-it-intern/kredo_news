@@ -9,11 +9,11 @@
 @endsection
 @section('content')
 <div class="container">
-    @include('user.profile.components.user')
+    @include('user.profile.layouts.user_info')
 
     <div class="row mt-5">
-        @foreach ($reactions as $reaction )
-            @include('user.profile.components.news')
+        @foreach ($liked_news as $news)
+            @include('user.profile.layouts.news_list')
         @endforeach
     </div>
 </div>

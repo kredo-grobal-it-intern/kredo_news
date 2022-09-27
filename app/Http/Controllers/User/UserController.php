@@ -17,22 +17,22 @@ class UserController extends Controller
     public function showLikes(Request $request)
     {
         $user      = User::findOrFail($request->user_id);
-        $reactions = $user->reactions->filter(function ($reaction) {
+        $liked_news = $user->reactions->filter(function ($reaction) {
             return $reaction->pivot->status == 1;
         });
 
         return view('user.profile.show.likes')
-                ->with('reactions', $reactions)
+                ->with('liked_news', $liked_news)
                 ->with('user', $user);
     }
 
     public function showBookmarks()
     {
         $user      = Auth::user();
-        $bookmarks = $user->bookmarks;
+        $bookmarked_news = $user->bookmarks;
 
         return view('user.profile.show.bookmarks')
-                ->with('bookmarks', $bookmarks)
+                ->with('bookmarked_news', $bookmarked_news)
                 ->with('user', $user);
     }
 
