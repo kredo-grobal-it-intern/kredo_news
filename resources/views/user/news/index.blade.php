@@ -7,13 +7,12 @@
 
 @section('content')
 <div class="container">
-    <h1 class="header-top-news">Top news from world regions</h1>
+    <h1 class="header-top-news mb-5">Top news from world regions</h1>
     @foreach ($news_list as $country_name => $country_news)
         @isset($country_news['latest']) <!-- tentative condition -->
             <section class="country-section">
-                <div class="text-center my-4">
+                <div class="text-center mb-4">
                     <h2 class="country-top fw-bold">{{ $country_name }}</h2>
-                    <hr class="country-top-line">
                 </div>
 
                 <div class="row">
