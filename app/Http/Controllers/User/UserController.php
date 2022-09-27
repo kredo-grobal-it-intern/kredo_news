@@ -50,13 +50,11 @@ class UserController extends Controller
         $user                 = Auth::user();
         $user->username       = $request->username;
         $user->email          = $request->email;
-        $user->description    = $request->description;
-        $user = User::findOrFail(Auth::id());
-        $user->username = $request->username;
-        $user->email = $request->email;
         $user->nationality_id = $request->nationality;
         $user->country_id     = $request->country;
+        $user->description    = $request->description;
         $sources              = $request->sources ?? [];
+        $countries            = $request->countries ?? [];
 
         $favorite_sources = [];
         foreach ($sources as $source) {
@@ -65,9 +63,9 @@ class UserController extends Controller
             'source_id' => $source
             ];
         }
-            DB::table('favorite_sources')->where('user_id', $user->id)->delete();
-            DB::table('favorite_sources')->insert($favorite_sources);
-        $countries = $request->countries ?? [];
+        $user->favoriteSources()->detach();
+        $user->favoriteSources()->attach($favorite_sources);
+
         $favorite_countries = [];
         foreach ($countries as $country) {
             $favorite_countries[] = [
@@ -75,17 +73,17 @@ class UserController extends Controller
                 'country_id' => $country
             ];
         }
-            DB::table('favorite_countries')->where('user_id', $user->id)->delete();
-            DB::table('favorite_countries')->insert($favorite_countries);
+        $user->favoriteCountries()->detach();
+        $user->favoriteCountries()->attach($favorite_countries);
 
-        if ($request->avatar) :
+        if ($request->avatar) {
             $this->deleteAvatar($user->avatar);
             $user->avatar = $this->saveAvatar($request);
-        endif;
+        }
 
         $user->save();
 
-        return redirect()->route('user.profile.show.likes', ['user_id' => $user->id]);
+        return redirect()->route('user.profile.show', ['user_id' => $user->id]);
     }
 
     public function saveAvatar($request)

@@ -86,7 +86,7 @@
                         <label class="form-label">Discription</label>
                     </div>
                     <div class="col-lg-8">
-                        <input type="text" name="discription" id="discription" class="form-control" value="" placeholder="Add value later">
+                        <input type="text" name="description" id="description" class="form-control" value="{{ $user->description }}" placeholder="Input description">
                     </div>
                 </div>
             </div>
