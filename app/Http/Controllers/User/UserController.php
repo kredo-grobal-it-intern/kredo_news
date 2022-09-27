@@ -14,26 +14,18 @@ class UserController extends Controller
 {
     const LOCAL_STORAGE_FOLDER = 'public/images/avatars/';
 
-    public function showLikes(Request $request)
+    public function show(Request $request)
     {
-        $user      = User::findOrFail($request->user_id);
-        $reactions = $user->reactions->filter(function ($reaction) {
+        $user = User::findOrFail($request->user_id);
+        $liked_news = $user->reactions->filter(function ($reaction) {
             return $reaction->pivot->status == 1;
         });
+        $bookmarked_news = $user->bookmarks;
 
-        return view('user.profile.show.likes')
-                ->with('reactions', $reactions)
-                ->with('user', $user);
-    }
-
-    public function showBookmarks()
-    {
-        $user      = Auth::user();
-        $bookmarks = $user->bookmarks;
-
-        return view('user.profile.show.bookmarks')
-                ->with('bookmarks', $bookmarks)
-                ->with('user', $user);
+        return view('user.profile.show')
+            ->with('liked_news', $liked_news)
+            ->with('bookmarked_news', $bookmarked_news)
+            ->with('user', $user);
     }
 
     public function edit()
@@ -109,25 +101,5 @@ class UserController extends Controller
         if (Storage::disk('local')->exists($image_path)) :
             Storage::disk('local')->delete($image_path);
         endif;
-    }
-
-    public function destroyFollower($follower_id)
-    {
-        DB::table('follows')
-            ->where('following_id', Auth::id())
-            ->where('follower_id', $follower_id)
-            ->delete();
-
-        return redirect()->back();
-    }
-
-    public function destroyFollowing($following_id)
-    {
-        DB::table('follows')
-            ->where('following_id', $following_id)
-            ->where('follower_id', Auth::id())
-            ->delete();
-
-        return redirect()->back();
     }
 }

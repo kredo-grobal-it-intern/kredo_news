@@ -57,13 +57,10 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'verified'], 
     Route::post('/{news_id}/comment', [CommentController::class, 'store'])->name('comment.store');
     Route::delete('/comment/{comment_id}', [CommentController::class, 'destroy'])->name('comment.destroy');
     Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
+        Route::get('/show/{user_id}', [UserController::class, 'show'])->name('show');
         Route::get('/edit', [UserController::class, 'edit'])->name('edit');
-        Route::get('/show/likes/{user_id}', [UserController::class, 'showLikes'])->name('show.likes');
-        Route::get('/show/bookmarks/{user_id}', [UserController::class, 'showBookmarks'])->name('show.bookmarks');
         Route::patch('/{id}', [UserController::class, 'update'])->name('update');
     });
-    Route::delete('/follower/destroy/{follower_id}', [UserController::class, 'destroyFollower'])->name('destroy.follower');
-    Route::delete('/following/destroy/{following_id}', [UserController::class, 'destroyFollowing'])->name('destroy.following');
 });
 
 // Admin
