@@ -9,7 +9,7 @@
                 @foreach ($user->followings as $following)
                     <div class="row align-items-center mb-3">
                         <div class="col-8">
-                            <a href="{{ route('user.profile.show.likes', $following->id) }}" class="text-decoration-none d-flex align-items-center" >
+                            <a href="{{ route('user.profile.show', $following->id) }}" class="text-decoration-none d-flex align-items-center" >
                                 @if ($following->avatar)
                                     <img src="{{asset('/images/avatars/'. $following->avatar)}}" alt="{{ $following->username }}" class="user-avatar-icon rounded-circle me-2">
                                 @else
