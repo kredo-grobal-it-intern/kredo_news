@@ -46,8 +46,8 @@
         <p class="mt-3">{{ $user->description }}</p>
         @if (Auth::user()->id === $user->id)
             <div class="profile-btn mb-3">
-                <a href="{{ route('user.profile.show.likes', $user->id) }}" class="profile-btn-like btn btn-sm me-3">Likes</a>
-                <a href="{{ route('user.profile.show.bookmarks', $user->id) }}" class="profile-btn-bookmark btn btn-sm">Bookmarks</a>
+                <span class="profile-btn-tab me-3 is-active">Likes</span>
+                <span class="profile-btn-tab">Bookmarks</span>
             </div>
         @endif
     </div>

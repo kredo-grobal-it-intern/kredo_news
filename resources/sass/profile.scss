@@ -21,13 +21,11 @@
     }
 
     &-btn {
-        &-like {
-            background-color: #052962;
-            color: white;
-        }
-        &-bookmark {
-            background-color: #052962;
-            color: white;
+        &-tab {
+            border: 1px solid #052962;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
         }
         &-to-modal {
             border: 0;
@@ -37,6 +35,11 @@
             }
         }
     }
+}
+
+.is-active {
+    background-color: #052962;
+    color: #fff;
 }
 
 @media (max-width: 992px) {
