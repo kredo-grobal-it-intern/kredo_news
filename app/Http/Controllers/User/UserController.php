@@ -14,7 +14,8 @@ class UserController extends Controller
 {
     const LOCAL_STORAGE_FOLDER = 'public/images/avatars/';
 
-    public function show(Request $request) {
+    public function show(Request $request)
+    {
         $user = User::findOrFail($request->user_id);
         $liked_news = $user->reactions->filter(function ($reaction) {
             return $reaction->pivot->status == 1;
