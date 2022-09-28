@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Source;
@@ -35,12 +36,14 @@ class UserController extends Controller
         $favorite_sources_ids = $user->favoriteSources->pluck('id')->toArray();
         $sources = Source::all();
         $continents = [ 'America','Asia','Europe','Oceania','Africa' ];
+        $all_countries = Country::all();
         $favorite_countries_ids = $user->favoriteCountries->pluck('id')->toArray();
 
         return view('user.profile.edit', [
                 'user' => $user,
                 'sources' => $sources,
                 'continents' => $continents,
+                'all_countries' => $all_countries,
                 'favorite_sources_ids' => $favorite_sources_ids,
                 'favorite_countries_ids' => $favorite_countries_ids
         ]);

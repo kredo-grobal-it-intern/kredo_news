@@ -60,10 +60,7 @@
                     </div>
                     <div class="col-lg-8">
                         <select class="form-select" id="inputGroupSelect01" name="nationality">
-                                @php
-                                    $countries = App\Models\Country::get();
-                                @endphp
-                                @foreach($countries as $country)
+                                @foreach($all_countries as $country)
                                     <div class="form-check form-check-inline">
                                         <option value="{{$country->id}}" {{ $country->id == Auth::user()->nationality_id ? 'selected' : '' }}>{{$country->name}}</option>
                                     </div>
@@ -81,10 +78,7 @@
                     </div>
                     <div class="col-lg-8">
                         <select class="form-select" id="inputGroupSelect01" name="country">
-                                @php
-                                    $countries = App\Models\Country::get();
-                                @endphp
-                                @foreach($countries as $country)
+                                @foreach($all_countries as $country)
                                     <div class="form-check form-check-inline">
                                         <option value="{{$country->id}}" {{ $country->id == Auth::user()->country_id ? 'selected' : '' }}>{{$country->name}}</option>
                                     </div>
