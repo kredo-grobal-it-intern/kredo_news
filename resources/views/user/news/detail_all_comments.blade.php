@@ -3,6 +3,9 @@
 @section('style')
 <link rel="stylesheet" href="{{ mix('css/detail.css') }}">
 @endsection
+@section('script_footer')
+<script src="{{ mix('js/_comment_like.js') }}" defer></script>
+@endsection
 @section('content')
 <div class="container my-4">
     <!-- News header -->

@@ -21,7 +21,8 @@
                             </form>
                         @endif
                     @endauth
-                    <span class="">1000 <i class="fa-heart @if($comment->isLiked()) fa-solid comment-liked @else fa-regular @endif" id="comment-like" data-commentid="{{ $comment->id }}"></i></span>
+                    <span class="comment-likes-count">{{ $comment->commentLikes()->count() }}</span>
+                    <i class="fa-heart comment-like-btn @if($comment->isLiked()) fa-solid comment-liked @else fa-regular @endif" data-commentid="{{ $comment->id }}"></i>
                 </div>
             </div>
             <small class="text-muted">Soccer player / Musician / Science</small>

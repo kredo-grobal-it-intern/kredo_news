@@ -42,6 +42,10 @@ class CommentController extends Controller
             $comment->commentLikes()->detach($user_id);
         }
 
-        return response()->json();
+        $param = [
+            'commentLikesCount' => Comment::withCount('commentLikes')->findOrFail($comment_id)->comment_likes_count
+        ];
+
+        return response()->json($param);
     }
 }

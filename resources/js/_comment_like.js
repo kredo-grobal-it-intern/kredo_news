@@ -1,5 +1,5 @@
 $(function() {
-    let commentLike = $('#comment-like');
+    let commentLike = $('.comment-like-btn');
     let commentId;
 
     commentLike.on('click', function() {
@@ -19,6 +19,7 @@ $(function() {
 
         .done(function(data) {
             $this.toggleClass('comment-liked').toggleClass('fa-solid').toggleClass('fa-regular');
+            $this.prev('.comment-likes-count').text(data.commentLikesCount)
         });
     });
 });
