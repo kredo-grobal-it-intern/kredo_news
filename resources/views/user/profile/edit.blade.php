@@ -3,7 +3,9 @@
 @section('style')
 <link href="{{ mix('css/profile_edit.css') }}" rel="stylesheet">
 @endsection
-
+@section('script_footer')
+<script src="{{ mix('js/_profile_edit.js') }}" defer></script>
+@endsection
 @section('content')
 <div class="container">
     <form action="{{ route('user.profile.update', ['id'=> Auth::id()]) }}" method="post" class="form" enctype="multipart/form-data">
@@ -13,14 +15,14 @@
         <div class="row mt-5 mx-auto profile">
             <div class="col-12 col-md-4 profile-avatar">
                 @if ($user->avatar)
-                    <img src="{{asset('/images/avatars/'.$user->avatar)}}" alt="Image" class="rounded-circle d-block mx-auto profile-avatar-icon" >
+                    <img src="{{asset('/images/avatars/'.$user->avatar)}}" alt="Image" class="rounded-circle d-block mx-auto profile-avatar-icon" id="showAvatar">
                 @else
                     <i class="fa-solid fa-circle-user text-secondary d-block text-center profile-avatar-none"></i>
                 @endif
 
                 <div class="text-center mt-2">
                     <label class="px-3 profile-avatar-upload">
-                        <input type="file" name="avatar" class="d-none">
+                        <input type="file" name="avatar" class="d-none" id="avatar">
                         <i class="fa fa-cloud-upload"></i> Upload iamge
                     </label>
                 </div>
