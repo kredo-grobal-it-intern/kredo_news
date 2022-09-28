@@ -34,18 +34,17 @@
                 <td>{{ $news->category->name }}</td>
                 <td>
                     @if ($news->source->country->national_flag)
-                        <img src="{{ asset('images/national_flags/'. $news->source->country->national_flag) }}" alt="{{ $news->source->country->name }}" class="shadow" style="width:24px;">
+                        <img src="{{ asset('images/national_flags/'. $news->source->country->national_flag) }}" alt="{{ $news->source->country->name }}" class="shadow flag">
                     @else
-                        <span class="me-1"><i class="fa-solid fa-earth-americas"></i></span>
-                        
+                        <img src="{{ asset('images/national_flags/world.png') }}" alt="Flag" class="flag">                                           
                     @endif
                     {{ $news->source->country->name }}
                 </td>
                 <td>
                     @if ($news->country->national_flag)
-                    <img src="{{ asset('images/national_flags/'. $news->country->national_flag) }}" alt="{{ $news->country->name }}" class="shadow" style="width:24px;">
+                        <img src="{{ asset('images/national_flags/'. $news->country->national_flag) }}" alt="{{ $news->country->name }}" class="shadow flag">
                     @else
-                    <span class="me-1"><i class="fa-solid fa-earth-americas"></i></span>
+                        <img src="{{ asset('images/national_flags/world.png') }}" alt="Flag" class="flag">                   
                     @endif
                     {{ $news->country->name }}
                 </td>

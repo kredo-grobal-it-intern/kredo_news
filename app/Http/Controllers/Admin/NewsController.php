@@ -42,7 +42,7 @@ class NewsController extends Controller
     public function show()
     {
 
-        $all_news = News::orderBy('published_at')->withTrashed()->paginate(10);
+        $all_news = News::orderBy('published_at', 'desc')->withTrashed()->paginate(10);
         return view('admin.news.show')
                     ->with('all_news', $all_news);
     }

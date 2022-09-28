@@ -43,18 +43,17 @@
             <td>{{ $user->email }}</td>
             <td>
                 @if ($user->country->national_flag)
-                    <img src="{{ asset('images/national_flags/'. $user->country->national_flag) }}" alt="{{ $user->country->name }}" class="shadow" style="width:24px;">
+                    <img src="{{ asset('images/national_flags/'. $user->country->national_flag) }}" alt="{{ $user->country->name }}" class="shadow flag" >
                 @else
-                    <span class="me-1"><i class="fa-solid fa-earth-americas"></i></span>
-                    
+                    <img src="{{ asset('images/national_flags/world.png') }}" alt="Flag" class="flag">                   
                 @endif
                 {{ $user->country->name }}
             </td>
             <td>
                 @if ($user->country->national_flag)
-                <img src="{{ asset('images/national_flags/'. $user->country->national_flag) }}" alt="{{ $user->country->name }}" class="shadow" style="width:24px;">
+                    <img src="{{ asset('images/national_flags/'. $user->country->national_flag) }}" alt="{{ $user->country->name }}" class="shadow flag" >
                 @else
-                <span class="me-1"><i class="fa-solid fa-earth-americas"></i></span>
+                    <img src="{{ asset('images/national_flags/world.png') }}" alt="Flag" class="flag">                   
                 @endif
                 {{ $user->nationality->name }}
             </td>
