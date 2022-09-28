@@ -24,6 +24,9 @@
                         <i class="fa fa-cloud-upload"></i> Upload iamge
                     </label>
                 </div>
+                @error('avatar')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
 
             <div class="col-md-8">
@@ -33,6 +36,9 @@
                     </div>
                     <div class="col-lg-8">
                         <input type="text" name="username" id="username" class="form-control" value="{{$user->username}}">
+                        @error('username')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                 </div>
 
@@ -42,6 +48,9 @@
                     </div>
                     <div class="col-lg-8">
                         <input type="email" name="email" id="email" class="form-control" value="{{$user->email}}">
+                        @error('email')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                 </div>
 
@@ -60,6 +69,9 @@
                                     </div>
                                 @endforeach
                         </select>
+                        @error('nationality')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                 </div>
 
@@ -78,6 +90,9 @@
                                     </div>
                                 @endforeach
                         </select>
+                        @error('country')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                 </div>
 
@@ -87,6 +102,9 @@
                     </div>
                     <div class="col-lg-8">
                         <input type="text" name="description" id="description" class="form-control" value="{{ $user->description }}" placeholder="Input description">
+                        @error('description')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                 </div>
             </div>

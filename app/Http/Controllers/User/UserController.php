@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Source;
@@ -45,7 +46,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(Request $request)
+    public function update(ProfileUpdateRequest $request)
     {
         $user                 = Auth::user();
         $user->username       = $request->username;
