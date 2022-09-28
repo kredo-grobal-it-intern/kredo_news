@@ -55,6 +55,7 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'verified'], 
         Route::get('/source/{source}', [NewsController::class, 'showFavoritePageBySource'])->name('favorite.source');
     });
     Route::post('/{news_id}/comment', [CommentController::class, 'store'])->name('comment.store');
+    Route::post('/comment/like', [CommentController::class, 'like'])->name('comment.like');
     Route::delete('/comment/{comment_id}', [CommentController::class, 'destroy'])->name('comment.destroy');
     Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
         Route::get('/show/{user_id}', [UserController::class, 'show'])->name('show');

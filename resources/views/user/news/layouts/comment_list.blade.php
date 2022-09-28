@@ -21,8 +21,7 @@
                             </form>
                         @endif
                     @endauth
-                    <a href="" class="me-2 text-decoration-none text-dark">1000 <i class="fa-regular fa-thumbs-up"></i></a>
-                    <a href="" class="me-2 text-decoration-none text-dark">200 <i class="fa-regular fa-thumbs-down"></i></a>
+                    <span class="">1000 <i class="fa-heart @if($comment->isLiked()) fa-solid comment-liked @else fa-regular @endif" id="comment-like" data-commentid="{{ $comment->id }}"></i></span>
                 </div>
             </div>
             <small class="text-muted">Soccer player / Musician / Science</small>

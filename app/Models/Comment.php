@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Comment extends Model
 {
@@ -15,6 +16,15 @@ class Comment extends Model
         'news_id',
         'body',
     ];
+
+    public function isLiked()
+    {
+        return $this->commentLikes()->where('user_id', Auth::id())->exists();
+    }
+
+    /*
+    ** Relation -----------------------------------------------
+    */
 
     public function news()
     {
