@@ -25,4 +25,8 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class)->withTrashed();
     }
+
+    public function commentLikes() {
+        return $this->belongsToMany(User::class, 'comments', 'comment_id', 'user_id');
+    }
 }
