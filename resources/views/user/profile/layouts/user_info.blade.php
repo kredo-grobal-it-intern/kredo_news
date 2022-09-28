@@ -1,7 +1,7 @@
 <div class="row mt-3 mt-lg-5 align-items-center mx-auto profile">
     <div class="col-lg-4 profile-avatar">
         @if ($user->avatar)
-            <img src="{{asset('/images/avatars/'.$user->avatar)}}" alt="Image" class="profile-avatar-icon rounded-circle d-block mx-auto">
+            <img src="{{asset('images/avatars/'.$user->avatar)}}" alt="Image" class="profile-avatar-icon rounded-circle d-block mx-auto">
         @else
             <i class="profile-avatar-none fa-solid fa-circle-user text-secondary d-block text-center"></i>
         @endif
@@ -10,7 +10,7 @@
         <div class="profile-heading align-items-center mb-3">
             <!-- For responsive -->
             @if ($user->avatar)
-                <img src="{{asset('/images/avatars/'.$user->avatar)}}" alt="Image" class="profile-heading-icon rounded-circle me-2">
+                <img src="{{asset('images/avatars/'.$user->avatar)}}" alt="Image" class="profile-heading-icon rounded-circle me-2">
             @else
                 <i class="profile-heading-none fa-solid fa-circle-user text-secondary me-2"></i>
             @endif
