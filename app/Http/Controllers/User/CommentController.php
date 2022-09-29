@@ -34,13 +34,10 @@ class CommentController extends Controller
         $user_id = Auth::id();
         $comment_id = $request->comment_id;
         $comment = Comment::findOrFail($comment_id);
-        $is_liked = $comment->isLiked();
 
-        if (!$is_liked) {
-            $comment->commentLikes()->attach($user_id);
-        } else {
-            $comment->commentLikes()->detach($user_id);
-        }
+        $comment->isLiked()
+        ? $comment->commentLikes()->detach($user_id)
+        : $comment->commentLikes()->attach($user_id);
 
         $param = [
             'commentLikesCount' => Comment::withCount('commentLikes')->findOrFail($comment_id)->comment_likes_count
