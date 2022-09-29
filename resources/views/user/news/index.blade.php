@@ -7,12 +7,12 @@
 
 @section('content')
 <div class="container">
-    <h1 class="header-top-news mb-5">Top news from world regions</h1>
+    <h1 class="text-center mb-5">Top news from world regions</h1>
     @foreach ($news_list as $country_name => $country_news)
         @isset($country_news['latest']) <!-- tentative condition -->
             <section class="country-section">
                 <div class="text-center mb-4">
-                    <h2 class="country-top fw-bold">{{ $country_name }}</h2>
+                    <h2 class="country-section-heading fw-bold">{{ $country_name }}</h2>
                 </div>
 
                 <div class="row">
@@ -33,7 +33,7 @@
                     <aside class="aside d-none d-lg-block col-lg-3">
                         <!-- what's hot -->
                         <h3 class="aside-title pb-2 mb-4">What's hot</h3>
-                        <ol>
+                        <ol class="px-2">
                             @foreach ($whats_hot_news[$country_name] as $news)
                                 @include('user.news.layouts.side_content')
                             @endforeach
