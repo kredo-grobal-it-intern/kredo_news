@@ -92,6 +92,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Comment::class);
     }
 
+    public function commentLikes() {
+        return $this->belongsToMany(Comment::class, 'comment_likes', 'user_id', 'comment_id');
+    }
+
     public function nationality(){
         return $this->belongsTo(Country::class);
     }
