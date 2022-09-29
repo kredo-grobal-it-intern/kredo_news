@@ -7,6 +7,7 @@
     <!-- heading & description & reaction -->
     <h3 class="fw-bold mt-3 mt-md-0 top-heading"><a href="{{ route('news.show', $country_news['latest']->id) }}" class="top-heading-link">{{ $country_news['latest']->title }}</a></h3>
     <p class="top-description">{{ $country_news['latest']->description }}</p>
+    <a href="{{ route('news.show', $country_news['latest']->id) }}" class="d-none d-sm-block">See more</a>
     <div class="d-flex mt-1 mt-md-3 status">
         @include('user.news.feature.reaction', ['news' => $country_news['latest']])
         @include('user.news.feature.comment', ['news' => $country_news['latest']])
