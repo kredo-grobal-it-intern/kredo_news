@@ -17,8 +17,8 @@
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
-        -webkit-line-clamp: 2; /* number of lines to show */
-                line-clamp: 2;
+        -webkit-line-clamp: 3; /* number of lines to show */
+                line-clamp: 3;
         -webkit-box-orient: vertical;
         &:hover{
             color: red;
@@ -43,6 +43,29 @@
 
 .aside-title {
     border-bottom: 1px solid #999;
+}
+
+@media (min-width: 768px) {
+    .top-news {
+
+        .top-heading {
+            font-size: 1.2rem;
+        }
+
+        .top-description {
+        font-size: 1.0rem;
+        overflow: hidden;
+        text-align: justify;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 7; /* number of lines to show */
+                line-clamp: 7;
+        -webkit-box-orient: vertical;
+        }
+        .top-image {
+            height: 250px;
+        }
+    }
 }
 
 @media (max-width: 992px) {
