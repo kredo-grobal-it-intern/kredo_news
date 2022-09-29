@@ -38,7 +38,19 @@
 
 
 .comment-title {
-    border-bottom: 1px solid #999;
+    position: relative;
+    margin-left: 24px;
+
+    &::before {
+        content:"";
+        display:inline-block;
+        width:12px;
+        height:40px;
+        background-color:#052962;
+        position:absolute;
+        top:-2px;
+        left: -24px;
+    }
 }
 
 .comment-list {

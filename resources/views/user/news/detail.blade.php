@@ -30,7 +30,7 @@
             </section>
             <!-- Comment section -->
             <section>
-                <h3 class="pb-2 mb-2 comment-title">Comments</h3>
+                <h3 class="py-2 mb-2 comment-title">Comments</h3>
                 <ul class="comment-list px-3">
                     @foreach ($news->comments->take(5) as $comment)
                         @include('user.news.layouts.comment_list')
