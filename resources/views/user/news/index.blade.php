@@ -30,12 +30,12 @@
                         </div>
                     </div>
 
-                    <aside class="d-none d-lg-block col-lg-3">
+                    <aside class="aside d-none d-lg-block col-lg-3">
                         <!-- what's hot -->
                         <h3 class="aside-title pb-2 mb-4">What's hot</h3>
-                        <ol class="hot-news-content">
+                        <ol>
                             @foreach ($whats_hot_news[$country_name] as $news)
-                                @include('user.news.layouts.detail_side_content')
+                                @include('user.news.layouts.side_content')
                             @endforeach
                         </ol>
                     </aside>
