@@ -107,7 +107,7 @@
 
                             @if (Auth::user()->is_admin)
                                 <a href="{{ route('admin.show.dashboard') }}" class="dropdown-item">
-                                    <i class="fa-solid fa-inbox"></i>Dashboard
+                                    <i class="fa-solid fa-inbox"></i>&nbsp;Dashboard
                                 </a>
                             @endif
 
