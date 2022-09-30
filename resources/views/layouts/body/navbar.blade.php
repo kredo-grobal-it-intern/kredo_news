@@ -45,7 +45,7 @@
                     </a>
 
                     <!-- category dropdown list -->
-                    <ul class="dropdown-menu" aria-labelledby="countriesDropdown">
+                    <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="countriesDropdown">
                         @php
                             $sources = App\Models\Source::all();
                         @endphp
@@ -62,7 +62,7 @@
                     </a>
 
                     <!-- category dropdown list -->
-                    <ul class="dropdown-menu" aria-labelledby="countriesDropdown">
+                    <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="countriesDropdown">
                         @php
                             $countries = App\Models\Country::whereNotNull('continent' )->get();
                         @endphp
