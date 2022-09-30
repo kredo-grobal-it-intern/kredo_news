@@ -1,3 +1,9 @@
+@php
+    $categories = App\Models\Category::all();
+    $sources = App\Models\Source::all();
+    $continents = [ 'America','Asia','Europe','Oceania','Africa' ];
+    $all_countries = App\Models\Country::all();
+@endphp
 <div class="text-center py-2 bg-white">
     <a class="navbar-brand" href="{{ route('news.index') }}">
         <!-- logo img -->
@@ -29,9 +35,6 @@
 
                     <!-- category dropdown list -->
                     <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
-                        @php
-                            $categories = App\Models\Category::all();
-                        @endphp
                         @foreach ($categories as $category)
                             <a href="{{ route('news.category', $category->id) }}" class="dropdown-item">
                                 {{ $category->name }}
@@ -45,10 +48,7 @@
                     </a>
 
                     <!-- category dropdown list -->
-                    <ul class="dropdown-menu" aria-labelledby="countriesDropdown">
-                        @php
-                            $sources = App\Models\Source::all();
-                        @endphp
+                    <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="countriesDropdown">
                         @foreach ($sources as $source)
                             <a href="{{ route('news.media', $source->id) }}" class="dropdown-item">
                                 {{ $source->country->name }}
@@ -62,14 +62,19 @@
                     </a>
 
                     <!-- category dropdown list -->
-                    <ul class="dropdown-menu" aria-labelledby="countriesDropdown">
-                        @php
-                            $countries = App\Models\Country::whereNotNull('continent' )->get();
-                        @endphp
-                        @foreach ($countries as $country )
-                            <a href="{{ route('news.country' , $country->id) }}" class="dropdown-item">
-                                {{ $country->name }}
-                            </a>
+                    <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="countriesDropdown">
+                        @foreach ($continents as $continent)
+                            @php
+                                $countries_by_continent = $all_countries->filter(function($country) use($continent) {
+                                    return $country->continent == $continent;
+                                });
+                            @endphp
+                            <span class="dropdown-item fw-bold d-block text-center">--- {{ $continent }} ---</span>
+                            @foreach ($countries_by_continent as $country)
+                                <a href="{{ route('news.country' , $country->id) }}" class="dropdown-item">
+                                    {{ $country->name }}
+                                </a>
+                            @endforeach
                         @endforeach
                     </ul>
                 </li>
