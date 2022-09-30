@@ -1,0 +1,45 @@
+.label-width{
+    width: 80px;
+    margin-bottom: 0 ;
+}
+
+.form-width{
+    width: calc(100% - 80px);
+}
+
+.publish-col{
+    display: flex;
+    padding-left: 24px;
+    margin-top: 16px;
+    align-items: center;
+}
+
+.select-size{
+    min-width: 200p_x;
+}
+
+.upload-icon{
+    border: 1px solid #ccc; 
+    border-radius:5px; 
+    cursor: pointer;
+}
+
+.upload-input{
+    display: none;
+}
+
+.container-width{
+    width: 75%;
+}
+
+@media (max-width: 1100px) {
+    .container-width{
+        width: 80%;
+    }
+}
+
+@media (max-width: 992px) {
+    .container-width{
+        width: 90%;
+    }
+}
