@@ -53,16 +53,35 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+
+    public function isFollowed(){
+        return $this->followers()->where('follower_id',Auth::user()->id)->exists();
+    }
+
+    public static function getFollowCountForJson(User $user) {
+        $auth_following_count = Auth::user()->followings->count();
+        $auth_follower_count = Auth::user()->followers->count();
+        $user_following_count = $user->followings->count();
+        $user_follower_count = $user->followers->count();
+
+        return [
+            'authFollowingCount' => $auth_following_count,
+            'authFollowerCount' => $auth_follower_count,
+            'userFollowingCount' => $user_following_count,
+            'userFollowerCount' => $user_follower_count
+        ];
+    }
+
+    /*
+    ** Relation -----------------------------------------------
+    */
+
     public function category(){
         return $this->belongsTo(Category::class);
     }
     public function news()
     {
         return $this->hasMany(News::class);
-    }
-    public function reactions()
-    {
-        return $this->hasMany(Reaction::class);
     }
 
     public function country(){
@@ -71,6 +90,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function comments(){
         return $this->hasMany(Comment::class);
+    }
+
+    public function commentLikes() {
+        return $this->belongsToMany(Comment::class, 'comment_likes', 'user_id', 'comment_id');
     }
 
     public function nationality(){
@@ -85,10 +108,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Country::class, 'favorite_countries', 'user_id', 'country_id');
     }
 
-    public function isFollowed(){
-        return $this->followers()->where('follower_id',Auth::user()->id)->exists();
-    }
-
     public function followers()
     {
         return $this->belongsToMany(User::class, 'follows', 'following_id', 'follower_id');
@@ -99,7 +118,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(User::class, 'follows', 'follower_id', 'following_id');
     }
 
-    public function newsReactions() {
+    public function reactions() {
         return $this->belongsToMany(News::class, 'reactions', 'user_id', 'news_id')->withPivot('status');
     }
 

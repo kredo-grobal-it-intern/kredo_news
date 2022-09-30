@@ -1,0 +1,55 @@
+.profile {
+    width: 75%;
+    &-avatar {
+        &-icon {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+        }
+        &-none {
+            font-size: 180px;
+        }
+        &-upload {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    }
+}
+
+.favorite {
+    &-heading {
+        padding: 8px 0;
+        font-size: 1.2rem;
+        color: #000;
+        position: relative;
+        margin-left: 24px;
+
+        &::before {
+            content:"";
+            display:inline-block;
+            width:12px;
+            height:40px;
+            background-color:#052962;
+            position:absolute;
+            top:-2px;
+            left: -24px;
+        }
+    }
+
+    &-country-continent {
+        font-size: 1.1rem;
+        text-decoration: underline;
+    }
+
+    &-btn-save {
+        background-color: #E9E000;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 1210px) {
+    .profile {
+        width: 100%;
+    }
+}

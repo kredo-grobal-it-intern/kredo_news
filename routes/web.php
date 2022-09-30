@@ -44,8 +44,8 @@ Route::get('/media/{media_id}', [MediaController::class, 'show'])->name('news.me
 
 // Logged in user
 Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'verified'], function () {
-    Route::post('/thumbs_up', [ReactionController::class, 'thumbs_up'])->name('thumbs_up');
-    Route::post('/thumbs_down', [ReactionController::class, 'thumbs_down'])->name('thumbs_down');
+    Route::post('/like', [ReactionController::class, 'like'])->name('like');
+    Route::post('/dislike', [ReactionController::class, 'dislike'])->name('dislike');
     Route::post('/follow', [FollowController::class, 'follow'])->name('follow');
     Route::post('/unfollow', [FollowController::class, 'unfollow'])->name('unfollow');
     Route::post('/bookmark', [BookmarkController::class, 'bookmark'])->name('bookmark');
@@ -55,15 +55,13 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'verified'], 
         Route::get('/source/{source}', [NewsController::class, 'showFavoritePageBySource'])->name('favorite.source');
     });
     Route::post('/{news_id}/comment', [CommentController::class, 'store'])->name('comment.store');
+    Route::post('/comment/like', [CommentController::class, 'like'])->name('comment.like');
     Route::delete('/comment/{comment_id}', [CommentController::class, 'destroy'])->name('comment.destroy');
     Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
+        Route::get('/show/{user_id}', [UserController::class, 'show'])->name('show');
         Route::get('/edit', [UserController::class, 'edit'])->name('edit');
-        Route::get('/show/likes/{user_id}', [UserController::class, 'showLikes'])->name('show.likes');
-        Route::get('/show/bookmarks/{user_id}', [UserController::class, 'showBookmarks'])->name('show.bookmarks');
         Route::patch('/{id}', [UserController::class, 'update'])->name('update');
     });
-    Route::delete('/follower/destroy/{follower_id}', [UserController::class, 'destroyFollower'])->name('destroy.follower');
-    Route::delete('/following/destroy/{following_id}', [UserController::class, 'destroyFollowing'])->name('destroy.following');
 });
 
 // Admin

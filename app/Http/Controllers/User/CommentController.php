@@ -28,4 +28,19 @@ class CommentController extends Controller
         Comment::findOrFail($comment_id)->delete();
         return redirect()->back();
     }
+
+    public function like(Request $request)
+    {
+        $user_id = Auth::id();
+        $comment_id = $request->comment_id;
+        $comment = Comment::findOrFail($comment_id);
+
+        $comment->isLiked() ? $comment->commentLikes()->detach($user_id) : $comment->commentLikes()->attach($user_id);
+
+        $param = [
+            'commentLikesCount' => Comment::withCount('commentLikes')->findOrFail($comment_id)->comment_likes_count
+        ];
+
+        return response()->json($param);
+    }
 }

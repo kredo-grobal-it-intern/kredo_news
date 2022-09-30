@@ -23,7 +23,7 @@
         <link href="{{ mix('css/admin.css') }}" rel="stylesheet">
         <link href="{{ mix('css/admin_navbar.css') }}" rel="stylesheet">
         @yield('style')
-        
+
         <!-- fontawesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -61,24 +61,24 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->username }}
                                 </a>
-        
+
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a href="{{route('user.profile.show.likes', Auth::id())}}" class="dropdown-item">
+                                    <a href="{{route('user.profile.show', Auth::id())}}" class="dropdown-item">
                                         <i class="fa-solid fa-user"></i>&nbsp;My Profile
                                     </a>
-        
+
                                     @if (Auth::user()->is_admin)
                                         <a href="{{ route('admin.show.dashboard') }}" class="dropdown-item">
                                             <i class="fa-solid fa-inbox"></i> Dashboard
                                         </a>
                                     @endif
-        
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-        
+
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>

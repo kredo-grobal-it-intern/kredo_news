@@ -1,6 +1,10 @@
 $(function() {
-    const unfollow = $('#unfollow');
-    const follow = $('#follow');
+    const unfollow = $('.unfollow');
+    const follow = $('.follow');
+    const authFollowerCount = $('.auth-follower-count');
+    const authFollowingCount = $('.auth-following-count');
+    const userFollowerCount = $('.user-follower-count');
+    const userFollowingCount = $('.user-following-count');
     let userId;
 
     $.ajaxSetup({
@@ -23,7 +27,13 @@ $(function() {
         // success
         .done(function(data) {
             $this.addClass('d-none');
-            unfollow.removeClass('d-none');
+            $this.siblings('.unfollow').removeClass('d-none');
+            // When you follow in followers and followings modal in your own profile page
+            authFollowerCount.text(data.authFollowerCount);
+            authFollowingCount.text(data.authFollowingCount);
+            // When you follow in other's profile page
+            userFollowerCount.text(data.userFollowerCount);
+            userFollowingCount.text(data.userFollowingCount);
         })
     });
 
@@ -41,7 +51,13 @@ $(function() {
         // success
         .done(function(data) {
             $this.addClass('d-none');
-            follow.removeClass('d-none');
+            $this.siblings('.follow').removeClass('d-none');
+            // When you follow in followers and followings modal in your own profile page
+            authFollowerCount.text(data.authFollowerCount);
+            authFollowingCount.text(data.authFollowingCount);
+            // When you unfollow in other's profile page
+            userFollowerCount.text(data.userFollowerCount);
+            userFollowingCount.text(data.userFollowingCount);
         })
     });
 });

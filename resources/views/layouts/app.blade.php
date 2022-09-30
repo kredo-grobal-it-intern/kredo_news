@@ -26,7 +26,7 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ mix('css/navbar.css') }}" rel="stylesheet">
     <link href="{{ mix('css/footer.css') }}" rel="stylesheet">
-    <link rel="shortcut icon" href="{{ asset('images/logo.png') }}">
+    <link rel="shortcut icon" href="{{ asset('images/news_favicon.png') }}">
     @yield('style')
 </head>
 <body>

@@ -3,37 +3,30 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Source;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
     const LOCAL_STORAGE_FOLDER = 'public/images/avatars/';
 
-    public function showLikes(Request $request)
+    public function show(Request $request)
     {
-        $user      = User::findOrFail($request->user_id);
-        $reactions = $user->newsReactions->filter(function ($reaction) {
+        $user = User::findOrFail($request->user_id);
+        $liked_news = $user->reactions->filter(function ($reaction) {
             return $reaction->pivot->status == 1;
         });
+        $bookmarked_news = $user->bookmarks;
 
-        return view('user.profile.show.likes')
-                ->with('reactions', $reactions)
-                ->with('user', $user);
-    }
-
-    public function showBookmarks()
-    {
-        $user      = Auth::user();
-        $bookmarks = $user->bookmarks;
-
-        return view('user.profile.show.bookmarks')
-                ->with('bookmarks', $bookmarks)
-                ->with('user', $user);
+        return view('user.profile.show')
+            ->with('liked_news', $liked_news)
+            ->with('bookmarked_news', $bookmarked_news)
+            ->with('user', $user);
     }
 
     public function edit()
@@ -42,29 +35,29 @@ class UserController extends Controller
         $favorite_sources_ids = $user->favoriteSources->pluck('id')->toArray();
         $sources = Source::all();
         $continents = [ 'America','Asia','Europe','Oceania','Africa' ];
+        $all_countries = Country::all();
         $favorite_countries_ids = $user->favoriteCountries->pluck('id')->toArray();
 
         return view('user.profile.edit', [
                 'user' => $user,
                 'sources' => $sources,
                 'continents' => $continents,
+                'all_countries' => $all_countries,
                 'favorite_sources_ids' => $favorite_sources_ids,
                 'favorite_countries_ids' => $favorite_countries_ids
         ]);
     }
 
-    public function update(Request $request)
+    public function update(ProfileUpdateRequest $request)
     {
         $user                 = Auth::user();
         $user->username       = $request->username;
         $user->email          = $request->email;
-        $user->description    = $request->description;
-        $user = User::findOrFail(Auth::id());
-        $user->username = $request->username;
-        $user->email = $request->email;
         $user->nationality_id = $request->nationality;
         $user->country_id     = $request->country;
+        $user->description    = $request->description;
         $sources              = $request->sources ?? [];
+        $countries            = $request->countries ?? [];
 
         $favorite_sources = [];
         foreach ($sources as $source) {
@@ -73,9 +66,9 @@ class UserController extends Controller
             'source_id' => $source
             ];
         }
-            DB::table('favorite_sources')->where('user_id', $user->id)->delete();
-            DB::table('favorite_sources')->insert($favorite_sources);
-        $countries = $request->countries ?? [];
+        $user->favoriteSources()->detach();
+        $user->favoriteSources()->attach($favorite_sources);
+
         $favorite_countries = [];
         foreach ($countries as $country) {
             $favorite_countries[] = [
@@ -83,17 +76,17 @@ class UserController extends Controller
                 'country_id' => $country
             ];
         }
-            DB::table('favorite_countries')->where('user_id', $user->id)->delete();
-            DB::table('favorite_countries')->insert($favorite_countries);
+        $user->favoriteCountries()->detach();
+        $user->favoriteCountries()->attach($favorite_countries);
 
-        if ($request->avatar) :
+        if ($request->avatar) {
             $this->deleteAvatar($user->avatar);
             $user->avatar = $this->saveAvatar($request);
-        endif;
+        }
 
         $user->save();
 
-        return redirect()->route('user.profile.show.likes', ['user_id' => $user->id]);
+        return redirect()->route('user.profile.show', ['user_id' => $user->id]);
     }
 
     public function saveAvatar($request)
@@ -109,25 +102,5 @@ class UserController extends Controller
         if (Storage::disk('local')->exists($image_path)) :
             Storage::disk('local')->delete($image_path);
         endif;
-    }
-
-    public function destroyFollower($follower_id)
-    {
-        DB::table('follows')
-            ->where('following_id', Auth::id())
-            ->where('follower_id', $follower_id)
-            ->delete();
-
-        return redirect()->back();
-    }
-
-    public function destroyFollowing($following_id)
-    {
-        DB::table('follows')
-            ->where('following_id', $following_id)
-            ->where('follower_id', Auth::id())
-            ->delete();
-
-        return redirect()->back();
     }
 }
