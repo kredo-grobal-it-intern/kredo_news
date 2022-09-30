@@ -30,13 +30,13 @@
             <td>
                 @if ($user->avatar)
                 <div class="row align-items-center">
-                    <a href="{{ route('user.profile.show.likes', $user->id) }}" class="text-decoration-none text-black">
+                    <a href="{{ route('user.profile.show', $user->id) }}" class="text-decoration-none text-black">
                     <img src="{{ asset('images/avatars/' . $user->avatar) }}" alt="" class="avatar">
                     {{ $user->username }}
                     </a>
                 </div>
                 @else  
-                    <a href="{{ route('user.profile.show.likes', $user->id) }}" class="text-decoration-none text-black avatar-name-align"><span class="fs-2 me-2"><i class="fa-solid fa-circle-user"></i></span>{{ $user->username }}</a>
+                    <a href="{{ route('user.profile.show', $user->id) }}" class="text-decoration-none text-black avatar-name-align"><span class="fs-2 me-2"><i class="fa-solid fa-circle-user"></i></span>{{ $user->username }}</a>
                 @endif
 
             </td>
@@ -57,9 +57,9 @@
                 @endif
                 {{ $user->nationality->name }}
             </td>
-            <td>{{ $user->comments->count() }}</td>
-            <td>{{ $user->followers->count() }}</td>
-            <td>{{ $user->followings->count() }}</td>
+            <td>{{ number_format($user->comments->count()) }}</td>
+            <td>{{ number_format($user->followers->count()) }}</td>
+            <td>{{ number_format($user->followings->count()) }}</td>
             <td>
                 @if ($user->deleted_at)
                     <p class="badge bg-danger m-0">Inactive</p>

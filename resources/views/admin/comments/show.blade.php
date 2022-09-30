@@ -27,18 +27,16 @@
                 <td class="text-center">{{ $comments->firstItem() + $loop->index }}</td>
                 <td>{{ date('n/j (D)', strtotime($comment->created_at)) }}</td>
                 <td><img src="{{ asset('images/news/' . $comment->news->image) }}"  alt="{{ $comment->news->image }}" class="news-image"/></td>
-                <td><a href="{{ route('news.show', $comment->news->id) }}" class="text-decoration-none text-black">{{ $comment->news->title }}</a></td>
-                <td class="text-wrap comment-width">{{ $comment->body }}</td>
-                <td>
+                <td class="text-start"><a href="{{ route('news.show', $comment->news->id) }}" class="text-decoration-none text-black">{{ $comment->news->title }}</a></td>
+                <td class="comment-body">{{ $comment->body }}</td>
+                <td class="text-start">
                     @if ($comment->user->avatar)
-                    <div class="row align-items-center">
-                        <a href="{{ route('user.profile.show.likes', $comment->user->id) }}" class="text-decoration-none text-black">
+                        <a href="{{ route('user.profile.show', $comment->user->id) }}" class="text-decoration-none text-black">
                         <img src="{{ asset('images/avatars/'. $comment->user->avatar) }}" alt="" class="avatar">
                         {{ $comment->user->username }}
                         </a>
-                    </div>
                     @else  
-                        <a href="{{ route('user.profile.show.likes', $comment->user->id) }}" class="text-decoration-none text-black avatar-name-align"><span class="fs-2 me-2"><i class="fa-solid fa-circle-user"></i></span>{{ $comment->user->username }}</a>
+                        <a href="{{ route('user.profile.show', $comment->user->id) }}" class="text-decoration-none text-black"><span class="user-icon-size"><i class="fa-solid fa-circle-user"></i></span>{{ $comment->user->username }}</a>
                     @endif
                 </td>
                 <td>

@@ -17,9 +17,12 @@
                 <th class="col-1">date</th>
                 <th class="col-1">Image</th>
                 <th class="col-3">Title</th>
-                <th class="col-2">Category</th>
+                <th class="col-1">Category</th>
                 <th class="col-2">Media</th>
                 <th class="col-2">Country</th>
+                <th class="col-1">Cooments</th>
+                <th class="col-1">Likes</th>
+                <th class="col-1">Dislikes</th>
                 <th class="col-1">Status</th>
                 <th>Action</th>
             </tr>
@@ -27,27 +30,34 @@
         <tbody>
             @foreach ($all_news as $news)
             <tr>
-                <td class="text-center">{{ $all_news->firstItem() + $loop->index }}</td>
+                <td>{{ $all_news->firstItem() + $loop->index }}</td>
                 <td>{{ date('n/j (D)', strtotime($news->published_at)) }}</td>
                 <td><img src="{{ asset('images/news/' . $news->image) }}"  alt="{{ $news->image }}" class="news-image"/></td>
-                <td><a href="{{ route('news.show', $news->id) }}" class="text-decoration-none text-black">{{ $news->title }}</a></td>
+                <td class="text-start"><a href="{{ route('news.show', $news->id) }}" class="text-decoration-none text-black">{{ $news->title }}</a></td>
                 <td>{{ $news->category->name }}</td>
                 <td>
-                    @if ($news->source->country->national_flag)
-                        <img src="{{ asset('images/national_flags/'. $news->source->country->national_flag) }}" alt="{{ $news->source->country->name }}" class="shadow flag">
-                    @else
-                        <img src="{{ asset('images/national_flags/world.png') }}" alt="Flag" class="flag">                                           
-                    @endif
-                    {{ $news->source->country->name }}
+                    <div class="country-width">
+                        @if ($news->source->country->national_flag)
+                            <img src="{{ asset('images/national_flags/'. $news->source->country->national_flag) }}" alt="{{ $news->source->country->name }}" class="shadow flag">
+                        @else
+                            <img src="{{ asset('images/national_flags/world.png') }}" alt="Flag" class="flag">                                           
+                        @endif
+                        {{ $news->source->country->name }}
+                    </div>
                 </td>
                 <td>
-                    @if ($news->country->national_flag)
-                        <img src="{{ asset('images/national_flags/'. $news->country->national_flag) }}" alt="{{ $news->country->name }}" class="shadow flag">
-                    @else
-                        <img src="{{ asset('images/national_flags/world.png') }}" alt="Flag" class="flag">                   
-                    @endif
-                    {{ $news->country->name }}
+                    <div class="country-width" >
+                        @if ($news->country->national_flag)
+                            <img src="{{ asset('images/national_flags/'. $news->country->national_flag) }}" alt="{{ $news->country->name }}" class="shadow flag">
+                        @else
+                            <img src="{{ asset('images/national_flags/world.png') }}" alt="Flag" class="flag">                   
+                        @endif
+                            {{ $news->country->name }}
+                    </div>
                 </td>
+                <td>{{ number_format($news->comments->count()) }}</td>
+                <td>{{ number_format($news->getDislike()->count()) }}</td>
+                <td>{{ number_format($news->getlike()->count()) }}</td>
                 <td>
                     @if ($news->deleted_at)
                         <p class="badge bg-danger m-0">Hidden</p>
