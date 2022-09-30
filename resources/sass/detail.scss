@@ -87,6 +87,14 @@
     }
 }
 
+.comment-like-btn {
+    cursor: pointer;
+}
+
+.comment-liked {
+    color: red;
+}
+
 @media (max-width: 992px) {
     .detail-image {
         height: 400px;

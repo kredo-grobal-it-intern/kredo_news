@@ -9,24 +9,20 @@
                 @foreach ($user->followings as $following)
                     <div class="row align-items-center mb-3">
                         <div class="col-8">
-                            <a href="{{ route('user.profile.show.likes', $following->id) }}" class="text-decoration-none d-flex align-items-center" >
+                            <a href="{{ route('user.profile.show', $following->id) }}" class="text-decoration-none d-flex align-items-center" >
                                 @if ($following->avatar)
-                                <img src="{{asset('/images/avatars/'. $following->avatar)}}" alt="{{ $following->username }}" class="rounded-circle me-2" style="width:32px; height:32px; object-fit: cover; ">
+                                    <img src="{{asset('/images/avatars/'. $following->avatar)}}" alt="{{ $following->username }}" class="user-avatar-icon rounded-circle me-2">
                                 @else
-                                <i class="fa-solid fa-circle-user text-secondary me-2" style="font-size: 32px"></i>
+                                    <i class="user-avatar-none fa-solid fa-circle-user text-secondary me-2"></i>
                                 @endif
                                 <span class="fs-6 fw-normal text-dark">{{ $following->username }}</span>
                             </a>
-
                         </div>
-                        <div class="col-4">
-                            <form action="{{ route('user.destroy.following', $following->id) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-
-                                <button type="submit" class="btn btn-white btn-sm btn-border-2 border-secondary fw-bold">Remove</button>
-                            </form>                        
-                        </div>
+                        @if (Auth::user()->id !== $following->id)
+                            <div class="col-4">
+                                @include('user.news.feature.follow', ['user' => $following])
+                            </div>
+                        @endif
                     </div>
                 @endforeach
             </div>

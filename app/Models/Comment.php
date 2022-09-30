@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Comment extends Model
 {
@@ -16,6 +17,15 @@ class Comment extends Model
         'body',
     ];
 
+    public function isLiked()
+    {
+        return $this->commentLikes()->where('user_id', Auth::id())->exists();
+    }
+
+    /*
+    ** Relation -----------------------------------------------
+    */
+
     public function news()
     {
         return $this->belongsTo(News::class);
@@ -24,5 +34,9 @@ class Comment extends Model
     public function user()
     {
         return $this->belongsTo(User::class)->withTrashed();
+    }
+
+    public function commentLikes() {
+        return $this->belongsToMany(User::class, 'comment_likes', 'comment_id', 'user_id');
     }
 }
