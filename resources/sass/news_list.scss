@@ -39,7 +39,7 @@
     }
 }
 
-.reaction, .comment {
+.reaction, .comment, .bookmark {
     margin-right: 12px;
 }
 
@@ -65,9 +65,6 @@
 
     .reaction, .bookmark, .comment {
         font-size: 1.1rem;
-    }
-
-    .reaction, .comment {
         margin-right: 16px;
     }
 }
@@ -76,11 +73,13 @@
     .news-list {
         &-heading {
             height: auto;
-            display: block;
+            -webkit-line-clamp: 3;
+                line-clamp: 3;
         }
         &-description {
             height: auto;
-            display: block;
+            -webkit-line-clamp: 5;
+                line-clamp: 5;
         }
     }
 }
@@ -88,9 +87,6 @@
 @media (max-width: 576px) {
     .reaction, .bookmark, .comment {
         font-size: 1.2rem;
-    }
-
-    .reaction, .comment {
         margin-right: 20px;
     }
 }
