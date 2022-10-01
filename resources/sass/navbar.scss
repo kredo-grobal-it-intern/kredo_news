@@ -16,6 +16,11 @@ navbar
     border-bottom: 1px solid #fff;
 }
 
+.dropdown-menu-custom {
+    max-height: 500px;
+    overflow: scroll;
+}
+
 /* ----------------------------------------------------------
 navbar-responsive
 ---------------------------------------------------------- */

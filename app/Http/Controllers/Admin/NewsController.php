@@ -106,8 +106,15 @@ class NewsController extends Controller
     public function edit($news_id)
     {
         $news = News::findOrFail($news_id);
+        $all_media  = Source::all();
+        $categories = Category::all();
+        $countries  = Country::whereNotNull('continent')->get();
 
-        return view('admin.news.edit', compact('news'));
+        return view('admin.news.edit')
+                ->with('news', $news)
+                ->with('all_media', $all_media)
+                ->with('categories', $categories)
+                ->with('countries', $countries);
     }
 
     public function update(NewsStoreUpdateRequest $request, $news_id)

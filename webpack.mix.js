@@ -37,6 +37,7 @@ const mix = require('laravel-mix');
  .sass('resources/sass/admin_navbar.scss', 'public/css')
  .sass('resources/sass/admin_dashboard.scss', 'public/css')
  .sass('resources/sass/admin/table.scss', 'public/css/admin')
+ .sass('resources/sass/admin/create.scss', 'public/css/admin')
  .sass('resources/sass/news_list.scss', 'public/css');
 
 //  mix.copyDirectory('vendor/tinymce/tinymce', 'public/js/tinymce');
