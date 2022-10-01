@@ -72,17 +72,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], f
         Route::post('store', [AdminNewsController::class, 'store'])->name('store');
         Route::get('edit/{news_id}', [AdminNewsController::class, 'edit'])->name('edit');
         Route::patch('{news_id}', [AdminNewsController::class, 'update'])->name('update');
-        Route::get('show', [AdminNewsController::class, 'show'])->name('show');
+        Route::get('list', [AdminNewsController::class, 'index'])->name('list');
         Route::delete('destroy/{user_id}', [AdminNewsController::class, 'destroy'])->name('destroy');
         Route::get('restore/{user_id}', [AdminNewsController::class, 'restore'])->name('restore');
     });
     Route::group(['prefix' => 'comments', 'as' => 'comments.'], function () {
-        Route::get('show', [AdminCommentController::class, 'show'])->name('show');
+        Route::get('list', [AdminCommentController::class, 'index'])->name('list');
         Route::delete('destroy/{user_id}', [AdminCommentController::class, 'destroy'])->name('destroy');
         Route::get('restore/{user_id}', [AdminCommentController::class, 'restore'])->name('restore');
     });
     Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
-        Route::get('show', [AdminUserController::class, 'show'])->name('show');
+        Route::get('list', [AdminUserController::class, 'index'])->name('list');
         Route::delete('destroy/{user_id}', [AdminUserController::class, 'destroy'])->name('destroy');
         Route::get('restore/{user_id}', [AdminUserController::class, 'restore'])->name('restore');
     });

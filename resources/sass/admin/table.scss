@@ -30,9 +30,15 @@ table{
             width:50px; 
             object-fit:cover;
         }
+
+        .title{
+            min-width:300px; 
+            text-align: start;
+            white-space: normal;
+        }
         
         .comment-body{
-            min-width:400px; 
+            min-width:300px; 
             width:400px;
             text-align: start;
             white-space: normal;
@@ -42,18 +48,21 @@ table{
             height:32px;
             object-fit:cover; 
             border-radius: 50%;
+            display: block;
+            margin-right: 4px;
         }
         .user-icon-size{
             font-size: 32px;
+            margin-right: 4px;
         }
-        .test{
-            vertical-align: middle;
+
+        .avatar-name-align{
+            display: flex;
+            text-decoration: none;
+            color: black;
+            align-items: center;
         }
-        // .avatar-name-align{
-        //     // display: flex; 
-        //     // align-items: center;
-        //     vertical-align: middle;   
-        // }
+
     
         .badge{
             opacity:0.8; 
@@ -82,3 +91,4 @@ table{
 {
     background-color: white;
 }
+

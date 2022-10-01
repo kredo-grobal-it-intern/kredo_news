@@ -16,10 +16,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function index()
     {
         $users = User::where('is_admin', 0)->withTrashed()->paginate(10);
-        return view('admin.users.show')->with('users', $users);
+        return view('admin.users.list')->with('users', $users);
     }
 
     /**

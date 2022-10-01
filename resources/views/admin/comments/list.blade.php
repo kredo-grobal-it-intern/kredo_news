@@ -27,7 +27,7 @@
                 <td class="text-center">{{ $comments->firstItem() + $loop->index }}</td>
                 <td>{{ date('n/j (D)', strtotime($comment->created_at)) }}</td>
                 <td><img src="{{ asset('images/news/' . $comment->news->image) }}"  alt="{{ $comment->news->image }}" class="news-image"/></td>
-                <td class="text-start"><a href="{{ route('news.show', $comment->news->id) }}" class="text-decoration-none text-black">{{ $comment->news->title }}</a></td>
+                <td class="title"><a href="{{ route('news.show', $comment->news->id) }}" class="text-decoration-none text-black">{{ $comment->news->title }}</a></td>
                 <td class="comment-body">{{ $comment->body }}</td>
                 <td class="text-start">
                     @if ($comment->user->avatar)

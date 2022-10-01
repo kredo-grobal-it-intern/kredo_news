@@ -14,11 +14,11 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function index()
     {
         $comments = Comment::orderBy('created_at', 'desc')->withTrashed()->paginate(10);
 
-        return view('admin.comments.show')->with('comments', $comments);
+        return view('admin.comments.list')->with('comments', $comments);
     }
 
     /**

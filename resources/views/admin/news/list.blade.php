@@ -33,7 +33,7 @@
                 <td>{{ $all_news->firstItem() + $loop->index }}</td>
                 <td>{{ date('n/j (D)', strtotime($news->published_at)) }}</td>
                 <td><img src="{{ asset('images/news/' . $news->image) }}"  alt="{{ $news->image }}" class="news-image"/></td>
-                <td class="text-start"><a href="{{ route('news.show', $news->id) }}" class="text-decoration-none text-black">{{ $news->title }}</a></td>
+                <td class="title"><a href="{{ route('news.show', $news->id) }}" class="text-decoration-none text-black">{{ $news->title }}</a></td>
                 <td>{{ $news->category->name }}</td>
                 <td>
                     <div class="country-width">

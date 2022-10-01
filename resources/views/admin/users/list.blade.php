@@ -7,7 +7,7 @@
 @endsection
     
 @section('content')
-<div class="table-responsive">
+<div class="table-responsive container-width">
     <table class="table align-middle mt-4 text-nowrap">
         <thead >
             <tr>
