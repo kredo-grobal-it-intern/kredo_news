@@ -20,7 +20,6 @@ const mix = require('laravel-mix');
  .js('resources/js/_profile_edit.js', 'public/js')
  .js('resources/js/_comment_like.js', 'public/js')
  .sass('resources/sass/app.scss', 'public/css')
- .sass('resources/sass/admin.scss', 'public/css')
  .sass('resources/sass/profile.scss', 'public/css')
  .sass('resources/sass/profile_edit.scss', 'public/css')
  .sass('resources/sass/login.scss', 'public/css')
@@ -33,8 +32,10 @@ const mix = require('laravel-mix');
  .sass('resources/sass/country.scss', 'public/css')
  .sass('resources/sass/top.scss', 'public/css')
  .sass('resources/sass/detail.scss', 'public/css')
- .sass('resources/sass/admin_navbar.scss', 'public/css')
- .sass('resources/sass/admin_dashboard.scss', 'public/css')
+ .sass('resources/sass/admin/table.scss', 'public/css/admin')
+ .sass('resources/sass/admin/style.scss', 'public/css/admin')
+ .sass('resources/sass/admin/navbar.scss', 'public/css/admin')
+ .sass('resources/sass/admin/dashboard.scss', 'public/css/admin')
  .sass('resources/sass/admin/create.scss', 'public/css/admin')
  .sass('resources/sass/news_list.scss', 'public/css');
 

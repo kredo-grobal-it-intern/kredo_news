@@ -20,8 +20,8 @@
 
         <!-- Styles -->
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-        <link href="{{ mix('css/admin.css') }}" rel="stylesheet">
-        <link href="{{ mix('css/admin_navbar.css') }}" rel="stylesheet">
+        <link href="{{ mix('css/admin/style.css') }}" rel="stylesheet">
+        <link href="{{ mix('css/admin/navbar.css') }}" rel="stylesheet">
         <link rel="shortcut icon" href="{{ asset('images/news_favicon.png') }}">
         @yield('style')
 
@@ -42,9 +42,9 @@
                         <a href="{{ route('news.index') }}"><img src="{{ asset('storage/images/logo_transparent.png') }}" alt="" class="list-group-item w-50 d-block mx-auto"></a>
                         <a href="{{ route('news.index') }}" class="list list-group-item btn d-block text-decoration-none text-white"><span class="me-2"><i class="fa-solid fa-arrow-left"></i></span>Top</a>
                         <a href="{{ route('admin.show.dashboard') }}" class="list list-group-item btn d-block text-decoration-none text-white"><span class="me-2"><i class="fa-solid fa-inbox"></i></span>Dashboard</a>
-                        <a href="{{ route('admin.news.show') }}" class="list list-group-item btn d-block text-decoration-none text-white"><span class="me-2"><i class="fa-solid fa-newspaper"></i></span>News</a>
-                        <a href="{{ route('admin.comments.show') }}" class="list list-group-item btn d-block text-decoration-none text-white"><span class="me-2"><i class="fa-solid fa-comments"></i></span>Comments</a>
-                        <a href="{{ route('admin.users.show') }}" class="list list-group-item btn d-block text-decoration-none text-white"><span class="me-2"><i class="fa-solid fa-users"></i></span>Users</a>
+                        <a href="{{ route('admin.news.list') }}" class="list list-group-item btn d-block text-decoration-none text-white"><span class="me-2"><i class="fa-solid fa-newspaper"></i></span>News</a>
+                        <a href="{{ route('admin.comments.list') }}" class="list list-group-item btn d-block text-decoration-none text-white"><span class="me-2"><i class="fa-solid fa-comments"></i></span>Comments</a>
+                        <a href="{{ route('admin.users.list') }}" class="list list-group-item btn d-block text-decoration-none text-white"><span class="me-2"><i class="fa-solid fa-users"></i></span>Users</a>
                         <a href="{{ route('admin.news.create') }}" class="list list-group-item btn d-block text-decoration-none text-white"><span class="me-2"><i class="fa-solid fa-file-circle-plus"></i></span>Create news</a>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
                     </nav>
                     <!-- Page content-->
                 <main>
-                    <div class="container">
+                    <div class="container-fluid px-5">
                         @yield('content')
                     </div>
                 </main>
