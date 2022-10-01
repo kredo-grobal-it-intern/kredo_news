@@ -21,7 +21,6 @@ const mix = require('laravel-mix');
  .js('resources/js/_comment_like.js', 'public/js')
  .sass('resources/sass/app.scss', 'public/css')
  .sass('resources/sass/admin.scss', 'public/css')
- .sass('resources/sass/news.scss', 'public/css')
  .sass('resources/sass/profile.scss', 'public/css')
  .sass('resources/sass/profile_edit.scss', 'public/css')
  .sass('resources/sass/login.scss', 'public/css')
@@ -36,6 +35,7 @@ const mix = require('laravel-mix');
  .sass('resources/sass/detail.scss', 'public/css')
  .sass('resources/sass/admin_navbar.scss', 'public/css')
  .sass('resources/sass/admin_dashboard.scss', 'public/css')
+ .sass('resources/sass/admin/create.scss', 'public/css/admin')
  .sass('resources/sass/news_list.scss', 'public/css');
 
 //  mix.copyDirectory('vendor/tinymce/tinymce', 'public/js/tinymce');
