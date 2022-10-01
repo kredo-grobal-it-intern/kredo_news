@@ -1,38 +1,42 @@
-.news-list-image {
-    height: 140px;
-    object-fit: cover;
-}
+.news-list {
 
-.news-list-heading {
-    font-size: 1.2rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* number of lines to show */
-            line-clamp: 2;
-    -webkit-box-orient: vertical;
-    &:hover{
-        color: red;
+    &-image {
+        height: 140px;
+        object-fit: cover;
     }
-}
 
-.news-list-heading-link{
-    text-decoration: none;
-    color: #000;
-    &:hover{
-        color: red;
+    &-heading {
+        font-size: 1.2rem;
+        height: 46px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* number of lines to show */
+                line-clamp: 2;
+        -webkit-box-orient: vertical;
+        &:hover{
+            color: red;
+        }
+
+        &-link {
+            text-decoration: none;
+            color: #000;
+            &:hover{
+                color: red;
+            }
+        }
     }
-}
 
-.news-list-description {
-    font-size: 0.9rem;
-    overflow: hidden;
-    text-align: justify;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 4; /* number of lines to show */
-            line-clamp: 4;
-    -webkit-box-orient: vertical;
+    &-description {
+        font-size: 0.9rem;
+        height: 70px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* number of lines to show */
+                line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
 }
 
 .reaction, .comment {
@@ -44,17 +48,19 @@
 }
 
 @media (max-width: 992px) {
-    .news-list-image {
-        height: 220px;
-        object-fit: cover;
-    }
+    .news-list {
 
-    .news-list-heading {
-        font-size: 1.1rem;
-    }
+        &-image {
+            height: 220px;
+        }
 
-    .news-list-description {
-        font-size: 1.0rem;
+        &-heading {
+            font-size: 1.1rem;
+        }
+
+        &-description {
+            font-size: 1.0rem;
+        }
     }
 
     .reaction, .bookmark, .comment {
@@ -67,16 +73,19 @@
 }
 
 @media (max-width: 768px) {
-    .news-list-image {
-        height: 220px;
+    .news-list {
+        &-heading {
+            height: auto;
+            display: block;
+        }
+        &-description {
+            height: auto;
+            display: block;
+        }
     }
 }
 
 @media (max-width: 576px) {
-    .profile-btn-to-modal {
-        font-size: 1.1rem;
-    }
-
     .reaction, .bookmark, .comment {
         font-size: 1.2rem;
     }
