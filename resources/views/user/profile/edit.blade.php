@@ -128,10 +128,12 @@
                         <div class="p-3">
                             <p class="fw-bold favorite-country-continent">{{ $continent }} </p>
                             @php
-                                $countries = App\Models\Country::where('continent', $continent)->get();
+                                $countries_by_continent = $all_countries->filter(function($country) use($continent) {
+                                    return $country->continent == $continent;
+                                });
                             @endphp
                             <div class="row">
-                                @foreach($countries as $country)
+                                @foreach($countries_by_continent as $country)
                                     <div class="col-lg-2 col-md-3 col-4">
                                         <div class="form-check">
                                             <input type="checkbox" name="countries[]" id="{{ $country->name }}-{{$country->id}}" value="{{$country->id}}" class="form-check-input" {{ in_array($country->id, $favorite_countries_ids) ? 'checked' : '' }}>
