@@ -20,8 +20,8 @@
 
         <!-- Styles -->
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-        <link href="{{ mix('css/admin.css') }}" rel="stylesheet">
-        <link href="{{ mix('css/admin_navbar.css') }}" rel="stylesheet">
+        <link href="{{ mix('css/admin/style.css') }}" rel="stylesheet">
+        <link href="{{ mix('css/admin/navbar.css') }}" rel="stylesheet">
         <link rel="shortcut icon" href="{{ asset('images/news_favicon.png') }}">
         @yield('style')
 
