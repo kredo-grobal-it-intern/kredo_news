@@ -12,7 +12,7 @@
                     <a href="{{ route('user.news.favorite') }}"  class="text-reset footer-list-item">My Favorite</a>
                 </li>
                 <li class="text-gray px-2 mb-2">
-                    <a href="" class="text-reset footer-list-item">Sports</a>
+                    <a href="{{ route('news.category', 3)}}" class="text-reset footer-list-item">Sports</a>
                 </li>
                 <li class="text-gray px-2 mb-2">
                     <a href="" class="text-reset footer-list-item">Subscribe</a>
@@ -21,30 +21,28 @@
         </div>
         <div class="col-lg-3 col-md-6 col-12 mx-auto mb-4 mb-lg-0 footer-content">
             <!-- Recent Post -->
-            <h6 class="fw-bold text-white mb-3 footer-list-title">Recent Post</h6>
+            <h6 class="fw-bold text-white mb-3 footer-list-title">Latest News<i class="fa fa-newspaper-o" aria-hidden="true"></i></h6>
             <ul class="footer-list">
+                {{-- @foreach ($latest_news ->take(4) as $latest) --}}
                 <li class="text-gray px-2 mb-2">
-                    <a href="" class="text-reset footer-list-item">News Title 1</a>
+                    <a href="{{ route('news.show', $news->id) }}" class="text-reset footer-list-item">{{ $news->title }}</a>
                 </li>
                 <li class="text-gray px-2 mb-2">
-                    <a href="" class="text-reset footer-list-item">News Title 1</a>
+                    <a href="{{ route('news.show', $news->id) }}" class="text-reset footer-list-item">{{ $news->title }}</a>
                 </li>
                 <li class="text-gray px-2 mb-2">
-                    <a href="" class="text-reset footer-list-item">News Title 1</a>
+                    <a href="{{ route('news.show', $news->id) }}" class="text-reset footer-list-item">{{ $news->title }}</a>
+                </li><li class="text-gray px-2 mb-2">
+                    <a href="{{ route('news.show', $news->id) }}" class="text-reset footer-list-item">{{ $news->title }}</a>
                 </li>
-                <li class="text-gray px-2 mb-2">
-                    <a href="" class="text-reset footer-list-item">News Title 1</a>
-                </li>
+                {{-- @endforeach --}}
             </ul>
         </div>
         <div class="col-lg-3 col-md-6 col-12 mx-auto mb-4 mb-lg-0 footer-motto">
-            <!-- About -->
-            {{-- <h6 class="fw-bold text-white mb-3 footer-list-title">About</h6> --}}
             <div class="text-center fw-bold h5">
                 <img src="{{ asset('images/logo3.png') }}" alt="" width="90">
                 <p class="text-gray">Customize Compare Communicate</p>
                 <p class="text-gray">with US</p>
-                <p class="text-gray">C C C</p>
             </div>
         </div>
         <div class="col-lg-3 col-md-6 col-12 mx-auto mb-4 mb-lg-0 footer-content">
