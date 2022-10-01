@@ -17,7 +17,7 @@
     </div>
     <div class="row">
         <!-- Main content -->
-        <div class="col-8">
+        <div class="col-lg-8">
             <!-- Comment section -->
             <section>
                 <h3 class="py-2 mt-4 mb-2 comment-title">Comments</h3>
@@ -30,7 +30,7 @@
             </section>
         </div>
         <!-- Side content -->
-        <aside class="col-4">
+        <aside class="d-none d-lg-block col-lg-4">
             <!-- What's hot -->
             <section class="mb-5">
                 <h3 class="aside-title pb-2 mb-4">What's hot</h3>
