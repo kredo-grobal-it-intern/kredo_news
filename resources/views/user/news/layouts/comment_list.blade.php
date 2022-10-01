@@ -9,23 +9,24 @@
     <div class="col-10 col-sm-11">
         <!-- Comment header -->
         <div class="profile">
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between align-items-center">
                 <h6 class="fw-bold"><a href="{{ route('user.profile.show', $comment->user->id) }}" class="username text-dark">{{ $comment->user->username }}</a></h6>
-                <div class="reaction-area text-end">
+                <div class="comment-reaction d-flex align-items-center">
                     @auth
                         @if ($comment->user_id === Auth::user()->id)
-                            <form action="{{ route('user.comment.destroy', $comment->id) }}" method="post" class="d-inline">
+                            <form action="{{ route('user.comment.destroy', $comment->id) }}" method="post" class="comment-reaction-delete">
                                 @csrf
                                 @method('DELETE')
                                     <button type="submit" class="comment-delete text-danger border-0 bg-transparent">Delete</button>
                             </form>
                         @endif
                     @endauth
-                    <span class="comment-likes-count">{{ $comment->commentLikes()->count() }}</span>
-                    <i class="fa-heart comment-like-btn @if($comment->isLiked()) fa-solid comment-liked @else fa-regular @endif" data-commentid="{{ $comment->id }}"></i>
+                    <div class="comment-reaction-like">
+                        <span class="comment-likes-count">{{ $comment->commentLikes()->count() }}</span>
+                        <i class="fa-heart comment-like-btn @if($comment->isLiked()) fa-solid comment-liked @else fa-regular @endif" data-commentid="{{ $comment->id }}"></i>
+                    </div>
                 </div>
             </div>
-            <small class="text-muted">Soccer player / Musician / Science</small>
         </div>
         <!-- Comment body -->
         <div class="comment-content mt-3">
