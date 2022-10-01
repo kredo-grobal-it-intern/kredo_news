@@ -32,6 +32,7 @@ const mix = require('laravel-mix');
  .sass('resources/sass/country.scss', 'public/css')
  .sass('resources/sass/top.scss', 'public/css')
  .sass('resources/sass/detail.scss', 'public/css')
+ .sass('resources/sass/admin/table.scss', 'public/css/admin')
  .sass('resources/sass/admin/style.scss', 'public/css/admin')
  .sass('resources/sass/admin/navbar.scss', 'public/css/admin')
  .sass('resources/sass/admin/dashboard.scss', 'public/css/admin')
