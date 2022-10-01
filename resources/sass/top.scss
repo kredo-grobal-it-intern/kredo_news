@@ -29,8 +29,10 @@
 }
 
 .top-news {
+
     &-heading {
         font-size: 1.7rem;
+        height: 98px;
         //This below part is to hold sentences when there are many sentences//
         overflow: hidden;
         text-overflow: ellipsis;
@@ -49,6 +51,13 @@
 
     &-description {
         font-size: 1.1rem;
+        height: 112px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 4; /* number of lines to show */
+                line-clamp: 4;
+        -webkit-box-orient: vertical;
         }
 
     &-image {
@@ -86,30 +95,19 @@
     }
 }
 
-@media (min-width: 768px) {
-    .top-news {
-        &-description {
-        font-size: 1.0rem;
-        overflow: hidden;
-        text-align: justify;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 7; /* number of lines to show */
-                line-clamp: 7;
-        -webkit-box-orient: vertical;
-        }
-    }
-}
-
 @media (max-width: 992px) {
     .top-news {
 
         &-heading {
             font-size: 1.2rem;
+            height: 69px;
         }
 
         &-description {
             font-size: 1.0rem;
+            height: 128px;
+            -webkit-line-clamp: 5;
+                line-clamp: 5;
         }
         &-image {
             height: 250px;
@@ -124,7 +122,14 @@
         }
 
         &-heading {
-            font-size: 1.0rem;
+            font-size: 1.1rem;
+            height: auto;
+            display: block;
+        }
+
+        &-description {
+            height: auto;
+            display: block;
         }
     }
 }
