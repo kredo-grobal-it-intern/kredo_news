@@ -128,3 +128,26 @@
         }
     }
 }
+
+.container-top-news {
+    position: relative;
+    text-align: center;
+    background-color: #000;
+    & img{
+        opacity:0.7;
+        position: relative;
+    }
+}
+
+.centered {
+    position: absolute;
+    text-shadow:2px 1px 2px black;
+    color:white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    & h1{
+        font-size: 50px;
+        white-space: nowrap;
+    }
+}

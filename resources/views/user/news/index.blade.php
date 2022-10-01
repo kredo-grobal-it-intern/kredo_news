@@ -7,7 +7,12 @@
 
 @section('content')
 <div class="container">
-    <h1 class="text-center mb-5">Top news from world regions</h1>
+    <div class="container-top-news mb-5">
+        <img src="{{asset('images/top_heading.PNG')}}" style="width:100%;height:90px;object-fit:cover;">
+        <div class="centered">
+            <h1>Top news from world regions</h1>
+        </div>
+    </div>
     @foreach ($news_list as $country_name => $country_news)
         @isset($country_news['latest']) <!-- tentative condition -->
             <section class="country-section">
