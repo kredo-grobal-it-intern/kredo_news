@@ -54,6 +54,22 @@ search-modal
     border-bottom: 1px solid #B5AAAA;
 }
 
+.search-input-label {
+    position: relative;
+    margin-left: 12px;
+
+    &::before {
+        content:"";
+        display:inline-block;
+        width:6px;
+        height:16px;
+        background-color:#052962;
+        position:absolute;
+        top: 3px;
+        left: -12px;
+    }
+}
+
 .btn-custom {
     padding: 10px 0px;
     width: 220px;
