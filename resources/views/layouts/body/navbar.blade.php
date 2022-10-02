@@ -1,6 +1,6 @@
 @php
     $categories = App\Models\Category::all();
-    $sources = App\Models\Source::all();
+    $all_sources = App\Models\Source::all();
     $continents = [ 'America','Asia','Europe','Oceania','Africa' ];
     $all_countries = App\Models\Country::all();
 @endphp
@@ -49,10 +49,18 @@
 
                     <!-- category dropdown list -->
                     <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="countriesDropdown">
-                        @foreach ($sources as $source)
-                            <a href="{{ route('news.media', $source->id) }}" class="dropdown-item">
-                                {{ $source->country->name }}
-                            </a>
+                        @foreach ($continents as $continent)
+                            @php
+                                $sources_by_continent = $all_sources->filter(function($source) use($continent) {
+                                    return $source->country->continent == $continent;
+                                });
+                            @endphp
+                            <span class="dropdown-item fw-bold d-block text-center">--- {{ $continent }} ---</span>
+                            @foreach ($sources_by_continent as $sources)
+                                <a href="{{ route('news.media' , $sources->id) }}" class="dropdown-item">
+                                    {{ $sources->country->name }}
+                                </a>
+                            @endforeach
                         @endforeach
                     </ul>
                 </li>
