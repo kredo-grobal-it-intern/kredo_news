@@ -18,30 +18,26 @@
             cache: false,
 
             error:function(xhr, status, error) {
-                // $('#editor-error').removeClass('d-none');
-                // var err = eval("(" + xhr.responseText + ")");
 
-                console.log(xhr)
-                let errorMessages = '<ul>';
-                for(error in xhr.responseJson.errors) {
-                    errorMessages += "<li>" + error + "</li>";
+                // console.log(xhr)
+                let errorMessages = "<ul class='test'>";
+                for(error in xhr.responseJSON.errors) {
+                    errorMessages += "<li class='text-danger'>" + error + " is required</li>";
                 }
                 errorMessages += "</ul>";
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: xhr.responseJSON.message,
+                    // text: xhr.responseJSON.message,
+                    // footer:errorMessages,
+                    html:errorMessages,
                     
-                    footer:errorMessages
                 })
             }
-
-            // error: function(xhr, status, error) {
-            //     var err = eval("(" + xhr.responseText + ")");
-            //     alert(err.Message);
-            //   }
         })
         // success
+
+        
 
 
         .done(function(data) {

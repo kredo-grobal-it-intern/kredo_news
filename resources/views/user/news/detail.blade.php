@@ -24,7 +24,7 @@
                     <img src="{{ asset('images/news/' . $news->image) }}" alt="News Image" class="w-100 detail-image">
                 </div>
                 <div class="news-content px-3">
-                    <p>{!! $news->content !!}</p>
+                    {{ Illuminate\Mail\Markdown::parse($news->content) }} 
                     <p>URL: &nbsp;<a href="{{ $news->url }}" class="text-dark">{{ $news->url }}</a></p>
                 </div>
             </section>
