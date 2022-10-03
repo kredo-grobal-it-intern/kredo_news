@@ -15,12 +15,38 @@
             data: data,
             contentType: false,
             processData: false,
-            cache: false
+            cache: false,
+
+            error:function(xhr, status, error) {
+                // $('#editor-error').removeClass('d-none');
+                // var err = eval("(" + xhr.responseText + ")");
+
+                console.log(xhr)
+                let errorMessages = '<ul>';
+                for(error in xhr.responseJson.errors) {
+                    errorMessages += "<li>" + error + "</li>";
+                }
+                errorMessages += "</ul>";
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: xhr.responseJSON.message,
+                    
+                    footer:errorMessages
+                })
+            }
+
+            // error: function(xhr, status, error) {
+            //     var err = eval("(" + xhr.responseText + ")");
+            //     alert(err.Message);
+            //   }
         })
         // success
+
+
         .done(function(data) {
-            alert('News saved');
-            // todo: redirect to the homepage
+            window.location.href = "/admin/dashboard";
+
         })
     })
 
