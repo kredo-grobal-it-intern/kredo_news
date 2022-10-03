@@ -2,29 +2,32 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Arr;
 use Tests\TestCase;
+use App\Models\Country;
+use Database\Seeders\CountrySeeder;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class RegisterUserTest extends TestCase
 {
+    use RefreshDatabase;
     public function test_create_user()
     {
+        $this->seed(CountrySeeder::class);
+        $country = Country::latest()->take(1)->first();
+
+        // $country = Country::factory()->create();
+        
         $response = $this->post('/register', [
             'username' => 'test',
-            'email'    => 'test111111111@gmail.com',
-            'nationality' => '5',
-            'country' => '5',
+            'email'    => 'test@gmail.com',
+            'nationality' => $country->id,
+            'country' => $country->id,
             'password' => 'password',
             'password_confirmation' => 'password',
         ]);
-        dd($response);
-        $response->from(route('register'))->assertRedirect(route('verification.notice'));
+        $response->assertRedirect(route('verification.notice'));
     }
 
-    // public function test_create_user_fail()
-    // {
-       
-    // }
+   
+
 }
