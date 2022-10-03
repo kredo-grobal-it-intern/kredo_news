@@ -30,6 +30,7 @@ footer {
 }
 
 .footer-content {
+    border:solid pink;
     .footer-list {
         list-style: none;
         padding: 0;
@@ -40,6 +41,7 @@ footer {
     .footer-list-item {
         font-size: 1.0rem;
         text-decoration: none;
+        padding-left:30px;
 
         &:hover {
             opacity: 0.7;
