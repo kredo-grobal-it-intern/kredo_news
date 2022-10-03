@@ -12,7 +12,7 @@
                         @csrf
 
                         <div class="mt-4">
-                            <label class="form-label fw-bold">Search by Keyword</label>
+                            <label class="form-label fw-bold search-input-label">Search by Keyword</label>
                             <input type="text" class="form-control" name="keyword" placeholder="Enter News Key Word" required>
                             @error('keyword')
                                 <small class="text-danger">{{ $message }}</small>
@@ -20,7 +20,7 @@
                         </div>
 
                         <div class="mt-4">
-                            <label for="category" class="form-label fw-bold">Favorite Category</label>
+                            <label for="category" class="form-label fw-bold search-input-label">Favorite Category</label>
                             <select name="category" id="category" class="form-select">
                                 <option disabled selected>-- Choose Category --</option>
                                 @foreach ($categories as $category)
@@ -30,20 +30,20 @@
                         </div>
 
                         <div class="mt-4">
-                            <label class="form-label fw-bold">Favorite Country</label>
+                            <label class="form-label fw-bold search-input-label">Favorite Country</label>
 
                             <div class="px-3">
                                 <div class="mb-3">
                                     @foreach ( $continents as $continent )
-                                        <label class="form-label fw-bold d-block">{{ $continent }}</label>
-                                        <div class="d-flex flex-wrap p-2">
+                                        <label class="form-label fw-bold d-block text-decoration-underline">{{ $continent }}</label>
+                                        <div class="row px-3 mb-2">
                                             @php
                                                 $countries_by_continent = $all_countries->filter(function($country) use($continent) {
                                                     return $country->continent == $continent;
                                                 });
                                             @endphp
                                             @foreach ($countries_by_continent as $country)
-                                                <div class="form-check form-check-inline">
+                                                <div class="form-check col-xl-3 col-lg-4 col-6">
                                                     <input id="{{ $country->name }}" type="checkbox" class="form-check-input" name="countries[]" value="{{ $country->id }}">
                                                     <label for="{{ $country->name }}" class="form-check-lebel">{{ $country->name }}</label>
                                                 </div>
