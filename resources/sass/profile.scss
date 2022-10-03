@@ -1,40 +1,137 @@
-body {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: #000;
+.profile {
+    width: 75%;
+    &-avatar {
+        &-icon {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+        }
+        &-none {
+            font-size: 180px;
+        }
+    }
+
+    &-heading {
+        &-icon {
+            display: none;
+        }
+        &-none {
+            display: none;
+        }
+    }
+
+    &-btn {
+        &-tab {
+            border: 1px solid #052962;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        &-to-modal {
+            border: 0;
+            font-size: 1.1rem;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.news-list {
+    &-img {
+        height: 200px;
+        object-fit:cover;
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+    &-title {
+        font-size: 1rem;
+        & a {
+            text-decoration: none;
+            color: #000;
+            &:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        }
+    }
+    &-clock {
+        font-size: 0.7rem;
+    }
+    &-badge {
+        background-color: #052962;
+        display: inline-block;
+    }
+}
+
+.is-active {
+    background-color: #052962;
     color: #fff;
 }
 
-.navbar-laravel {
-    background-color: #000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+.reaction, .comment {
+    margin-right: 12px;
 }
 
-.navbar-brand {
-    color: #fff !important;
+.reaction, .bookmark {
+    cursor: pointer;
 }
 
-.nav-link {
-    color: #fff !important;
+@media (max-width: 992px) {
+    .profile {
+        width: 100%;
+        &-avatar {
+            display: none;
+        }
+
+        &-heading {
+            display: flex;
+            &-icon {
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+                object-fit: cover;
+            }
+            &-none {
+                display: inline-block;
+            }
+        }
+    }
+
+    .reaction, .bookmark, .comment {
+        font-size: 1.1rem;
+    }
+
+    .reaction, .comment {
+        margin-right: 16px;
+    }
 }
 
-.table-dark {
-    color: #fff;
+@media (max-width: 576px) {
+    .profile-btn-to-modal {
+        font-size: 1.1rem;
+    }
+
+    .reaction, .bookmark, .comment {
+        font-size: 1.2rem;
+    }
+
+    .reaction, .comment {
+        margin-right: 20px;
+    }
 }
 
-.list-group-item {
-    border-color: #fff;
-    background-color: #000;
+/*
+** Following modal
+*/
+
+.user-avatar-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
 }
 
-.login-box {
-    background-color: rgba(0, 0, 0, 0);
-}
-
-.login-header {
-    background-color: rgba(0, 0, 0, 0.25);
-}
-
-.login-body {
-    background-color: rgba(0, 0, 0, 0.25);
+.user-avatar-none {
+    font-size: 32px;
 }

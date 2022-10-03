@@ -5,7 +5,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @endsection
 @section('style')
-<link href="{{ asset('css/login.css') }}" rel="stylesheet">
+<link href="{{ mix('css/login.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endsection
 
@@ -43,6 +43,7 @@
                     <button type="submit" class="btn btn-danger fw-bold w-100">
                         Login
                     </button>
+                    <p class="text-muted text-end mt-1"><a href="{{ route('password.request') }}" class="text-muted">Forgot password?</a></p>
                 </div>
             </form>
             <p>Or Login with:</p>

@@ -10,7 +10,7 @@ $(function () {
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: '/user/thumbs_up',
+                url: '/user/like',
                 type: 'POST',
                 data: {
                     'news_id': likeNewsId
@@ -36,7 +36,7 @@ $(function () {
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: '/user/thumbs_down',
+                url: '/user/dislike',
                 type: 'POST',
                 data: {
                     'news_id': likeNewsId

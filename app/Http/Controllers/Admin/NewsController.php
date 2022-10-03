@@ -11,30 +11,41 @@ use App\Models\Comment;
 use App\Models\Country;
 use App\Models\Source;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
     const LOCAL_STORAGE_FOLDER = 'public/images/news';
+    
+    public function index()
+    {
+        $all_news = News::orderBy('published_at', 'desc')->withTrashed()->paginate(10);
+        return view('admin.news.list')
+                    ->with('all_news', $all_news);
+    }
 
     public function showDashboard()
     {
-        $news     = News::withTrashed()->get();
-        $users    = User::withTrashed()->get();
-        $comments = Comment::withTrashed()->with('user')->get();
-
+        $news          = News::withTrashed()->get();
+        $users         = User::withTrashed()->get();
+        $comments      = Comment::withTrashed()->with('user')->get();
+        $reactions     = DB::table('reactions')->get();
+        $bookmarks     = DB::table('bookmarks')->get();
+        $good_news     = News::getTopGoodNewsList();
+        $bad_news      = News::getWorstBadNewsList();
+        $bookmark_news = News::getTopBookmarkNewsList();
+        
         return view('admin.dashboard')
                 ->with('news', $news)
                 ->with('users', $users)
-                ->with('comments', $comments);
+                ->with('comments', $comments)
+                ->with('reactions', $reactions)
+                ->with('good_news', $good_news)
+                ->with('bad_news', $bad_news)
+                ->with('bookmark_news', $bookmark_news)
+                ->with('bookmarks', $bookmarks);
     }
 
-    public function show()
-    {
-
-        $all_news = News::orderBy('published_at')->withTrashed()->paginate(10);
-        return view('admin.news.show')
-                    ->with('all_news', $all_news);
-    }
 
     public function showUsersList()
     {
@@ -97,8 +108,15 @@ class NewsController extends Controller
     public function edit($news_id)
     {
         $news = News::findOrFail($news_id);
+        $all_media  = Source::all();
+        $categories = Category::all();
+        $countries  = Country::whereNotNull('continent')->get();
 
-        return view('admin.news.edit', compact('news'));
+        return view('admin.news.edit')
+                ->with('news', $news)
+                ->with('all_media', $all_media)
+                ->with('categories', $categories)
+                ->with('countries', $countries);
     }
 
     public function update(NewsStoreUpdateRequest $request, $news_id)

@@ -33,19 +33,16 @@
                             <label class="form-label fw-bold">Favorite Country</label>
 
                             <div class="px-3">
-                                    @php
-                                        $continents = ['Asia', 'America', 'Africa', 'Oceania', 'Europe',];
-                                    @endphp
                                 <div class="mb-3">
                                     @foreach ( $continents as $continent )
                                         <label class="form-label fw-bold d-block">{{ $continent }}</label>
                                         <div class="d-flex flex-wrap p-2">
                                             @php
-                                                $continent_countries = $countries->filter(function($country) use($continent) {
+                                                $countries_by_continent = $all_countries->filter(function($country) use($continent) {
                                                     return $country->continent == $continent;
                                                 });
                                             @endphp
-                                            @foreach ( $continent_countries as $country )
+                                            @foreach ($countries_by_continent as $country)
                                                 <div class="form-check form-check-inline">
                                                     <input id="{{ $country->name }}" type="checkbox" class="form-check-input" name="countries[]" value="{{ $country->id }}">
                                                     <label for="{{ $country->name }}" class="form-check-lebel">{{ $country->name }}</label>

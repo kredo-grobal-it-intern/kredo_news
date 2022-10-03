@@ -26,12 +26,13 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ mix('css/navbar.css') }}" rel="stylesheet">
     <link href="{{ mix('css/footer.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ asset('images/news_favicon.png') }}">
     @yield('style')
 </head>
 <body>
     <div id="app">
 
-        <div class="wrapper">'
+        <div class="wrapper">
             <header>
                 @include('layouts.body.navbar')
             </header>
@@ -48,6 +49,6 @@
         </div>
     </div>
 
-    @yield('script-footer')
+    @yield('script_footer')
 </body>
 </html>
