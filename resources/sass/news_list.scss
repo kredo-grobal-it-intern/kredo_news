@@ -1,61 +1,92 @@
-.news-list-image {
-    height: 140px;
-    object-fit: cover;
-}
+.news-list {
 
-.news-list-heading {
-    font-size: 1.2rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* number of lines to show */
-            line-clamp: 2; 
-    -webkit-box-orient: vertical;
-    &:hover{
-        color: red;
+    &-image {
+        height: 140px;
+        object-fit: cover;
+    }
+
+    &-heading {
+        font-size: 1.2rem;
+        height: 46px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* number of lines to show */
+                line-clamp: 2;
+        -webkit-box-orient: vertical;
+        &:hover{
+            color: red;
+        }
+
+        &-link {
+            text-decoration: none;
+            color: #000;
+            &:hover{
+                color: red;
+            }
+        }
+    }
+
+    &-description {
+        font-size: 0.9rem;
+        height: 70px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* number of lines to show */
+                line-clamp: 3;
+        -webkit-box-orient: vertical;
     }
 }
 
-.news-list-heading-link{
-    text-decoration: none;
-    color: #000;
-    &:hover{
-        color: red;
-    }
+.reaction, .comment, .bookmark {
+    margin-right: 12px;
 }
 
-.news-list-description {
-    font-size: 0.9rem;
-    overflow: hidden;
-    text-align: justify;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 4; /* number of lines to show */
-            line-clamp: 4;
-    -webkit-box-orient: vertical;
-}
-
-.reaction {
+.reaction i, .bookmark i {
     cursor: pointer;
 }
 
 @media (max-width: 992px) {
-    .news-list-image {
-        height: 220px;
-        object-fit: cover;
+    .news-list {
+
+        &-image {
+            height: 220px;
+        }
+
+        &-heading {
+            font-size: 1.1rem;
+        }
+
+        &-description {
+            font-size: 1.0rem;
+        }
     }
 
-    .news-list-heading {
+    .reaction, .bookmark, .comment {
         font-size: 1.1rem;
-    }
-
-    .news-list-description {
-        font-size: 1.0rem;
+        margin-right: 16px;
     }
 }
 
 @media (max-width: 768px) {
-    .news-list-image {
-        height: 220px;
+    .news-list {
+        &-heading {
+            height: auto;
+            -webkit-line-clamp: 3;
+                line-clamp: 3;
+        }
+        &-description {
+            height: auto;
+            -webkit-line-clamp: 5;
+                line-clamp: 5;
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .reaction, .bookmark, .comment {
+        font-size: 1.2rem;
+        margin-right: 20px;
     }
 }

@@ -1,1 +1,1 @@
-<p class="comment">{{ $news->comments->count() }} <i class="fa-regular fa-comment-dots"></i></p>
+<p class="comment">{{ number_format($news->comments->count()) }} <i class="fa-regular fa-comment-dots"></i></p>

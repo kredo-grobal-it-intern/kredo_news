@@ -19,11 +19,11 @@
     }
 }
 
-.reaction {
-    cursor: pointer;
+.reaction, .comment {
+    margin-right: 12px;
 }
 
-.bookmark {
+.reaction i, .bookmark i {
     cursor: pointer;
 }
 
