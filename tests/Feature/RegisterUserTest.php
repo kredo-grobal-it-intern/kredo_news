@@ -14,8 +14,6 @@ class RegisterUserTest extends TestCase
     {
         $this->seed(CountrySeeder::class);
         $country = Country::latest()->take(1)->first();
-
-        // $country = Country::factory()->create();
         
         $response = $this->post('/register', [
             'username' => 'test',
