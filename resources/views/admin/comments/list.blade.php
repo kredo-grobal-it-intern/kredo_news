@@ -8,7 +8,7 @@
 
 @section('content')
 <div class="table-responsive">
-    <table class="table align-middle mt-4 text-nowrap">
+    <table class="table">
         <thead >
         <tr>
             <th>No.</th>
@@ -16,23 +16,23 @@
             <th class="col-1">Image</th>
             <th class="col-3">Title</th>
             <th class="col-4">Comment</th>
-            <th class="col-1">Username</th>
+            <th class="col-2">Username</th>
             <th class="col-1">Status</th>
-            <th class="col-1">Action</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
             @foreach ($comments as $comment)
             <tr>
                 <td class="text-center">{{ $comments->firstItem() + $loop->index }}</td>
-                <td>{{ date('n/j (D)', strtotime($comment->created_at)) }}</td>
+                <td class="text-nowrap">{{ date('n/j', strtotime($comment->created_at)) }}<br><span class="day-of-week">{{ date('(D)', strtotime($comment->created_at)) }}</span></td>
                 <td><img src="{{ asset('images/news/' . $comment->news->image) }}"  alt="{{ $comment->news->image }}" class="news-image"/></td>
                 <td class="title"><a href="{{ route('news.show', $comment->news->id) }}" class="text-decoration-none text-black">{{ $comment->news->title }}</a></td>
                 <td class="comment-body">{{ $comment->body }}</td>
-                <td class="text-start">
+                <td class="text-start username-width">
                     @if ($comment->user->avatar)
                             <a href="{{ route('user.profile.show', $comment->user->id) }}" class="avatar-name-align">
-                            <img src="{{ asset('images/avatars/'. $comment->user->avatar) }}" alt="" class="avatar">
+                            <img src="{{ asset('images/avatars/'. $comment->user->avatar) }}" alt="" class="avatar" >
                             {{ $comment->user->username }}
                             </a>
                     @else  
@@ -40,22 +40,33 @@
                     @endif
                 </td>
                 <td>
-                    @if ($comment->user->deleted_at)
-                        <p class="text-danger m-0">Hidden<br><span class="small">(Deactive user)</span></p>
-                    @elseif($comment->deleted_at)
-                        <p class="badge bg-danger m-0">Hidden</p>
-                    @else
-                        <p class="badge bg-primary m-0">Display</p>
-                    @endif
+                    <div class="badge-height text-nowrap">
+                        @if ($comment->user->deleted_at)
+                            <p class="badge bg-danger m-0">Hidden</p>
+                            <p class="small m-0 text-danger">(Deactive user)</p>
+                        @elseif($comment->deleted_at)
+                            <p class="badge bg-danger m-0">Hidden</p>
+                        @else
+                            <p class="badge bg-primary m-0">Display</p>
+                        @endif
+                    </div>
                 </td>
-                <td>        
-                    @if ($comment->user->deleted_at)
-                        <a href="{{ route('admin.users.restore', $comment->user->id) }}" class="btn shadow-none text-primary border-0 px-0 action-size">Activate<br><span class="small">(User)</span></a>
-                    @elseif ($comment->deleted_at)
-                        <a href="{{ route('admin.comments.restore', $comment->id) }}" class="btn shadow-none text-primary border-0 px-0 action-size" ><span class="me-1"><i class="fa-solid fa-eye"></i></span>Display</a>  
-                    @else
-                        <button class="btn shadow-none text-danger border-0 px-0 action-size" data-bs-toggle="modal" data-bs-target="#hide-comment-{{ $comment->id }}"><span class="me-1"><i class="fa-solid fa-eye-slash"></i></span>Hide</button>
-                    @endif
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-sm" data-bs-toggle="dropdown">
+                            <i class="fa-solid fa-ellipsis"></i>  
+                        </button>  
+                
+                        <div class="dropdown-menu"> 
+                            @if ($comment->user->deleted_at)
+                                <a href="{{ route('admin.users.restore', $comment->user->id) }}" class="btn dropdown-item shadow-none text-primary border-0 px-0 ms-3"><span class="me-1"><i class="fa-solid fa-user"></i></span>Activate<br><span class="small ms-4">(User)</span></a>
+                            @elseif ($comment->deleted_at)
+                                <a href="{{ route('admin.comments.restore', $comment->id) }}" class="btn dropdown-item shadow-none text-primary border-0 px-0 ms-3"><span class="me-1"><i class="fa-solid fa-eye"></i></span>Display</a>  
+                            @else
+                                <button class="btn dropdown-item shadow-none text-danger border-0 px-0 ms-3" data-bs-toggle="modal" data-bs-target="#hide-comment-{{ $comment->id }}"><span class="me-1"><i class="fa-solid fa-eye-slash"></i></span>Hide</button>
+                            @endif
+                        </div>
+                    </div>           
                     @include('admin.comments.modal.status')
                 </td>
             </tr>

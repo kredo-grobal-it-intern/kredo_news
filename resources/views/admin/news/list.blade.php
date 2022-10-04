@@ -10,7 +10,7 @@
 @section('content')
 <div class="table-responsive">
 
-    <table class="table align-middle mt-4 text-nowrap">
+    <table class="table">
         <thead>
             <tr>
                 <th>No.</th>
@@ -31,10 +31,10 @@
             @foreach ($all_news as $news)
             <tr>
                 <td>{{ $all_news->firstItem() + $loop->index }}</td>
-                <td>{{ date('n/j (D)', strtotime($news->published_at)) }}</td>
+                <td class="text-nowrap">{{ date('n/j', strtotime($news->published_at)) }}<br><span class="day-of-week">{{ date('(D)', strtotime($news->published_at)) }}</span></td>
                 <td><img src="{{ asset('images/news/' . $news->image) }}"  alt="{{ $news->image }}" class="news-image"/></td>
                 <td class="title"><a href="{{ route('news.show', $news->id) }}" class="text-decoration-none text-black">{{ $news->title }}</a></td>
-                <td>{{ $news->category->name }}</td>
+                <td class="text-nowrap">{{ $news->category->name }}</td>
                 <td>
                     <div class="country-width">
                         @if ($news->source->country->national_flag)
