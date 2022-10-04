@@ -10,10 +10,9 @@ navbar
 
 .nav-item-custom {
     transition: border-bottom 0.4s;
-}
-
-.nav-item-custom:hover {
-    border-bottom: 1px solid #fff;
+    &:hover {
+        border-bottom: 1px solid #fff;
+    }
 }
 
 .dropdown-menu-custom {
@@ -30,6 +29,20 @@ navbar-responsive
         height: auto;
         padding: 21.5px 0;
     }
+
+    .nav-item-custom {
+        width: fit-content;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .nav-item-custom:hover {
+        border-bottom: 0;
+    }
+}
+
+@media (max-width: 576px) {
 }
 
 /* ----------------------------------------------------------
@@ -39,6 +52,22 @@ search-modal
 
 .search-header {
     border-bottom: 1px solid #B5AAAA;
+}
+
+.search-input-label {
+    position: relative;
+    margin-left: 12px;
+
+    &::before {
+        content:"";
+        display:inline-block;
+        width:6px;
+        height:16px;
+        background-color:#052962;
+        position:absolute;
+        top: 3px;
+        left: -12px;
+    }
 }
 
 .btn-custom {
