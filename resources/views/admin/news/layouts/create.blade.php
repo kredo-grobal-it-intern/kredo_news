@@ -86,24 +86,24 @@
         <div class="col-12 col-md-6 publish-col">
             <label for="url" class="form-label label-width">URL:</label>
             <input type="text" name="url" id="url" class="form-control form-width" value="{{ request()->is('admin/news/create') ? old('url') : old('url', $news->url) }}">
-            {{-- @error('url')
+            @error('url')
             <p class="text-danger small">{{ $message }}</p>
-            @enderror   --}}
+            @enderror  
         </div>
         <div class="col-12 col-md-6 publish-col">
             <label for="published-at" class="form-label label-width">Published:</label>
             <input type="date" name="published_at" id="published-at" class="form-control form-width" value="{{ request()->is('admin/news/create') ?  old('published_at') : old('published_at', $news->published_at)}}">
-            {{-- @error('published_at')
+            @error('published_at')
             <p class="text-danger small">{{ $message }}</p>
-            @enderror   --}}
+            @enderror  
         </div>
     
         <div class="col-12 col-md-6 publish-col">
             <label for="author" class="form-label label-width">Author:</label>
             <input type="text" name="author" id="author" class="form-control form-width" value="{{ request()->is('admin/news/create') ?  old('author') : old('author', $news->author)}}">
-            {{-- @error('author')
+            @error('author')
             <p class="text-danger small">{{ $message }}</p>
-            @enderror   --}}
+            @enderror  
         </div>
     </div>
     
@@ -117,28 +117,22 @@
     </label>
 
 
-    {{-- @error('image')
+    @error('image')
     <p class="text-danger small ms-3">{{ $message }}</p>
-    @enderror   --}}
-    <label for="content" class="form-label mt-5 fs-4 d-block">■Content</label>    
-    
-    {{-- @error('content')
+    @enderror  
+
+    <label for="content" class="form-label mt-5 fs-4 d-block">■Content</label>        
+    @error('content')
     <p class="text-danger small">{{ $message }}</p>
-    @enderror   --}}
-    {{-- <textarea id="myeditorinstance" name="content">{{ request()->is('admin/news/create') ?  old('content') :  old('content', $news->content)}}</textarea> --}}
-    <div id="editor"></div>
-    {{-- <div id="editor-error" class="alert alert-danger d-none" role="alert">
-        A simple danger alert—check it out!
-    </div> --}}
+    @enderror  
+    <textarea id="myeditorinstance" name="content">{{ request()->is('admin/news/create') ?  old('content') :  old('content', $news->content)}}</textarea>
 
     @if (request()->is('admin/news/create'))
         <button type="submit" class="btn btn-primary w-50 mt-4 mb-5 mx-auto d-block">Save</button>
     @else
         <button type="submit" class="btn btn-warning w-50 mt-4 mb-5 mx-auto d-block">Update</button>
     @endif
-
     </form>
 
     
 </div>
-
