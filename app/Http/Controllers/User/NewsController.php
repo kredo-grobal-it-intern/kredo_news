@@ -154,10 +154,12 @@ class NewsController extends Controller
             ->with('selected_countries', $selected_countries);
     }
 
-    public function editor() {
+    public function editor()
+    {
         $all_news = News::all();
         $sources = Source::all();
         $country = Country::all();
-        return view('user.news.editor')->with('all_news', $all_news)->with('sources', $sources)->with('countries', $country);;
+        return view('user.news.editor')->with('all_news', $all_news)->with('sources', $sources)->with('countries', $country);
+        ;
     }
 }
