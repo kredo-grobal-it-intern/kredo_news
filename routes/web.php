@@ -33,6 +33,7 @@ Auth::routes(['verify' => true]);
 
 // All user
 Route::get('/', [NewsController::class, 'index'])->name('news.index');
+Route::get('/create-news', [NewsController::class, 'editor'])->name('news.editor');
 Route::get('/email/verify', [VerificationController::class, 'show'])->name('verification.notice');
 Route::post('/search', [NewsController::class, 'showSearch'])->name('news.search');
 Route::get('/{news_id}', [NewsController::class, 'show'])->name('news.show');
