@@ -42,11 +42,30 @@ h1{
 
 }
 
-.feature-line{
+.line-md{
     font-size: 12px;
     margin: 0;
     padding: 0;
     font-style: normal;
+
+}
+
+.line-sm{
+    display: none;
+}
+
+@media (max-width: 576px) {
+    .line-md{
+        display: none;
+    }
+
+    .line-sm{
+        font-size: 12px;
+        margin: 0;
+        padding: 0;
+        font-style: normal;
+        display: inline;
+    }
 }
 
 .outline{
@@ -69,8 +88,8 @@ ol{
         position:relative;
         padding: 0 0 0 30px;
         margin: 7px 0 7px 0px;
-        font-weight: bold;
-        font-size:14px;
+        font-weight: normal;
+        font-size:1p6x;
         line-height: 29px;
         -webkit-transition: 0.3s;
         -moz-transition: 0.3s;
@@ -88,11 +107,12 @@ ol{
                 text-decoration: none;
                 color: black;
                 width: calc(100% - 50px);
+                line-height: 20px;
             }
 
             .icon-align{
                 display: flex;
-                align-items: center;
+                align-items:center;
                 justify-content: center;
                 width: 50px;
             }
@@ -110,17 +130,18 @@ ol{
         counter-increment: list;
         content: counter(list);
         position: absolute;
+        top: -2px;
         left: -10px;
-        width: 30px;
-        height: 30px;
+        width: 25px;
+        height: 25px;
         text-align: center;
         color: #fff;
-        line-height:30px;
+        line-height:25px;
         background:gray;
         border-radius: 50%;
     }
     li:hover{
-        border-bottom-color: #052962;
+        border-bottom-color:red;
     }
     
 }
