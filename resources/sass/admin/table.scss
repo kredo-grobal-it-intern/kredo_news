@@ -3,7 +3,8 @@ table{
     border-radius: 6px; 
     border-collapse: separate;
     border-spacing: 0;
-    
+    margin-top: 24px;
+
     thead{
         background-color:#e6e9eb; 
         font-size:12px;
@@ -17,13 +18,24 @@ table{
         background-color: white;
         td{
             text-align: center;
+            vertical-align:middle;
+            word-break: break-word;
+            word-wrap: break-word;
+
+        }
+
+        .day-of-week{
+            font-size: 10px;
         }
         
         .country-width{
-            width: 140px; 
-            padding:0 35px;
+            min-width: 130px; 
+            padding:0 10px;
             white-space: nowrap;
             text-align: start;
+            margin: 0 auto;
+            word-break: break-all;
+            word-wrap: break-word;
         }
         .news-image{
             height:50px; 
@@ -51,6 +63,20 @@ table{
             display: block;
             margin-right: 4px;
         }
+        .username-width{
+            min-width: 150px;
+        }
+
+        
+        .user-width{
+            min-width: 200px;
+
+        }
+
+        .email-width{
+            min-width: 200px;
+        }
+
         .user-icon-size{
             font-size: 32px;
             margin-right: 4px;
@@ -61,12 +87,17 @@ table{
             text-decoration: none;
             color: black;
             align-items: center;
+
         }
 
+        .badge-height{
+            height: 17px;
+        }
     
         .badge{
             opacity:0.8; 
             font-size:10px;
+            height: 17px;
         }
         
         .action-size{
@@ -74,8 +105,7 @@ table{
         }
         
         .flag{
-            width: 24px;
-            margin-right: 4px;
+            width: 18px;
         }
     }
 

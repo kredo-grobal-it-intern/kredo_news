@@ -8,85 +8,85 @@
 
 @section('content')
     <div class="row">
-        <div class="col-6 col-lg-4 card-margin">
+        <div class="col-12 col-sm-6 col-lg-4 card-margin">
             <div class="card">
                 <div class="card-body">
                     <div class="icon">
                         <i class="fa-solid fa-users"></i>
                     </div>
                     <div class="ms-3">
-                        <h2>{{ number_format($users->whereNull('deleted_at')->count()) }}</h2>
-                        <p class="feature-line">Totla new users</p>
+                        <h2>{{ number_format($users->whereNull('deleted_at')->count()) }} <span class="line-sm">Total news users</span></h2>
+                        <p class="line-md">Totla new users</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-6 col-lg-4 card-margin">
+        <div class="col-12 col-sm-6 col-lg-4 card-margin">
             <div class="card">
                 <div class="card-body">
                     <div class="icon">
                         <i class="fa-solid fa-newspaper"></i>
                     </div>
                     <div class="ms-3">
-                        <h2>{{ number_format($news->whereNull('deleted_at')->count()) }}</h2>
-                        <p class="feature-line">Total published news</p>
+                        <h2>{{ number_format($news->whereNull('deleted_at')->count()) }} <span class="line-sm">Total published news</span></h2>
+                        <p class="line-md">Total published news</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-6 col-lg-4 card-margin">
+        <div class="col-12 col-sm-6 col-lg-4 card-margin">
             <div class="card">
                 <div class="card-body">
                     <div class="icon">
                         <i class="fa-solid fa-comments"></i>
                     </div>
                     <div class="ms-3">
-                        <h2>{{ number_format($news->whereNull('deleted_at')->count()) }}</h2>
-                        <p class="feature-line">Total comments</p>
+                        <h2>{{ number_format($news->whereNull('deleted_at')->count()) }} <span class="line-sm">Total comments</span></h2>
+                        <p class="line-md">Total comments</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-6 col-lg-4 card-margin">
+        <div class="col-12 col-sm-6 col-lg-4 card-margin">
             <div class="card">
                 <div class="card-body">
                     <div class="icon">
                         <i class="fa-solid fa-thumbs-up"></i>
                     </div>
                     <div class="ms-3">
-                        <h2>{{ number_format($reactions->where('status', 1)->count()) }}</h2>
-                        <p class="feature-line">Total good reactions</p>
+                        <h2>{{ number_format($reactions->where('status', 1)->count()) }} <span class="line-sm">Total good reactions</span></h2>
+                        <p class="line-md">Total good reactions</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-6 col-lg-4 card-margin">
+        <div class="col-12 col-sm-6 col-sm-6 col-lg-4 card-margin">
             <div class="card">
                 <div class="card-body">
                     <div class="icon">
                         <i class="fa-solid fa-thumbs-down"></i>
                     </div>
                     <div class="ms-3">
-                        <h2>{{ number_format($reactions->where('status', 2)->count()) }}</h2>
-                        <p class="feature-line">Total bad reactions</p>
+                        <h2>{{ number_format($reactions->where('status', 2)->count()) }} <span class="line-sm">Total bad reactions</span></h2>
+                        <p class="line-md">Total bad reactions</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-6 col-lg-4 card-margin">
+        <div class="col-12 col-sm-6 col-lg-4 card-margin">
             <div class="card">
                 <div class="card-body">
                     <div class="icon">
                         <i class="fa-solid fa-bookmark"></i>
                     </div>
                     <div class="ms-3">
-                        <h2>{{ number_format($bookmarks->count()) }}</h2>
-                        <p class="feature-line">Total bookmarks</p>
+                        <h2>{{ number_format($bookmarks->count()) }} <span class="line-sm">Total bookmarks</span></h2>
+                        <p class="line-md">Total bookmarks</p>
                     </div>
                 </div>
             </div>
