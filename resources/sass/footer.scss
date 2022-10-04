@@ -30,7 +30,6 @@ footer {
 }
 
 .footer-content {
-    border:solid pink;
     .footer-list {
         list-style: none;
         padding: 0;
@@ -41,8 +40,6 @@ footer {
     .footer-list-item {
         font-size: 1.0rem;
         text-decoration: none;
-        padding-left:30px;
-
         &:hover {
             opacity: 0.7;
             text-decoration: underline;
@@ -50,6 +47,23 @@ footer {
     }
 }
 
+.footer-content-center{
+    width: auto !important;
+}
+
+.footer-news-hr{
+    display: block; height: 1px;
+    border: 0; border-top: 1.5px solid #81a6e2;
+    margin: 1em 0; padding: 0;
+}
+
 .sns-logo {
     font-size: 1.8rem;
+}
+
+@media only screen and (max-width: 900px) {
+    .footer-content-center{
+        margin: 0 !important;
+        margin-bottom:10px;
+    }
 }

@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container container-footer">
     <!-- Grid row -->
     <div class="row mt-4 px-3">
         {{-- Motto --}}
-        <div class="col-lg-3 col-md-6 col-12 mx-auto mb-4 mb-lg-0 footer-motto">
+        <div class="col-lg-3 col-md-6 col-12 mx-auto mb-4 mb-lg-0 footer-logo">
             <div class="text-center fw-bold h4">
                 <a href="{{ route('news.index') }}" class="text-decoration-none">
                     <img src="{{ asset('images/logo3.png') }}" alt="" class="w-50">
@@ -22,10 +22,11 @@
                 <li class="text-gray mb-2">
                     <a href="{{ route('news.show', $latest->id) }}" class="text-reset footer-list-item">{{ $latest->title }}</a>
                 </li>
+                <hr class="footer-news-hr">
                 @endforeach
             </ul>
         </div>
-        <div class="col-lg-3 col-md-6 col-12 mx-auto mb-4 mb-lg-0 footer-content">
+        <div class="col-lg-3 col-md-6 col-10 mx-auto mb-4 mb-lg-0 footer-content footer-content-center">
             <!-- Shortcuts -->
             <h6 class="fw-bold text-white mb-3 footer-list-title">Shortcuts</h6>
             <ul class="footer-list">
@@ -43,6 +44,9 @@
                 </li>
                 <li class="text-gray mb-2">
                     <a href="" class="text-reset footer-list-item">Subscribe</a>
+                </li>
+                <li class="text-gray mb-2">
+                    <a href="" class="text-decoration-none">&nbsp;</a>
                 </li>
             </ul>
         </div>
