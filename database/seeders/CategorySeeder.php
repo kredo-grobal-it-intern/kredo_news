@@ -18,42 +18,48 @@ class CategorySeeder extends Seeder
             [
                 'id' => 1,
                 'name' => 'Politics',
-                'image' => 'politics.jpg',
+                'image' => 'politics.webp
+                ',
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ],
             [
                 'id' => 2,
                 'name' =>  'Bussiness',
-                'image' => 'business.jpg',
+                'image' => 'business.webp
+                ',
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ],
             [
                 'id' => 3,
                 'name' => 'Sports',
-                'image' => 'sports.jpg',
+                'image' => 'sports.webp
+                ',
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ],
             [
                 'id' => 4,
                 'name' => 'Travel',
-                'image' => 'travel.jpg',
+                'image' => 'travel.webp
+                ',
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ],
             [
                 'id' => 5,
                 'name' => 'Health',
-                'image' => 'health.jpg',
+                'image' => 'health.webp
+                ',
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ],
             [
                 'id' => 6,
                 'name' => 'Entertainment',
-                'image' => 'entertainment.jpg',
+                'image' => 'entertainment.webp
+                ',
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ],
