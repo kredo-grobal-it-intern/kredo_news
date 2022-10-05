@@ -1,17 +1,17 @@
 <div class="container container-footer">
     <!-- Grid row -->
-    <div class="row mt-4 px-3">
+    <div class="row mt-4 px-3 footer-main">
         {{-- Motto --}}
-        <div class="col-lg-3 col-md-6 col-12 mx-auto mb-4 mb-lg-0 footer-logo">
+        <div class="col-lg-3 col-md-12 col-12 mx-auto mb-4 mb-lg-0 footer-logo">
             <div class="text-center fw-bold h4">
                 <a href="{{ route('news.index') }}" class="text-decoration-none">
-                    <img src="{{ asset('images/logo3.png') }}" alt="" class="w-50">
+                    <img src="{{ asset('images/logo3.png') }}" alt="" width="120">
                     <p class="text-gray">Customize Compare Communicate</p>
                     <p class="text-gray">with us</p>
                 </a>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-12 mx-auto mb-4 mb-lg-0 footer-content">
+        <div class="col-lg-3 col-md-4 col-12 mx-auto mb-4 mb-lg-0 footer-content">
             <!-- Recent Post -->
             <h6 class="fw-bold text-white mb-3 footer-list-title">Latest News<i class="fa fa-newspaper-o" aria-hidden="true"></i></h6>
             <ul class="footer-list">
@@ -26,7 +26,7 @@
                 @endforeach
             </ul>
         </div>
-        <div class="col-lg-3 col-md-6 col-10 mx-auto mb-4 mb-lg-0 footer-content footer-content-center">
+        <div class="col-lg-3 col-md-4 col-12 mx-auto mb-4 mb-lg-0 footer-content footer-content-center">
             <!-- Shortcuts -->
             <h6 class="fw-bold text-white mb-3 footer-list-title">Shortcuts</h6>
             <ul class="footer-list">
@@ -50,7 +50,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-lg-3 col-md-6 col-12 mx-auto mb-4 mb-lg-0 footer-content">
+        <div class="col-lg-3 col-md-4 col-12 mx-auto mb-4 mb-lg-0 footer-content">
             <h6 class="fw-bold text-white mb-3 footer-list-title">Contact</h6>
             <ul class="footer-list">
                 <li class="text-gray mb-2">
