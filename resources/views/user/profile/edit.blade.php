@@ -114,7 +114,7 @@
                     <div class="col-md-3 col-4">
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input media-checkbox-all" id="media-checkbox-all">
-                            <label for="form-check-label media-checkbox-all">Select All / Remove Check</label>
+                            <label for="media-checkbox-all" class="form-check-label">Select All / Remove Check</label>
                         </div>
                     </div>
                 </div>
@@ -141,10 +141,18 @@
                                 });
                             @endphp
                             <div class="row">
+                                <div class="col-md-3 col-4">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input {{ $continent }}-checkbox-all" id="{{ $continent }}-checkbox-all">
+                                        <label for="{{ $continent }}-checkbox-all" class="form-check-label">Select All / Remove Check</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 @foreach($countries_by_continent as $country)
                                     <div class="col-lg-2 col-md-3 col-4">
                                         <div class="form-check">
-                                            <input type="checkbox" name="countries[]" id="{{ $country->name }}-{{$country->id}}" value="{{$country->id}}" class="form-check-input" {{ in_array($country->id, $favorite_countries_ids) ? 'checked' : '' }}>
+                                            <input type="checkbox" name="countries[]" id="{{ $country->name }}-{{$country->id}}" value="{{$country->id}}" class="form-check-input {{ $continent }}-checkbox" {{ in_array($country->id, $favorite_countries_ids) ? 'checked' : '' }}>
                                             <label for="{{ $country->name }}-{{$country->id}}" class="form-check-label">{{$country->name}}</label>
                                         </div>
                                     </div>
