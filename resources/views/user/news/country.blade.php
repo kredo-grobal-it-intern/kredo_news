@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row justify-content-center back">
             @if ($country->image)
-                <img src="{{ asset('images/countries/' . $country->image) }}" alt="{{ $country->name }}">
+                <img src="{{ asset('images/countries/' . $country->name . '.webp') }}" alt="{{ $country->name }}">
             @else
                 <img src="{{ asset('images/country.jpg') }}" alt="{{ $country->name }}">
             @endif
