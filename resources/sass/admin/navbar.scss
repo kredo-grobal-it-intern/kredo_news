@@ -51,24 +51,20 @@ nav{
 .list-group{
     margin-top: 50px;
     
-    .list{
-        padding-left: 70px;
-    }
-
     .list-group-item{
         border: none; 
         background-color:#052962;
         text-align: start;    
     }
 
-    a {
-        
+    .list {
+        padding-left: 70px;
         color:white;
         position: relative;
         text-decoration: none;
         }
         
-        a::before {
+        .list::before {
         content: '';
         position: absolute;
         margin-left: 60px;
@@ -83,7 +79,7 @@ nav{
         transition: transform .3s ease-in-out;
         }
         
-        a:hover::before {
+        .list:hover::before {
         transform-origin: left;
         transform: scaleX(1);
         }
