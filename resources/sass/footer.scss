@@ -59,15 +59,12 @@ footer {
 
 .sns-logo {
     font-size: 1.8rem;
+    text-decoration: none;
 }
 
 @media only screen and (max-width: 991px) {
     .footer-content-center{
         margin: 0 !important;
         margin-bottom:10px;
-    }
-
-    .footer-logo{
-        width:200px;
     }
 }

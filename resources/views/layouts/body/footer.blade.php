@@ -1,11 +1,11 @@
 <div class="container container-footer">
     <!-- Grid row -->
-    <div class="row mt-4 px-3 footer-main">
+    <div class="row mt-4 px-3">
         {{-- Motto --}}
-        <div class="col-lg-3 col-md-12 col-12 mx-auto mb-4 mb-lg-0 footer-logo">
+        <div class="col-lg-3 col-md-12 col-12 mx-auto mb-4 mb-lg-0">
             <div class="text-center fw-bold h4">
                 <a href="{{ route('news.index') }}" class="text-decoration-none">
-                    <img src="{{ asset('images/logo3.png') }}" alt="" width="120">
+                    <img src="{{ asset('images/logo3.png') }}" alt="LOGO" width="120">
                     <p class="text-gray">Customize Compare Communicate</p>
                     <p class="text-gray">with us</p>
                 </a>
@@ -74,7 +74,7 @@
         </div>
         <!-- Right -->
         <div class="text-center">
-            <a href="https://twitter.com/" target="_blank" class="text-white sns-logo">
+            <a href="https://twitter.com/" target="_blank" class="text-white ms-3 sns-logo">
                 <i class="fa-brands fa-twitter"></i>
             </a>
             <a href="https://www.youtube.com/" target="_blank" class="text-white ms-3 sns-logo">
