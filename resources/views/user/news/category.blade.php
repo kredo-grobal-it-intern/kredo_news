@@ -7,7 +7,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center back">
-        <img src="{{asset('images/' . $category->image)}}" alt="{{$category->name}}">
+        <img src="{{asset('images/categories/' . $category->image)}}" alt="{{$category->name}}">
         <h1 class="text-center fw-bold category_title">{{$category->name}}</h1>
     </div>
 </div>

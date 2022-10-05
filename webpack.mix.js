@@ -12,8 +12,10 @@ const mix = require('laravel-mix');
  */
  mix.js('resources/js/app.js', 'public/js').vue()
  .js('resources/js/_login.js', 'public/js')
+ .js('resources/js/editor.js', 'public/js')
  .js('resources/js/_ajaxreact.js', 'public/js')
  .js('resources/js/_ajaxbookmark.js', 'public/js')
+ .js('resources/js/_createnews.js', 'public/js')
  .js('resources/js/admin.js', 'public/js')
  .js('resources/js/_ajaxfollow.js', 'public/js')
  .js('resources/js/_profile_tab.js', 'public/js')

@@ -8,7 +8,7 @@
     
 @section('content')
 <div class="table-responsive container-width">
-    <table class="table align-middle mt-4 text-nowrap">
+    <table class="table">
         <thead >
             <tr>
                 <th>No.</th>
@@ -20,26 +20,26 @@
                 <th class="col-1">Follower</th>
                 <th class="col-1">Followings</th>
                 <th class="col-1">Status</th>
-                <th class="col-1">Action</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
         @foreach ($users as $user)
             <tr>
             <td class="text-center">{{ $users->firstItem() + $loop->index }}</td>
-            <td>
+            <td class="text-start user-width">
                 @if ($user->avatar)
                     <a href="{{ route('user.profile.show', $user->id) }}" class="avatar-name-align">
                         <img src="{{ asset('images/avatars/'. $user->avatar) }}" alt="" class="avatar">
-                        {{ $user->username }}
+                        <span style="word-wrap: break-all;">{{ $user->username }}</span>
                     </a>
                 @else  
                     <a href="{{ route('user.profile.show', $user->id) }}" class="text-decoration-none text-black avatar-name-align"><span class="fs-2 me-2"><i class="fa-solid fa-circle-user"></i></span>{{ $user->username }}</a>
                 @endif
 
             </td>
-            <td>{{ $user->email }}</td>
-            <td>
+            <td class="email-width text-start">{{ $user->email }}</td>
+            <td class="country-td-width">
                 <div class="country-width">
                     @if ($user->nationality->national_flag)
                         <img src="{{ asset('images/national_flags/'. $user->nationality->national_flag) }}" alt="{{ $user->nationality->name }}" class="shadow flag">
@@ -49,7 +49,7 @@
                     {{ $user->nationality->name }}
                 </div>
             </td>
-            <td>
+            <td class="country-td-width">
                 <div class="country-width">
                     @if ($user->country->national_flag)
                         <img src="{{ asset('images/national_flags/'. $user->country->national_flag) }}" alt="{{ $user->country->name }}" class="shadow flag">
@@ -70,11 +70,19 @@
                 @endif
             </td>
             <td>
-                @if ($user->deleted_at)
-                <a href="{{ route('admin.users.restore', $user->id) }}" class="btn shadow-none text-primary border-0 px-0 action-size"><span class="me-1"><i class="fa-solid fa-user"></i>Activate</a>
-                @else
-                <button class="btn shadow-none text-danger border-0 px-0 action-size" data-bs-toggle="modal" data-bs-target="#deactivate-user-{{ $user->id }}"><span class="me-1"><i class="fa-solid fa-user-slash"></i>Deactivate</span></button>
-                @endif
+                <div class="dropdown">
+                    <button class="btn btn-sm" data-bs-toggle="dropdown">
+                        <i class="fa-solid fa-ellipsis"></i>  
+                    </button>  
+            
+                    <div class="dropdown-menu"> 
+                        @if ($user->deleted_at)
+                        <a href="{{ route('admin.users.restore', $user->id) }}" class="btn dropdown-item shadow-none text-primary border-0 px-0 ms-3"><span class="me-1"><i class="fa-solid fa-user"></i></span>Activate</a>
+                        @else
+                        <button class="btn dropdown-item shadow-none text-danger px-0 ms-3" data-bs-toggle="modal" data-bs-target="#deactivate-user-{{ $user->id }}"><span class="me-1"><i class="fa-solid fa-user-slash"></i>Deactivate</span></button>
+                        @endif
+                    </div>
+                </div>   
                 @include('admin.users.modal.status')
             </td>
             </tr>
