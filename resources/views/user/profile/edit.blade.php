@@ -110,11 +110,19 @@
             <!-- Media -->
             <div class="favorite-media">
                 <h2 class="fw-bold favorite-heading">Favorite Media</h2>
-                <div class="row p-3">
+                <div class="row pt-3 px-3">
+                    <div class="col-md-3 col-4">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input media-checkbox-all" id="media-checkbox-all">
+                            <label for="form-check-label media-checkbox-all">Select All / Remove Check</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pb-3 px-3">
                     @foreach ($sources as $source)
                         <div class="col-lg-2 col-md-3 col-4">
                             <div class="form-check">
-                                <input type="checkbox" name="sources[]" id="{{ $source->name }}-{{$source->id}}" value="{{$source->id}}" class="form-check-input" {{ in_array($source->id, $favorite_sources_ids) ? 'checked' : '' }}>
+                                <input type="checkbox" name="sources[]" id="{{ $source->name }}-{{$source->id}}" value="{{$source->id}}" class="form-check-input media-checkbox" {{ in_array($source->id, $favorite_sources_ids) ? 'checked' : '' }}>
                                 <label for="{{ $source->name }}-{{$source->id}}" class="form-check-label">{{$source->country->name}}</label>
                             </div>
                         </div>
