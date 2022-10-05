@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
+    public function index()
+    {
+        $comments = Comment::orderBy('created_at', 'desc')->withTrashed()->paginate(10);
+
+        return view('admin.comments.list')->with('comments', $comments);
+    }
+
+
     public function store(Request $request, $news_id)
     {
         $request->validate([
@@ -28,6 +36,13 @@ class CommentController extends Controller
         Comment::findOrFail($comment_id)->delete();
         return redirect()->back();
     }
+    
+    public function restore($comment_id)
+    {
+        Comment::withTrashed()->where('id', $comment_id)->restore();
+
+        return redirect()->back();
+    }
 
     public function like(Request $request)
     {
@@ -43,4 +58,6 @@ class CommentController extends Controller
 
         return response()->json($param);
     }
+
+
 }
