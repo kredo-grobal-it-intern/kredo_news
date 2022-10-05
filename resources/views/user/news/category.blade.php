@@ -7,7 +7,7 @@
 @section('content')
 <div class="container">
     <div class="header-section">
-        <img src="{{asset('images/' . $category->image)}}" alt="{{$category->name}}" class="header-section-image">
+        <img src="{{asset('images/categories/' . $category->image)}}" alt="{{$category->name}}" class="header-section-image">
         <h1 class="text-center fw-bold header-section-title">{{$category->name}}</h1>
     </div>
 </div>
