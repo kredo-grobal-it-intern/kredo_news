@@ -18,7 +18,7 @@
             @foreach ( $sources as $source  )
                 <a href="{{ route('user.news.favorite.source', $source->id) }}" class="favorite-name">
                     @if (isset($selected_source) && $source->id == $selected_source)
-                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star favorite-icon"></i>
                     @endif
                     <span>{{ $source->country->name }}</span>
                 </a>
