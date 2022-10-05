@@ -19,8 +19,8 @@
 }
 
 .upload-icon{
-    border: 1px solid #ccc; 
-    border-radius:5px; 
+    border: 1px solid #ccc;
+    border-radius:5px;
     cursor: pointer;
 }
 
@@ -30,6 +30,14 @@
 
 .container-width{
     width: 75%;
+}
+
+.news-image {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 16px;
 }
 
 @media (max-width: 1100px) {
