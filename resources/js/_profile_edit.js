@@ -31,16 +31,24 @@ africaCheckboxAll.addEventListener('change', {list: africaCheckboxList, handleEv
 
 function changeAll(event) {
     if (event.target.checked) {
-        for (let i in this.list) {
-            if (this.list.hasOwnProperty(i)) {
-                this.list[i].checked = true;
-            }
-        }
+        addCheck(this.list);
     } else {
-        for (let i in this.list) {
-            if (this.list.hasOwnProperty(i)) {
-                this.list[i].checked = false;
-            }
+        removeCheck(this.list);
+    }
+}
+
+function addCheck(list) {
+    for (let i in list) {
+        if (list.hasOwnProperty(i)) {
+            list[i].checked = true;
+        }
+    }
+}
+
+function removeCheck(list) {
+    for (let i in list) {
+        if (list.hasOwnProperty(i)) {
+            list[i].checked = false;
         }
     }
 }
