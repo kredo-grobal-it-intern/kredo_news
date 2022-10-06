@@ -54,13 +54,13 @@
                     @endif
 
                     @foreach ($countries as $country)
-                    <option value="{{ $country->id }}">{{ "The country field is required." }}</option>
+                    <option value="{{ $country->id }}">{{ $country->name }}</option>
 
                     @endforeach
                 </select>
             </div>
             @error('country_id')
-            <p class="error-message">{{ $message }}</p>
+            <p class="error-message">{{ "The country field is required." }}</p>
             @enderror 
         </div>
     </div>

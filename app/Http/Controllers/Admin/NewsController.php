@@ -86,9 +86,8 @@ class NewsController extends Controller
 
         $news->save();
 
-        return response()->json([
-            'news' => $news
-        ]);
+        return redirect()->route('admin.show.dashboard');
+
     }
 
     public function saveImage($request)
