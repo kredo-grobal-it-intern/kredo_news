@@ -12,13 +12,13 @@
     <textarea name="title" id="title" cols="30" rows="2" class="form-control">{{ request()->is('admin/news/create') ?  old('title') : old('title', $news->title) }}</textarea>
     @error('title')
     <p class="text-danger small">{{ $message }}</p>
-    @enderror  
+    @enderror
 
     <label for="description" class="form-label fs-4 mt-3">■Description</label>
     <textarea name="description" id="description" cols="30" rows="3" class="form-control">{{ request()->is('admin/news/create') ?  old('description') : old('description', $news->description) }}</textarea>
     @error('description')
     <p class="text-danger small mb-4">{{ $message }}</p>
-    @enderror  
+    @enderror
 
     <h1 class="fs-4 mt-5">■About News</h1>
     <div class="row">
@@ -31,15 +31,15 @@
                     <option value="{{ old('category_id', $news->category->id) }}">{{ $news->category->name }}</option>
                     @endif
 
-                    @foreach ($categories as $category) 
+                    @foreach ($categories as $category)
                     <option value="{{ $category->id }}" >{{ $category->name }}</option>
-                        
+
                     @endforeach
                 </select>
-    
+
                 @error('country_id')
                 <p class="text-danger small">{{ $message }}</p>
-                @enderror  
+                @enderror
         </div>
         <div class="col-12 col-md-6 publish-col">
                 <label for="country-id" class="form-label label-width">Country:</label>
@@ -50,15 +50,15 @@
                     <option value="{{ old('country_id', $news->country->id) }}">{{ $news->country->name }}</option>
                     @endif
 
-                    @foreach ($countries as $country) 
+                    @foreach ($countries as $country)
                     <option value="{{ $country->id }}">{{ $country->name }}</option>
-                        
+
                     @endforeach
                 </select>
-    
+
                 @error('country_id')
                 <p class="text-danger small">{{ $message }}</p>
-                @enderror  
+                @enderror
         </div>
     </div>
 
@@ -73,58 +73,59 @@
                 <option value="{{ old('source_id', $news->source->id) }}">{{ $news->source->country->name }}</option>
                 @endif
 
-                @foreach ($all_media as $media) 
+                @foreach ($all_media as $media)
                 <option value="{{ $media->id }}">{{ $media->name }}</option>
-                    
+
                 @endforeach
             </select>
 
             @error('source_id')
             <p class="text-danger small">{{ $message }}</p>
-            @enderror  
+            @enderror
         </div>
         <div class="col-12 col-md-6 publish-col">
             <label for="url" class="form-label label-width">URL:</label>
             <input type="text" name="url" id="url" class="form-control form-width" value="{{ request()->is('admin/news/create') ? old('url') : old('url', $news->url) }}">
             @error('url')
             <p class="text-danger small">{{ $message }}</p>
-            @enderror  
+            @enderror
         </div>
         <div class="col-12 col-md-6 publish-col">
             <label for="published-at" class="form-label label-width">Published:</label>
             <input type="date" name="published_at" id="published-at" class="form-control form-width" value="{{ request()->is('admin/news/create') ?  old('published_at') : old('published_at', $news->published_at)}}">
             @error('published_at')
             <p class="text-danger small">{{ $message }}</p>
-            @enderror  
+            @enderror
         </div>
-    
+
         <div class="col-12 col-md-6 publish-col">
             <label for="author" class="form-label label-width">Author:</label>
             <input type="text" name="author" id="author" class="form-control form-width" value="{{ request()->is('admin/news/create') ?  old('author') : old('author', $news->author)}}">
             @error('author')
             <p class="text-danger small">{{ $message }}</p>
-            @enderror  
+            @enderror
         </div>
     </div>
-    
+
     <label for="image" class="form-label mt-5 fs-4 d-block">■Image</label>
     @if (request()->is('admin/news/edit/*'))
             <img src="{{ asset('images/countries/' . $news->image) }}" alt="{{ $news->image }}" class="w-50 d-block mb-3 ms-3">
     @endif
+    <img src="{{ asset('images/news_create_dummy.jpg') }}" alt="Image" class="news-image" id="showImage">
     <label class="px-2 text-center upload-icon fs-6 ms-3">
-        <input type="file" name="image" class="upload-input">
+        <input type="file" name="image" class="upload-input" id="image">
         <i class="fa fa-cloud-upload"></i> Upload iamge
     </label>
 
 
     @error('image')
     <p class="text-danger small ms-3">{{ $message }}</p>
-    @enderror  
+    @enderror
 
-    <label for="content" class="form-label mt-5 fs-4 d-block">■Content</label>        
+    <label for="content" class="form-label mt-5 fs-4 d-block">■Content</label>
     @error('content')
     <p class="text-danger small">{{ $message }}</p>
-    @enderror  
+    @enderror
     <textarea id="myeditorinstance" name="content">{{ request()->is('admin/news/create') ?  old('content') :  old('content', $news->content)}}</textarea>
 
     @if (request()->is('admin/news/create'))
@@ -134,5 +135,5 @@
     @endif
     </form>
 
-    
+
 </div>
