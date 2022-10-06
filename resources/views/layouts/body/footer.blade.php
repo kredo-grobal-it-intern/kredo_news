@@ -5,7 +5,7 @@
         <div class="col-lg-3 col-md-12 col-12 mx-auto mb-4 mb-lg-0">
             <div class="text-center fw-bold h4">
                 <a href="{{ route('news.index') }}" class="text-decoration-none">
-                    <img src="{{ asset('images/logo3.png') }}" alt="LOGO" width="120">
+                    <img src="{{ asset('images/logo3.PNG') }}" alt="LOGO" width="120">
                     <p class="text-gray">Customize Compare Communicate</p>
                     <p class="text-gray">with us</p>
                 </a>
