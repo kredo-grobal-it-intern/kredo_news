@@ -110,15 +110,13 @@
             <!-- Media -->
             <div class="favorite-media">
                 <h2 class="fw-bold favorite-heading">Favorite Media</h2>
-                <div class="row pt-3 px-3">
-                    <div class="col-md-3 col-4">
+                <div class="row p-3">
+                    <div class="col-12">
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input media-checkbox-all" id="media-checkbox-all">
                             <label for="media-checkbox-all" class="form-check-label">Select All / Remove Check</label>
                         </div>
                     </div>
-                </div>
-                <div class="row pb-3 px-3">
                     @foreach ($sources as $source)
                         <div class="col-lg-2 col-md-3 col-4">
                             <div class="form-check">
@@ -141,14 +139,12 @@
                                 });
                             @endphp
                             <div class="row">
-                                <div class="col-md-3 col-4">
+                                <div class="col-12">
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input {{ $continent }}-checkbox-all" id="{{ $continent }}-checkbox-all">
                                         <label for="{{ $continent }}-checkbox-all" class="form-check-label">Select All / Remove Check</label>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
                                 @foreach($countries_by_continent as $country)
                                     <div class="col-lg-2 col-md-3 col-4">
                                         <div class="form-check">
