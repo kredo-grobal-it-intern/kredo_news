@@ -293,10 +293,8 @@ class CountrySeeder extends Seeder
             ['id' => 233, 'name' => 'Ukraine','image'=>'ukraine.webp
             '],
             ['id' => 234, 'name' => 'United Arab Emirates'],
-            ['id' => 235, 'name' => 'United Kingdom','image'=>'uk.webp
-            ', 'continent' => 'Europe', 'national_flag' => 'uk.png'],
-            ['id' => 236, 'name' => 'United States','image'=>'america.webp
-            ','continent' => 'America', 'national_flag' => 'us.png'],
+            ['id' => 235, 'name' => 'UK','image'=>'uk.webp', 'continent' => 'Europe', 'national_flag' => 'uk.png'],
+            ['id' => 236, 'name' => 'US','image'=>'america.webp','continent' => 'America', 'national_flag' => 'us.png'], 
             ['id' => 237, 'name' => 'United States Minor Outlying Islands'],
             ['id' => 238, 'name' => 'Uruguay'],
             ['id' => 239, 'name' => 'Uzbekistan'],
