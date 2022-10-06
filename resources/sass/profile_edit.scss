@@ -48,6 +48,10 @@
     }
 }
 
+label.form-check-label {
+    user-select: none;
+}
+
 @media (max-width: 1210px) {
     .profile {
         width: 100%;
