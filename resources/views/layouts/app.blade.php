@@ -10,10 +10,10 @@
     <title>@yield('title')</title>
 
     <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ mix('js/app.js') }}"></script>
     <script src="{{ mix('js/_ajaxreact.js') }}"></script>
     <script src="{{ mix('js/_ajaxbookmark.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @yield('script')
 
 
@@ -31,8 +31,6 @@
 </head>
 <body>
     <div id="app">
-
-        <div class="wrapper">
             <header>
                 @include('layouts.body.navbar')
             </header>
@@ -46,7 +44,6 @@
                     @include('layouts.body.footer')
                 </footer>
             @endif
-        </div>
     </div>
 
     @yield('script_footer')

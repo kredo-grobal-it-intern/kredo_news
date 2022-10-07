@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
+    const PUBLISHED = 1;
+    const DRAFT = 2;
+
     const LOCAL_STORAGE_FOLDER = 'public/images/news';
     
     public function index()
@@ -69,9 +72,10 @@ class NewsController extends Controller
     {
         $news = new News;
 
+        $news->status       = $request->status;
         $news->title        = $request->title;
         $news->description  = $request->description;
-        $news->country_id  = $request->country_id;
+        $news->country_id   = $request->country_id;
         $news->category_id  = $request->category_id;
         $news->source_id    = $request->source_id;
         $news->url          = $request->url;
@@ -82,9 +86,7 @@ class NewsController extends Controller
 
         $news->save();
 
-        return response()->json([
-            'news' => $news
-        ]);
+        return redirect()->route('admin.show.dashboard');
     }
 
     public function saveImage($request)
@@ -123,6 +125,7 @@ class NewsController extends Controller
     {
         $news = News::findOrFail($news_id);
 
+        $news->status       = $request->status;
         $news->title        = $request->title;
         $news->description  = $request->description;
         $news->source_id    = $request->source_id;

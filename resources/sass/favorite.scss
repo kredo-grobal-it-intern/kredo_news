@@ -1,35 +1,36 @@
 .favorite-header {
+        font-weight: 700;
+        font-size: 2.2rem; 
+        text-decoration: none;
+        margin-left: 24px;
 
-    &::before,
-    &::after {
-        content: "";
-        height: 3px;
-        flex-grow: 1;
-        background-color: #ffff44;
-    }
-
-    &::before {
-        margin-right: 1rem;
-    }
-
-    &::after {
-        margin-left: 1rem;
-    }
+        &::before {
+            content:"";
+            display:inline-block;
+            width:12px;
+            height:40px;
+            background-color:#052962;
+            top:-2px;
+        }
 }
 
-.favorite-list{
+.favorite-list {
 
     .favorite-name {
         font-size: 1.2rem;
         margin-left: 60px;
         color: #000;
+        display: inline-block;
+        width: 150px;
+        text-decoration: none;
 
         &:first-of-type {
-            margin-left: 0;
+            margin-left: 60px;
         }
 
         &:hover {
             text-decoration: underline;
+            color: red;
         }
     }
 }
@@ -38,4 +39,31 @@
     font-size: 1.2rem;
     margin-left: 60px;
     color: #000;
+}
+
+.favorite-icon {
+    margin-left: -27px;
+}
+
+@media (max-width: 992px) {
+    
+    .flash-message{
+        font-size: 1.3rem;
+    }
+
+    .favorite-edit {
+        font-size: 1.0rem;
+    }
+}
+
+
+@media (max-width: 768px) {
+  
+    .flash-message{
+        font-size: 0.8rem;
+    }
+
+    .favorite-edit {
+        font-size: 0.8rem;
+    }
 }

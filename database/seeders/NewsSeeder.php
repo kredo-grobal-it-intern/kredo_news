@@ -18,6 +18,7 @@ class NewsSeeder extends Seeder
             // America
             [
                 'id' => 1,
+                'status' => 1,
                 'country_id' => 11,
                 'category_id' => 1,
                 'source_id' => 1,
@@ -33,6 +34,7 @@ class NewsSeeder extends Seeder
             ],
             [
                 'id' => 2,
+                'status' => 1,
                 'country_id' => 32,
                 'category_id' => 2,
                 'source_id' => 1,
@@ -52,6 +54,7 @@ class NewsSeeder extends Seeder
             ],
             [
                 'id' => 3,
+                'status' => 1,
                 'country_id' => 40,
                 'category_id' => 3,
                 'source_id' => 1,
@@ -83,6 +86,7 @@ class NewsSeeder extends Seeder
             ],
             [
                 'id' => 4,
+                'status' => 1,
                 'country_id' => 57,
                 'category_id' => 4,
                 'source_id' => 1,
@@ -115,6 +119,7 @@ class NewsSeeder extends Seeder
             ],
             [
                 'id' => 5,
+                'status' => 1,
                 'country_id' => 236,
                 'category_id' => 5,
                 'source_id' => 1,
@@ -231,6 +236,7 @@ class NewsSeeder extends Seeder
             // Asia
             [
                 'id' => 6,
+                'status' => 1,
                 'country_id' => 46,
                 'category_id' => 6,
                 'source_id' => 2,
@@ -244,6 +250,7 @@ class NewsSeeder extends Seeder
             ],
             [
                 'id' => 7,
+                'status' => 1,
                 'country_id' => 103,
                 'category_id' => 1,
                 'source_id' => 2,
@@ -257,6 +264,7 @@ class NewsSeeder extends Seeder
             ],
             [
                 'id' => 8,
+                'status' => 1,
                 'country_id' => 112,
                 'category_id' => 2,
                 'source_id' => 2,
@@ -270,6 +278,7 @@ class NewsSeeder extends Seeder
             ],
             [
                 'id' => 9,
+                'status' => 1,
                 'country_id' => 175,
                 'category_id' => 2,
                 'source_id' => 2,
@@ -283,6 +292,7 @@ class NewsSeeder extends Seeder
             ],
             [
                 'id' => 10,
+                'status' => 1,
                 'country_id' => 109,
                 'category_id' => 2,
                 'source_id' => 2,
@@ -298,6 +308,7 @@ class NewsSeeder extends Seeder
             // Europe
             [
                 'id' => 11,
+                'status' => 1,
                 'country_id' => 76,
                 'category_id' => 2,
                 'source_id' => 3,
@@ -311,6 +322,7 @@ class NewsSeeder extends Seeder
             ],
             [
                 'id' => 12,
+                'status' => 1,
                 'country_id' => 166,
                 'category_id' => 2,
                 'source_id' => 3,
@@ -324,6 +336,7 @@ class NewsSeeder extends Seeder
             ],
             [
                 'id' => 13,
+                'status' => 1,
                 'country_id' => 183,
                 'category_id' => 2,
                 'source_id' => 3,
@@ -337,6 +350,7 @@ class NewsSeeder extends Seeder
             ],
             [
                 'id' => 14,
+                'status' => 1,
                 'country_id' => 209,
                 'category_id' => 2,
                 'source_id' => 3,
@@ -350,6 +364,7 @@ class NewsSeeder extends Seeder
             ],
             [
                 'id' => 15,
+                'status' => 1,
                 'country_id' => 235,
                 'category_id' => 2,
                 'source_id' => 3,
@@ -365,6 +380,7 @@ class NewsSeeder extends Seeder
             // Africa
             [
                 'id' => 16,
+                'status' => 1,
                 'country_id' => 66,
                 'category_id' => 2,
                 'source_id' => 4,
@@ -378,6 +394,7 @@ class NewsSeeder extends Seeder
             ],
             [
                 'id' => 17,
+                'status' => 1,
                 'country_id' => 116,
                 'category_id' => 2,
                 'source_id' => 4,
@@ -391,6 +408,7 @@ class NewsSeeder extends Seeder
             ],
             [
                 'id' => 18,
+                'status' => 1,
                 'country_id' => 206,
                 'category_id' => 2,
                 'source_id' => 4,
@@ -404,6 +422,7 @@ class NewsSeeder extends Seeder
             ],
             [
                 'id' => 19,
+                'status' => 1,
                 'country_id' => 205,
                 'category_id' => 2,
                 'source_id' => 4,
@@ -417,6 +436,7 @@ class NewsSeeder extends Seeder
             ],
             [
                 'id' => 20,
+                'status' => 1,
                 'country_id' => 211,
                 'category_id' => 2,
                 'source_id' => 4,
@@ -432,6 +452,7 @@ class NewsSeeder extends Seeder
             // Oceania
             [
                 'id' => 21,
+                'status' => 1,
                 'country_id' => 14,
                 'category_id' => 2,
                 'source_id' => 5,
@@ -445,6 +466,7 @@ class NewsSeeder extends Seeder
             ],
             [
                 'id' => 22,
+                'status' => 1,
                 'country_id' => 159,
                 'category_id' => 2,
                 'source_id' => 5,
@@ -458,6 +480,7 @@ class NewsSeeder extends Seeder
             ],
             [
                 'id' => 23,
+                'status' => 1,
                 'country_id' => 14,
                 'category_id' => 2,
                 'source_id' => 5,
@@ -471,6 +494,7 @@ class NewsSeeder extends Seeder
             ],
             [
                 'id' => 24,
+                'status' => 1,
                 'country_id' => 159,
                 'category_id' => 2,
                 'source_id' => 5,
@@ -484,6 +508,7 @@ class NewsSeeder extends Seeder
             ],
             [
                 'id' => 25,
+                'status' => 1,
                 'country_id' => 14,
                 'category_id' => 2,
                 'source_id' => 5,
