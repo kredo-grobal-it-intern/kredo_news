@@ -82,9 +82,14 @@ search-modal
     }
 }
 
-.current{
-    color: red;
+.current a{
+    color: red !important;
 }
+
+.current a:hover {
+    text-decoration: none !important;
+}
+
 
 /* ----------------------------------------------------------
 search-modal-responsive
