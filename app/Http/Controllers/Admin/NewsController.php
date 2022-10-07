@@ -72,7 +72,6 @@ class NewsController extends Controller
     {
         $news = new News;
 
-        $news->status       = $request->status;
         $news->title        = $request->title;
         $news->description  = $request->description;
         $news->country_id   = $request->country_id;
@@ -83,6 +82,9 @@ class NewsController extends Controller
         $news->author       = $request->author;
         $news->image        = $this->saveImage($request);
         $news->content      = $request->content;
+        $news->post_date    = $request->post_date;
+        $news->post_time    = $request->post_time;
+        $news->status       = $request->status;
 
         $news->save();
 
@@ -125,7 +127,6 @@ class NewsController extends Controller
     {
         $news = News::findOrFail($news_id);
 
-        $news->status       = $request->status;
         $news->title        = $request->title;
         $news->description  = $request->description;
         $news->source_id    = $request->source_id;
@@ -133,6 +134,9 @@ class NewsController extends Controller
         $news->published_at = $request->published_at;
         $news->author       = $request->author;
         $news->content      = $request->content;
+        $news->post_date    = $request->post_date;
+        $news->post_time    = $request->post_time;
+        $news->status       = $request->status;
 
         if ($request->image) {
             if ($news->image) {
