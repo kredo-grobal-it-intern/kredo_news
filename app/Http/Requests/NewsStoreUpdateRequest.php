@@ -27,12 +27,14 @@ class NewsStoreUpdateRequest extends FormRequest
             'title'        => 'required|string',
             'description'  => 'required|string',
             'source_id'    => 'required|numeric',
-            'category_id'    => 'required|numeric',
+            'category_id'  => 'required|numeric',
+            'country_id'  => 'required|numeric',
             'url'          => 'required|string',
             'published_at' => 'required|date_format:Y-m-d',
             'author'       => 'required|string',
             'content'      => 'required|string',
-            'image'        => 'required if_:id,==,null|max:1048|mimes:png,jpg,jpeg,gif'
-          ];
+            'image'        => 'required if_:id,==,null|max:1048|mimes:png,jpg,jpeg,gif',
+            'status'       => 'required'
+        ];
     }
 }
