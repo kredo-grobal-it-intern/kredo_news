@@ -50,14 +50,16 @@
 
     <script type="text/javascript">
         $(function(){
+            $('navbar-nav li').removeClass('current');
+            let location_href = location.href;
+            // remove the trailing slash on url to have the exact match
+            if(location_href[location_href.length - 1] == '/') {
+                location_href = location_href.slice(0, -1);
+            }
             $('.navbar-nav li a').each(function(){
                 var target = $(this).attr('href');
-                let location_href = location.href.slice(0, -1);
-                console.log(target, location.href)
-                if(location_href.match(target)) {
-                $(this).parent().addClass('current');
-                } else {
-                $(this).parent().removeClass('current');
+                if(location_href == target) {
+                    $(this).closest('.nav-item').addClass('current');
                 }
             });
         });

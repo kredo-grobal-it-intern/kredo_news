@@ -32,7 +32,6 @@
                     <a id="categoriesDropdown" class="nav-link dropdown-toggle text-white fw-bold" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                         Categories
                     </a>
-
                     <!-- category dropdown list -->
                     <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
                         @foreach ($categories as $category)
