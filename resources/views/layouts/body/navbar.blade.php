@@ -1,9 +1,3 @@
-@php
-    $categories = App\Models\Category::all();
-    $all_sources = App\Models\Source::all();
-    $continents = [ 'America','Asia','Europe','Oceania','Africa' ];
-    $all_countries = App\Models\Country::all();
-@endphp
 <div class="text-center py-2 bg-white">
     <a class="navbar-brand" href="{{ route('news.index') }}">
         <!-- logo img -->
@@ -35,7 +29,7 @@
 
                     <!-- category dropdown list -->
                     <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
-                        @foreach ($categories as $category)
+                        @foreach ($all_categories as $category)
                             <a href="{{ route('news.category', $category->id) }}" class="dropdown-item">
                                 {{ $category->name }}
                             </a>
