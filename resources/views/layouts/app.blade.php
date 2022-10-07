@@ -47,5 +47,21 @@
     </div>
 
     @yield('script_footer')
+
+    <script type="text/javascript">
+        $(function(){
+            $('.navbar-nav li a').each(function(){
+                var target = $(this).attr('href');
+                let location_href = location.href.slice(0, -1);
+                console.log(target, location.href)
+                if(location_href.match(target)) {
+                $(this).parent().addClass('current');
+                } else {
+                $(this).parent().removeClass('current');
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>
