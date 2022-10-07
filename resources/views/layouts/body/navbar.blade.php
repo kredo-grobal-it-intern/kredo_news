@@ -17,8 +17,21 @@
         </button>
 
         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+            <script type="text/javascript">
+                $(function(){
+                    $('.navbar-nav li a').each(function(){
+                        var target = $(this).attr('href');
+                        if(location.href.match(target)) {
+                        $(this).parent().addClass('current');
+                        } else {
+                        $(this).parent().removeClass('current');
+                        }
+                    });
+                });
+            </script>
             <ul class="navbar-nav">
-                <li class="nav-item nav-item-custom me-4">
+                <li class="nav-item nav-item-custom me-4 myLink" data-pathname="/index.php">
                     <a href="{{ route('news.index') }}" class="nav-link text-white fw-bold align-bottom">
                         Top
                     </a>
