@@ -29,7 +29,7 @@ class NewsSeeder extends Seeder
                 <p>&nbsp;</p>',
                 'author' => 'Hannah Ward-Glenton',
                 'url' => 'https://www.cnbc.com/2022/09/29/porsche-shares-rise-in-frankfurt-market-debut.html',
-                'image' => 'porche.jpg',
+                'image' => 'porche.webp',
                 'published_at' => '2022-08-01 00:00:00',
             ],
             [
@@ -49,7 +49,7 @@ class NewsSeeder extends Seeder
                 <p>&nbsp;</p>',
                 'author' => 'Richard Quest',
                 'url' => 'https://edition.cnn.com/travel/article/saudi-arabia-quest-visit-now/index.html',
-                'image' => 'saudi_now.jpg',
+                'image' => 'saudi_now.webp',
                 'published_at' => '2022-08-02 00:00:00',
             ],
             [
@@ -81,7 +81,7 @@ class NewsSeeder extends Seeder
                 <p>&nbsp;</p>',
                 'author' => 'Reuters',
                 'url' => 'https://japannews.yomiuri.co.jp/world/europe/20220926-60613/',
-                'image' => 'meloni_italy.jpg',
+                'image' => 'meloni_italy.webp',
                 'published_at' => '2022-08-03 00:00:00',
             ],
             [
@@ -114,7 +114,7 @@ class NewsSeeder extends Seeder
                 <p>&nbsp;</p>',
                 'author' => 'Koichiro Ashikaga',
                 'url' => 'https://japannews.yomiuri.co.jp/politics/politics-government/20220928-61091/',
-                'image' => 'state_funeral.jpg',
+                'image' => 'state_funeral.webp',
                 'published_at' => '2022-08-04 00:00:00',
             ],
             [
@@ -163,7 +163,7 @@ class NewsSeeder extends Seeder
                 <p>That terrifying sound was just another reminder that the success of the Ukrainian troops will depend on how quickly they can make Russian artillery and rocket launchers go silent.</p>',
                 'author' => 'Abdujalil Abdurasulov',
                 'url' => 'https://www.bbc.com/news/world-europe-63049386',
-                'image' => 'Ukraine_war.jpg',
+                'image' => 'Ukraine_war.webp',
                 'published_at' => '2022-08-05 00:00:00',
             ],
 
@@ -177,7 +177,7 @@ class NewsSeeder extends Seeder
             //     'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, sapiente impedit explicabo eaque est vitae quaerat quidem dignissimos voluptatum inventore accusamus illum aliquid architecto, culpa blanditiis voluptatibus ratione aut quisquam neque corporis, totam tempora. Nisi modi dicta autem perspiciatis quis non quasi consequatur incidunt ipsam omnis quisquam, magni voluptates aperiam libero quas sint nemo eum culpa earum nobis. Harum totam amet sit eius veniam corrupti consectetur provident, ut animi aut enim consequuntur non accusamus deserunt excepturi quos officia blanditiis explicabo facere nostrum voluptates. Dolore architecto quibusdam quam animi officiis hic dicta voluptas at, pariatur nobis voluptate, nihil est eos eius.',
             //     'author' => 'author1',
             //     'url' => 'aaa.com',
-            //     'image' => 'argentina.jpg',
+            //     'image' => 'argentina.webp',
             //     'published_at' => '2022-08-01 00:00:00',
             // ],
             // [
@@ -190,7 +190,7 @@ class NewsSeeder extends Seeder
             //     'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, sapiente impedit explicabo eaque est vitae quaerat quidem dignissimos voluptatum inventore accusamus illum aliquid architecto, culpa blanditiis voluptatibus ratione aut quisquam neque corporis, totam tempora. Nisi modi dicta autem perspiciatis quis non quasi consequatur incidunt ipsam omnis quisquam, magni voluptates aperiam libero quas sint nemo eum culpa earum nobis. Harum totam amet sit eius veniam corrupti consectetur provident, ut animi aut enim consequuntur non accusamus deserunt excepturi quos officia blanditiis explicabo facere nostrum voluptates. Dolore architecto quibusdam quam animi officiis hic dicta voluptas at, pariatur nobis voluptate, nihil est eos eius.',
             //     'author' => 'author2',
             //     'url' => 'bbb.com',
-            //     'image' => 'brazil.jpg',
+            //     'image' => 'brazil.webp',
             //     'published_at' => '2022-08-02 00:00:00',
             // ],
             // [
@@ -203,7 +203,7 @@ class NewsSeeder extends Seeder
             //     'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, sapiente impedit explicabo eaque est vitae quaerat quidem dignissimos voluptatum inventore accusamus illum aliquid architecto, culpa blanditiis voluptatibus ratione aut quisquam neque corporis, totam tempora. Nisi modi dicta autem perspiciatis quis non quasi consequatur incidunt ipsam omnis quisquam, magni voluptates aperiam libero quas sint nemo eum culpa earum nobis. Harum totam amet sit eius veniam corrupti consectetur provident, ut animi aut enim consequuntur non accusamus deserunt excepturi quos officia blanditiis explicabo facere nostrum voluptates. Dolore architecto quibusdam quam animi officiis hic dicta voluptas at, pariatur nobis voluptate, nihil est eos eius.',
             //     'author' => 'author3',
             //     'url' => 'ccc.com',
-            //     'image' => 'canada.jpg',
+            //     'image' => 'canada.webp',
             //     'published_at' => '2022-08-03 00:00:00',
             // ],
             // [
@@ -216,7 +216,7 @@ class NewsSeeder extends Seeder
             //     'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, sapiente impedit explicabo eaque est vitae quaerat quidem dignissimos voluptatum inventore accusamus illum aliquid architecto, culpa blanditiis voluptatibus ratione aut quisquam neque corporis, totam tempora. Nisi modi dicta autem perspiciatis quis non quasi consequatur incidunt ipsam omnis quisquam, magni voluptates aperiam libero quas sint nemo eum culpa earum nobis. Harum totam amet sit eius veniam corrupti consectetur provident, ut animi aut enim consequuntur non accusamus deserunt excepturi quos officia blanditiis explicabo facere nostrum voluptates. Dolore architecto quibusdam quam animi officiis hic dicta voluptas at, pariatur nobis voluptate, nihil est eos eius.',
             //     'author' => 'author4',
             //     'url' => 'ddd.com',
-            //     'image' => 'cuba.jpg',
+            //     'image' => 'cuba.webp',
             //     'published_at' => '2022-08-04 00:00:00',
             // ],
             // [
@@ -229,7 +229,7 @@ class NewsSeeder extends Seeder
             //     'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, sapiente impedit explicabo eaque est vitae quaerat quidem dignissimos voluptatum inventore accusamus illum aliquid architecto, culpa blanditiis voluptatibus ratione aut quisquam neque corporis, totam tempora. Nisi modi dicta autem perspiciatis quis non quasi consequatur incidunt ipsam omnis quisquam, magni voluptates aperiam libero quas sint nemo eum culpa earum nobis. Harum totam amet sit eius veniam corrupti consectetur provident, ut animi aut enim consequuntur non accusamus deserunt excepturi quos officia blanditiis explicabo facere nostrum voluptates. Dolore architecto quibusdam quam animi officiis hic dicta voluptas at, pariatur nobis voluptate, nihil est eos eius.',
             //     'author' => 'author5',
             //     'url' => 'eee.com',
-            //     'image' => 'america.jpg',
+            //     'image' => 'america.webp',
             //     'published_at' => '2022-08-05 00:00:00',
             // ],
 
@@ -245,7 +245,7 @@ class NewsSeeder extends Seeder
                 'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, sapiente impedit explicabo eaque est vitae quaerat quidem dignissimos voluptatum inventore accusamus illum aliquid architecto, culpa blanditiis voluptatibus ratione aut quisquam neque corporis, totam tempora. Nisi modi dicta autem perspiciatis quis non quasi consequatur incidunt ipsam omnis quisquam, magni voluptates aperiam libero quas sint nemo eum culpa earum nobis. Harum totam amet sit eius veniam corrupti consectetur provident, ut animi aut enim consequuntur non accusamus deserunt excepturi quos officia blanditiis explicabo facere nostrum voluptates. Dolore architecto quibusdam quam animi officiis hic dicta voluptas at, pariatur nobis voluptate, nihil est eos eius.',
                 'author' => 'author6',
                 'url' => 'fff.com',
-                'image' => 'china.jpg',
+                'image' => 'china.webp',
                 'published_at' => '2022-08-06 00:00:00',
             ],
             [
@@ -259,7 +259,7 @@ class NewsSeeder extends Seeder
                 'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, sapiente impedit explicabo eaque est vitae quaerat quidem dignissimos voluptatum inventore accusamus illum aliquid architecto, culpa blanditiis voluptatibus ratione aut quisquam neque corporis, totam tempora. Nisi modi dicta autem perspiciatis quis non quasi consequatur incidunt ipsam omnis quisquam, magni voluptates aperiam libero quas sint nemo eum culpa earum nobis. Harum totam amet sit eius veniam corrupti consectetur provident, ut animi aut enim consequuntur non accusamus deserunt excepturi quos officia blanditiis explicabo facere nostrum voluptates. Dolore architecto quibusdam quam animi officiis hic dicta voluptas at, pariatur nobis voluptate, nihil est eos eius.',
                 'author' => 'author7',
                 'url' => 'ggg.com',
-                'image' => 'india.jpg',
+                'image' => 'india.webp',
                 'published_at' => '2022-08-07 00:00:00',
             ],
             [
@@ -273,7 +273,7 @@ class NewsSeeder extends Seeder
                 'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, sapiente impedit explicabo eaque est vitae quaerat quidem dignissimos voluptatum inventore accusamus illum aliquid architecto, culpa blanditiis voluptatibus ratione aut quisquam neque corporis, totam tempora. Nisi modi dicta autem perspiciatis quis non quasi consequatur incidunt ipsam omnis quisquam, magni voluptates aperiam libero quas sint nemo eum culpa earum nobis. Harum totam amet sit eius veniam corrupti consectetur provident, ut animi aut enim consequuntur non accusamus deserunt excepturi quos officia blanditiis explicabo facere nostrum voluptates. Dolore architecto quibusdam quam animi officiis hic dicta voluptas at, pariatur nobis voluptate, nihil est eos eius.',
                 'author' => 'author8',
                 'url' => 'hhh.com',
-                'image' => 'japan.jpg',
+                'image' => 'japan.webp',
                 'published_at' => '2022-08-08 00:00:00',
             ],
             [
@@ -287,7 +287,7 @@ class NewsSeeder extends Seeder
                 'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, sapiente impedit explicabo eaque est vitae quaerat quidem dignissimos voluptatum inventore accusamus illum aliquid architecto, culpa blanditiis voluptatibus ratione aut quisquam neque corporis, totam tempora. Nisi modi dicta autem perspiciatis quis non quasi consequatur incidunt ipsam omnis quisquam, magni voluptates aperiam libero quas sint nemo eum culpa earum nobis. Harum totam amet sit eius veniam corrupti consectetur provident, ut animi aut enim consequuntur non accusamus deserunt excepturi quos officia blanditiis explicabo facere nostrum voluptates. Dolore architecto quibusdam quam animi officiis hic dicta voluptas at, pariatur nobis voluptate, nihil est eos eius.',
                 'author' => 'author8',
                 'url' => 'hhh.com',
-                'image' => 'philippines.jpg',
+                'image' => 'philippines.webp',
                 'published_at' => '2022-08-09 00:00:00',
             ],
             [
@@ -301,7 +301,7 @@ class NewsSeeder extends Seeder
                 'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, sapiente impedit explicabo eaque est vitae quaerat quidem dignissimos voluptatum inventore accusamus illum aliquid architecto, culpa blanditiis voluptatibus ratione aut quisquam neque corporis, totam tempora. Nisi modi dicta autem perspiciatis quis non quasi consequatur incidunt ipsam omnis quisquam, magni voluptates aperiam libero quas sint nemo eum culpa earum nobis. Harum totam amet sit eius veniam corrupti consectetur provident, ut animi aut enim consequuntur non accusamus deserunt excepturi quos officia blanditiis explicabo facere nostrum voluptates. Dolore architecto quibusdam quam animi officiis hic dicta voluptas at, pariatur nobis voluptate, nihil est eos eius.',
                 'author' => 'author8',
                 'url' => 'hhh.com',
-                'image' => 'israel.jpg',
+                'image' => 'israel.webp',
                 'published_at' => '2022-08-10 00:00:00',
             ],
 
@@ -317,7 +317,7 @@ class NewsSeeder extends Seeder
                 'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, sapiente impedit explicabo eaque est vitae quaerat quidem dignissimos voluptatum inventore accusamus illum aliquid architecto, culpa blanditiis voluptatibus ratione aut quisquam neque corporis, totam tempora. Nisi modi dicta autem perspiciatis quis non quasi consequatur incidunt ipsam omnis quisquam, magni voluptates aperiam libero quas sint nemo eum culpa earum nobis. Harum totam amet sit eius veniam corrupti consectetur provident, ut animi aut enim consequuntur non accusamus deserunt excepturi quos officia blanditiis explicabo facere nostrum voluptates. Dolore architecto quibusdam quam animi officiis hic dicta voluptas at, pariatur nobis voluptate, nihil est eos eius.',
                 'author' => 'author8',
                 'url' => 'hhh.com',
-                'image' => 'france.jpg',
+                'image' => 'france.webp',
                 'published_at' => '2022-08-11 00:00:00',
             ],
             [
@@ -331,7 +331,7 @@ class NewsSeeder extends Seeder
                 'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, sapiente impedit explicabo eaque est vitae quaerat quidem dignissimos voluptatum inventore accusamus illum aliquid architecto, culpa blanditiis voluptatibus ratione aut quisquam neque corporis, totam tempora. Nisi modi dicta autem perspiciatis quis non quasi consequatur incidunt ipsam omnis quisquam, magni voluptates aperiam libero quas sint nemo eum culpa earum nobis. Harum totam amet sit eius veniam corrupti consectetur provident, ut animi aut enim consequuntur non accusamus deserunt excepturi quos officia blanditiis explicabo facere nostrum voluptates. Dolore architecto quibusdam quam animi officiis hic dicta voluptas at, pariatur nobis voluptate, nihil est eos eius.',
                 'author' => 'author8',
                 'url' => 'hhh.com',
-                'image' => 'norway.jpg',
+                'image' => 'norway.webp',
                 'published_at' => '2022-08-12 00:00:00',
             ],
             [
@@ -345,7 +345,7 @@ class NewsSeeder extends Seeder
                 'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, sapiente impedit explicabo eaque est vitae quaerat quidem dignissimos voluptatum inventore accusamus illum aliquid architecto, culpa blanditiis voluptatibus ratione aut quisquam neque corporis, totam tempora. Nisi modi dicta autem perspiciatis quis non quasi consequatur incidunt ipsam omnis quisquam, magni voluptates aperiam libero quas sint nemo eum culpa earum nobis. Harum totam amet sit eius veniam corrupti consectetur provident, ut animi aut enim consequuntur non accusamus deserunt excepturi quos officia blanditiis explicabo facere nostrum voluptates. Dolore architecto quibusdam quam animi officiis hic dicta voluptas at, pariatur nobis voluptate, nihil est eos eius.',
                 'author' => 'author8',
                 'url' => 'hhh.com',
-                'image' => 'russia.jpg',
+                'image' => 'russia.webp',
                 'published_at' => '2022-08-13 00:00:00',
             ],
             [
@@ -359,7 +359,7 @@ class NewsSeeder extends Seeder
                 'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, sapiente impedit explicabo eaque est vitae quaerat quidem dignissimos voluptatum inventore accusamus illum aliquid architecto, culpa blanditiis voluptatibus ratione aut quisquam neque corporis, totam tempora. Nisi modi dicta autem perspiciatis quis non quasi consequatur incidunt ipsam omnis quisquam, magni voluptates aperiam libero quas sint nemo eum culpa earum nobis. Harum totam amet sit eius veniam corrupti consectetur provident, ut animi aut enim consequuntur non accusamus deserunt excepturi quos officia blanditiis explicabo facere nostrum voluptates. Dolore architecto quibusdam quam animi officiis hic dicta voluptas at, pariatur nobis voluptate, nihil est eos eius.',
                 'author' => 'author8',
                 'url' => 'hhh.com',
-                'image' => 'spain.jpg',
+                'image' => 'spain.webp',
                 'published_at' => '2022-08-14 00:00:00',
             ],
             [
@@ -373,7 +373,7 @@ class NewsSeeder extends Seeder
                 'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, sapiente impedit explicabo eaque est vitae quaerat quidem dignissimos voluptatum inventore accusamus illum aliquid architecto, culpa blanditiis voluptatibus ratione aut quisquam neque corporis, totam tempora. Nisi modi dicta autem perspiciatis quis non quasi consequatur incidunt ipsam omnis quisquam, magni voluptates aperiam libero quas sint nemo eum culpa earum nobis. Harum totam amet sit eius veniam corrupti consectetur provident, ut animi aut enim consequuntur non accusamus deserunt excepturi quos officia blanditiis explicabo facere nostrum voluptates. Dolore architecto quibusdam quam animi officiis hic dicta voluptas at, pariatur nobis voluptate, nihil est eos eius.',
                 'author' => 'author8',
                 'url' => 'hhh.com',
-                'image' => 'uk.jpg',
+                'image' => 'uk.webp',
                 'published_at' => '2022-08-15 00:00:00',
             ],
 
@@ -389,7 +389,7 @@ class NewsSeeder extends Seeder
                 'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, sapiente impedit explicabo eaque est vitae quaerat quidem dignissimos voluptatum inventore accusamus illum aliquid architecto, culpa blanditiis voluptatibus ratione aut quisquam neque corporis, totam tempora. Nisi modi dicta autem perspiciatis quis non quasi consequatur incidunt ipsam omnis quisquam, magni voluptates aperiam libero quas sint nemo eum culpa earum nobis. Harum totam amet sit eius veniam corrupti consectetur provident, ut animi aut enim consequuntur non accusamus deserunt excepturi quos officia blanditiis explicabo facere nostrum voluptates. Dolore architecto quibusdam quam animi officiis hic dicta voluptas at, pariatur nobis voluptate, nihil est eos eius.',
                 'author' => 'author8',
                 'url' => 'hhh.com',
-                'image' => 'egypt.jpg',
+                'image' => 'egypt.webp',
                 'published_at' => '2022-08-16 00:00:00',
             ],
             [
@@ -403,7 +403,7 @@ class NewsSeeder extends Seeder
                 'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, sapiente impedit explicabo eaque est vitae quaerat quidem dignissimos voluptatum inventore accusamus illum aliquid architecto, culpa blanditiis voluptatibus ratione aut quisquam neque corporis, totam tempora. Nisi modi dicta autem perspiciatis quis non quasi consequatur incidunt ipsam omnis quisquam, magni voluptates aperiam libero quas sint nemo eum culpa earum nobis. Harum totam amet sit eius veniam corrupti consectetur provident, ut animi aut enim consequuntur non accusamus deserunt excepturi quos officia blanditiis explicabo facere nostrum voluptates. Dolore architecto quibusdam quam animi officiis hic dicta voluptas at, pariatur nobis voluptate, nihil est eos eius.',
                 'author' => 'author8',
                 'url' => 'hhh.com',
-                'image' => 'kenya.jpg',
+                'image' => 'kenya.webp',
                 'published_at' => '2022-08-17 00:00:00',
             ],
             [
@@ -417,7 +417,7 @@ class NewsSeeder extends Seeder
                 'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, sapiente impedit explicabo eaque est vitae quaerat quidem dignissimos voluptatum inventore accusamus illum aliquid architecto, culpa blanditiis voluptatibus ratione aut quisquam neque corporis, totam tempora. Nisi modi dicta autem perspiciatis quis non quasi consequatur incidunt ipsam omnis quisquam, magni voluptates aperiam libero quas sint nemo eum culpa earum nobis. Harum totam amet sit eius veniam corrupti consectetur provident, ut animi aut enim consequuntur non accusamus deserunt excepturi quos officia blanditiis explicabo facere nostrum voluptates. Dolore architecto quibusdam quam animi officiis hic dicta voluptas at, pariatur nobis voluptate, nihil est eos eius.',
                 'author' => 'author8',
                 'url' => 'hhh.com',
-                'image' => 'southafrica.jpg',
+                'image' => 'southafrica.webp',
                 'published_at' => '2022-08-18 00:00:00',
             ],
             [
@@ -461,7 +461,7 @@ class NewsSeeder extends Seeder
                 'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, sapiente impedit explicabo eaque est vitae quaerat quidem dignissimos voluptatum inventore accusamus illum aliquid architecto, culpa blanditiis voluptatibus ratione aut quisquam neque corporis, totam tempora. Nisi modi dicta autem perspiciatis quis non quasi consequatur incidunt ipsam omnis quisquam, magni voluptates aperiam libero quas sint nemo eum culpa earum nobis. Harum totam amet sit eius veniam corrupti consectetur provident, ut animi aut enim consequuntur non accusamus deserunt excepturi quos officia blanditiis explicabo facere nostrum voluptates. Dolore architecto quibusdam quam animi officiis hic dicta voluptas at, pariatur nobis voluptate, nihil est eos eius.',
                 'author' => 'author8',
                 'url' => 'hhh.com',
-                'image' => 'australia.jpg',
+                'image' => 'australia.webp',
                 'published_at' => '2022-08-21 00:00:00',
             ],
             [
@@ -489,7 +489,7 @@ class NewsSeeder extends Seeder
                 'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, sapiente impedit explicabo eaque est vitae quaerat quidem dignissimos voluptatum inventore accusamus illum aliquid architecto, culpa blanditiis voluptatibus ratione aut quisquam neque corporis, totam tempora. Nisi modi dicta autem perspiciatis quis non quasi consequatur incidunt ipsam omnis quisquam, magni voluptates aperiam libero quas sint nemo eum culpa earum nobis. Harum totam amet sit eius veniam corrupti consectetur provident, ut animi aut enim consequuntur non accusamus deserunt excepturi quos officia blanditiis explicabo facere nostrum voluptates. Dolore architecto quibusdam quam animi officiis hic dicta voluptas at, pariatur nobis voluptate, nihil est eos eius.',
                 'author' => 'author8',
                 'url' => 'hhh.com',
-                'image' => 'australia.jpg',
+                'image' => 'australia.webp',
                 'published_at' => '2022-08-23 00:00:00',
             ],
             [
@@ -517,7 +517,7 @@ class NewsSeeder extends Seeder
                 'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, sapiente impedit explicabo eaque est vitae quaerat quidem dignissimos voluptatum inventore accusamus illum aliquid architecto, culpa blanditiis voluptatibus ratione aut quisquam neque corporis, totam tempora. Nisi modi dicta autem perspiciatis quis non quasi consequatur incidunt ipsam omnis quisquam, magni voluptates aperiam libero quas sint nemo eum culpa earum nobis. Harum totam amet sit eius veniam corrupti consectetur provident, ut animi aut enim consequuntur non accusamus deserunt excepturi quos officia blanditiis explicabo facere nostrum voluptates. Dolore architecto quibusdam quam animi officiis hic dicta voluptas at, pariatur nobis voluptate, nihil est eos eius.',
                 'author' => 'author8',
                 'url' => 'hhh.com',
-                'image' => 'australia.jpg',
+                'image' => 'australia.webp',
                 'published_at' => '2022-08-25 00:00:00',
             ],
         ]);

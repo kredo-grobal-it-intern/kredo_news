@@ -7,7 +7,7 @@
 <div class="text-center py-2 bg-white">
     <a class="navbar-brand" href="{{ route('news.index') }}">
         <!-- logo img -->
-        <img src="{{ asset('images/logo.png')}}" alt="LOGO" class="logo" width="60">
+        <img src="{{ asset('images/logo.webp')}}" alt="LOGO" class="logo" width="60">
     </a>
 </div>
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
