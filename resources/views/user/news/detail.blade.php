@@ -25,7 +25,6 @@
                 </div>
                 <div class="news-content px-3">
                     {!! $news->content !!}
-                    {{ Illuminate\Mail\Markdown::parse($news->content) }} 
                     <p>URL: &nbsp;<a href="{{ $news->url }}" class="text-dark">{{ $news->url }}</a></p>
                 </div>
             </section>

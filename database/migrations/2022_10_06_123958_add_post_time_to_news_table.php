@@ -14,7 +14,7 @@ class AddPostTimeToNewsTable extends Migration
     public function up()
     {
         Schema::table('news', function (Blueprint $table) {
-            $table->string('post_time')->nullable()->after('post_date');
+            $table->string('post_time')->after('post_date');
         });
     }
 

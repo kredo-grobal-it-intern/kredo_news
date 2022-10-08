@@ -14,7 +14,7 @@ class AddPostDateToNewsTable extends Migration
     public function up()
     {
         Schema::table('news', function (Blueprint $table) {
-            $table->date('post_date')->nullable()->after('published_at');
+            $table->date('post_date')->after('published_at');
         });
     }
 

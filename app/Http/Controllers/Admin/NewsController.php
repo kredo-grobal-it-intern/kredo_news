@@ -15,9 +15,6 @@ use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
-    const PUBLISHED = 1;
-    const DRAFT = 2;
-
     const LOCAL_STORAGE_FOLDER = 'public/images/news';
     
     public function index()

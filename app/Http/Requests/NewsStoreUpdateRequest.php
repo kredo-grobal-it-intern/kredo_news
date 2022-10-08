@@ -34,7 +34,9 @@ class NewsStoreUpdateRequest extends FormRequest
             'author'       => 'required|string',
             'content'      => 'required|string',
             'image'        => 'required if_:id,==,null|max:1048|mimes:png,jpg,jpeg,gif',
-            'status'       => 'required'
+            'status'       => 'required',
+            'post_date'    => 'required',
+            'post_time'    => 'required',
         ];
     }
 }

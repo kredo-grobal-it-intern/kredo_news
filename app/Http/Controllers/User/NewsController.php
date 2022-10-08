@@ -7,6 +7,7 @@ use App\Models\Source;
 use App\Models\Country;
 use App\Models\Category;
 use App\Consts\SourceConst;
+use App\Consts\NewsStatusConst;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -16,43 +17,52 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $news = News::whereIn('id', function ($query) {
-            $query->select(DB::raw('max(id) from news group by source_id'));
-        })->get();  //this max is can chose the latest news each of source id//
+        // Optimize later to get the news that is latest('post_date' and 'post_time)
+
+                // $news = News::whereIn('id', function ($query) {
+                //     $query->select(DB::raw('max(id) from news group by source_id'));
+                // })->get();  //this max is can chose the latest news each of source id//
 
         $news_list = [
             'America' => [
-                'latest' => $news->filter(function ($latest) {
-                    return $latest->source_id == SourceConst::AMERICA;
-                })->first(), // (firstr)You get the first news form result of the filter
+                
+                // Optimize later to get the news that is latest('post_date' and 'post_time)
+                        // 'latest' => $news->filter(function ($latest) {
+                        //     return $latest->source_id == SourceConst::AMERICA;
+                        // })->first(), // (firstr)You get the first news form result of the filter
+                'latest' => News::getLatestNews(SourceConst::AMERICA),
                 'list' => News::getNewsBySource(SourceConst::AMERICA),
             ],
 
             'Asia' => [
-                'latest' => $news->filter(function ($latest) {
-                    return $latest->source_id == SourceConst::ASIA;
-                })->first(),
+                        // 'latest' => $news->filter(function ($latest) {
+                        //     return $latest->source_id == SourceConst::ASIA;
+                        // })->first(),
+                'latest' => News::getLatestNews(SourceConst::ASIA),
                 'list' => News::getNewsBySource(SourceConst::ASIA),
             ],
 
             'Europe' => [
-                'latest' => $news->filter(function ($latest) {
-                    return $latest->source_id == SourceConst::EUROPE;
-                })->first(),
+                        // 'latest' => $news->filter(function ($latest) {
+                        //     return $latest->source_id == SourceConst::EUROPE;
+                        // })->first(),
+                'latest' => News::getLatestNews(SourceConst::EUROPE),
                 'list' => News::getNewsBySource(SourceConst::EUROPE),
             ],
 
             'Africa' => [
-                'latest' => $news->filter(function ($latest) {
-                    return $latest->source_id == SourceConst::AFRICA;
-                })->first(),
+                        // 'latest' => $news->filter(function ($latest) {
+                        //     return $latest->source_id == SourceConst::AFRICA;
+                        // })->first(),
+                'latest' => News::getLatestNews(SourceConst::AFRICA),
                 'list' => News::getNewsBySource(SourceConst::AFRICA),
             ],
 
             'Oceania' => [
-                'latest' => $news->filter(function ($latest) {
-                    return $latest->source_id == SourceConst::OCEANIA;
-                })->first(),
+                        // 'latest' => $news->filter(function ($latest) {
+                        //     return $latest->source_id == SourceConst::OCEANIA;
+                        // })->first(),
+                'latest' => News::getLatestNews(SourceConst::OCEANIA),
                 'list' => News::getNewsBySource(SourceConst::OCEANIA),
             ],
         ];
@@ -126,7 +136,7 @@ class NewsController extends Controller
         $user = Auth::user();
         $sources = $user->favoriteSources;
         $countries = $user->favoriteCountries;
-        $favorite_news = News::where('source_id', $source->id)->get();
+        $favorite_news = News::where('source_id', $source->id)->where('status', NewsStatusConst::PUBLISHED)->get();
         return view('user.news.favorite')
             ->with('favorite_news', $favorite_news)
             ->with('sources', $sources)

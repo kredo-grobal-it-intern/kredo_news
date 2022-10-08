@@ -4,17 +4,34 @@ namespace App\Models;
 
 use App\Consts\SourceConst;
 use App\Consts\ReactionConst;
+use App\Consts\NewsStatusConst;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Ui\Presets\React;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
 
 
 class News extends Model
 {
     use HasFactory, SoftDeletes;
+
+
+    public static function today()
+    {
+        $today = date('Y-n-j', strtotime(Carbon::create(now())->timezone('Asia/Tokyo')));
+
+        return $today;
+    }
+
+    public static function time()
+    {
+        $time = date('H:m', strtotime(Carbon::create(now())->timezone('Asia/Tokyo')));
+
+        return $time;    
+    }
 
     public static $rules = array(
         'title' => 'required',
@@ -35,12 +52,23 @@ class News extends Model
 
     public static function getLatestNews($source_id)
     {
-        return News::where('source_id', $source_id)->latest('published_at')->limit(1)->first();
+        return News::where('source_id', $source_id)
+            ->where('status', NewsStatusConst::PUBLISHED)
+            ->latest('post_date')
+            ->latest('post_time')
+            ->limit(1)
+            ->first();
     }
 
     public static function getNewsBySource($source_id)
     {
-        return News::where('source_id', $source_id)->latest('published_at')->offset(1)->limit(4)->get();
+        return News::where('source_id', $source_id)
+            ->where('status', NewsStatusConst::PUBLISHED)
+            ->latest('post_date')
+            ->latest('post_time')
+            ->offset(1)
+            ->limit(4)
+            ->get();
     }
 
     public function getLike() {
@@ -85,7 +113,9 @@ class News extends Model
             $result = News::where('description', 'like', "%{$keyword}%")
                 ->orWhere('content', 'like',"%{$keyword}%")
                 ->orWhere('title', 'like', "%{$keyword}%")
-                ->latest('published_at')
+                ->where('status', NewsStatusConst::PUBLISHED)
+                ->latest('post_date')
+                ->latest('post_time')
                 ->get()
                 ->filter(function ($news) use ($request) {
                     if (isset($request->countries) && isset($request->category)) {
@@ -105,7 +135,12 @@ class News extends Model
 
     public static function getWhatsHotBySource($source_id)
     {
-        return News::where('source_id', $source_id)->withCount('comments')->orderBy('comments_count', 'desc')->limit(5)->get();
+        return News::where('source_id', $source_id)
+                    ->withCount('comments')
+                    ->orderBy('comments_count', 'desc')
+                    ->where('status', NewsStatusConst::PUBLISHED)
+                    ->limit(5)
+                    ->get();
     }
 
     public static function getWhatsHot()
@@ -122,7 +157,12 @@ class News extends Model
 
     public static function getLatestNewsList($source_id)
     {
-        return News::where('source_id', $source_id)->latest('published_at')->limit(5)->get();
+        return News::where('source_id', $source_id)
+            ->where('status', NewsStatusConst::PUBLISHED)
+            ->latest('post_date')
+            ->latest('post_time')
+            ->limit(5)
+            ->get();
     }
 
     public static function getTopGoodNewsList()
@@ -131,6 +171,7 @@ class News extends Model
                                 $query->where('status', 1);
                                 }])
                     ->orderBy('reactions_count', 'desc')
+                    ->where('status', NewsStatusConst::PUBLISHED)
                     ->limit(5)
                     ->get();
     }
@@ -141,13 +182,18 @@ class News extends Model
                                 $query->where('status', 2);
                                 }])
                     ->orderBy('reactions_count', 'desc')
+                    ->where('status', NewsStatusConst::PUBLISHED)
                     ->limit(5)
                     ->get();
     }
 
     public static function getTopBookmarkNewsList()
     {
-        return News::withCount('bookmarks')->orderBy('bookmarks_count', 'desc')->limit(5)->get();
+        return News::withCount('bookmarks')
+            ->orderBy('bookmarks_count', 'desc')
+            ->where('status', NewsStatusConst::PUBLISHED)
+            ->limit(5)
+            ->get();
     }
 
     /*
