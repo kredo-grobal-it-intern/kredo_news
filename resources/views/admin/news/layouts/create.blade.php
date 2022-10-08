@@ -40,7 +40,7 @@
             </div>
                 @error('category_id')
                 <p class="error-message">{{ "The category field is required." }}</p>
-                @enderror  
+                @enderror
         </div>
 
         <div class="col-12 col-md-6">
@@ -61,7 +61,7 @@
             </div>
             @error('country_id')
             <p class="error-message">{{ "The country field is required." }}</p>
-            @enderror 
+            @enderror
         </div>
     </div>
 
@@ -76,10 +76,10 @@
                     @else
                     <option value="{{ old('source_id', $news->source->id) }}">{{ $news->source->country->name }}</option>
                     @endif
-    
-                    @foreach ($all_media as $media) 
+
+                    @foreach ($all_media as $media)
                     <option value="{{ $media->id }}">{{ $media->country->name }}</option>
-                        
+
                     @endforeach
                 </select>
 
@@ -87,17 +87,17 @@
 
             @error('source_id')
             <p class="error-message">{{ "The media field is required." }}</p>
-            @enderror  
+            @enderror
         </div>
         <div class="col-12 col-md-6">
             <div class="publish-col">
-                
+
                 <label for="url" class="form-label label-width">URL:</label>
                 <input type="text" name="url" id="url" class="form-control form-width" value="{{ request()->is('admin/news/create') ? old('url') : old('url', $news->url) }}">
             </div>
                 @error('url')
                 <p class="error-message">{{ $message }}</p>
-                @enderror  
+                @enderror
             </select>
         </div>
 
@@ -108,9 +108,9 @@
             </div>
             @error('published_at')
             <p class="error-message">{{ "The published field is required." }}</p>
-            @enderror  
+            @enderror
         </div>
-    
+
         <div class="col-12 col-md-6">
             <div class="publish-col">
                 <label for="author" class="form-label label-width">Author:</label>
@@ -118,13 +118,13 @@
             </div>
             @error('author')
             <p class="error-message">{{ $message }}</p>
-            @enderror  
+            @enderror
         </div>
     </div>
 
     <label for="image" class="form-label mt-5 fs-4 d-block">■Image</label>
     @if (request()->is('admin/news/edit/*'))
-        <img src="{{ asset('images/news/' . $news->image) }}" alt="{{ $news->image }}" class="news-image">
+        <img src="{{ asset('images/news/' . $news->image) }}" alt="{{ $news->image }}" class="news-image" id="showImage">
     @else
         <img src="{{ asset('images/news_create_dummy.jpg') }}" alt="Image" class="news-image" id="showImage">
     @endif
@@ -143,7 +143,7 @@
     @enderror
     <textarea id="myeditorinstance" name="content">{{ request()->is('admin/news/create') ?  old('content') :  old('content', $news->content)}}</textarea>
 
-    
+
     <h1 class="fs-4 mt-5">■Post schedule</h1>
     <div class="row">
         <div class="col-12 col-md-6">
@@ -165,7 +165,7 @@
     <div class="row justify-content-center text-center my-4">
         @error('status')
         <p class="text-danger small text-center p-0 m-0">{{ $message }}</p>
-        @enderror  
+        @enderror
         <div class="col-6 col-md-4">
             <input class="form-check-input" type="radio" name="status" id="publish" value="1" {{ old('status') == 1 || request()->is('admin/news/edit/*') && $news->status == 1  ? 'checked' : '' }}>
             <label class="form-check-label fs-5" for="puclish">Publish</label>
