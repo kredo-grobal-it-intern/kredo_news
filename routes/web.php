@@ -2,15 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
-use App\Http\Controllers\Admin\UserController as AdminUserController;
-use App\Http\Controllers\Admin\CommentController as AdminCommentController;
 use App\Http\Controllers\FacebookLoginController;
 use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\User\NewsController;
-use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\User\CategoryController;
-use App\Http\Controllers\User\CommentController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\User\CountryController;
 use App\Http\Controllers\User\MediaController;
 use App\Http\Controllers\User\ReactionController;
@@ -55,9 +53,12 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'verified'], 
         Route::get('/country/{country}', [NewsController::class, 'showFavoritePageByCountry'])->name('favorite.country');
         Route::get('/source/{source}', [NewsController::class, 'showFavoritePageBySource'])->name('favorite.source');
     });
-    Route::post('/{news_id}/comment', [CommentController::class, 'store'])->name('comment.store');
-    Route::post('/comment/like', [CommentController::class, 'like'])->name('comment.like');
-    Route::delete('/comment/{comment_id}', [CommentController::class, 'destroy'])->name('comment.destroy');
+    Route::group(['prefix' => 'comment', 'as' => 'comment.'], function () {
+        Route::post('/{news_id}', [CommentController::class, 'store'])->name('store');
+        Route::delete('/{comment_id}', [CommentController::class, 'destroy'])->name('destroy');
+        Route::post('/like', [CommentController::class, 'like'])->name('like');
+    });
+
     Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
         Route::get('/show/{user_id}', [UserController::class, 'show'])->name('show');
         Route::get('/edit', [UserController::class, 'edit'])->name('edit');
@@ -77,15 +78,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], f
         Route::delete('destroy/{user_id}', [AdminNewsController::class, 'destroy'])->name('destroy');
         Route::get('restore/{user_id}', [AdminNewsController::class, 'restore'])->name('restore');
     });
+
     Route::group(['prefix' => 'comments', 'as' => 'comments.'], function () {
-        Route::get('list', [AdminCommentController::class, 'index'])->name('list');
-        Route::delete('destroy/{user_id}', [AdminCommentController::class, 'destroy'])->name('destroy');
-        Route::get('restore/{user_id}', [AdminCommentController::class, 'restore'])->name('restore');
+        Route::get('list', [CommentController::class, 'index'])->name('list');
+        Route::get('restore/{user_id}', [CommentController::class, 'restore'])->name('restore');
     });
+
     Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
-        Route::get('list', [AdminUserController::class, 'index'])->name('list');
-        Route::delete('destroy/{user_id}', [AdminUserController::class, 'destroy'])->name('destroy');
-        Route::get('restore/{user_id}', [AdminUserController::class, 'restore'])->name('restore');
+        Route::get('list', [UserController::class, 'index'])->name('list');
+        Route::delete('destroy/{user_id}', [UserController::class, 'destroy'])->name('destroy');
+        Route::get('restore/{user_id}', [UserController::class, 'restore'])->name('restore');
     });
 });
 

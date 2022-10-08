@@ -26,13 +26,11 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ mix('css/navbar.css') }}" rel="stylesheet">
     <link href="{{ mix('css/footer.css') }}" rel="stylesheet">
-    <link rel="shortcut icon" href="{{ asset('images/news_favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('images/news_favicon.webp') }}">
     @yield('style')
 </head>
 <body>
     <div id="app">
-
-        <div class="wrapper">
             <header>
                 @include('layouts.body.navbar')
             </header>
@@ -46,9 +44,26 @@
                     @include('layouts.body.footer')
                 </footer>
             @endif
-        </div>
     </div>
 
     @yield('script_footer')
+
+    <script type="text/javascript">
+        $(function(){
+            $('navbar-nav li').removeClass('current');
+            let location_href = location.href;
+            // remove the trailing slash on url to have the exact match
+            if(location_href[location_href.length - 1] == '/') {
+                location_href = location_href.slice(0, -1);
+            }
+            $('.navbar-nav li a').each(function(){
+                var target = $(this).attr('href');
+                if(location_href == target) {
+                    $(this).closest('.nav-item').addClass('current');
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>
