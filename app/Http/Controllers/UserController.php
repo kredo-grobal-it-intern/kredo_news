@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileUpdateRequest;
@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Storage;
 class UserController extends Controller
 {
     const LOCAL_STORAGE_FOLDER = 'public/images/avatars/';
+
+    public function index()
+    {
+        // $users = User::where('is_admin', 0)->withTrashed()->paginate(10);
+        $users = User::where('is_admin', 0)->withTrashed()->get();
+        return view('admin.users.list')->with('users', $users);
+    }
+
 
     public function show(Request $request)
     {
@@ -102,5 +110,19 @@ class UserController extends Controller
         if (Storage::disk('local')->exists($image_path)) :
             Storage::disk('local')->delete($image_path);
         endif;
+    }
+
+    public function destroy($user_id)
+    {
+        User::destroy($user_id);
+
+        return redirect()->back();
+    }
+
+    public function restore($user_id)
+    {
+        User::withTrashed()->where('id', $user_id)->restore();
+
+        return redirect()->back();
     }
 }

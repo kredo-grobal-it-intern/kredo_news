@@ -35,7 +35,7 @@
             <tr>
                 {{-- <td>{{ $all_news->firstItem() + $loop->index }}</td> --}}
                 <td>{{ $news->id }}</td>
-                <td class="text-nowrap">{{ date('n/j', strtotime($news->published_at)) }}<br><span class="day-of-week">{{ date('(D)', strtotime($news->published_at)) }}</span></td>
+                <td class="text-nowrap">{{ date('n/j', strtotime($news->post_date)) }}<br><span class="day-of-week">{{ date('(D)', strtotime($news->post_date)) }}</span></td>
                 <td><img src="{{ asset('images/news/' . $news->image) }}"  alt="{{ $news->image }}" class="news-image"/></td>
                 <td class="title"><a href="{{ route('news.show', $news->id) }}" class="text-decoration-none text-black">{{ $news->title }}</a></td>
                 <td class="text-nowrap">{{ $news->category->name }}</td>
