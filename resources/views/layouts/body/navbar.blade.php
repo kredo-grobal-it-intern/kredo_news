@@ -12,7 +12,7 @@
 
         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
             <ul class="navbar-nav">
-                <li class="nav-item nav-item-custom me-4">
+                <li class="nav-item nav-item-custom me-4 myLink" data-pathname="/index.php">
                     <a href="{{ route('news.index') }}" class="nav-link text-white fw-bold align-bottom">
                         Top
                     </a>
@@ -23,10 +23,9 @@
                     </a>
                 </li>
                 <li class="nav-item nav-item-custom dropdown me-4">
-                    <a id="categoriesDropdown" class="nav-link dropdown-toggle text-white fw-bold" href="" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a id="categoriesDropdown" class="nav-link dropdown-toggle text-white fw-bold" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                         Categories
                     </a>
-
                     <!-- category dropdown list -->
                     <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
                         @foreach ($all_categories as $category)
@@ -82,7 +81,7 @@
                 </li>
                 <li class="nav-item nav-item-custom text-start me-4">
                     <!-- search bar -->
-                    <a href="" class="nav-link text-white fw-bold border-0" data-bs-toggle="modal" data-bs-target="#search">Search</a>
+                    <a href="#" class="nav-link text-white fw-bold border-0" data-bs-toggle="modal" data-bs-target="#search">Search</a>
                     <!-- search modal -->
                     @include('layouts.body.search-modal')
                 </li>
