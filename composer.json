@@ -13,6 +13,7 @@
         "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
+        "mailgun/mailgun-php": "^3.5",
         "slevomat/coding-standard": "^8.4",
         "squizlabs/php_codesniffer": "*",
         "tinymce/tinymce": "^6.2"
