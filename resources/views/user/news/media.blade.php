@@ -10,7 +10,7 @@
         @if ($media->country->image)
             <img src="{{asset('images/countries/' . $media->country->image)}}" alt="{{$media->country->name}}" class="header-section-image">
         @else
-            <img src="{{asset('images/country.jpg')}}" alt="{{$media->country->name}}" class="header-section-image">
+            <img src="{{asset('images/country.webp')}}" alt="{{$media->country->name}}" class="header-section-image">
         @endif
         <h1 class="text-center fw-bold header-section-title">{{$media->country->name}}</h1>
     </div>

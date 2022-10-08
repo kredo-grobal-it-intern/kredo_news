@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title', 'Admin News List')
-    
+
 @section('style')
     <link href="{{ mix('css/admin/table.css') }}" rel="stylesheet">
 
@@ -40,7 +40,7 @@
                         @if ($news->source->country->national_flag)
                             <img src="{{ asset('images/national_flags/'. $news->source->country->national_flag) }}" alt="{{ $news->source->country->name }}" class="shadow flag">
                         @else
-                            <img src="{{ asset('images/national_flags/world.png') }}" alt="Flag" class="flag">                                           
+                            <img src="{{ asset('images/national_flags/world.webp') }}" alt="Flag" class="flag">
                         @endif
                         {{ $news->source->country->name }}
                     </div>
@@ -50,7 +50,7 @@
                         @if ($news->country->national_flag)
                             <img src="{{ asset('images/national_flags/'. $news->country->national_flag) }}" alt="{{ $news->country->name }}" class="shadow flag">
                         @else
-                            <img src="{{ asset('images/national_flags/world.png') }}" alt="Flag" class="flag">                   
+                            <img src="{{ asset('images/national_flags/world.webp') }}" alt="Flag" class="flag">
                         @endif
                             {{ $news->country->name }}
                     </div>
@@ -68,20 +68,20 @@
                 <td>
                     <div class="dropdown">
                         <button class="btn btn-sm" data-bs-toggle="dropdown">
-                            <i class="fa-solid fa-ellipsis"></i>  
-                        </button>  
-                
-                        <div class="dropdown-menu"> 
+                            <i class="fa-solid fa-ellipsis"></i>
+                        </button>
+
+                        <div class="dropdown-menu">
                             <a href="{{ route('admin.news.edit', $news->id) }}" class="dropdown-item text-decoration-none text-black">
                                 <span class="me-1"><i class="fa-regular fa-pen-to-square"></span></i>Edit
                             </a>
                             @if ($news->deleted_at)
                                 <a href="{{ route('admin.news.restore', $news->id) }}" class="dropdown-item btn shadow-none text-primary border-0 px-0 ms-3"><span class="me-1"><i class="fa-solid fa-eye"></i></span>Display</a>
                             @else
-                                <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#hide-news-{{ $news->id }}"><span class="me-1"><i class="fa-solid fa-eye-slash"></i></span>Hide</button>    
+                                <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#hide-news-{{ $news->id }}"><span class="me-1"><i class="fa-solid fa-eye-slash"></i></span>Hide</button>
                             @endif
                         </div>
-                    </div>   
+                    </div>
                     @include('admin.news.modal.status')
                 </td>
             </tr>

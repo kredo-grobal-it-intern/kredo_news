@@ -4,7 +4,7 @@
             <a href="{{ route('news.show', $news->id) }}"><img src="{{ asset('images/news/' . $news->image) }}"
                     alt="" class="card-img-top news-list-img"></a>
         @else
-            <a href="{{ route('news.show', $news->id) }}"><img src="{{ asset('images/country.jpg') }}"
+            <a href="{{ route('news.show', $news->id) }}"><img src="{{ asset('images/country.webp') }}"
                     alt="{{ $news->country->name }}" class="card-img-top news-list-img"></a>
         @endif
         <div class="card-body">

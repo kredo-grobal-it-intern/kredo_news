@@ -7,7 +7,7 @@
 @endsection
 
 @section('script')
-<script src="{{ mix('js/_create_news.js') }}" defer></script>
+<script src="{{ mix('js/_news_create.js') }}" defer></script>
 @endsection
 
 @section('content')
