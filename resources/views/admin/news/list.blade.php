@@ -60,7 +60,7 @@
                 <td>{{ number_format($news->getlike()->count()) }}</td>
                 <td>
                     @if ($news->deleted_at)
-                        <p class="badge bg-danger">Hidden</p>
+                        <p class="badge bg-danger">Deleted</p>
                     @elseif ($news->status == 2)
                         <p class="badge bg-secondary">Draft</p>
                     @else
@@ -101,7 +101,7 @@
                                 <button type="submit" class="dropdown-item text-primary"><i class="fa-solid fa-eye"></i>Display</button>
                             </form>
                             
-                            <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#hide-news-{{ $news->id }}"><i class="fa-solid fa-eye-slash"></i>Hide</button>
+                            <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#hide-news-{{ $news->id }}"><i class="fa-solid fa-trash-can"></i>Delete</button>
                             
                             @else
                             <form action="{{ route('admin.news.draft', $news->id) }}" method="post">
@@ -112,7 +112,7 @@
                                 <button type="submit" class="dropdown-item"><i class="fa-solid fa-file-excel"></i>Draft</button>
                             </form>
 
-                            <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#hide-news-{{ $news->id }}"><i class="fa-solid fa-eye-slash"></i>Hide</button>
+                            <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#hide-news-{{ $news->id }}"><i class="fa-solid fa-trash-can"></i>Delete</button>
 
                             @endif
                         </div>
