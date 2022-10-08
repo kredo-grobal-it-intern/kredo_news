@@ -23,7 +23,7 @@ class NewsController extends Controller
     
     public function index()
     {
-        $all_news = News::orderBy('published_at', 'desc')->withTrashed()->paginate(10);
+        $all_news = News::orderBy('post_date', 'desc')->withTrashed()->paginate(10);
         return view('admin.news.list')
                     ->with('all_news', $all_news);
     }
