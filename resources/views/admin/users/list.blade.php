@@ -5,7 +5,7 @@
 @section('style')
     <link href="{{ mix('css/admin/table.css') }}" rel="stylesheet">
 @endsection
-    
+
 @section('content')
 <div class="table-responsive container-width">
     <table class="table">
@@ -33,7 +33,7 @@
                         <img src="{{ asset('images/avatars/'. $user->avatar) }}" alt="" class="avatar">
                         <span style="word-wrap: break-all;">{{ $user->username }}</span>
                     </a>
-                @else  
+                @else
                     <a href="{{ route('user.profile.show', $user->id) }}" class="text-decoration-none text-black avatar-name-align"><span class="fs-2 me-2"><i class="fa-solid fa-circle-user"></i></span>{{ $user->username }}</a>
                 @endif
 
@@ -44,7 +44,7 @@
                     @if ($user->nationality->national_flag)
                         <img src="{{ asset('images/national_flags/'. $user->nationality->national_flag) }}" alt="{{ $user->nationality->name }}" class="shadow flag">
                     @else
-                        <img src="{{ asset('images/national_flags/world.png') }}" alt="Flag" class="flag">                                           
+                        <img src="{{ asset('images/national_flags/world.webp') }}" alt="Flag" class="flag">
                     @endif
                     {{ $user->nationality->name }}
                 </div>
@@ -54,7 +54,7 @@
                     @if ($user->country->national_flag)
                         <img src="{{ asset('images/national_flags/'. $user->country->national_flag) }}" alt="{{ $user->country->name }}" class="shadow flag">
                     @else
-                        <img src="{{ asset('images/national_flags/world.png') }}" alt="Flag" class="flag">                                           
+                        <img src="{{ asset('images/national_flags/world.webp') }}" alt="Flag" class="flag">
                     @endif
                     {{ $user->country->name }}
                 </div>
@@ -72,22 +72,22 @@
             <td>
                 <div class="dropdown">
                     <button class="btn btn-sm" data-bs-toggle="dropdown">
-                        <i class="fa-solid fa-ellipsis"></i>  
-                    </button>  
-            
-                    <div class="dropdown-menu"> 
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </button>
+
+                    <div class="dropdown-menu">
                         @if ($user->deleted_at)
                         <a href="{{ route('admin.users.restore', $user->id) }}" class="btn dropdown-item shadow-none text-primary border-0 px-0 ms-3"><span class="me-1"><i class="fa-solid fa-user"></i></span>Activate</a>
                         @else
                         <button class="btn dropdown-item shadow-none text-danger px-0 ms-3" data-bs-toggle="modal" data-bs-target="#deactivate-user-{{ $user->id }}"><span class="me-1"><i class="fa-solid fa-user-slash"></i>Deactivate</span></button>
                         @endif
                     </div>
-                </div>   
+                </div>
                 @include('admin.users.modal.status')
             </td>
             </tr>
             @endforeach
-            
+
         </tbody>
         </table>
         {{ $users->links() }}
