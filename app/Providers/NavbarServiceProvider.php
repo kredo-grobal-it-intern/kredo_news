@@ -24,6 +24,6 @@ class NavbarServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('layouts.app','App\Http\View\Composers\NavbarComposer');
+        View::composer('layouts.app', 'App\Http\View\Composers\NavbarComposer');
     }
 }
