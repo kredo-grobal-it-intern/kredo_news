@@ -20,14 +20,18 @@ class UserController extends Controller
     {
         $user = User::findOrFail($request->user_id);
         $liked_news = $user->reactions()
+                            ->where('status', NewsStatusConst::PUBLISHED)
                             ->latest('post_date')
                             ->latest('post_time')
-                            ->where('status', NewsStatusConst::PUBLISHED)
                             ->get()
                             ->filter(function ($reaction) {
                                     return $reaction->pivot->status == 1;
                             });
-        $bookmarked_news = $user->bookmarks()->latest('published_at')->get();
+        $bookmarked_news = $user->bookmarks()
+                            ->where('status', NewsStatusConst::PUBLISHED)
+                            ->latest('post_date')
+                            ->latest('post_time')
+                            ->get();
 
         return view('user.profile.show')
             ->with('liked_news', $liked_news)
