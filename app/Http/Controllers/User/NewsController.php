@@ -16,6 +16,8 @@ class NewsController extends Controller
 {
     public function index()
     {
+
+        // return News::getLatestNews(1);
         // Optimize later to get the news that is latest('post_date' and 'post_time)
 
                 // $news = News::whereIn('id', function ($query) {
@@ -74,7 +76,11 @@ class NewsController extends Controller
 
     public function show($news_id)
     {
-        $news = News::findOrFail($news_id);
+        $news = News::where('status', NewsStatusConst::PUBLISHED)
+                ->where('post_date', '<=', News::today())
+                ->where('post_time', '<=', News::time())
+                ->findOrFail($news_id);
+
         $whats_hot_news = News::getWhatsHotBySource($news->source_id);
         $latest_news = News::getLatestNewsList($news->source_id);
         return view('user.news.detail')
@@ -85,7 +91,11 @@ class NewsController extends Controller
 
     public function showAllComments($news_id)
     {
-        $news = News::findOrFail($news_id);
+        $news = News::where('status', NewsStatusConst::PUBLISHED)
+                ->where('post_date', '<=', News::today())
+                ->where('post_time', '<=', News::time())
+                ->findOrFail($news_id);
+                
         $whats_hot_news = News::getWhatsHotBySource($news->source_id);
         $latest_news = News::getLatestNewsList($news->source_id);
         return view('user.news.detail_all_comments')
@@ -112,7 +122,11 @@ class NewsController extends Controller
             $favorite_news = collect();
         } else {
             $favorite_news = News::whereIn('source_id', $sources->pluck('id'))
-            ->orWhereIn('country_id', $countries->pluck('id'))->get();
+                                ->orWhereIn('country_id', $countries->pluck('id'))
+                                ->where('status', NewsStatusConst::PUBLISHED)
+                                ->where('post_date', '<=', News::today())
+                                ->where('post_time', '<=', News::time())
+                                ->get();
         }
         return view('user.news.favorite')->with('favorite_news', $favorite_news)->with('sources', $sources)->with('countries', $countries);
     }
@@ -122,7 +136,12 @@ class NewsController extends Controller
         $user = Auth::user();
         $sources = $user->favoriteSources;
         $countries = $user->favoriteCountries;
-        $favorite_news = News::where('country_id', $country->id)->get();
+        $favorite_news = News::where('country_id', $country->id)
+                            ->where('status', NewsStatusConst::PUBLISHED)
+                            ->where('post_date', '<=', News::today())
+                            ->where('post_time', '<=', News::time())
+                            ->get();
+
         return view('user.news.favorite')
             ->with('favorite_news', $favorite_news)
             ->with('sources', $sources)
@@ -135,7 +154,12 @@ class NewsController extends Controller
         $user = Auth::user();
         $sources = $user->favoriteSources;
         $countries = $user->favoriteCountries;
-        $favorite_news = News::where('source_id', $source->id)->where('status', NewsStatusConst::PUBLISHED)->get();
+        $favorite_news = News::where('source_id', $source->id)
+                            ->where('status', NewsStatusConst::PUBLISHED)
+                            ->where('post_date', '<=', News::today())
+                            ->where('post_time', '<=', News::time())
+                            ->get();
+
         return view('user.news.favorite')
             ->with('favorite_news', $favorite_news)
             ->with('sources', $sources)

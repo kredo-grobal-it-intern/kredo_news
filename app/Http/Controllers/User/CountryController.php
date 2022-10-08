@@ -13,7 +13,12 @@ class CountryController extends Controller
     public function show($id)
     {
         $countries = Country::all();
-        $all_news = News::where('country_id', $id)->where('status', NewsStatusConst::PUBLISHED)->get();
+        $all_news = News::where('country_id', $id)
+                    ->where('status', NewsStatusConst::PUBLISHED)
+                    ->where('post_date', '<=', News::today())
+                    ->where('post_time', '<=', News::time())
+                    ->get();
+                    
         $country = Country::findOrFail($id);
         return view('user.news.country')->with('country', $country)->with('all_news', $all_news)->with('countries', $countries);
     }

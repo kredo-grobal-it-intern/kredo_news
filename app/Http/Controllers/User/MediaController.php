@@ -6,13 +6,20 @@ use App\Http\Controllers\Controller;
 
 use App\Models\News;
 use App\Models\Source;
+use App\Consts\NewsStatusConst;
 
 class MediaController extends Controller
 {
     public function show($id)
     {
-        $all_news = News::where('source_id', $id)->get();
+        $all_news = News::where('source_id', $id)
+                        ->where('status', NewsStatusConst::PUBLISHED)
+                        ->where('post_date', '<=', News::today())
+                        ->where('post_time', '<=', News::time())
+                        ->get();
+
         $media = Source::findOrFail($id);
+        
         return view('user.news.media')
                 ->with('all_news', $all_news)
                 ->with('media', $media);

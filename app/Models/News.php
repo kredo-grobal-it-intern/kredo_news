@@ -18,6 +18,21 @@ class News extends Model
 {
     use HasFactory, SoftDeletes;
 
+
+    public static function today()
+    {
+        $today = date('Y-m-d', strtotime(Carbon::create(now())->timezone('Asia/Tokyo')));
+
+        return $today;
+    }
+
+    public static function time()
+    {
+        $time = date('H:m', strtotime(Carbon::create(now())->timezone('Asia/Tokyo')));
+
+        return $time;    
+    }
+
     public static $rules = array(
         'title' => 'required',
         'body' => 'required',
@@ -39,6 +54,8 @@ class News extends Model
     {
         return News::where('source_id', $source_id)
             ->where('status', NewsStatusConst::PUBLISHED)
+            ->where('post_date', '<=', News::today())
+            ->where('post_time', '<=', News::time())
             ->latest('post_date')
             ->latest('post_time')
             ->limit(1)
@@ -49,6 +66,8 @@ class News extends Model
     {
         return News::where('source_id', $source_id)
             ->where('status', NewsStatusConst::PUBLISHED)
+            ->where('post_date', '<=', News::today())
+            ->where('post_time', '<=', News::time())
             ->latest('post_date')
             ->latest('post_time')
             ->offset(1)
@@ -99,6 +118,8 @@ class News extends Model
                 ->orWhere('content', 'like',"%{$keyword}%")
                 ->orWhere('title', 'like', "%{$keyword}%")
                 ->where('status', NewsStatusConst::PUBLISHED)
+                ->where('post_date', '<=', News::today())
+                ->where('post_time', '<=', News::time())
                 ->latest('post_date')
                 ->latest('post_time')
                 ->get()
@@ -124,6 +145,8 @@ class News extends Model
                     ->withCount('comments')
                     ->orderBy('comments_count', 'desc')
                     ->where('status', NewsStatusConst::PUBLISHED)
+                    ->where('post_date', '<=', News::today())
+                    ->where('post_time', '<=', News::time())
                     ->limit(5)
                     ->get();
     }
@@ -144,6 +167,8 @@ class News extends Model
     {
         return News::where('source_id', $source_id)
             ->where('status', NewsStatusConst::PUBLISHED)
+            ->where('post_date', '<=', News::today())
+            ->where('post_time', '<=', News::time())
             ->latest('post_date')
             ->latest('post_time')
             ->limit(5)
@@ -157,6 +182,8 @@ class News extends Model
                                 }])
                     ->orderBy('reactions_count', 'desc')
                     ->where('status', NewsStatusConst::PUBLISHED)
+                    ->where('post_date', '<=', News::today())
+                    ->where('post_time', '<=', News::time())
                     ->limit(5)
                     ->get();
     }
@@ -168,6 +195,8 @@ class News extends Model
                                 }])
                     ->orderBy('reactions_count', 'desc')
                     ->where('status', NewsStatusConst::PUBLISHED)
+                    ->where('post_date', '<=', News::today())
+                    ->where('post_time', '<=', News::time())
                     ->limit(5)
                     ->get();
     }
@@ -177,6 +206,8 @@ class News extends Model
         return News::withCount('bookmarks')
             ->orderBy('bookmarks_count', 'desc')
             ->where('status', NewsStatusConst::PUBLISHED)
+            ->where('post_date', '<=', News::today())
+            ->where('post_time', '<=', News::time())
             ->limit(5)
             ->get();
     }
