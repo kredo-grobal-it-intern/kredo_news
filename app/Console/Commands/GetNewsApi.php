@@ -2,10 +2,11 @@
 
 namespace App\Console\Commands;
 
-use App\Transformers\NewsApiTransformer;
 use Carbon\Carbon;
+use App\Models\News;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
+use App\Transformers\NewsApiTransformer;
 
 class GetNewsApi extends Command
 {
@@ -46,7 +47,12 @@ class GetNewsApi extends Command
             'sortBy' => 'publishAt',
             'q' => 'travel'  //query string//
         ])->object();
-        $data =fractal()->collection($api_news)->transformWith(NewsApiTransformer::class);
-        dd($data);
+
+        $data = fractal()
+            ->collection(collect($api_news->articles))
+            ->transformWith(new NewsApiTransformer())
+            ->toArray();
+
+        News::insert($data['data']);
     }
 }

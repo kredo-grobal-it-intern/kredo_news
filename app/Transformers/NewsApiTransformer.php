@@ -2,7 +2,7 @@
 
 namespace App\Transformers;
 
-use App\Models\News;
+use Carbon\Carbon;
 use League\Fractal\TransformerAbstract;
 
 class NewsApiTransformer extends TransformerAbstract
@@ -30,10 +30,17 @@ class NewsApiTransformer extends TransformerAbstract
      *
      * @return array
      */
-    public function transform($news)
+    public function transform($data)
     {
         return [
-            'test' => 'testing'
+            'title' => $data->title,
+            'description' => $data->description,
+            'content' => $data->content,
+            'author' => $data->author,
+            'url' => $data->url,
+            'image' => $data->urlToImage,
+            'is_api' => 1,
+            'published_at' => Carbon::parse($data->publishedAt)->format('Y-m-d')
         ];
     }
 }
