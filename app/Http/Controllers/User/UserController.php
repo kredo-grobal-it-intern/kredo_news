@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Consts\NewsStatusConst;
 
-
 class UserController extends Controller
 {
     const LOCAL_STORAGE_FOLDER = 'public/images/avatars/';
@@ -27,7 +26,7 @@ class UserController extends Controller
                             ->get()
                             ->filter(function ($reaction) {
                                     return $reaction->pivot->status == 1;
-                                });
+                            });
         $bookmarked_news = $user->bookmarks()->latest('published_at')->get();
 
         return view('user.profile.show')

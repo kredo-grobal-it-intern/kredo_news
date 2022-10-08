@@ -18,21 +18,6 @@ class News extends Model
 {
     use HasFactory, SoftDeletes;
 
-
-    public static function today()
-    {
-        $today = date('Y-n-j', strtotime(Carbon::create(now())->timezone('Asia/Tokyo')));
-
-        return $today;
-    }
-
-    public static function time()
-    {
-        $time = date('H:m', strtotime(Carbon::create(now())->timezone('Asia/Tokyo')));
-
-        return $time;    
-    }
-
     public static $rules = array(
         'title' => 'required',
         'body' => 'required',
