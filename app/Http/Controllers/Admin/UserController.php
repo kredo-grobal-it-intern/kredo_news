@@ -18,7 +18,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('is_admin', 0)->withTrashed()->paginate(10);
+        // $users = User::where('is_admin', 0)->withTrashed()->paginate(10);
+        $users = User::where('is_admin', 0)->withTrashed()->get();
         return view('admin.users.list')->with('users', $users);
     }
 
@@ -64,7 +65,7 @@ class UserController extends Controller
 
         return redirect()->back();
     }
-    
+
 
     // Extra function
     // public function destroy($user_id)
