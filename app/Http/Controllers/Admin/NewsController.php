@@ -160,7 +160,7 @@ class NewsController extends Controller
         $news->status = $request->status;
         $news->save();
 
-        if($news->deleted_at){
+        if ($news->deleted_at) {
             $this->restore($news_id);
         }
 
@@ -169,9 +169,9 @@ class NewsController extends Controller
 
     public function draft(Request $request, $news_id)
     {
-        if($request->status == "draft" ){
+        if ($request->status == "draft") {
             $this->restore($news_id);
-        }else{
+        } else {
             $news = News::withTrashed()->findOrFail($news_id);
     
             $news->status = $request->status;
@@ -185,7 +185,7 @@ class NewsController extends Controller
     {
         $news = News::withTrashed()->findOrFail($news_id);
 
-        if($news->status == self::PUBLISHED){
+        if ($news->status == self::PUBLISHED) {
             $news->status = self::DRAFT;
             $news->save();
         }
