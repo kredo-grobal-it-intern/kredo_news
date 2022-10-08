@@ -60,9 +60,11 @@
                 <td>{{ number_format($news->getlike()->count()) }}</td>
                 <td>
                     @if ($news->deleted_at)
-                        <p class="badge bg-danger m-0">Hidden</p>
+                        <p class="badge bg-danger">Hidden</p>
+                    @elseif ($news->status == 2)
+                        <p class="badge bg-secondary">Draft</p>
                     @else
-                        <p class="badge bg-primary m-0">Display</p>
+                        <p class="badge bg-primary">Display</p>
                     @endif
                 </td>
                 <td>
@@ -72,13 +74,46 @@
                         </button>
 
                         <div class="dropdown-menu">
-                            <a href="{{ route('admin.news.edit', $news->id) }}" class="dropdown-item text-decoration-none text-black">
-                                <span class="me-1"><i class="fa-regular fa-pen-to-square"></span></i>Edit
-                            </a>
                             @if ($news->deleted_at)
-                                <a href="{{ route('admin.news.restore', $news->id) }}" class="dropdown-item btn shadow-none text-primary border-0 px-0 ms-3"><span class="me-1"><i class="fa-solid fa-eye"></i></span>Display</a>
+                            <form action="{{ route('admin.news.display', $news->id) }}" method="post">
+                                @csrf
+                                @method('PATCH')
+
+                                <input type="hidden" name="status" value="1">
+                                <button type="submit" class="dropdown-item text-primary"><i class="fa-solid fa-eye"></i>Display</button>
+                            </form>
+
+                            <form action="{{ route('admin.news.draft', $news->id) }}" method="post">
+                                @csrf
+                                @method('PATCH')
+
+                                <input type="hidden" name="status" value="draft">
+                                <button type="submit" class="dropdown-item"><i class="fa-solid fa-file-excel"></i>Draft</button>
+                            </form>
+                            
+                            
+                            @elseif($news->status == 2)
+                            <form action="{{ route('admin.news.display', $news->id) }}" method="post">
+                                @csrf
+                                @method('PATCH')
+                                
+                                <input type="hidden" name="status" value="1">
+                                <button type="submit" class="dropdown-item text-primary"><i class="fa-solid fa-eye"></i>Display</button>
+                            </form>
+                            
+                            <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#hide-news-{{ $news->id }}"><i class="fa-solid fa-eye-slash"></i>Hide</button>
+                            
                             @else
-                                <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#hide-news-{{ $news->id }}"><span class="me-1"><i class="fa-solid fa-eye-slash"></i></span>Hide</button>
+                            <form action="{{ route('admin.news.draft', $news->id) }}" method="post">
+                                @csrf
+                                @method('PATCH')
+
+                                <input type="hidden" name="status" value="2">
+                                <button type="submit" class="dropdown-item"><i class="fa-solid fa-file-excel"></i>Draft</button>
+                            </form>
+
+                            <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#hide-news-{{ $news->id }}"><i class="fa-solid fa-eye-slash"></i>Hide</button>
+
                             @endif
                         </div>
                     </div>

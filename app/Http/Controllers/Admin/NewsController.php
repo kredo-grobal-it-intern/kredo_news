@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\NewsStoreUpdateRequest;
+use Symfony\Component\HttpFoundation\Request;
 use App\Models\Category;
 use App\Models\News;
 use App\Models\User;
@@ -152,17 +153,50 @@ class NewsController extends Controller
         return redirect()->route('news.index');
     }
 
+    public function display(Request $request, $news_id)
+    {
+        $news = News::withTrashed()->findOrFail($news_id);
+
+        $news->status = $request->status;
+        $news->save();
+
+        if($news->deleted_at){
+            $this->restore($news_id);
+        }
+
+        return redirect()->back();
+    }
+
+    public function draft(Request $request, $news_id)
+    {
+        if($request->status == "draft" ){
+            $this->restore($news_id);
+        }else{
+            $news = News::withTrashed()->findOrFail($news_id);
+    
+            $news->status = $request->status;
+            $news->save();
+        }
+
+        return redirect()->back();
+    }
+
     public function destroy($news_id)
     {
-        News::destroy($news_id);
+        $news = News::withTrashed()->findOrFail($news_id);
+
+        if($news->status == self::PUBLISHED){
+            $news->status = self::DRAFT;
+            $news->save();
+        }
+
+        $news->delete();
 
         return redirect()->back();
     }
 
     public function restore($news_id)
     {
-        News::withTrashed()->where('id', $news_id)->restore();
-
-        return redirect()->back();
+        News::withTrashed()->findOrFail($news_id)->restore();
     }
 }

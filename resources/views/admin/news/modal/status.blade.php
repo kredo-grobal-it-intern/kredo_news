@@ -14,7 +14,7 @@
             <form action="{{ route('admin.news.destroy', $news->id) }}" method="post">
             @csrf
             @method('DELETE')
-
+            
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-danger">Hide</button>
             </form>

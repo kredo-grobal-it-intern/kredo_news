@@ -77,9 +77,9 @@
 
                     <div class="dropdown-menu">
                         @if ($user->deleted_at)
-                        <a href="{{ route('admin.users.restore', $user->id) }}" class="btn dropdown-item shadow-none text-primary border-0 px-0 ms-3"><span class="me-1"><i class="fa-solid fa-user"></i></span>Activate</a>
+                        <a href="{{ route('admin.users.restore', $user->id) }}" class="btn dropdown-item shadow-none text-primary border-0 px-0 ms-3"><i class="fa-solid fa-user"></i>Activate</a>
                         @else
-                        <button class="btn dropdown-item shadow-none text-danger px-0 ms-3" data-bs-toggle="modal" data-bs-target="#deactivate-user-{{ $user->id }}"><span class="me-1"><i class="fa-solid fa-user-slash"></i>Deactivate</span></button>
+                        <button class="btn dropdown-item shadow-none text-danger px-0 ms-3" data-bs-toggle="modal" data-bs-target="#deactivate-user-{{ $user->id }}"><i class="fa-solid fa-user-slash"></i>Deactivate</button>
                         @endif
                     </div>
                 </div>
@@ -93,31 +93,3 @@
         {{ $users->links() }}
     </div>
 @endsection
-
-
-    {{-- Extra function --}}
-
-    {{-- @section('script')
-    <script
-    src="https://code.jquery.com/jquery-3.6.1.min.js"
-    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-    crossorigin="anonymous"></script>
-    <script>
-    $(document).ready(function() {
-        $('.deactivate').click(function() {
-        var token = $("meta[name='csrf-token']").attr("content");
-        // todo: make the user id dynamic
-        $.ajax({
-            'url': '/admin/users/6',
-            'method': 'delete',
-            'data': {
-            _token: token
-            },
-            success: function(response) {
-            console.log(response)
-            }
-        })
-        });
-    })
-</script>
-@endsection --}}
