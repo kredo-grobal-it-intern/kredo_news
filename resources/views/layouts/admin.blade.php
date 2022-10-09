@@ -47,6 +47,7 @@
                         <a href="{{ route('admin.comments.list') }}" class="list list-group-item btn d-block text-decoration-none text-white"><span class="me-2"><i class="fa-solid fa-comments"></i></span>Comments</a>
                         <a href="{{ route('admin.users.list') }}" class="list list-group-item btn d-block text-decoration-none text-white"><span class="me-2"><i class="fa-solid fa-users"></i></span>Users</a>
                         <a href="{{ route('admin.news.create') }}" class="list list-group-item btn d-block text-decoration-none text-white"><span class="me-2"><i class="fa-solid fa-file-circle-plus"></i></span>Create news</a>
+                        <a href="{{ route('admin.create') }}" class="list list-group-item btn d-block text-decoration-none text-white"><span class="me-2"><i class="fa-solid fa-envelope"></i></span>Create Newsletter</a>
                     </div>
                 </div>
                 <!-- Page content wrapper-->

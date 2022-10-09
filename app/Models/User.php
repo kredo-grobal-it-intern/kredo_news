@@ -11,8 +11,6 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Events\UserCreated;
-use App\Events\UserDeleted;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -44,11 +42,6 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password',
         'remember_token',
-    ];
-    // This is for mailgun
-    protected $dispatchesEvents = [
-        'created' => UserCreated::class,
-        'deleted' => UserDeleted::class,
     ];
 
     /**
