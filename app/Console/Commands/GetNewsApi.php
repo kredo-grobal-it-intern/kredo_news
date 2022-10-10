@@ -45,9 +45,9 @@ class GetNewsApi extends Command
             'apiKey' => 'e2c15f49a33940c38f33ef2df85a4c75',
             'from' => Carbon::now()->format('Y-m-d'),  //This Carbon handle the date formating//
             'sortBy' => 'publishAt',
-            'sources' => 'Business Insider South Africa',
+            // 'sources' => 'Business Insider South Africa',
             // 'category' => 'travel',
-            // 'q' => 'travel'  //query string//
+            'q' => 'travel'  //query string//
         ])->object();
 
         $data = fractal()
