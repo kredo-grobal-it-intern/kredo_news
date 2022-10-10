@@ -2,11 +2,11 @@
 
 namespace App\Console\Commands;
 
-use Carbon\Carbon;
 use App\Models\News;
+use App\Transformers\NewsApiTransformer;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
-use App\Transformers\NewsApiTransformer;
 
 class GetNewsApi extends Command
 {
@@ -45,7 +45,9 @@ class GetNewsApi extends Command
             'apiKey' => 'e2c15f49a33940c38f33ef2df85a4c75',
             'from' => Carbon::now()->format('Y-m-d'),  //This Carbon handle the date formating//
             'sortBy' => 'publishAt',
-            'q' => 'travel'  //query string//
+            'sources' => 'Business Insider South Africa',
+            // 'category' => 'travel',
+            // 'q' => 'travel'  //query string//
         ])->object();
 
         $data = fractal()
