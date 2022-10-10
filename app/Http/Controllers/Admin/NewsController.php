@@ -19,10 +19,11 @@ class NewsController extends Controller
     const DRAFT = 2;
 
     const LOCAL_STORAGE_FOLDER = 'public/images/news';
-    
+
     public function index()
     {
-        $all_news = News::orderBy('post_date', 'desc')->withTrashed()->paginate(10);
+        $all_news = News::withTrashed()->get();
+        // $all_news = News::orderBy('post_date', 'desc')->withTrashed()->paginate(10);
         return view('admin.news.list')
                     ->with('all_news', $all_news);
     }
@@ -37,7 +38,7 @@ class NewsController extends Controller
         $good_news     = News::getTopGoodNewsList();
         $bad_news      = News::getWorstBadNewsList();
         $bookmark_news = News::getTopBookmarkNewsList();
-        
+
         return view('admin.dashboard')
                 ->with('news', $news)
                 ->with('users', $users)
