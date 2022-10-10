@@ -37,7 +37,7 @@ class GetNewsApi extends Command
     /**
      * Execute the console command.
      *
-     * @return void 
+     * @return void
      */
     public function handle()
     {
@@ -51,7 +51,7 @@ class GetNewsApi extends Command
         ])->object();
 
         $data = fractal() //This fractal is responsible for transforming our data. it is being install by a composer  (composer.json line 18)
-            ->collection(collect($api_news->articles)) 
+            ->collection(collect($api_news->articles))
             ->transformWith(new NewsApiTransformer()) // if it does not have this line it makes many error deu to so many quarry //
             ->toArray();
 
