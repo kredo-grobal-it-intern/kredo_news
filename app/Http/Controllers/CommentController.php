@@ -11,7 +11,8 @@ class CommentController extends Controller
 {
     public function index()
     {
-        $comments = Comment::orderBy('created_at', 'desc')->withTrashed()->paginate(10);
+        // $comments = Comment::orderBy('created_at', 'desc')->withTrashed()->paginate(10);
+        $comments = Comment::withTrashed()->get();
 
         return view('admin.comments.list')->with('comments', $comments);
     }

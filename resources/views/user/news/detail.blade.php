@@ -6,6 +6,7 @@
 @section('script_footer')
 <script src="{{ mix('js/_comment_like.js') }}" defer></script>
 <script src="{{ mix('js/_comment_delete.js') }}" defer></script>
+<script src="{{ mix('js/_word_count.js') }}" defer></script>
 @endsection
 @section('content')
 <div class="container my-4">
