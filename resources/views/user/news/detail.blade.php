@@ -5,6 +5,7 @@
 @endsection
 @section('script_footer')
 <script src="{{ mix('js/_comment_like.js') }}" defer></script>
+<script src="{{ mix('js/_comment_delete.js') }}" defer></script>
 @endsection
 @section('content')
 <div class="container my-4">
@@ -25,7 +26,7 @@
                 </div>
                 <div class="news-content px-3">
                     {!! $news->content !!}
-                    {{ Illuminate\Mail\Markdown::parse($news->content) }} 
+                    {{ Illuminate\Mail\Markdown::parse($news->content) }}
                     <p>URL: &nbsp;<a href="{{ $news->url }}" class="text-dark">{{ $news->url }}</a></p>
                 </div>
             </section>

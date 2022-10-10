@@ -31,12 +31,12 @@ class CommentController extends Controller
         return redirect()->back();
     }
 
-    public function destroy($comment_id)
+    public function destroy(Request $request)
     {
-        Comment::findOrFail($comment_id)->delete();
-        return redirect()->back();
+        Comment::findOrFail($request->comment_id)->delete();
+        return response()->json();
     }
-    
+
     public function restore($comment_id)
     {
         Comment::withTrashed()->where('id', $comment_id)->restore();

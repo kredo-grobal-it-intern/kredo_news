@@ -55,7 +55,7 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'verified'], 
     });
     Route::group(['prefix' => 'comment', 'as' => 'comment.'], function () {
         Route::post('/{news_id}', [CommentController::class, 'store'])->name('store');
-        Route::delete('/{comment_id}', [CommentController::class, 'destroy'])->name('destroy');
+        Route::delete('/delete', [CommentController::class, 'destroy'])->name('destroy');
         Route::post('/like', [CommentController::class, 'like'])->name('like');
     });
 
