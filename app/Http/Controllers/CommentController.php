@@ -11,7 +11,8 @@ class CommentController extends Controller
 {
     public function index()
     {
-        $comments = Comment::orderBy('created_at', 'desc')->withTrashed()->paginate(10);
+        // $comments = Comment::orderBy('created_at', 'desc')->withTrashed()->paginate(10);
+        $comments = Comment::withTrashed()->get();
 
         return view('admin.comments.list')->with('comments', $comments);
     }
@@ -36,7 +37,7 @@ class CommentController extends Controller
         Comment::findOrFail($comment_id)->delete();
         return redirect()->back();
     }
-    
+
     public function restore($comment_id)
     {
         Comment::withTrashed()->where('id', $comment_id)->restore();
