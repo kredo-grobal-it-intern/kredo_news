@@ -37,7 +37,7 @@ class GetNewsApi extends Command
     /**
      * Execute the console command.
      *
-     * @return int
+     * @return void 
      */
     public function handle()
     {
@@ -50,9 +50,9 @@ class GetNewsApi extends Command
             'q' => 'travel'  //query string//
         ])->object();
 
-        $data = fractal()
-            ->collection(collect($api_news->articles))
-            ->transformWith(new NewsApiTransformer())
+        $data = fractal() //This fractal is responsible for transforming our data. it is being install by a composer  (composer.json line 18)
+            ->collection(collect($api_news->articles)) 
+            ->transformWith(new NewsApiTransformer()) // if it does not have this line it makes many error deu to so many quarry //
             ->toArray();
 
         News::insert($data['data']);
