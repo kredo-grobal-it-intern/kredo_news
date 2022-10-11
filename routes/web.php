@@ -55,9 +55,9 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'verified'], 
         Route::get('/source/{source}', [NewsController::class, 'showFavoritePageBySource'])->name('favorite.source');
     });
     Route::group(['prefix' => 'comment', 'as' => 'comment.'], function () {
+        Route::post('/like', [CommentController::class, 'like'])->name('like');
         Route::post('/{news_id}', [CommentController::class, 'store'])->name('store');
         Route::delete('/{comment_id}', [CommentController::class, 'destroy'])->name('destroy');
-        Route::post('/like', [CommentController::class, 'like'])->name('like');
     });
 
     Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {

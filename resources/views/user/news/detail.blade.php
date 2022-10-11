@@ -5,6 +5,7 @@
 @endsection
 @section('script_footer')
 <script src="{{ mix('js/_comment_like.js') }}" defer></script>
+<script src="{{ mix('js/_word_count.js') }}" defer></script>
 @endsection
 @section('content')
 <div class="container my-4">
@@ -12,7 +13,7 @@
     <div class="news-header">
         <h2 class="text-decoration-underline fw-bold"> {{ $news->title }}</h2>
         <p>News site: &nbsp;{{ $news->source->name }}</p>
-        <p>Published: &nbsp;{{ $news->published_at }}</p>
+        <p>Published: &nbsp;{{ $news->post_date }}</p>
         <p class="fw-bold"> {{ $news->author }}</p>
     </div>
     <div class="row">
@@ -25,7 +26,7 @@
                 </div>
                 <div class="news-content px-3">
                     {!! $news->content !!}
-                    {{ Illuminate\Mail\Markdown::parse($news->content) }} 
+                    {{ Illuminate\Mail\Markdown::parse($news->content) }}
                     <p>URL: &nbsp;<a href="{{ $news->url }}" class="text-dark">{{ $news->url }}</a></p>
                 </div>
             </section>
