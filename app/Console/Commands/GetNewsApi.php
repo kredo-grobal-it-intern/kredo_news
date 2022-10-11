@@ -15,7 +15,7 @@ class GetNewsApi extends Command
      *
      * @var string
      */
-    protected $signature = 'api:create';
+    protected $signature = 'api:create {category}';
 
     /**
      * The console command description.
