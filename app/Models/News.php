@@ -21,16 +21,12 @@ class News extends Model
 
     public static function today()
     {
-        $today = Carbon::create(now())->timezone('Asia/Tokyo')->format('Y-m-d');
-
-        return $today;
+        return Carbon::create(now())->timezone('Asia/Tokyo')->format('Y-m-d');
     }
 
     public static function time()
     {
-        $time = Carbon::create(now())->timezone('Asia/Tokyo')->format('H:m');
-
-        return $time;    
+        return Carbon::create(now())->timezone('Asia/Tokyo')->format('H:m');  
     }
 
     public static $rules = array(

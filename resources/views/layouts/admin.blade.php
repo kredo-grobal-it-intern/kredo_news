@@ -12,6 +12,7 @@
 
         <!-- Scripts -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
         <script src="{{ mix('js/app.js') }}" defer></script>
         <script src="{{ mix('js/admin.js') }}"></script>
 
@@ -24,6 +25,7 @@
         <link href="{{ mix('css/admin/style.css') }}" rel="stylesheet">
         <link href="{{ mix('css/admin/navbar.css') }}" rel="stylesheet">
         <link rel="shortcut icon" href="{{ asset('images/news_favicon.png') }}">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
         @yield('style')
 
         <!-- fontawesome -->

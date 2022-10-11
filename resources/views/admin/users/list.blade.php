@@ -6,9 +6,13 @@
     <link href="{{ mix('css/admin/table.css') }}" rel="stylesheet">
 @endsection
 
+@section('script')
+<script src="{{ mix('js/_news_list.js') }}" defer></script>
+@endsection
+
 @section('content')
-<div class="table-responsive container-width">
-    <table class="table">
+<div class="table-responsive container-width py-5">
+    <table class="table" id="target-table">
         <thead >
             <tr>
                 <th>No.</th>
@@ -26,7 +30,7 @@
         <tbody>
         @foreach ($users as $user)
             <tr>
-            <td class="text-center">{{ $users->firstItem() + $loop->index }}</td>
+            <td class="text-center">{{ $user->id }}</td>
             <td class="text-start user-width">
                 @if ($user->avatar)
                     <a href="{{ route('user.profile.show', $user->id) }}" class="avatar-name-align">
@@ -90,7 +94,7 @@
 
         </tbody>
         </table>
-        {{ $users->links() }}
+        {{-- {{ $users->links() }} --}}
     </div>
 @endsection
 

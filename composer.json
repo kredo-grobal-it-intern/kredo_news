@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "doctrine/dbal": "^3.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.5",
         "laravel/framework": "^8.75",
@@ -14,6 +15,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "slevomat/coding-standard": "^8.4",
+        "spatie/laravel-fractal": "^6.0",
         "squizlabs/php_codesniffer": "*",
         "tinymce/tinymce": "^6.2"
     },
