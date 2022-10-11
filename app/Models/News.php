@@ -21,12 +21,12 @@ class News extends Model
 
     public static function today()
     {
-        return Carbon::create(now())->format('Y-m-d');
+        return Carbon::now()->format('Y-m-d');
     }
 
     public static function time()
     {
-        return Carbon::create(now())->format('H:m');  
+        return Carbon::now()->format('H:m');  
     }
 
     public static $rules = array(
