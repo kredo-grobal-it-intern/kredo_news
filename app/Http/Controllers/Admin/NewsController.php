@@ -22,7 +22,7 @@ class NewsController extends Controller
         $all_news = News::withTrashed()->get();
         // $all_news = News::orderBy('post_date', 'desc')->withTrashed()->paginate(10);
         return view('admin.news.list')
-                    ->with('all_news', $all_news);
+            ->with('all_news', $all_news);
     }
 
     public function showDashboard()
@@ -37,14 +37,14 @@ class NewsController extends Controller
         $bookmark_news = News::getTopBookmarkNewsList();
 
         return view('admin.dashboard')
-                ->with('news', $news)
-                ->with('users', $users)
-                ->with('comments', $comments)
-                ->with('reactions', $reactions)
-                ->with('good_news', $good_news)
-                ->with('bad_news', $bad_news)
-                ->with('bookmark_news', $bookmark_news)
-                ->with('bookmarks', $bookmarks);
+            ->with('news', $news)
+            ->with('users', $users)
+            ->with('comments', $comments)
+            ->with('reactions', $reactions)
+            ->with('good_news', $good_news)
+            ->with('bad_news', $bad_news)
+            ->with('bookmark_news', $bookmark_news)
+            ->with('bookmarks', $bookmarks);
     }
 
 
@@ -60,9 +60,9 @@ class NewsController extends Controller
         $countries  = Country::whereNotNull('continent')->get();
 
         return view('admin.news.create')
-                ->with('all_media', $all_media)
-                ->with('categories', $categories)
-                ->with('countries', $countries);
+            ->with('all_media', $all_media)
+            ->with('categories', $categories)
+            ->with('countries', $countries);
     }
 
 
@@ -115,10 +115,10 @@ class NewsController extends Controller
         $countries  = Country::whereNotNull('continent')->get();
 
         return view('admin.news.edit')
-                ->with('news', $news)
-                ->with('all_media', $all_media)
-                ->with('categories', $categories)
-                ->with('countries', $countries);
+            ->with('news', $news)
+            ->with('all_media', $all_media)
+            ->with('categories', $categories)
+            ->with('countries', $countries);
     }
 
     public function update(NewsStoreUpdateRequest $request, $news_id)
