@@ -79,7 +79,6 @@
                                 @csrf
                                 @method('PATCH')
 
-                                <input type="hidden" name="status" value="1">
                                 <button type="submit" class="dropdown-item text-primary"><i class="fa-solid fa-eye"></i>Display</button>
                             </form>
 
@@ -87,7 +86,6 @@
                                 @csrf
                                 @method('PATCH')
 
-                                <input type="hidden" name="status" value="draft">
                                 <button type="submit" class="dropdown-item"><i class="fa-solid fa-file-excel"></i>Draft</button>
                             </form>
                             
@@ -97,7 +95,6 @@
                                 @csrf
                                 @method('PATCH')
                                 
-                                <input type="hidden" name="status" value="1">
                                 <button type="submit" class="dropdown-item text-primary"><i class="fa-solid fa-eye"></i>Display</button>
                             </form>
                             
@@ -108,7 +105,6 @@
                                 @csrf
                                 @method('PATCH')
 
-                                <input type="hidden" name="status" value="2">
                                 <button type="submit" class="dropdown-item"><i class="fa-solid fa-file-excel"></i>Draft</button>
                             </form>
 
