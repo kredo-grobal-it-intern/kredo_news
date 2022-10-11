@@ -15,6 +15,7 @@ use App\Http\Controllers\User\ReactionController;
 use App\Http\Controllers\User\BookmarkController;
 use App\Http\Controllers\User\FollowController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\Auth\UpdatePasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,3 +99,7 @@ Route::get('/login/google/callback', [GoogleLoginController::class, 'authGoogleC
 // Facebook Authentication
 Route::get('/login/facebook', [FacebookLoginController::class, 'getFacebookAuth'])->name('facebook.login');
 Route::get('login/facebook/callback', [FacebookLoginController::class, 'authFacebookCallback']);
+
+// Change Password
+Route::get('/changePassword', [UpdatePasswordController::class, 'showChangePasswordGet'])->name('changePasswordGet');
+Route::post('/changePassword', [UpdatePasswordControllerController::class, 'changePasswordPost'])->name('changePasswordPost');
