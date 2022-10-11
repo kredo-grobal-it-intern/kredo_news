@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\Admin\MailController;
 use App\Http\Controllers\FacebookLoginController;
 use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\User\NewsController;
@@ -54,9 +55,9 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'verified'], 
         Route::get('/source/{source}', [NewsController::class, 'showFavoritePageBySource'])->name('favorite.source');
     });
     Route::group(['prefix' => 'comment', 'as' => 'comment.'], function () {
+        Route::post('/like', [CommentController::class, 'like'])->name('like');
         Route::post('/{news_id}', [CommentController::class, 'store'])->name('store');
         Route::delete('/{comment_id}', [CommentController::class, 'destroy'])->name('destroy');
-        Route::post('/like', [CommentController::class, 'like'])->name('like');
     });
 
     Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
@@ -90,6 +91,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], f
         Route::delete('destroy/{user_id}', [UserController::class, 'destroy'])->name('destroy');
         Route::get('restore/{user_id}', [UserController::class, 'restore'])->name('restore');
     });
+    Route::get('/create', [MailController::class, 'create'])->name('create');
+    Route::post('/sendmail', [MailController::class, 'sendMail'])->name('mail');
 });
 
 // Google Authentication

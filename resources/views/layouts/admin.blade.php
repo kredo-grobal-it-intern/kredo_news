@@ -12,6 +12,7 @@
 
         <!-- Scripts -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
         <script src="{{ mix('js/app.js') }}" defer></script>
         <script src="{{ mix('js/admin.js') }}"></script>
 
@@ -24,6 +25,7 @@
         <link href="{{ mix('css/admin/style.css') }}" rel="stylesheet">
         <link href="{{ mix('css/admin/navbar.css') }}" rel="stylesheet">
         <link rel="shortcut icon" href="{{ asset('images/news_favicon.png') }}">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
         @yield('style')
 
         <!-- fontawesome -->
@@ -47,6 +49,7 @@
                         <a href="{{ route('admin.comments.list') }}" class="list list-group-item btn d-block text-decoration-none text-white"><span class="me-2"><i class="fa-solid fa-comments"></i></span>Comments</a>
                         <a href="{{ route('admin.users.list') }}" class="list list-group-item btn d-block text-decoration-none text-white"><span class="me-2"><i class="fa-solid fa-users"></i></span>Users</a>
                         <a href="{{ route('admin.news.create') }}" class="list list-group-item btn d-block text-decoration-none text-white"><span class="me-2"><i class="fa-solid fa-file-circle-plus"></i></span>Create news</a>
+                        <a href="{{ route('admin.create') }}" class="list list-group-item btn d-block text-decoration-none text-white"><span class="me-2"><i class="fa-solid fa-envelope"></i></span>Create Newsletter</a>
                     </div>
                 </div>
                 <!-- Page content wrapper-->

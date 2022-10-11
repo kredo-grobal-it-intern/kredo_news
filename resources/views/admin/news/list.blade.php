@@ -4,13 +4,16 @@
 
 @section('style')
     <link href="{{ mix('css/admin/table.css') }}" rel="stylesheet">
+@endsection
 
+@section('script')
+<script src="{{ mix('js/_news_list.js') }}" defer></script>
 @endsection
 
 @section('content')
-<div class="table-responsive">
+<div class="table-responsive py-5">
 
-    <table class="table">
+    <table class="table" id="target-table">
         <thead>
             <tr>
                 <th>No.</th>
@@ -30,7 +33,8 @@
         <tbody>
             @foreach ($all_news as $news)
             <tr>
-                <td>{{ $all_news->firstItem() + $loop->index }}</td>
+                {{-- <td>{{ $all_news->firstItem() + $loop->index }}</td> --}}
+                <td>{{ $news->id }}</td>
                 <td class="text-nowrap">{{ date('n/j', strtotime($news->post_date)) }}<br><span class="day-of-week">{{ date('(D)', strtotime($news->post_date)) }}</span></td>
                 <td><img src="{{ asset('images/news/' . $news->image) }}"  alt="{{ $news->image }}" class="news-image"/></td>
                 <td class="title"><a href="{{ route('news.show', $news->id) }}" class="text-decoration-none text-black">{{ $news->title }}</a></td>
@@ -120,6 +124,6 @@
         </tbody>
         </table>
 </div>
-        {{ $all_news->links() }}
+        {{-- {{ $all_news->links() }} --}}
 
 @endsection

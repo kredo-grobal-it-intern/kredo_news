@@ -23,7 +23,7 @@
                             <label for="category" class="form-label fw-bold search-input-label">Favorite Category</label>
                             <select name="category" id="category" class="form-select">
                                 <option disabled selected>-- Choose Category --</option>
-                                @foreach ($categories as $category)
+                                @foreach ($all_categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>

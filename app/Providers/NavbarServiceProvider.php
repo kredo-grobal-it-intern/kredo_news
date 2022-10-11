@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\Category;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 
 class NavbarServiceProvider extends ServiceProvider
 {
@@ -24,8 +24,6 @@ class NavbarServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $categories = Category::all();
-        // $countries = Country::all();
-        view()->share('categories', $categories);
+        View::composer('layouts.app', 'App\Http\View\Composers\NavbarComposer');
     }
 }
