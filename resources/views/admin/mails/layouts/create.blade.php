@@ -2,7 +2,7 @@
     <form action="{{ route('admin.mail') }}" method="post" enctype="multipart/form-data">
         @csrf
         <label for="subject" class="form-label mt-5 fs-4 d-block">■Newsletter Subject</label>
-        <textarea class="form-control" name="subject"></textarea>
+        <input class="form-control" name="subject">
 
         <label for="content" class="form-label mt-5 fs-4 d-block">■Newsletter Content</label>
         <textarea id="myeditorinstance" name="content"></textarea>
