@@ -14,14 +14,15 @@ class MailController extends Controller
 {
     public function sendMail(Request $request)
     {
-        $users=User::where('is_admin','0')->whereNotNull('email_verified_at')->get();
-        $content=$request->input('content');
-        $subject=$request->input('subject');
+        $users = User::where('is_admin', '0')->whereNotNull('email_verified_at')->get();
+        $content = $request->input('content');
+        $subject = $request->input('subject');
 
-        Mail::bcc($users)->send(new Newsletter($content,$subject));
+        Mail::bcc($users)->send(new Newsletter($content, $subject));
         return view('admin.mails.create');
     }
-    public function create(){
+    public function create()
+    {
 
         return view('admin.mails.create');
     }
