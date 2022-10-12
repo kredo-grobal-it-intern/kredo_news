@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('api:create')->hourly();
+        $schedule->command('api:create')->dailyAt('05:00');
     }
 
     /**
