@@ -25,6 +25,7 @@ const mix = require('laravel-mix');
  .js('resources/js/_news_edit.js', 'public/js')
  .js('resources/js/_word_count.js', 'public/js')
  .js('resources/js/_news_list.js', 'public/js')
+ .js('resources/js/update_password.js', 'public/js')
  .sass('resources/sass/app.scss', 'public/css')
  .sass('resources/sass/profile.scss', 'public/css')
  .sass('resources/sass/profile_edit.scss', 'public/css')

@@ -104,5 +104,5 @@ Route::get('/login/facebook', [FacebookLoginController::class, 'getFacebookAuth'
 Route::get('login/facebook/callback', [FacebookLoginController::class, 'authFacebookCallback']);
 
 // Change Password
-Route::get('/changePassword', [UpdatePasswordController::class, 'showChangePasswordGet'])->name('changePasswordGet');
-Route::post('/changePassword', [UpdatePasswordControllerController::class, 'changePasswordPost'])->name('changePasswordPost');
+// Route::get('/changePassword', [UpdatePasswordController::class, 'showChangePasswordGet'])->name('changePasswordGet');
+Route::post('/changePassword', [UpdatePasswordController::class, 'changePasswordPost'])->name('changePasswordPost');

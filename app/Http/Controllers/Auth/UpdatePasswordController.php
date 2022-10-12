@@ -17,26 +17,37 @@ class UpdatePasswordController extends Controller
     }
 
     public function changePasswordPost(Request $request) {
-        if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
+        if (!(Hash::check($request->current_password, Auth::user()->password))) {
             // The passwords matches
-            return redirect()->back()->with("error","Your current password does not matches with the password.");
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Your current password does not matches with the password.'
+            ],500);
         }
 
-        if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
+        if(strcmp($request->current_password, $request->password) == 0){
             // Current password and new password same
-            return redirect()->back()->with("error","New Password cannot be same as your current password.");
+            return response()->json([
+                'status' => 'error',
+                'message' => 'New Password cannot be same as your current password.'
+            ],500);
         }
 
         $validatedData = $request->validate([
-            'current-password' => 'required',
-            'new-password' => 'required|string|min:8|confirmed',
+            'current_password' => 'required',
+            'password' => 'required|string|min:8|confirmed',
         ]);
 
         //Change Password
         $user = Auth::user();
-        $user->password = Hash::make($request->get('new-password'));
-        $user->save();
+        $user->password = Hash::make($request->password);
+        if($user->save()) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Password successfully changed!'
+            ]);
+        }
 
-        return redirect()->back()->with("success","Password successfully changed!");
+        return response()->json();
     }
 }
