@@ -14,11 +14,7 @@
                 <div class="comment-reaction d-flex align-items-center">
                     @auth
                         @if ($comment->user_id === Auth::user()->id)
-                            <form action="{{ route('user.comment.destroy', $comment->id) }}" method="post" class="comment-reaction-delete">
-                                @csrf
-                                @method('DELETE')
-                                    <button type="submit" class="comment-delete text-danger border-0 bg-transparent">Delete</button>
-                            </form>
+                            <button type="button" class="comment-delete text-danger border-0 bg-transparent" data-commentid="{{ $comment->id }}">Delete</button>
                         @endif
                     @endauth
                     <div class="comment-reaction-like">

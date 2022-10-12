@@ -21,6 +21,7 @@ const mix = require('laravel-mix');
  .js('resources/js/_profile_tab.js', 'public/js')
  .js('resources/js/_profile_edit.js', 'public/js')
  .js('resources/js/_comment_like.js', 'public/js')
+ .js('resources/js/_comment_delete.js', 'public/js')
  .js('resources/js/_news_create.js', 'public/js')
  .js('resources/js/_news_edit.js', 'public/js')
  .js('resources/js/_word_count.js', 'public/js')
