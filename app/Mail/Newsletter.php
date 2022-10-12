@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -19,10 +18,10 @@ class Newsletter extends Mailable
      *
      * @return void
      */
-    public function __construct($content,$subject)
+    public function __construct($content, $subject)
     {
-        $this->content=$content;
-        $this->subject=$subject;
+        $this->content = $content;
+        $this->subject = $subject;
     }
 
     /**
