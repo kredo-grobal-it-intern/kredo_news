@@ -35,7 +35,7 @@ class CommentController extends Controller
     public function destroy($comment_id)
     {
         Comment::findOrFail($comment_id)->delete();
-        return redirect()->back();
+        return response()->json();
     }
 
     public function restore($comment_id)
