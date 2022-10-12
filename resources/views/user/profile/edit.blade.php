@@ -108,12 +108,8 @@
         <section  class="mx-auto mt-5">
             <div class="change-password">
                 <h2 class="fw-bold favorite-heading">Change password</h2>
-                    <div class="alert alert-success d-none" role="alert" id="update-password-success">
-
-                    </div>
-                    <div class="alert alert-danger d-none" role="alert" id="update-password-danger">
-
-                    </div>
+                    <div class="alert alert-success d-none" role="alert" id="update-password-success"></div>
+                    <div class="alert alert-danger d-none" role="alert" id="update-password-danger"></div>
                     <form class="form-horizontal" method="POST" action="{{ route('changePasswordPost') }}">
                     {{ csrf_field() }}
                     <div class="form-group{{ $errors->has('current-password') ? ' has-error' : '' }}">
