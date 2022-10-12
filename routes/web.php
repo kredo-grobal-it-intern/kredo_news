@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\Admin\MailController;
 use App\Http\Controllers\FacebookLoginController;
 use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\User\NewsController;
@@ -89,6 +90,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], f
         Route::delete('destroy/{user_id}', [UserController::class, 'destroy'])->name('destroy');
         Route::get('restore/{user_id}', [UserController::class, 'restore'])->name('restore');
     });
+    Route::get('/create', [MailController::class, 'create'])->name('create');
+    Route::post('/sendmail', [MailController::class, 'sendMail'])->name('mail');
 });
 
 // Google Authentication
