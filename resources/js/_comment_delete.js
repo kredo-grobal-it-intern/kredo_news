@@ -9,7 +9,7 @@ $(function() {
                 headers: {
                     'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
                 },
-                url: '/user/comment/delete',
+                url: '/user/comment/' + commentId,
                 type: 'POST',
                 data: {
                     'comment_id': commentId,

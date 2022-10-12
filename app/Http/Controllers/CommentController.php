@@ -32,9 +32,9 @@ class CommentController extends Controller
         return redirect()->back();
     }
 
-    public function destroy(Request $request)
+    public function destroy($comment_id)
     {
-        Comment::findOrFail($request->comment_id)->delete();
+        Comment::findOrFail($comment_id)->delete();
         return response()->json();
     }
 
