@@ -12,7 +12,6 @@ $(function() {
                 url: '/user/comment/' + commentId,
                 type: 'POST',
                 data: {
-                    'comment_id': commentId,
                     '_method': 'DELETE'
                 }
             })
