@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Source;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Hash;
 
 class UserController extends Controller
 {

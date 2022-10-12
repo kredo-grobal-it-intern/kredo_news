@@ -18,6 +18,8 @@ $('#change-password').click(function(e) {
         method: 'POST',
         success: function(reponse) {
             $('#update-password-success').removeClass('d-none').text(reponse.message);
+            $('#new-password').val('');
+            $('#new-password-confirm').val('');
         },
         error: function(response) {
             $('#update-password-danger').removeClass('d-none').text(response.responseJSON.message);
