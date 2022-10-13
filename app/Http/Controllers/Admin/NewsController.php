@@ -158,7 +158,7 @@ class NewsController extends Controller
         $news = News::withTrashed()->findOrFail($news_id);
 
         if ($news->deleted_at) {
-            $this->restore($news_id);
+            $news->restore();
         }
 
         if ($news->status == self::DRAFT) {
@@ -174,7 +174,7 @@ class NewsController extends Controller
         $news = News::withTrashed()->findOrFail($news_id);
 
         if ($news->deleted_at) {
-            $this->restore($news_id);
+            $news->restore();
         }
 
         if ($news->status == self::PUBLISHED) {
@@ -194,8 +194,4 @@ class NewsController extends Controller
         return redirect()->back();
     }
 
-    public function restore($news_id)
-    {
-        News::withTrashed()->findOrFail($news_id)->restore();
-    }
 }
