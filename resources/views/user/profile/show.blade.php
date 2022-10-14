@@ -40,7 +40,9 @@
                                 <p class="comment">
                                     {{ number_format($news->comments_count) }} <i class="fa-regular fa-comment-dots"></i>
                                 </p>
-                                @include('user.news.feature.bookmark')
+                                <p class="bookmark">
+                                    <i class="fa-bookmark bookmark-toggle @if($news->isBookmarked()) fa-solid text-success @else fa-regular @endif" data-newsid="{{ $news->id }}"></i>
+                                </p>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <div>
@@ -74,7 +76,14 @@
                             <p class="mb-0 news-list-description">{{ $news->description }}</p>
                             <small class="text-muted news-list-author">{{ $news->author }}</small>
                             <div class="d-flex mt-1 justify-content-end status">
-                                @include('user.news.feature.reaction')
+                                <p class="reaction">
+                                    <span class="upCount">{{ number_format($news->getLike()->count()) }}</span>
+                                    <i class="fa-regular fa-thumbs-up up-toggle @if($news->isLiked()) text-primary @endif" data-newsid="{{ $news->id }}"></i>
+                                </p>
+                                <p class="reaction">
+                                    <span class="downCount">{{ number_format($news->getDislike()->count()) }}</span>
+                                    <i class="fa-regular fa-thumbs-down down-toggle @if($news->isDisliked()) text-primary @endif" data-newsid="{{ $news->id }}"></i>
+                                </p>
                                 <p class="comment">
                                     {{ number_format($news->comments_count) }} <i class="fa-regular fa-comment-dots"></i>
                                 </p>
