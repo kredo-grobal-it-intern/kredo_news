@@ -21,7 +21,7 @@ class News extends Model
 
     public static function currentTime()
     {
-        return Carbon::now()->format('Y-m-d H:m');
+        return Carbon::now()->timezone('Asia/Tokyo')->format('Y-m-d H:m');
     }
 
     public static $rules = array(
