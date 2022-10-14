@@ -105,51 +105,6 @@
                 </div>
             </div>
         </div>
-        <section  class="mx-auto mt-5">
-            <div class="change-password">
-                <h2 class="fw-bold favorite-heading">Change password</h2>
-                    <div class="alert alert-success d-none" role="alert" id="update-password-success"></div>
-                    <div class="alert alert-danger d-none" role="alert" id="update-password-danger"></div>
-                    <form class="form-horizontal" method="POST" action="{{ route('changePasswordPost') }}">
-                    {{ csrf_field() }}
-                    <div class="form-group{{ $errors->has('current-password') ? ' has-error' : '' }}">
-                        <label for="new-password" class="col-md-4 control-label">Current Password</label>
-                        <div class="col-md-6">
-                            <input id="current-password" type="password" class="form-control" name="current_password" required>
-                            @if ($errors->has('current-password'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('current-password') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="form-group{{ $errors->has('new-password') ? ' has-error' : '' }}">
-                        <label for="new-password" class="col-md-4 control-label">New Password</label>
-                        <div class="col-md-6">
-                            <input id="new-password" type="password" class="form-control" name="new_password" required>
-                            @if ($errors->has('new-password'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('new-password') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="new-password-confirm" class="col-md-4 control-label">Confirm New Password</label>
-                        <div class="col-md-6">
-                            <input id="new-password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-6 col-md-offset-4 mt-3">
-                            <button type="submit" class="btn btn-outline-secondary float-end" id="change-password">
-                                Change Password
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </section>
         <section  class="mx-auto mt-5 favorite">
             <!-- Media -->
             <div class="favorite-media">

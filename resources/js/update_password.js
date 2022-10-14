@@ -23,6 +23,8 @@ $('#change-password').click(function(e) {
         },
         error: function(response) {
             $('#update-password-danger').removeClass('d-none').text(response.responseJSON.message);
+            $('#new-password').val('');
+            $('#new-password-confirm').val('');
         }
     });
 });
