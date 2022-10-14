@@ -23,7 +23,7 @@
                                 <i class="fa-solid fa-ellipsis"></i>
                             </button>
                             <div class="dropdown-menu">
-                                <button class="btn dropdown-item shadow-none text-primary" data-bs-toggle="modal" data-bs-target="#update-password-{{ $user->id }}"><span class="me-1"><i class="fa-solid fa-key"></i></span>Change Password</button>
+                                <button class="btn dropdown-item shadow-none text-primary" data-bs-toggle="modal" data-bs-target="#update-password"><span class="me-1"><i class="fa-solid fa-key"></i></span>Change Password</button>
                                 <button class="btn dropdown-item shadow-none text-danger" data-bs-toggle="modal" data-bs-target="#"><span class="me-1"><i class="fa-solid fa-user-xmark"></i> Delete Account</span></button>
                             </div>
                             @include('user.profile.modal.update_password')

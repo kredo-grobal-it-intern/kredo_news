@@ -1,14 +1,13 @@
-<div class="modal fade" id="update-password-{{$user->id}}">
+<div class="modal fade" id="update-password">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header password-update-header" style="background-color: #052962">
                 <h2 class="modal-title fw-bold text-white">Change Password</h2>
-                <button type="button" class="btn-close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body mx-auto">
+            <div class="modal-body">
                 <div class="change-password">
-                    <div class="alert alert-success d-none col-md-6" role="alert" id="update-password-success"></div>
-                    <div class="alert alert-danger d-none col-md-6" role="alert" id="update-password-danger"></div>
+                    <div class="alert alert-danger d-none" role="alert" id="update-password-danger"></div>
                         <div class="form-group{{ $errors->has('current-password') ? ' has-error' : '' }}">
                             <label for="new-password" class="control-label">Current Password</label>
                                 <input id="current-password" type="password" class="form-control" name="current_password" required>

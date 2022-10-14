@@ -16,10 +16,16 @@ $('#change-password').click(function(e) {
             password_confirmation: new_password_confirm
         },
         method: 'POST',
-        success: function(reponse) {
-            $('#update-password-success').removeClass('d-none').text(reponse.message);
+        success: function(response) {
             $('#new-password').val('');
             $('#new-password-confirm').val('');
+            $('#update-password').modal('toggle');
+            Swal.fire({
+                icon: 'success',
+                text: response.message,
+                showConfirmButton: false,
+                timer: 3000
+            })
         },
         error: function(response) {
             $('#update-password-danger').removeClass('d-none').text(response.responseJSON.message);

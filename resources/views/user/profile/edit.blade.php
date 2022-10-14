@@ -161,7 +161,3 @@
     </form>
 </div>
 @endsection
-
-@section('script')
-    <script src="{{ mix('js/update_password.js') }}" defer></script>
-@endsection
