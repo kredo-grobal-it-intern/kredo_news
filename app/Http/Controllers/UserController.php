@@ -10,7 +10,6 @@ use App\Models\User;
 use App\Models\Source;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use App\Consts\NewsStatusConst;
 
 class UserController extends Controller
 {
