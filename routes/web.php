@@ -79,8 +79,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], f
         Route::get('edit/{news_id}', [AdminNewsController::class, 'edit'])->name('edit');
         Route::patch('{news_id}', [AdminNewsController::class, 'update'])->name('update');
         Route::get('list', [AdminNewsController::class, 'index'])->name('list');
+        Route::patch('display/{user_id}', [AdminNewsController::class, 'display'])->name('display');
+        Route::patch('draft/{user_id}', [AdminNewsController::class, 'draft'])->name('draft');
         Route::delete('destroy/{user_id}', [AdminNewsController::class, 'destroy'])->name('destroy');
-        Route::get('restore/{user_id}', [AdminNewsController::class, 'restore'])->name('restore');
     });
 
     Route::group(['prefix' => 'comments', 'as' => 'comments.'], function () {

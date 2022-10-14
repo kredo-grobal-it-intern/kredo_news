@@ -25,6 +25,8 @@ class Kernel extends ConsoleKernel
 
             $users->each->forceDelete();
         })->daily();
+
+        $schedule->command('api:create')->dailyAt('05:00');
     }
 
     /**
