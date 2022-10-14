@@ -127,10 +127,6 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    public function showChangePasswordGet() {
-        return view('auth.passwords.change-password');
-    }
-
     public function changePasswordPost(Request $request) {
         if (!(Hash::check($request->current_password, Auth::user()->password))) {
             // The passwords matches
