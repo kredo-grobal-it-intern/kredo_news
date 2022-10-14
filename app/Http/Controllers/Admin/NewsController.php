@@ -10,15 +10,16 @@ use App\Models\User;
 use App\Models\Comment;
 use App\Models\Country;
 use App\Models\Source;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use App\Library\Picture;
+
 
 class NewsController extends Controller
 {
     const PUBLISHED = 1;
     const DRAFT = 2;
 
-    const LOCAL_STORAGE_FOLDER = 'public/images/news';
+    const LOCAL_STORAGE_FOLDER = 'app/public/images/news/';
 
     public function index()
     {
@@ -81,7 +82,7 @@ class NewsController extends Controller
         $news->url          = $request->url;
         $news->published_at = $request->published_at;
         $news->author       = $request->author;
-        $news->image        = $this->saveImage($request);
+        $news->image        = Picture::save($request, self::LOCAL_STORAGE_FOLDER);
         $news->content      = $request->content;
         $news->post_date    = $request->post_date;
         $news->post_time    = $request->post_time;
@@ -90,24 +91,6 @@ class NewsController extends Controller
         $news->save();
 
         return redirect()->route('admin.show.dashboard');
-    }
-
-    public function saveImage($request)
-    {
-        $image_name = time() . '.' . $request->image->extension();
-
-        $request->image->storeAs(self::LOCAL_STORAGE_FOLDER, $image_name);
-
-        return $image_name;
-    }
-
-    public function deleteImage($image)
-    {
-        $image_name = self::LOCAL_STORAGE_FOLDER . $image;
-
-        if (Storage::disk('local')->exists($image_name)) {
-            Storage::disk('local')->delete($image_name);
-        }
     }
 
     public function edit($news_id)
@@ -139,13 +122,13 @@ class NewsController extends Controller
         $news->post_time    = $request->post_time;
         $news->status       = $request->status;
 
-        if ($request->image) {
-            if ($news->image) {
-                $this->deleteImage($news->image);
-                $news->image = $this->saveImage($request);
-            } else {
-                $news->image = $this->saveImage($request);
-            }
+        // dd($news->image);
+        if ($news->image) {
+            Picture::delete($news->image, self::LOCAL_STORAGE_FOLDER);
+            $news->image = Picture::save($request, self::LOCAL_STORAGE_FOLDER);
+        
+        } else {
+            $news->image = Picture::save($request, self::LOCAL_STORAGE_FOLDER);    
         };
 
         $news->save();

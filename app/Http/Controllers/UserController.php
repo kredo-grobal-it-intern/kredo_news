@@ -9,7 +9,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Source;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+use app\Library\Picture;
+use Intervention\Image\Facades\Image;
+
 
 class UserController extends Controller
 {
@@ -88,28 +90,14 @@ class UserController extends Controller
         $user->favoriteCountries()->attach($favorite_countries);
 
         if ($request->avatar) {
-            $this->deleteAvatar($user->avatar);
-            $user->avatar = $this->saveAvatar($request);
+            Picture::delete($user->avatar, self::LOCAL_STORAGE_FOLDER);
+            Image::make($news->image);
+            $user->avatar = Picture::save($request, self::LOCAL_STORAGE_FOLDER);
         }
 
         $user->save();
 
         return redirect()->route('user.profile.show', ['user_id' => $user->id]);
-    }
-
-    public function saveAvatar($request)
-    {
-        $avatar_name = time().".".$request->avatar->extension();
-        $request->avatar->storeAs(self::LOCAL_STORAGE_FOLDER, $avatar_name);
-        return $avatar_name;
-    }
-
-    public function deleteAvatar($avatar_name)
-    {
-        $image_path = self::LOCAL_STORAGE_FOLDER.$avatar_name;
-        if (Storage::disk('local')->exists($image_path)) :
-            Storage::disk('local')->delete($image_path);
-        endif;
     }
 
     public function destroy($user_id)
