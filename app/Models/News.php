@@ -19,14 +19,9 @@ class News extends Model
     use HasFactory, SoftDeletes;
 
 
-    public static function today()
+    public static function currentTime()
     {
-        return Carbon::now()->format('Y-m-d');
-    }
-
-    public static function time()
-    {
-        return Carbon::now()->format('H:m');  
+        return Carbon::now()->format('Y-m-d H:m');
     }
 
     public static $rules = array(
@@ -50,10 +45,8 @@ class News extends Model
     {
         return News::where('source_id', $source_id)
             ->where('status', NewsStatusConst::PUBLISHED)
-            ->where('post_date', '<=', News::today())
-            ->where('post_time', '<=', News::time())
-            ->latest('post_date')
-            ->latest('post_time')
+            ->where('post_date', '<=', News::currentTime())
+            ->latest('published_at')
             ->limit(1)
             ->first();
     }
@@ -62,10 +55,8 @@ class News extends Model
     {
         return News::where('source_id', $source_id)
             ->where('status', NewsStatusConst::PUBLISHED)
-            ->where('post_date', '<=', News::today())
-            ->where('post_time', '<=', News::time())
-            ->latest('post_date')
-            ->latest('post_time')
+            ->where('post_date', '<=', News::currentTime())
+            ->latest('published_at')
             ->offset(1)
             ->limit(4)
             ->get();
@@ -114,10 +105,8 @@ class News extends Model
                 ->orWhere('content', 'like',"%{$keyword}%")
                 ->orWhere('title', 'like', "%{$keyword}%")
                 ->where('status', NewsStatusConst::PUBLISHED)
-                ->where('post_date', '<=', News::today())
-                ->where('post_time', '<=', News::time())
-                ->latest('post_date')
-                ->latest('post_time')
+                ->where('post_date', '<=', News::currentTime())
+                ->latest('published_at')
                 ->get()
                 ->filter(function ($news) use ($request) {
                     if (isset($request->countries) && isset($request->category)) {
@@ -141,8 +130,7 @@ class News extends Model
                     ->withCount('comments')
                     ->orderBy('comments_count', 'desc')
                     ->where('status', NewsStatusConst::PUBLISHED)
-                    ->where('post_date', '<=', News::today())
-                    ->where('post_time', '<=', News::time())
+                    ->where('post_date', '<=', News::currentTime())
                     ->limit(5)
                     ->get();
     }
@@ -163,8 +151,7 @@ class News extends Model
     {
         return News::where('source_id', $source_id)
             ->where('status', NewsStatusConst::PUBLISHED)
-            ->where('post_date', '<=', News::today())
-            ->where('post_time', '<=', News::time())
+            ->where('post_date', '<=', News::currentTime())
             ->latest('post_date')
             ->latest('post_time')
             ->limit(5)
@@ -178,8 +165,7 @@ class News extends Model
                                 }])
                     ->orderBy('reactions_count', 'desc')
                     ->where('status', NewsStatusConst::PUBLISHED)
-                    ->where('post_date', '<=', News::today())
-                    ->where('post_time', '<=', News::time())
+                    ->where('post_date', '<=', News::currentTime())
                     ->limit(5)
                     ->get();
     }
@@ -191,8 +177,7 @@ class News extends Model
                                 }])
                     ->orderBy('reactions_count', 'desc')
                     ->where('status', NewsStatusConst::PUBLISHED)
-                    ->where('post_date', '<=', News::today())
-                    ->where('post_time', '<=', News::time())
+                    ->where('post_date', '<=', News::currentTime())
                     ->limit(5)
                     ->get();
     }
@@ -202,8 +187,7 @@ class News extends Model
         return News::withCount('bookmarks')
             ->orderBy('bookmarks_count', 'desc')
             ->where('status', NewsStatusConst::PUBLISHED)
-            ->where('post_date', '<=', News::today())
-            ->where('post_time', '<=', News::time())
+            ->where('post_date', '<=', News::currentTime())
             ->limit(5)
             ->get();
     }

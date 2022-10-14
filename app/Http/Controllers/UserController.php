@@ -26,20 +26,12 @@ class UserController extends Controller
 
     public function show(Request $request)
     {
-        $user = User::findOrFail($request->user_id);
-        $liked_news = $user->reactions()
-                            ->where('status', NewsStatusConst::PUBLISHED)
-                            ->latest('post_date')
-                            ->latest('post_time')
-                            ->get()
-                            ->filter(function ($reaction) {
-                                    return $reaction->pivot->status == 1;
-                            });
-        $bookmarked_news = $user->bookmarks()
-                            ->where('status', NewsStatusConst::PUBLISHED)
-                            ->latest('post_date')
-                            ->latest('post_time')
-                            ->get();
+        $user = User::withCount(['comments', 'followers', 'followings'])->findOrFail($request->user_id);
+        $liked_news = $user->reactions()->withCount('comments')->with(['country', 'category', 'reactions'])->latest('published_at')->get()
+            ->filter(function ($reaction) {
+                return $reaction->pivot->status == 1;
+            });
+        $bookmarked_news = $user->bookmarks()->withCount('comments')->with(['country', 'category', 'reactions'])->latest('published_at')->get();
 
         return view('user.profile.show')
             ->with('liked_news', $liked_news)

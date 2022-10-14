@@ -47,12 +47,15 @@
                 <td>
                     <div class="badge-height text-nowrap">
                         @if ($comment->user->deleted_at)
-                            <p class="badge bg-danger m-0">Hidden</p>
+                            <p class="badge bg-danger">Hidden</p>
                             <p class="small m-0 text-danger">(Deactive user)</p>
+                        @elseif($comment->news->status == 2)
+                            <p class="badge bg-secondary">Hidden</p>
+                            <p class="small m-0">(News deleted)</p>
                         @elseif($comment->deleted_at)
-                            <p class="badge bg-danger m-0">Hidden</p>
+                            <p class="badge bg-danger">Deleted</p>
                         @else
-                            <p class="badge bg-primary m-0">Display</p>
+                            <p class="badge bg-primary">Display</p>
                         @endif
                     </div>
                 </td>
@@ -64,11 +67,11 @@
 
                         <div class="dropdown-menu">
                             @if ($comment->user->deleted_at)
-                                <a href="{{ route('admin.users.restore', $comment->user->id) }}" class="btn dropdown-item shadow-none text-primary border-0 px-0 ms-3"><span class="me-1"><i class="fa-solid fa-user"></i></span>Activate<br><span class="small ms-4">(User)</span></a>
+                                <a href="{{ route('admin.users.restore', $comment->user->id) }}" class="btn dropdown-item shadow-none text-primary border-0 px-0 ms-3"><i class="fa-solid fa-user"></i>Activate<br><span class="small ms-4">(User)</span></a>
                             @elseif ($comment->deleted_at)
-                                <a href="{{ route('admin.comments.restore', $comment->id) }}" class="btn dropdown-item shadow-none text-primary border-0 px-0 ms-3"><span class="me-1"><i class="fa-solid fa-eye"></i></span>Display</a>
+                                <a href="{{ route('admin.comments.restore', $comment->id) }}" class="btn dropdown-item shadow-none text-primary border-0 px-0 ms-3"><i class="fa-solid fa-eye"></i>Display</a>  
                             @else
-                                <button class="btn dropdown-item shadow-none text-danger border-0 px-0 ms-3" data-bs-toggle="modal" data-bs-target="#hide-comment-{{ $comment->id }}"><span class="me-1"><i class="fa-solid fa-eye-slash"></i></span>Hide</button>
+                                <button class="btn dropdown-item shadow-none text-danger border-0 px-0 ms-3" data-bs-toggle="modal" data-bs-target="#hide-comment-{{ $comment->id }}"><i class="fa-solid fa-trash-can"></i>Delete</button>
                             @endif
                         </div>
                     </div>

@@ -14,8 +14,8 @@ class MediaController extends Controller
     {
         $all_news = News::where('source_id', $id)
                         ->where('status', NewsStatusConst::PUBLISHED)
-                        ->where('post_date', '<=', News::today())
-                        ->where('post_time', '<=', News::time())
+                        ->where('post_date', '<=', News::currentTime())
+                        ->latest('published_at')
                         ->get();
 
         $media = Source::findOrFail($id);

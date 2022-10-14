@@ -77,8 +77,7 @@ class NewsController extends Controller
     public function show($news_id)
     {
         $news = News::where('status', NewsStatusConst::PUBLISHED)
-                ->where('post_date', '<=', News::today())
-                ->where('post_time', '<=', News::time())
+                ->where('post_date', '<=', News::currentTime())
                 ->findOrFail($news_id);
 
         $whats_hot_news = News::getWhatsHotBySource($news->source_id);
@@ -92,8 +91,7 @@ class NewsController extends Controller
     public function showAllComments($news_id)
     {
         $news = News::where('status', NewsStatusConst::PUBLISHED)
-                ->where('post_date', '<=', News::today())
-                ->where('post_time', '<=', News::time())
+                ->where('post_date', '<=', News::currentTime())
                 ->findOrFail($news_id);
                 
         $whats_hot_news = News::getWhatsHotBySource($news->source_id);
@@ -124,8 +122,8 @@ class NewsController extends Controller
             $favorite_news = News::whereIn('source_id', $sources->pluck('id'))
                                 ->orWhereIn('country_id', $countries->pluck('id'))
                                 ->where('status', NewsStatusConst::PUBLISHED)
-                                ->where('post_date', '<=', News::today())
-                                ->where('post_time', '<=', News::time())
+                                ->where('post_date', '<=', News::currentTime())
+                                ->latest('published_at')
                                 ->get();
         }
         return view('user.news.favorite')->with('favorite_news', $favorite_news)->with('sources', $sources)->with('countries', $countries);
@@ -138,8 +136,8 @@ class NewsController extends Controller
         $countries = $user->favoriteCountries;
         $favorite_news = News::where('country_id', $country->id)
                             ->where('status', NewsStatusConst::PUBLISHED)
-                            ->where('post_date', '<=', News::today())
-                            ->where('post_time', '<=', News::time())
+                            ->where('post_date', '<=', News::currentTime())
+                            ->latest('published_at')
                             ->get();
 
         return view('user.news.favorite')
@@ -156,8 +154,8 @@ class NewsController extends Controller
         $countries = $user->favoriteCountries;
         $favorite_news = News::where('source_id', $source->id)
                             ->where('status', NewsStatusConst::PUBLISHED)
-                            ->where('post_date', '<=', News::today())
-                            ->where('post_time', '<=', News::time())
+                            ->where('post_date', '<=', News::currentTime())
+                            ->latest('published_at')
                             ->get();
 
         return view('user.news.favorite')
