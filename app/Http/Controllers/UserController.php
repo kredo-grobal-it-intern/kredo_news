@@ -42,7 +42,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail(Auth::id());
         $favorite_sources_ids = $user->favoriteSources->pluck('id')->toArray();
-        $sources = Source::all();
+        $sources = Source::with('country')->get();
         $continents = [ 'America','Asia','Europe','Oceania','Africa' ];
         $all_countries = Country::all();
         $favorite_countries_ids = $user->favoriteCountries->pluck('id')->toArray();
