@@ -40,7 +40,7 @@ class News extends Model
 
     public static function getNewsBySource($source_id)
     {
-        return News::where('source_id', $source_id)->latest('published_at')->offset(1)->limit(4)->get();
+        return News::withCount('comments')->where('source_id', $source_id)->latest('published_at')->offset(1)->limit(4)->get();
     }
 
     public function getLike() {
