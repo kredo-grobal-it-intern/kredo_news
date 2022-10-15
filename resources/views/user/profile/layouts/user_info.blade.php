@@ -16,7 +16,19 @@
                     @else
                         <i class="profile-heading-none fa-solid fa-circle-user text-secondary me-2"></i>
                     @endif
-                    <h2 class="fw-bold mb-0">{{ $user->username }}</h2>
+                    <div class="d-flex justify-content-between">
+                        <h2 class="fw-bold mb-0">{{ $user->username }}</h2>
+                        <div class="dropdown">
+                            <button class="btn btn-sm" data-bs-toggle="dropdown">
+                                    <span class="profile-heading-dropdown"><i class="fa-solid fa-ellipsis"></i></span>
+                            </button>
+                            <div class="dropdown-menu">
+                                <button class="btn dropdown-item shadow-none text-primary" data-bs-toggle="modal" data-bs-target="#update-password"><span class="me-1"><i class="fa-solid fa-key"></i></span>Change Password</button>
+                                <button class="btn dropdown-item shadow-none text-danger" data-bs-toggle="modal" data-bs-target="#"><span class="me-1"><i class="fa-solid fa-user-xmark"></i> Delete Account</span></button>
+                            </div>
+                            @include('user.profile.modal.update_password')
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="">
@@ -29,8 +41,6 @@
                 </div>
             </div>
         </div>
-
-
         <div class="row">
             <div class="col-sm-4 col-12">
                 <button type="button" class="btn profile-btn-to-modal" data-bs-toggle="modal" data-bs-target="#comment">
@@ -60,4 +70,3 @@
         @endif
     </div>
 </div>
-
