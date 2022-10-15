@@ -18,7 +18,7 @@
                 </p>
                 <p class="reaction">
                     <span class="downCount">{{ number_format($news->getDislike()->count()) }}</span>
-                    <i class="fa-regular fa-thumbs-down down-toggle @if($news->isDisliked()) text-primary @endif" data-newsid="{{ $news->id }}"></i>
+                    <i class="fa-regular fa-thumbs-down down-toggle @if($news->isDisliked()) text-danger @endif" data-newsid="{{ $news->id }}"></i>
                 </p>
                 <p class="comment">
                     {{ number_format($news->comments_count) }} <i class="fa-regular fa-comment-dots"></i>
