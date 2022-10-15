@@ -124,7 +124,6 @@ class UserController extends Controller
         if (Storage::disk('local')->exists($image_path)) {
             Storage::disk('local')->delete($image_path);
         }
-
     }
 
     public function destroy($user_id)

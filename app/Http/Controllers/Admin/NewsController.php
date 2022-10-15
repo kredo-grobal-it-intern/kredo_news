@@ -11,7 +11,6 @@ use App\Models\Comment;
 use App\Models\Country;
 use App\Models\Source;
 use Illuminate\Support\Facades\DB;
-use App\Library\Picture;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -158,7 +157,6 @@ class NewsController extends Controller
         if (Storage::disk('local')->exists($image_path)) {
             Storage::disk('local')->delete($image_path);
         }
-
     }
 
     public function destroy($news_id)
