@@ -89,35 +89,42 @@ class UserController extends Controller
         $user->favoriteCountries()->attach($favorite_countries);
 
 
-        $file_name = time() . '.' . 'webp';
-
-        $resize_image = Image::make($request->avatar)
-                            ->fit(180, 180)
-                            ->orientate()
-                            ->encode('webp');
-
-        $path = storage_path('app/public/images/avatars/');
         if ($user->avatar) {
-            $storage = 'public/images/avatars/'.$file_name;
-            $old_image = 'public/images/avatars/'.$user->avatar;
-
-            if (Storage::disk('local')->exists($old_image)) {
-                Storage::disk('local')->delete($old_image);
-            }
-            if (Storage::disk('local')->exists($storage)) {
-                Storage::disk('local')->delete($storage);
-            } else {
-                $resize_image->save($path . $file_name);
-            }
-            $user->avatar = $file_name;
+            $this->deleteImage($user->avatar);
+            $user->avatar = $this->saveImage($request->avatar);
         } else {
-            $resize_image->save($path . $file_name);
-            $user->avatar = $file_name;
+            $user->avatar = $this->saveImage($request->avatar);
         };
 
         $user->save();
 
         return redirect()->route('user.profile.show', ['user_id' => $user->id]);
+    }
+
+
+    public function saveImage($image)
+    {
+        $resize_image = Image::make($image)
+                            ->fit(180, 180)
+                            ->orientate()
+                            ->encode('webp');
+
+        $file_name = time() . '.' . 'webp';
+
+        $path = storage_path('app/public/images/avatars/');
+        $resize_image->save($path . $file_name);
+        
+        return $file_name;
+    }
+
+    public function deleteImage($image_name)
+    {
+        $image_path = 'public/images/avatars/'.$image_name;
+
+        if (Storage::disk('local')->exists($image_path)) {
+            Storage::disk('local')->delete($image_path);
+        }
+
     }
 
     public function destroy($user_id)

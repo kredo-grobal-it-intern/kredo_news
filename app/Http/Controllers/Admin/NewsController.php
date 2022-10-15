@@ -83,7 +83,7 @@ class NewsController extends Controller
         $news->url          = $request->url;
         $news->published_at = $request->published_at;
         $news->author       = $request->author;
-        $news->image        = Picture::save($request, self::LOCAL_STORAGE_FOLDER);
+        $news->image        = $this->saveImage($request->image);
         $news->content      = $request->content;
         $news->post_date    = $request->post_date;
         $news->post_time    = $request->post_time;
@@ -123,35 +123,42 @@ class NewsController extends Controller
         $news->post_time    = $request->post_time;
         $news->status       = $request->status;
 
-        $file_name = time() . '.' . 'webp';
 
-        $resize_image = Image::make($request->image)
-                            ->fit(840, 550)
-                            ->orientate()
-                            ->encode('webp');
-
-        $path = storage_path('app/public/images/news/');
         if ($news->image) {
-            $storage = 'public/images/news/'.$file_name;
-            $old_image = 'public/images/news/'.$news->image;
-
-            if (Storage::disk('local')->exists($old_image)) {
-                Storage::disk('local')->delete($old_image);
-            }
-            if (Storage::disk('local')->exists($storage)) {
-                Storage::disk('local')->delete($storage);
-            } else {
-                $resize_image->save($path . $file_name);
-            }
-            $news->image = $file_name;
+            $this->deleteImage($news->image);
+            $news->image = $this->saveImage($request->image);
         } else {
-            $resize_image->save($path . $file_name);
-            $news->image = $file_name;
+            $news->image = $this->saveImage($request->image);
         };
 
         $news->save();
 
         return redirect()->route('news.index');
+    }
+
+    public function saveImage($image)
+    {
+        $resize_image = Image::make($image)
+                            ->fit(840, 550)
+                            ->orientate()
+                            ->encode('webp');
+
+        $file_name = time() . '.' . 'webp';
+
+        $path = storage_path('app/public/images/news/');
+        $resize_image->save($path . $file_name);
+        
+        return $file_name;
+    }
+
+    public function deleteImage($image_name)
+    {
+        $image_path = 'public/images/news/'.$image_name;
+
+        if (Storage::disk('local')->exists($image_path)) {
+            Storage::disk('local')->delete($image_path);
+        }
+
     }
 
     public function destroy($news_id)
