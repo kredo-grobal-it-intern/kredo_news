@@ -12,6 +12,9 @@ use App\Models\Country;
 use App\Models\Source;
 use Illuminate\Support\Facades\DB;
 use App\Library\Picture;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
 
 
 class NewsController extends Controller
@@ -122,14 +125,30 @@ class NewsController extends Controller
         $news->post_time    = $request->post_time;
         $news->status       = $request->status;
 
-        // dd($news->image);
+        // $image = $request->image;
+        $file_name =time() . '.' . 'webp';
+
         if ($news->image) {
-            Picture::delete($news->image, self::LOCAL_STORAGE_FOLDER);
-            $news->image = Picture::save($request, self::LOCAL_STORAGE_FOLDER);
-        
+            $storage = 'public/images/news/'.$file_name;
+            $old_image ='public/images/news/'.$news->image;
+            $resize_image = Image::make($request->image)->resize(10, 10)->encode('webp');
+
+            if(Storage::disk('local')->exists($old_image)) {
+                Storage::disk('local')->delete($old_image);
+
+            }            
+            if(Storage::disk('local')->exists($storage)){
+                Storage::disk('local')->delete($storage);
+            }else{
+                Storage::putFileAs('public/images/news/', $resize_image, $file_name);
+            }
+            $news->image = $file_name;
+            
         } else {
-            $news->image = Picture::save($request, self::LOCAL_STORAGE_FOLDER);    
+            Storage::putFileAs('public/images/news/', $request->image, $file_name);
+            $news->image = $file_name;
         };
+
 
         $news->save();
 

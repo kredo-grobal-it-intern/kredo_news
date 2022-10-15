@@ -12,7 +12,8 @@ class Picture
     {
         $image_name = time() . '.' . 'webp';
         $save_path = storage_path($storage . $image_name);
-        Image::make($request->image)->resize(10, 10)->encode('webp')->save($save_path);
+        Image::make($request->image)->resize(10, 10)->encode('webp');
+        // Image::make($request->image)->resize(10, 10)->encode('webp')->save($save_path);
 
         return $image_name;
     }
