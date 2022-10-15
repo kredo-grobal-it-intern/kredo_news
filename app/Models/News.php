@@ -77,7 +77,8 @@ class News extends Model
         $keywords = self::pregSplit($request->keyword);
         $searched_news_array = collect([]);
         foreach ($keywords as $keyword) {
-            $result = News::withCount('comments')->with('bookmarks')->where('description', 'like', "%{$keyword}%")
+            $result = News::withCount('comments')->with(['bookmarks', 'reactions'])
+                ->where('description', 'like', "%{$keyword}%")
                 ->orWhere('content', 'like',"%{$keyword}%")
                 ->orWhere('title', 'like', "%{$keyword}%")
                 ->latest('published_at')
