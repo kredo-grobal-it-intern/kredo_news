@@ -27,11 +27,19 @@ class UserController extends Controller
     public function show(Request $request)
     {
         $user = User::withCount(['comments', 'followers', 'followings'])->findOrFail($request->user_id);
-        $liked_news = $user->reactions()->withCount('comments')->with(['country', 'category', 'reactions'])->latest('published_at')->get()
+        $liked_news = $user->reactions()
+            ->withCount('comments')
+            ->with(['country', 'category', 'reactions', 'bookmarks'])
+            ->latest('published_at')
+            ->get()
             ->filter(function ($reaction) {
                 return $reaction->pivot->status == 1;
             });
-        $bookmarked_news = $user->bookmarks()->withCount('comments')->with(['country', 'category', 'reactions'])->latest('published_at')->get();
+        $bookmarked_news = $user->bookmarks()
+            ->withCount('comments')
+            ->with(['country', 'category', 'reactions'])
+            ->latest('published_at')
+            ->get();
 
         return view('user.profile.show')
             ->with('liked_news', $liked_news)
@@ -43,7 +51,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail(Auth::id());
         $favorite_sources_ids = $user->favoriteSources->pluck('id')->toArray();
-        $sources = Source::all();
+        $sources = Source::with('country')->get();
         $continents = [ 'America','Asia','Europe','Oceania','Africa' ];
         $all_countries = Country::all();
         $favorite_countries_ids = $user->favoriteCountries->pluck('id')->toArray();
