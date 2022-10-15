@@ -9,9 +9,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Source;
 use Illuminate\Support\Facades\Auth;
-use app\Library\Picture;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
-
 
 class UserController extends Controller
 {
@@ -89,11 +88,32 @@ class UserController extends Controller
         $user->favoriteCountries()->detach();
         $user->favoriteCountries()->attach($favorite_countries);
 
-        if ($request->avatar) {
-            Picture::delete($user->avatar, self::LOCAL_STORAGE_FOLDER);
-            Image::make($news->image);
-            $user->avatar = Picture::save($request, self::LOCAL_STORAGE_FOLDER);
-        }
+
+        $file_name = time() . '.' . 'webp';
+
+        $resize_image = Image::make($request->avatar)
+                            ->fit(180, 180)
+                            ->orientate()
+                            ->encode('webp');
+
+        $path = storage_path('app/public/images/avatars/');
+        if ($user->avatar) {
+            $storage = 'public/images/avatars/'.$file_name;
+            $old_image = 'public/images/avatars/'.$user->avatar;
+
+            if (Storage::disk('local')->exists($old_image)) {
+                Storage::disk('local')->delete($old_image);
+            }
+            if (Storage::disk('local')->exists($storage)) {
+                Storage::disk('local')->delete($storage);
+            } else {
+                $resize_image->save($path . $file_name);
+            }
+            $user->avatar = $file_name;
+        } else {
+            $resize_image->save($path . $file_name);
+            $user->avatar = $file_name;
+        };
 
         $user->save();
 

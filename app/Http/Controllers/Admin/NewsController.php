@@ -15,8 +15,6 @@ use App\Library\Picture;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
-
-
 class NewsController extends Controller
 {
     const PUBLISHED = 1;
@@ -125,30 +123,31 @@ class NewsController extends Controller
         $news->post_time    = $request->post_time;
         $news->status       = $request->status;
 
-        // $image = $request->image;
-        $file_name =time() . '.' . 'webp';
+        $file_name = time() . '.' . 'webp';
 
+        $resize_image = Image::make($request->image)
+                            ->fit(840, 550)
+                            ->orientate()
+                            ->encode('webp');
+
+        $path = storage_path('app/public/images/news/');
         if ($news->image) {
             $storage = 'public/images/news/'.$file_name;
-            $old_image ='public/images/news/'.$news->image;
-            $resize_image = Image::make($request->image)->resize(10, 10)->encode('webp');
+            $old_image = 'public/images/news/'.$news->image;
 
-            if(Storage::disk('local')->exists($old_image)) {
+            if (Storage::disk('local')->exists($old_image)) {
                 Storage::disk('local')->delete($old_image);
-
-            }            
-            if(Storage::disk('local')->exists($storage)){
+            }
+            if (Storage::disk('local')->exists($storage)) {
                 Storage::disk('local')->delete($storage);
-            }else{
-                Storage::putFileAs('public/images/news/', $resize_image, $file_name);
+            } else {
+                $resize_image->save($path . $file_name);
             }
             $news->image = $file_name;
-            
         } else {
-            Storage::putFileAs('public/images/news/', $request->image, $file_name);
+            $resize_image->save($path . $file_name);
             $news->image = $file_name;
         };
-
 
         $news->save();
 
