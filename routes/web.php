@@ -16,7 +16,6 @@ use App\Http\Controllers\User\ReactionController;
 use App\Http\Controllers\User\BookmarkController;
 use App\Http\Controllers\User\FollowController;
 use App\Http\Controllers\Auth\VerificationController;
-use App\Http\Controllers\Auth\UpdatePasswordController;
 
 /*
 |--------------------------------------------------------------------------
