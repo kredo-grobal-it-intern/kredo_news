@@ -10,13 +10,10 @@ use App\Models\User;
 use App\Models\Source;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-<<<<<<< HEAD
 use Intervention\Image\Facades\Image;
-=======
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RestoreMail;
 use Illuminate\Support\Facades\Session;
->>>>>>> main
 
 class UserController extends Controller
 {
