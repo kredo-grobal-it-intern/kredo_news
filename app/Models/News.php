@@ -35,7 +35,12 @@ class News extends Model
 
     public static function getNewsBySource($source_id)
     {
-        return News::withCount('comments')->with('bookmarks')->where('source_id', $source_id)->latest('published_at')->limit(5)->get();
+        return News::withCount('comments')
+            ->with(['bookmarks', 'reactions'])
+            ->where('source_id', $source_id)
+            ->latest('published_at')
+            ->limit(5)
+            ->get();
     }
 
     public function getLike() {
@@ -48,17 +53,13 @@ class News extends Model
             return $reaction->pivot->status == ReactionConst::DISLIKE;
         });
     }
+
     public function isLiked(){
-        return $this->reactions()
-            ->where('status',ReactionConst::LIKE)
-            ->where('user_id',Auth::user()->id)
-            ->exists();
+        return $this->getLike()->contains(Auth::user());
     }
+
     public function isDisliked(){
-        return $this->reactions()
-            ->where('status',ReactionConst::DISLIKE)
-            ->where('user_id',Auth::user()->id)
-            ->exists();
+        return $this->getDisLike()->contains(Auth::user());
     }
 
     public function isBookmarked(){
@@ -99,7 +100,12 @@ class News extends Model
 
     public static function getWhatsHotBySource($source_id)
     {
-        return News::where('source_id', $source_id)->withCount('comments')->with('bookmarks')->orderBy('comments_count', 'desc')->limit(5)->get();
+        return News::where('source_id', $source_id)
+            ->withCount('comments')
+            ->with(['bookmarks', 'reactions'])
+            ->orderBy('comments_count', 'desc')
+            ->limit(5)
+            ->get();
     }
 
     public static function getWhatsHot()
@@ -116,7 +122,12 @@ class News extends Model
 
     public static function getLatestNewsList($source_id)
     {
-        return News::where('source_id', $source_id)->latest('published_at')->limit(5)->get();
+        return News::where('source_id', $source_id)
+            ->withCount('comments')
+            ->with(['bookmarks', 'reactions'])
+            ->latest('published_at')
+            ->limit(5)
+            ->get();
     }
 
     public static function getTopGoodNewsList()
