@@ -33,14 +33,9 @@ class News extends Model
         'published_at',
     ];
 
-    public static function getLatestNews($source_id)
-    {
-        return News::where('source_id', $source_id)->latest('published_at')->limit(1)->first();
-    }
-
     public static function getNewsBySource($source_id)
     {
-        return News::withCount('comments')->where('source_id', $source_id)->latest('published_at')->offset(1)->limit(4)->get();
+        return News::withCount('comments')->with('bookmarks')->where('source_id', $source_id)->latest('published_at')->limit(5)->get();
     }
 
     public function getLike() {
@@ -65,10 +60,9 @@ class News extends Model
             ->where('user_id',Auth::user()->id)
             ->exists();
     }
+
     public function isBookmarked(){
-        return $this->bookmarks()
-            ->where('user_id',Auth::user()->id)
-            ->exists();
+        return $this->bookmarks->contains(Auth::user());
     }
 
     public static function pregSplit($keyword)
@@ -82,7 +76,7 @@ class News extends Model
         $keywords = self::pregSplit($request->keyword);
         $searched_news_array = collect([]);
         foreach ($keywords as $keyword) {
-            $result = News::where('description', 'like', "%{$keyword}%")
+            $result = News::withCount('comments')->with('bookmarks')->where('description', 'like', "%{$keyword}%")
                 ->orWhere('content', 'like',"%{$keyword}%")
                 ->orWhere('title', 'like', "%{$keyword}%")
                 ->latest('published_at')
@@ -105,7 +99,7 @@ class News extends Model
 
     public static function getWhatsHotBySource($source_id)
     {
-        return News::where('source_id', $source_id)->withCount('comments')->orderBy('comments_count', 'desc')->limit(5)->get();
+        return News::where('source_id', $source_id)->withCount('comments')->with('bookmarks')->orderBy('comments_count', 'desc')->limit(5)->get();
     }
 
     public static function getWhatsHot()

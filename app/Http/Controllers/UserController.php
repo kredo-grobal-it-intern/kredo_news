@@ -26,7 +26,7 @@ class UserController extends Controller
     public function show(Request $request)
     {
         $user = User::withCount(['comments', 'followers', 'followings'])->findOrFail($request->user_id);
-        $liked_news = $user->reactions()->withCount('comments')->with(['country', 'category', 'reactions'])->latest('published_at')->get()
+        $liked_news = $user->reactions()->withCount('comments')->with(['country', 'category', 'reactions', 'bookmarks'])->latest('published_at')->get()
             ->filter(function ($reaction) {
                 return $reaction->pivot->status == 1;
             });

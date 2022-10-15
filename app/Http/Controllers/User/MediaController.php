@@ -11,7 +11,7 @@ class MediaController extends Controller
 {
     public function show($id)
     {
-        $all_news = News::withCount('comments')->where('source_id', $id)->get();
+        $all_news = News::withCount('comments')->with('bookmarks')->where('source_id', $id)->get();
         $media = Source::findOrFail($id);
         return view('user.news.media')
                 ->with('all_news', $all_news)
