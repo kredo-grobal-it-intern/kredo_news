@@ -20,7 +20,7 @@
                         <h2 class="fw-bold mb-0">{{ $user->username }}</h2>
                         <div class="dropdown">
                             <button class="btn btn-sm" data-bs-toggle="dropdown">
-                                <i class="fa-solid fa-ellipsis"></i>
+                                    <span class="profile-heading-dropdown"><i class="fa-solid fa-ellipsis"></i></span>
                             </button>
                             <div class="dropdown-menu">
                                 <button class="btn dropdown-item shadow-none text-primary" data-bs-toggle="modal" data-bs-target="#update-password"><span class="me-1"><i class="fa-solid fa-key"></i></span>Change Password</button>
