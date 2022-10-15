@@ -16,56 +16,12 @@ class NewsController extends Controller
 {
     public function index()
     {
-
-        // return News::getLatestNews(1);
-        // Optimize later to get the news that is latest('post_date' and 'post_time)
-
-                // $news = News::whereIn('id', function ($query) {
-                //     $query->select(DB::raw('max(id) from news group by source_id'));
-                // })->get();  //this max is can chose the latest news each of source id//
-
         $news_list = [
-            'America' => [
-                
-                // Optimize later to get the news that is latest('post_date' and 'post_time)
-                        // 'latest' => $news->filter(function ($latest) {
-                        //     return $latest->source_id == SourceConst::AMERICA;
-                        // })->first(), // (firstr)You get the first news form result of the filter
-                'latest' => News::getLatestNews(SourceConst::AMERICA),
-                'list' => News::getNewsBySource(SourceConst::AMERICA),
-            ],
-
-            'Asia' => [
-                        // 'latest' => $news->filter(function ($latest) {
-                        //     return $latest->source_id == SourceConst::ASIA;
-                        // })->first(),
-                'latest' => News::getLatestNews(SourceConst::ASIA),
-                'list' => News::getNewsBySource(SourceConst::ASIA),
-            ],
-
-            'Europe' => [
-                        // 'latest' => $news->filter(function ($latest) {
-                        //     return $latest->source_id == SourceConst::EUROPE;
-                        // })->first(),
-                'latest' => News::getLatestNews(SourceConst::EUROPE),
-                'list' => News::getNewsBySource(SourceConst::EUROPE),
-            ],
-
-            'Africa' => [
-                        // 'latest' => $news->filter(function ($latest) {
-                        //     return $latest->source_id == SourceConst::AFRICA;
-                        // })->first(),
-                'latest' => News::getLatestNews(SourceConst::AFRICA),
-                'list' => News::getNewsBySource(SourceConst::AFRICA),
-            ],
-
-            'Oceania' => [
-                        // 'latest' => $news->filter(function ($latest) {
-                        //     return $latest->source_id == SourceConst::OCEANIA;
-                        // })->first(),
-                'latest' => News::getLatestNews(SourceConst::OCEANIA),
-                'list' => News::getNewsBySource(SourceConst::OCEANIA),
-            ],
+            'America' => News::getNewsBySource(SourceConst::AMERICA),
+            'Asia' => News::getNewsBySource(SourceConst::ASIA),
+            'Europe' => News::getNewsBySource(SourceConst::EUROPE),
+            'Africa' => News::getNewsBySource(SourceConst::AFRICA),
+            'Oceania' => News::getNewsBySource(SourceConst::OCEANIA),
         ];
         $whats_hot_news = News::getWhatsHot();
 

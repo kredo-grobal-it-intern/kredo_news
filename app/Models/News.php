@@ -41,24 +41,15 @@ class News extends Model
         'published_at',
     ];
 
-    public static function getLatestNews($source_id)
-    {
-        return News::where('source_id', $source_id)
-            ->where('status', NewsStatusConst::PUBLISHED)
-            ->where('post_date', '<=', News::currentTime())
-            ->latest('published_at')
-            ->limit(1)
-            ->first();
-    }
-
     public static function getNewsBySource($source_id)
     {
-        return News::where('source_id', $source_id)
+        return News::withCount('comments')
+            ->with(['bookmarks', 'reactions'])
+            ->where('source_id', $source_id)
             ->where('status', NewsStatusConst::PUBLISHED)
-            ->where('post_date', '<=', News::currentTime())
+            ->where('post_date_time', '<=', News::currentTime())
             ->latest('published_at')
-            ->offset(1)
-            ->limit(4)
+            ->limit(5)
             ->get();
     }
 
@@ -72,22 +63,17 @@ class News extends Model
             return $reaction->pivot->status == ReactionConst::DISLIKE;
         });
     }
+
     public function isLiked(){
-        return $this->reactions()
-            ->where('status',ReactionConst::LIKE)
-            ->where('user_id',Auth::user()->id)
-            ->exists();
+        return $this->getLike()->contains(Auth::user());
     }
+
     public function isDisliked(){
-        return $this->reactions()
-            ->where('status',ReactionConst::DISLIKE)
-            ->where('user_id',Auth::user()->id)
-            ->exists();
+        return $this->getDisLike()->contains(Auth::user());
     }
+
     public function isBookmarked(){
-        return $this->bookmarks()
-            ->where('user_id',Auth::user()->id)
-            ->exists();
+        return $this->bookmarks->contains(Auth::user());
     }
 
     public static function pregSplit($keyword)
@@ -101,11 +87,12 @@ class News extends Model
         $keywords = self::pregSplit($request->keyword);
         $searched_news_array = collect([]);
         foreach ($keywords as $keyword) {
-            $result = News::where('description', 'like', "%{$keyword}%")
+            $result = News::withCount('comments')->with(['bookmarks', 'reactions'])
+                ->where('description', 'like', "%{$keyword}%")
                 ->orWhere('content', 'like',"%{$keyword}%")
                 ->orWhere('title', 'like', "%{$keyword}%")
                 ->where('status', NewsStatusConst::PUBLISHED)
-                ->where('post_date', '<=', News::currentTime())
+                ->where('post_date_time', '<=', News::currentTime())
                 ->latest('published_at')
                 ->get()
                 ->filter(function ($news) use ($request) {
@@ -127,12 +114,13 @@ class News extends Model
     public static function getWhatsHotBySource($source_id)
     {
         return News::where('source_id', $source_id)
-                    ->withCount('comments')
-                    ->orderBy('comments_count', 'desc')
-                    ->where('status', NewsStatusConst::PUBLISHED)
-                    ->where('post_date', '<=', News::currentTime())
-                    ->limit(5)
-                    ->get();
+                ->withCount('comments')
+                ->with(['bookmarks', 'reactions'])
+                ->where('status', NewsStatusConst::PUBLISHED)
+                ->where('post_date_time', '<=', News::currentTime())
+                ->orderBy('comments_count', 'desc')
+                ->limit(5)
+                ->get();
     }
 
     public static function getWhatsHot()
@@ -151,9 +139,10 @@ class News extends Model
     {
         return News::where('source_id', $source_id)
             ->where('status', NewsStatusConst::PUBLISHED)
-            ->where('post_date', '<=', News::currentTime())
-            ->latest('post_date')
-            ->latest('post_time')
+            ->where('post_date_time', '<=', News::currentTime())
+            ->withCount('comments')
+            ->with(['bookmarks', 'reactions'])
+            ->latest('published_at')
             ->limit(5)
             ->get();
     }
@@ -165,7 +154,7 @@ class News extends Model
                                 }])
                     ->orderBy('reactions_count', 'desc')
                     ->where('status', NewsStatusConst::PUBLISHED)
-                    ->where('post_date', '<=', News::currentTime())
+                    ->where('post_date_time', '<=', News::currentTime())
                     ->limit(5)
                     ->get();
     }
@@ -177,7 +166,7 @@ class News extends Model
                                 }])
                     ->orderBy('reactions_count', 'desc')
                     ->where('status', NewsStatusConst::PUBLISHED)
-                    ->where('post_date', '<=', News::currentTime())
+                    ->where('post_date_time', '<=', News::currentTime())
                     ->limit(5)
                     ->get();
     }
@@ -187,7 +176,7 @@ class News extends Model
         return News::withCount('bookmarks')
             ->orderBy('bookmarks_count', 'desc')
             ->where('status', NewsStatusConst::PUBLISHED)
-            ->where('post_date', '<=', News::currentTime())
+            ->where('post_date_time', '<=', News::currentTime())
             ->limit(5)
             ->get();
     }
