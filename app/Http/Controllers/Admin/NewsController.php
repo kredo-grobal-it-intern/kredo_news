@@ -161,15 +161,34 @@ class NewsController extends Controller
 
     public function destroy($news_id)
     {
-        News::destroy($news_id);
+        $news = News::withTrashed()->findOrFail($news_id);
+
+        if ($news->deleted_at) {
+            $news->restore();
+        }
+
+        if ($news->status == self::DRAFT) {
+            $news->status = self::PUBLISHED;
+            $news->save();
+        }
 
         return redirect()->back();
     }
 
-    public function restore($news_id)
+    public function draft($news_id)
     {
-        News::withTrashed()->where('id', $news_id)->restore();
+        $news = News::withTrashed()->findOrFail($news_id);
+
+        if ($news->deleted_at) {
+            $news->restore();
+        }
+
+        if ($news->status == self::PUBLISHED) {
+            $news->status = self::DRAFT;
+            $news->save();
+        }
 
         return redirect()->back();
     }
+
 }

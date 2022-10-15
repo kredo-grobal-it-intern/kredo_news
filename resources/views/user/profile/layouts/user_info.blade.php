@@ -16,7 +16,19 @@
                     @else
                         <i class="profile-heading-none fa-solid fa-circle-user text-secondary me-2"></i>
                     @endif
-                    <h2 class="fw-bold mb-0">{{ $user->username }}</h2>
+                    <div class="d-flex justify-content-between">
+                        <h2 class="fw-bold mb-0">{{ $user->username }}</h2>
+                        <div class="dropdown">
+                            <button class="btn btn-sm" data-bs-toggle="dropdown">
+                                    <span class="profile-heading-dropdown"><i class="fa-solid fa-ellipsis"></i></span>
+                            </button>
+                            <div class="dropdown-menu">
+                                <button class="btn dropdown-item shadow-none text-primary" data-bs-toggle="modal" data-bs-target="#update-password"><span class="me-1"><i class="fa-solid fa-key"></i></span>Change Password</button>
+                                <button class="btn dropdown-item shadow-none text-danger" data-bs-toggle="modal" data-bs-target="#"><span class="me-1"><i class="fa-solid fa-user-xmark"></i> Delete Account</span></button>
+                            </div>
+                            @include('user.profile.modal.update_password')
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="">
@@ -29,24 +41,22 @@
                 </div>
             </div>
         </div>
-
-
         <div class="row">
             <div class="col-sm-4 col-12">
                 <button type="button" class="btn profile-btn-to-modal" data-bs-toggle="modal" data-bs-target="#comment">
-                    <span class="fw-bold">{{ $user->comments->count() }}</span> Comments
+                    <span class="fw-bold">{{ $user->comments_count }}</span> Comments
                 </button>
                 @include('user.profile.modal.comments')
             </div>
             <div class="col-sm-4 col-12">
                 <button type="button" class="btn profile-btn-to-modal" data-bs-toggle="modal" data-bs-target="#follower">
-                    <span class="fw-bold @if(Auth::user()->id === $user->id) auth-follower-count @else user-follower-count @endif">{{ $user->followers->count() }}</span> Followers
+                    <span class="fw-bold @if(Auth::user()->id === $user->id) auth-follower-count @else user-follower-count @endif">{{ $user->followers_count }}</span> Followers
                 </button>
                 @include('user.profile.modal.follower')
             </div>
             <div class="col-sm-4 col-12">
                 <button type="button" class="btn profile-btn-to-modal" data-bs-toggle="modal" data-bs-target="#following">
-                    <span class="fw-bold @if(Auth::user()->id === $user->id) auth-following-count @else user-following-count @endif">{{ $user->followings->count() }}</span> Followings
+                    <span class="fw-bold @if(Auth::user()->id === $user->id) auth-following-count @else user-following-count @endif">{{ $user->followings_count }}</span> Followings
                 </button>
                 @include('user.profile.modal.following')
             </div>
@@ -60,4 +70,3 @@
         @endif
     </div>
 </div>
-

@@ -11,18 +11,33 @@
 <div class="container">
     @include('user.profile.layouts.user_info')
 
-    <div class="row mt-5" id="liked-news">
-        @foreach ($liked_news as $news)
-            @include('user.profile.layouts.news_list')
-        @endforeach
-    </div>
-
     @if (Auth::user()->id === $user->id)
+        <!-- Logged in user -->
+        <!-- Liked news -->
+        <div class="row mt-5" id="liked-news">
+            @foreach ($liked_news as $news)
+                @include('user.profile.layouts.liked_news_list')
+            @endforeach
+        </div>
+        <!-- Bookmarked news -->
         <div class="row mt-5 d-none" id="bookmarked-news">
             @foreach ($bookmarked_news as $news)
+                @include('user.profile.layouts.bookmarked_news_list')
+            @endforeach
+        </div>
+    @else
+        <!-- Other user -->
+        <!-- Liked news -->
+        <div class="row mt-5" id="liked-news">
+            @foreach ($liked_news as $news)
                 @include('user.profile.layouts.news_list')
             @endforeach
         </div>
     @endif
+
 </div>
+@endsection
+@section('script')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ mix('js/update_password.js') }}" defer></script>
 @endsection

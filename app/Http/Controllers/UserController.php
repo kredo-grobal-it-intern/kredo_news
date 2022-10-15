@@ -10,7 +10,13 @@ use App\Models\User;
 use App\Models\Source;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+<<<<<<< HEAD
 use Intervention\Image\Facades\Image;
+=======
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RestoreMail;
+use Illuminate\Support\Facades\Session;
+>>>>>>> main
 
 class UserController extends Controller
 {
@@ -26,11 +32,20 @@ class UserController extends Controller
 
     public function show(Request $request)
     {
-        $user = User::findOrFail($request->user_id);
-        $liked_news = $user->reactions()->latest('published_at')->get()->filter(function ($reaction) {
-            return $reaction->pivot->status == 1;
-        });
-        $bookmarked_news = $user->bookmarks()->latest('published_at')->get();
+        $user = User::withCount(['comments', 'followers', 'followings'])->findOrFail($request->user_id);
+        $liked_news = $user->reactions()
+            ->withCount('comments')
+            ->with(['country', 'category', 'reactions', 'bookmarks'])
+            ->latest('published_at')
+            ->get()
+            ->filter(function ($reaction) {
+                return $reaction->pivot->status == 1;
+            });
+        $bookmarked_news = $user->bookmarks()
+            ->withCount('comments')
+            ->with(['country', 'category', 'reactions'])
+            ->latest('published_at')
+            ->get();
 
         return view('user.profile.show')
             ->with('liked_news', $liked_news)
@@ -43,17 +58,17 @@ class UserController extends Controller
         $user = User::findOrFail(Auth::id());
         $favorite_sources_ids = $user->favoriteSources->pluck('id')->toArray();
         $sources = Source::all();
-        $continents = [ 'America','Asia','Europe','Oceania','Africa' ];
+        $continents = ['America', 'Asia', 'Europe', 'Oceania', 'Africa'];
         $all_countries = Country::all();
         $favorite_countries_ids = $user->favoriteCountries->pluck('id')->toArray();
 
         return view('user.profile.edit', [
-                'user' => $user,
-                'sources' => $sources,
-                'continents' => $continents,
-                'all_countries' => $all_countries,
-                'favorite_sources_ids' => $favorite_sources_ids,
-                'favorite_countries_ids' => $favorite_countries_ids
+            'user' => $user,
+            'sources' => $sources,
+            'continents' => $continents,
+            'all_countries' => $all_countries,
+            'favorite_sources_ids' => $favorite_sources_ids,
+            'favorite_countries_ids' => $favorite_countries_ids
         ]);
     }
 
@@ -71,8 +86,8 @@ class UserController extends Controller
         $favorite_sources = [];
         foreach ($sources as $source) {
             $favorite_sources[] = [
-            'user_id' => $request->id,
-            'source_id' => $source
+                'user_id' => $request->id,
+                'source_id' => $source
             ];
         }
         $user->favoriteSources()->detach();
@@ -138,5 +153,20 @@ class UserController extends Controller
         User::withTrashed()->where('id', $user_id)->restore();
 
         return redirect()->back();
+    }
+    public function reactivate($user_id)
+    {
+        User::withTrashed()->where('id', $user_id)->restore();
+        Session::flash('reactivate', 'Your account has been restored');
+        return redirect(route('login'));
+    }
+    public function withdrawal()
+    {
+        $user = Auth::user();
+        Auth::logout();
+        Session::flash('withdrawal', 'Your account has been deleted');
+        Mail::to($user->email)->send(new RestoreMail($user));
+        $user->delete();
+        return redirect(route('news.index'));
     }
 }
