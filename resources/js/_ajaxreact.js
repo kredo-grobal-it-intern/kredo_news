@@ -19,7 +19,7 @@ $(function () {
             .done(function (data) {
                 $this.toggleClass('text-primary');
                 $this.siblings('.upCount').text(data.newsLikesCount);
-                $this.closest('.status').find('.downCount').text(data.newsDislikesCount).siblings('.down-toggle').removeClass('text-primary');
+                $this.closest('.status').find('.downCount').text(data.newsDislikesCount).siblings('.down-toggle').removeClass('text-danger');
             })
             .fail(function (data, xhr, err) {
                 console.log('エラー');
@@ -43,7 +43,7 @@ $(function () {
                 },
         })
             .done(function (data) {
-                $this.toggleClass('text-primary');
+                $this.toggleClass('text-danger');
                 $this.siblings('.downCount').text(data.newsDislikesCount);
                 $this.closest('.status').find('.upCount').text(data.newsLikesCount).siblings('.up-toggle').removeClass('text-primary');
             })

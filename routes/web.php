@@ -105,3 +105,6 @@ Route::get('/login/google/callback', [GoogleLoginController::class, 'authGoogleC
 // Facebook Authentication
 Route::get('/login/facebook', [FacebookLoginController::class, 'getFacebookAuth'])->name('facebook.login');
 Route::get('login/facebook/callback', [FacebookLoginController::class, 'authFacebookCallback']);
+
+// Change Password
+Route::post('/changePassword', [UserController::class, 'changePasswordPost'])->name('changePasswordPost');
