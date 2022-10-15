@@ -29,7 +29,7 @@ class UserController extends Controller
     public function show(Request $request)
     {
         $user = User::withCount(['comments', 'followers', 'followings'])
-            ->with(['comments', 'followers', 'followings'])
+            ->with(['comments.news', 'followers', 'followings'])
             ->findOrFail($request->user_id);
         $liked_news = $user->reactions()
             ->withCount('comments')
