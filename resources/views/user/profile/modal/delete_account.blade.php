@@ -13,6 +13,7 @@
                 <p>After this action is done, You will receive reactivation emails.</p>
                 <div class="my-3">
                     <form action="{{ route('user.withdrawal') }}" method="post">
+                        @csrf
                         <button type="button" class="btn btn-secondary me-1" data-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-danger ms-1">Delete</button>
                     </form>
