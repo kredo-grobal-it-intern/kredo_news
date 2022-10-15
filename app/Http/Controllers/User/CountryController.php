@@ -11,9 +11,8 @@ class CountryController extends Controller
 {
     public function show($id)
     {
-        $countries = Country::all();
-        $all_news = News::where('country_id', $id)->get();
+        $all_news = News::withCount('comments')->with(['bookmarks', 'reactions'])->where('country_id', $id)->get();
         $country = Country::findOrFail($id);
-        return view('user.news.country')->with('country', $country)->with('all_news', $all_news)->with('countries', $countries);
+        return view('user.news.country')->with('country', $country)->with('all_news', $all_news);
     }
 }
