@@ -21,8 +21,10 @@ class NewsController extends Controller
 
     public function index()
     {
-        $all_news = News::withTrashed()->get();
-        // $all_news = News::orderBy('post_date', 'desc')->withTrashed()->paginate(10);
+        $all_news = News::with(['category', 'country', 'source.country', 'reactions'])
+            ->withCount('comments')
+            ->withTrashed()
+            ->get();
         return view('admin.news.list')
             ->with('all_news', $all_news);
     }
@@ -142,7 +144,7 @@ class NewsController extends Controller
 
         $path = storage_path('app/public/images/news/');
         $resize_image->save($path . $file_name);
-        
+
         return $file_name;
     }
 

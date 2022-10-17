@@ -59,7 +59,7 @@
                             {{ $news->country->name }}
                     </div>
                 </td>
-                <td>{{ number_format($news->comments->count()) }}</td>
+                <td>{{ number_format($news->comments_count) }}</td>
                 <td>{{ number_format($news->getDislike()->count()) }}</td>
                 <td>{{ number_format($news->getlike()->count()) }}</td>
                 <td>
@@ -92,18 +92,18 @@
 
                                 <button type="submit" class="dropdown-item"><i class="fa-solid fa-file-excel"></i>Draft</button>
                             </form>
-                            
-                            
+
+
                             @elseif($news->status == 2)
                             <form action="{{ route('admin.news.display', $news->id) }}" method="post">
                                 @csrf
                                 @method('PATCH')
-                                
+
                                 <button type="submit" class="dropdown-item text-primary"><i class="fa-solid fa-eye"></i>Display</button>
                             </form>
-                            
+
                             <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#hide-news-{{ $news->id }}"><i class="fa-solid fa-trash-can"></i>Delete</button>
-                            
+
                             @else
                             <form action="{{ route('admin.news.draft', $news->id) }}" method="post">
                                 @csrf
