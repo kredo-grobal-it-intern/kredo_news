@@ -9,15 +9,15 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Source;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RestoreMail;
 use Illuminate\Support\Facades\Session;
+use App\Services\ImageService;
 
 class UserController extends Controller
 {
     const LOCAL_STORAGE_FOLDER = 'public/images/avatars/';
+    const SIZE = ['height' => 180, 'width' => 180];
 
     public function index()
     {
@@ -105,42 +105,17 @@ class UserController extends Controller
 
 
         if ($user->avatar) {
-            $this->deleteImage($user->avatar);
-            $user->avatar = $this->saveImage($request->avatar);
+            ImageService::deleteImage($user->avatar, self::LOCAL_STORAGE_FOLDER);
+            $user->avatar = ImageService::saveImage($request->avatar, self::SIZE, self::LOCAL_STORAGE_FOLDER);
         } else {
-            $user->avatar = $this->saveImage($request->avatar);
+            $user->avatar = ImageService::saveImage($request->avatar, self::SIZE, self::LOCAL_STORAGE_FOLDER);
         };
 
         $user->save();
 
         return redirect()->route('user.profile.show', ['user_id' => $user->id]);
     }
-
-
-    public function saveImage($image)
-    {
-        $resize_image = Image::make($image)
-                            ->fit(180, 180)
-                            ->orientate()
-                            ->encode('webp');
-
-        $file_name = time() . '.' . 'webp';
-
-        $path = storage_path('app/public/images/avatars/');
-        $resize_image->save($path . $file_name);
-
-        return $file_name;
-    }
-
-    public function deleteImage($image_name)
-    {
-        $image_path = 'public/images/avatars/'.$image_name;
-
-        if (Storage::disk('local')->exists($image_path)) {
-            Storage::disk('local')->delete($image_path);
-        }
-    }
-
+    
     public function destroy($user_id)
     {
         User::destroy($user_id);

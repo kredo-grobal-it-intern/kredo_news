@@ -79,6 +79,7 @@
 
                         <div class="dropdown-menu">
                             @if ($news->deleted_at)
+
                             <form action="{{ route('admin.news.display', $news->id) }}" method="post">
                                 @csrf
                                 @method('PATCH')
@@ -95,6 +96,10 @@
 
 
                             @elseif($news->status == 2)
+                            <a href="{{ route('admin.news.edit', $news->id) }}" class="dropdown-item text-decoration-none text-black">
+                                <span class="me-1"><i class="fa-regular fa-pen-to-square"></span></i>Edit
+                            </a>
+
                             <form action="{{ route('admin.news.display', $news->id) }}" method="post">
                                 @csrf
                                 @method('PATCH')
@@ -105,6 +110,10 @@
                             <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#hide-news-{{ $news->id }}"><i class="fa-solid fa-trash-can"></i>Delete</button>
 
                             @else
+                            <a href="{{ route('admin.news.edit', $news->id) }}" class="dropdown-item text-decoration-none text-black">
+                                <span class="me-1"><i class="fa-regular fa-pen-to-square"></span></i>Edit
+                            </a>
+                            
                             <form action="{{ route('admin.news.draft', $news->id) }}" method="post">
                                 @csrf
                                 @method('PATCH')

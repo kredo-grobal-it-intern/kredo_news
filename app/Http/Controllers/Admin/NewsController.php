@@ -11,13 +11,15 @@ use App\Models\Comment;
 use App\Models\Country;
 use App\Models\Source;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
+use App\Services\ImageService;
 
 class NewsController extends Controller
 {
     const PUBLISHED = 1;
     const DRAFT = 2;
+
+    const LOCAL_STORAGE_FOLDER = 'public/images/news/';
+    const SIZE = ['height' => 840, 'width' => 550];
 
     public function index()
     {
@@ -82,7 +84,8 @@ class NewsController extends Controller
         $news->url            = $request->url;
         $news->published_at   = $request->published_at;
         $news->author         = $request->author;
-        $news->image          = $this->saveImage($request);
+        $news->image          = ImageService::saveImage($request->image, self::SIZE, self::LOCAL_STORAGE_FOLDER);
+        ;
         $news->content        = $request->content;
         $news->post_date_time = $request->post_date_time;
         $news->status         = $request->status;
@@ -120,10 +123,9 @@ class NewsController extends Controller
         $news->post_date_time = $request->post_date_time;
         $news->status         = $request->status;
 
-
         if ($news->image) {
-            $this->deleteImage($news->image);
-            $news->image = $this->saveImage($request->image);
+            ImageService::deleteImage($news->image, self::LOCAL_STORAGE_FOLDER);
+            $news->image = ImageService::saveImage($request->image, self::SIZE, self::LOCAL_STORAGE_FOLDER);
         } else {
             $news->image = $this->saveImage($request->image);
         };
@@ -133,28 +135,20 @@ class NewsController extends Controller
         return redirect()->route('news.index');
     }
 
-    public function saveImage($image)
+    public function display($news_id)
     {
-        $resize_image = Image::make($image)
-                            ->fit(840, 550)
-                            ->orientate()
-                            ->encode('webp');
+        $news = News::withTrashed()->findOrFail($news_id);
 
-        $file_name = time() . '.' . 'webp';
-
-        $path = storage_path('app/public/images/news/');
-        $resize_image->save($path . $file_name);
-
-        return $file_name;
-    }
-
-    public function deleteImage($image_name)
-    {
-        $image_path = 'public/images/news/'.$image_name;
-
-        if (Storage::disk('local')->exists($image_path)) {
-            Storage::disk('local')->delete($image_path);
+        if ($news->deleted_at) {
+            $news->restore();
         }
+
+        if ($news->status == self::DRAFT) {
+            $news->status = self::PUBLISHED;
+            $news->save();
+        }
+
+        return redirect()->back();
     }
 
     public function destroy($news_id)
