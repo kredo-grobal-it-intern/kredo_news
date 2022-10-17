@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPostTimeToNewsTable extends Migration
+class UpdatePostDateColumnNameInNewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddPostTimeToNewsTable extends Migration
     public function up()
     {
         Schema::table('news', function (Blueprint $table) {
-            $table->string('post_time')->nullable()->after('post_date');
+            $table->renameColumn('post_date', 'post_date_time');
         });
     }
 
@@ -26,7 +26,7 @@ class AddPostTimeToNewsTable extends Migration
     public function down()
     {
         Schema::table('news', function (Blueprint $table) {
-            $table->dropColumn('post_time');
+            $table->renameColumn('post_date', 'post_date_time');
         });
     }
 }

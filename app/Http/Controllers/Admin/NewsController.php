@@ -15,9 +15,6 @@ use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
-    const PUBLISHED = 1;
-    const DRAFT = 2;
-
     const LOCAL_STORAGE_FOLDER = 'public/images/news';
 
     public function index()
@@ -73,19 +70,18 @@ class NewsController extends Controller
     {
         $news = new News;
 
-        $news->title        = $request->title;
-        $news->description  = $request->description;
-        $news->country_id   = $request->country_id;
-        $news->category_id  = $request->category_id;
-        $news->source_id    = $request->source_id;
-        $news->url          = $request->url;
-        $news->published_at = $request->published_at;
-        $news->author       = $request->author;
-        $news->image        = $this->saveImage($request);
-        $news->content      = $request->content;
-        $news->post_date    = $request->post_date;
-        $news->post_time    = $request->post_time;
-        $news->status       = $request->status;
+        $news->title          = $request->title;
+        $news->description    = $request->description;
+        $news->country_id     = $request->country_id;
+        $news->category_id    = $request->category_id;
+        $news->source_id      = $request->source_id;
+        $news->url            = $request->url;
+        $news->published_at   = $request->published_at;
+        $news->author         = $request->author;
+        $news->image          = $this->saveImage($request);
+        $news->content        = $request->content;
+        $news->post_date_time = $request->post_date_time;
+        $news->status         = $request->status;
 
         $news->save();
 
@@ -128,16 +124,15 @@ class NewsController extends Controller
     {
         $news = News::findOrFail($news_id);
 
-        $news->title        = $request->title;
-        $news->description  = $request->description;
-        $news->source_id    = $request->source_id;
-        $news->url          = $request->url;
-        $news->published_at = $request->published_at;
-        $news->author       = $request->author;
-        $news->content      = $request->content;
-        $news->post_date    = $request->post_date;
-        $news->post_time    = $request->post_time;
-        $news->status       = $request->status;
+        $news->title          = $request->title;
+        $news->description    = $request->description;
+        $news->source_id      = $request->source_id;
+        $news->url            = $request->url;
+        $news->published_at   = $request->published_at;
+        $news->author         = $request->author;
+        $news->content        = $request->content;
+        $news->post_date_time = $request->post_date_time;
+        $news->status         = $request->status;
 
         if ($request->image) {
             if ($news->image) {
