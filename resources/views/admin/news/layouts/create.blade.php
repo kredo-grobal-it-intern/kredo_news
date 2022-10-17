@@ -148,8 +148,8 @@
     <div class="row justify-content-center">
         <div class="col-12 col-md-6">
             <div class="publish-col">
-            <label for="post-date" class="form-label label-width">Date</label>
-            <input type="datetime-local" name="post_date" id="post-date" class="form-control form-width" value="{{ request()->is('admin/news/create') ?  old('post_date') : old('post_date', $news->post_date)}}">
+            <label for="post-date-time" class="form-label label-width">Date</label>
+            <input type="datetime-local" name="post_date_time" id="post-date_time" class="form-control form-width" value="{{ request()->is('admin/news/create') ?  old('post_date') : old('post_date', $news->post_date)}}">
             </div>
         </div>
     </div>
