@@ -59,7 +59,7 @@ class NewsController extends Controller
 
     public function create()
     {
-        $all_media  = Source::all();
+        $all_media  = Source::with('country')->get();
         $categories = Category::all();
         $countries  = Country::whereNotNull('continent')->get();
 
@@ -94,8 +94,8 @@ class NewsController extends Controller
 
     public function edit($news_id)
     {
-        $news = News::findOrFail($news_id);
-        $all_media  = Source::all();
+        $news = News::with(['category', 'country', 'source.country'])->findOrFail($news_id);
+        $all_media  = Source::with('country')->get();
         $categories = Category::all();
         $countries  = Country::whereNotNull('continent')->get();
 
