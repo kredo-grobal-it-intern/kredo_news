@@ -21,8 +21,9 @@ class UserController extends Controller
 
     public function index()
     {
-        // $users = User::where('is_admin', 0)->withTrashed()->paginate(10);
-        $users = User::where('is_admin', 0)->withTrashed()->get();
+        $users = User::with('country')
+            ->withCount(['comments', 'followers', 'followings'])
+            ->where('is_admin', 0)->withTrashed()->get();
         return view('admin.users.list')->with('users', $users);
     }
 
@@ -127,7 +128,7 @@ class UserController extends Controller
 
         $path = storage_path('app/public/images/avatars/');
         $resize_image->save($path . $file_name);
-        
+
         return $file_name;
     }
 
