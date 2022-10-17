@@ -85,7 +85,6 @@ class NewsController extends Controller
         $news->published_at   = $request->published_at;
         $news->author         = $request->author;
         $news->image          = ImageService::saveImage($request->image, self::SIZE, self::LOCAL_STORAGE_FOLDER);
-        ;
         $news->content        = $request->content;
         $news->post_date_time = $request->post_date_time;
         $news->status         = $request->status;
