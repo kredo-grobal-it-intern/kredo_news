@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Source;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RestoreMail;
 use Illuminate\Support\Facades\Session;
@@ -101,29 +102,42 @@ class UserController extends Controller
         $user->favoriteCountries()->detach();
         $user->favoriteCountries()->attach($favorite_countries);
 
-        if ($request->avatar) {
-            $this->deleteAvatar($user->avatar);
-            $user->avatar = $this->saveAvatar($request);
-        }
+
+        if ($user->avatar) {
+            $this->deleteImage($user->avatar);
+            $user->avatar = $this->saveImage($request->avatar);
+        } else {
+            $user->avatar = $this->saveImage($request->avatar);
+        };
 
         $user->save();
 
         return redirect()->route('user.profile.show', ['user_id' => $user->id]);
     }
 
-    public function saveAvatar($request)
+
+    public function saveImage($image)
     {
-        $avatar_name = time() . "." . $request->avatar->extension();
-        $request->avatar->storeAs(self::LOCAL_STORAGE_FOLDER, $avatar_name);
-        return $avatar_name;
+        $resize_image = Image::make($image)
+                            ->fit(180, 180)
+                            ->orientate()
+                            ->encode('webp');
+
+        $file_name = time() . '.' . 'webp';
+
+        $path = storage_path('app/public/images/avatars/');
+        $resize_image->save($path . $file_name);
+        
+        return $file_name;
     }
 
-    public function deleteAvatar($avatar_name)
+    public function deleteImage($image_name)
     {
-        $image_path = self::LOCAL_STORAGE_FOLDER . $avatar_name;
-        if (Storage::disk('local')->exists($image_path)) :
+        $image_path = 'public/images/avatars/'.$image_name;
+
+        if (Storage::disk('local')->exists($image_path)) {
             Storage::disk('local')->delete($image_path);
-        endif;
+        }
     }
 
     public function destroy($user_id)
