@@ -9,14 +9,22 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Source;
 use Illuminate\Support\Facades\Auth;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RestoreMail;
 use Illuminate\Support\Facades\Session;
+=======
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RestoreMail;
+use Illuminate\Support\Facades\Session;
+use App\Services\ImageService;
+>>>>>>> main
 
 class UserController extends Controller
 {
     const LOCAL_STORAGE_FOLDER = 'public/images/avatars/';
+    const SIZE = ['height' => 180, 'width' => 180];
 
     public function index()
     {
@@ -28,7 +36,13 @@ class UserController extends Controller
 
     public function show(Request $request)
     {
+<<<<<<< HEAD
         $user = User::withCount(['comments', 'followers', 'followings'])->findOrFail($request->user_id);
+=======
+        $user = User::withCount(['comments', 'followers', 'followings'])
+            ->with(['comments.news', 'followers', 'followings'])
+            ->findOrFail($request->user_id);
+>>>>>>> main
         $liked_news = $user->reactions()
             ->withCount('comments')
             ->with(['country', 'category', 'reactions', 'bookmarks'])
@@ -99,29 +113,17 @@ class UserController extends Controller
         $user->favoriteCountries()->detach();
         $user->favoriteCountries()->attach($favorite_countries);
 
-        if ($request->avatar) {
-            $this->deleteAvatar($user->avatar);
-            $user->avatar = $this->saveAvatar($request);
-        }
+
+        if ($user->avatar) {
+            ImageService::deleteImage($user->avatar, self::LOCAL_STORAGE_FOLDER);
+            $user->avatar = ImageService::saveImage($request->avatar, self::SIZE, self::LOCAL_STORAGE_FOLDER);
+        } else {
+            $user->avatar = ImageService::saveImage($request->avatar, self::SIZE, self::LOCAL_STORAGE_FOLDER);
+        };
 
         $user->save();
 
         return redirect()->route('user.profile.show', ['user_id' => $user->id]);
-    }
-
-    public function saveAvatar($request)
-    {
-        $avatar_name = time() . "." . $request->avatar->extension();
-        $request->avatar->storeAs(self::LOCAL_STORAGE_FOLDER, $avatar_name);
-        return $avatar_name;
-    }
-
-    public function deleteAvatar($avatar_name)
-    {
-        $image_path = self::LOCAL_STORAGE_FOLDER . $avatar_name;
-        if (Storage::disk('local')->exists($image_path)) :
-            Storage::disk('local')->delete($image_path);
-        endif;
     }
 
     public function destroy($user_id)

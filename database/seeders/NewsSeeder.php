@@ -31,6 +31,7 @@ class NewsSeeder extends Seeder
                 'url' => 'https://www.cnbc.com/2022/09/29/porsche-shares-rise-in-frankfurt-market-debut.html',
                 'image' => 'porche.webp',
                 'published_at' => '2022-08-01 00:00:00',
+                'post_date_time' => '2022-10-01 01:00',
             ],
             [
                 'id' => 2,
@@ -51,6 +52,7 @@ class NewsSeeder extends Seeder
                 'url' => 'https://edition.cnn.com/travel/article/saudi-arabia-quest-visit-now/index.html',
                 'image' => 'saudi_now.webp',
                 'published_at' => '2022-08-02 00:00:00',
+                'post_date_time' => '2022-10-01 02:00',
             ],
             [
                 'id' => 3,
@@ -83,6 +85,7 @@ class NewsSeeder extends Seeder
                 'url' => 'https://japannews.yomiuri.co.jp/world/europe/20220926-60613/',
                 'image' => 'meloni_italy.webp',
                 'published_at' => '2022-08-03 00:00:00',
+                'post_date_time' => '2022-010-02 01:00',
             ],
             [
                 'id' => 4,
@@ -116,6 +119,7 @@ class NewsSeeder extends Seeder
                 'url' => 'https://japannews.yomiuri.co.jp/politics/politics-government/20220928-61091/',
                 'image' => 'state_funeral.webp',
                 'published_at' => '2022-08-04 00:00:00',
+                'post_date_time' => '2022-010-03 01:00',
             ],
             [
                 'id' => 5,
@@ -165,6 +169,7 @@ class NewsSeeder extends Seeder
                 'url' => 'https://www.bbc.com/news/world-europe-63049386',
                 'image' => 'Ukraine_war.webp',
                 'published_at' => '2022-08-05 00:00:00',
+                'post_date_time' => '2022-010-04 01:00',
             ],
 
             // [
@@ -247,6 +252,7 @@ class NewsSeeder extends Seeder
                 'url' => 'fff.com',
                 'image' => 'china.webp',
                 'published_at' => '2022-08-06 00:00:00',
+                'post_date_time' => '2022-010-01 01:00',
             ],
             [
                 'id' => 7,
@@ -261,6 +267,7 @@ class NewsSeeder extends Seeder
                 'url' => 'ggg.com',
                 'image' => 'india.webp',
                 'published_at' => '2022-08-07 00:00:00',
+                'post_date_time' => '2022-010-01 02:00',
             ],
             [
                 'id' => 8,
@@ -275,6 +282,7 @@ class NewsSeeder extends Seeder
                 'url' => 'hhh.com',
                 'image' => 'japan.webp',
                 'published_at' => '2022-08-08 00:00:00',
+                'post_date_time' => '2022-010-02 01:00',
             ],
             [
                 'id' => 9,
@@ -289,6 +297,7 @@ class NewsSeeder extends Seeder
                 'url' => 'hhh.com',
                 'image' => 'philippines.webp',
                 'published_at' => '2022-08-09 00:00:00',
+                'post_date_time' => '2022-010-03 01:00',
             ],
             [
                 'id' => 10,
@@ -303,6 +312,7 @@ class NewsSeeder extends Seeder
                 'url' => 'hhh.com',
                 'image' => 'israel.webp',
                 'published_at' => '2022-08-10 00:00:00',
+                'post_date_time' => '2022-010-04 01:00',
             ],
 
             // Europe
@@ -319,6 +329,7 @@ class NewsSeeder extends Seeder
                 'url' => 'hhh.com',
                 'image' => 'france.webp',
                 'published_at' => '2022-08-11 00:00:00',
+                'post_date_time' => '2022-010-01 01:00',
             ],
             [
                 'id' => 12,
@@ -333,6 +344,7 @@ class NewsSeeder extends Seeder
                 'url' => 'hhh.com',
                 'image' => 'norway.webp',
                 'published_at' => '2022-08-12 00:00:00',
+                'post_date_time' => '2022-010-01 01:00',
             ],
             [
                 'id' => 13,
@@ -347,6 +359,7 @@ class NewsSeeder extends Seeder
                 'url' => 'hhh.com',
                 'image' => 'russia.webp',
                 'published_at' => '2022-08-13 00:00:00',
+                'post_date_time' => '2022-010-02 01:00',
             ],
             [
                 'id' => 14,
@@ -361,6 +374,7 @@ class NewsSeeder extends Seeder
                 'url' => 'hhh.com',
                 'image' => 'spain.webp',
                 'published_at' => '2022-08-14 00:00:00',
+                'post_date_time' => '2022-010-03 01:00',
             ],
             [
                 'id' => 15,
@@ -375,6 +389,7 @@ class NewsSeeder extends Seeder
                 'url' => 'hhh.com',
                 'image' => 'uk.webp',
                 'published_at' => '2022-08-15 00:00:00',
+                'post_date_time' => '2022-010-04 01:00',
             ],
 
             // Africa
@@ -391,6 +406,7 @@ class NewsSeeder extends Seeder
                 'url' => 'hhh.com',
                 'image' => 'egypt.webp',
                 'published_at' => '2022-08-16 00:00:00',
+                'post_date_time' => '2022-010-01 01:00',
             ],
             [
                 'id' => 17,
@@ -405,6 +421,7 @@ class NewsSeeder extends Seeder
                 'url' => 'hhh.com',
                 'image' => 'kenya.webp',
                 'published_at' => '2022-08-17 00:00:00',
+                'post_date_time' => '2022-010-01 01:00',
             ],
             [
                 'id' => 18,
@@ -419,6 +436,7 @@ class NewsSeeder extends Seeder
                 'url' => 'hhh.com',
                 'image' => 'southafrica.webp',
                 'published_at' => '2022-08-18 00:00:00',
+                'post_date_time' => '2022-010-02 01:00',
             ],
             [
                 'id' => 19,
@@ -433,6 +451,7 @@ class NewsSeeder extends Seeder
                 'url' => 'hhh.com',
                 'image' => '',
                 'published_at' => '2022-08-19 00:00:00',
+                'post_date_time' => '2022-010-03 01:00',
             ],
             [
                 'id' => 20,
@@ -447,6 +466,7 @@ class NewsSeeder extends Seeder
                 'url' => 'hhh.com',
                 'image' => '',
                 'published_at' => '2022-08-20 00:00:00',
+                'post_date_time' => '2022-010-04 01:00',
             ],
 
             // Oceania
@@ -463,6 +483,7 @@ class NewsSeeder extends Seeder
                 'url' => 'hhh.com',
                 'image' => 'australia.webp',
                 'published_at' => '2022-08-21 00:00:00',
+                'post_date_time' => '2022-010-01 01:00',
             ],
             [
                 'id' => 22,
@@ -477,6 +498,7 @@ class NewsSeeder extends Seeder
                 'url' => 'hhh.com',
                 'image' => '',
                 'published_at' => '2022-08-22 00:00:00',
+                'post_date_time' => '2022-010-01 01:00',
             ],
             [
                 'id' => 23,
@@ -491,6 +513,7 @@ class NewsSeeder extends Seeder
                 'url' => 'hhh.com',
                 'image' => 'australia.webp',
                 'published_at' => '2022-08-23 00:00:00',
+                'post_date_time' => '2022-010-02 01:00',
             ],
             [
                 'id' => 24,
@@ -505,6 +528,7 @@ class NewsSeeder extends Seeder
                 'url' => 'hhh.com',
                 'image' => '',
                 'published_at' => '2022-08-24 00:00:00',
+                'post_date_time' => '2022-010-03 01:00',
             ],
             [
                 'id' => 25,
@@ -519,6 +543,7 @@ class NewsSeeder extends Seeder
                 'url' => 'hhh.com',
                 'image' => 'australia.webp',
                 'published_at' => '2022-08-25 00:00:00',
+                'post_date_time' => '2022-010-04 01:00',
             ],
         ]);
     }

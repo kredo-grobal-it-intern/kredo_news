@@ -24,17 +24,18 @@ class NewsStoreUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'        => 'required|string',
-            'description'  => 'required|string',
-            'source_id'    => 'required|numeric',
-            'category_id'  => 'required|numeric',
-            'country_id'  => 'required|numeric',
-            'url'          => 'required|string',
-            'published_at' => 'required|date_format:Y-m-d',
-            'author'       => 'required|string',
-            'content'      => 'required|string',
-            'image'        => 'required if_:id,==,null|max:1048|mimes:png,jpg,jpeg,gif',
-            'status'       => 'required'
+            'title'          => 'required|string',
+            'description'    => 'required|string',
+            'source_id'      => 'required|numeric',
+            'category_id'    => 'required|numeric',
+            'country_id'     => 'required|numeric',
+            'url'            => 'required|string',
+            'published_at'   => 'required|date_format:Y-m-d',
+            'author'         => 'required|string',
+            'content'        => 'required|string',
+            'image'          => 'required if_:id,==,null|max:1048|mimes:png,jpg,jpeg,gif',
+            'status'         => 'required',
+            'post_date_time' => 'required',
         ];
     }
 }

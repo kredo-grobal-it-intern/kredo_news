@@ -10,8 +10,8 @@
         <p class="top-news-description">{{ $news->description }}</p>
     </div>
     <div class="d-flex mt-1 mt-md-3 justify-content-end status">
-        @include('user.news.feature.reaction', ['news' => $news])
-        @include('user.news.feature.comment', ['news' => $news])
-        @include('user.news.feature.bookmark', ['news' => $news])
+        @include('user.news.feature.reaction')
+        @include('user.news.feature.comment')
+        @include('user.news.feature.bookmark')
     </div>
 </div>

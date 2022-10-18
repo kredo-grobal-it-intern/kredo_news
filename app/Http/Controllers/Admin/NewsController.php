@@ -10,15 +10,16 @@ use App\Models\User;
 use App\Models\Comment;
 use App\Models\Country;
 use App\Models\Source;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use App\Services\ImageService;
 
 class NewsController extends Controller
 {
     const PUBLISHED = 1;
     const DRAFT = 2;
 
-    const LOCAL_STORAGE_FOLDER = 'public/images/news';
+    const LOCAL_STORAGE_FOLDER = 'public/images/news/';
+    const SIZE = ['height' => 840, 'width' => 550];
 
     public function index()
     {
@@ -73,41 +74,23 @@ class NewsController extends Controller
     {
         $news = new News;
 
-        $news->title        = $request->title;
-        $news->description  = $request->description;
-        $news->country_id   = $request->country_id;
-        $news->category_id  = $request->category_id;
-        $news->source_id    = $request->source_id;
-        $news->url          = $request->url;
-        $news->published_at = $request->published_at;
-        $news->author       = $request->author;
-        $news->image        = $this->saveImage($request);
-        $news->content      = $request->content;
-        $news->post_date    = $request->post_date;
-        $news->post_time    = $request->post_time;
-        $news->status       = $request->status;
+        $news->title          = $request->title;
+        $news->description    = $request->description;
+        $news->country_id     = $request->country_id;
+        $news->category_id    = $request->category_id;
+        $news->source_id      = $request->source_id;
+        $news->url            = $request->url;
+        $news->published_at   = $request->published_at;
+        $news->author         = $request->author;
+        $news->image          = ImageService::saveImage($request->image, self::SIZE, self::LOCAL_STORAGE_FOLDER);
+        ;
+        $news->content        = $request->content;
+        $news->post_date_time = $request->post_date_time;
+        $news->status         = $request->status;
 
         $news->save();
 
         return redirect()->route('admin.show.dashboard');
-    }
-
-    public function saveImage($request)
-    {
-        $image_name = time() . '.' . $request->image->extension();
-
-        $request->image->storeAs(self::LOCAL_STORAGE_FOLDER, $image_name);
-
-        return $image_name;
-    }
-
-    public function deleteImage($image)
-    {
-        $image_name = self::LOCAL_STORAGE_FOLDER . $image;
-
-        if (Storage::disk('local')->exists($image_name)) {
-            Storage::disk('local')->delete($image_name);
-        }
     }
 
     public function edit($news_id)
@@ -128,24 +111,21 @@ class NewsController extends Controller
     {
         $news = News::findOrFail($news_id);
 
-        $news->title        = $request->title;
-        $news->description  = $request->description;
-        $news->source_id    = $request->source_id;
-        $news->url          = $request->url;
-        $news->published_at = $request->published_at;
-        $news->author       = $request->author;
-        $news->content      = $request->content;
-        $news->post_date    = $request->post_date;
-        $news->post_time    = $request->post_time;
-        $news->status       = $request->status;
+        $news->title          = $request->title;
+        $news->description    = $request->description;
+        $news->source_id      = $request->source_id;
+        $news->url            = $request->url;
+        $news->published_at   = $request->published_at;
+        $news->author         = $request->author;
+        $news->content        = $request->content;
+        $news->post_date_time = $request->post_date_time;
+        $news->status         = $request->status;
 
-        if ($request->image) {
-            if ($news->image) {
-                $this->deleteImage($news->image);
-                $news->image = $this->saveImage($request);
-            } else {
-                $news->image = $this->saveImage($request);
-            }
+        if ($news->image) {
+            ImageService::deleteImage($news->image, self::LOCAL_STORAGE_FOLDER);
+            $news->image = ImageService::saveImage($request->image, self::SIZE, self::LOCAL_STORAGE_FOLDER);
+        } else {
+            $news->image = $this->saveImage($request->image);
         };
 
         $news->save();
@@ -154,6 +134,22 @@ class NewsController extends Controller
     }
 
     public function display($news_id)
+    {
+        $news = News::withTrashed()->findOrFail($news_id);
+
+        if ($news->deleted_at) {
+            $news->restore();
+        }
+
+        if ($news->status == self::DRAFT) {
+            $news->status = self::PUBLISHED;
+            $news->save();
+        }
+
+        return redirect()->back();
+    }
+
+    public function destroy($news_id)
     {
         $news = News::withTrashed()->findOrFail($news_id);
 
@@ -181,15 +177,6 @@ class NewsController extends Controller
             $news->status = self::DRAFT;
             $news->save();
         }
-
-        return redirect()->back();
-    }
-
-    public function destroy($news_id)
-    {
-        $news = News::withTrashed()->findOrFail($news_id);
-
-        $news->delete();
 
         return redirect()->back();
     }
