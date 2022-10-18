@@ -9,28 +9,43 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Source;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RestoreMail;
+use Illuminate\Support\Facades\Session;
+use App\Services\ImageService;
 
 class UserController extends Controller
 {
     const LOCAL_STORAGE_FOLDER = 'public/images/avatars/';
+    const SIZE = ['height' => 180, 'width' => 180];
 
     public function index()
     {
-        // $users = User::where('is_admin', 0)->withTrashed()->paginate(10);
-        $users = User::where('is_admin', 0)->withTrashed()->get();
+        $users = User::with('country')
+            ->withCount(['comments', 'followers', 'followings'])
+            ->where('is_admin', 0)->withTrashed()->get();
         return view('admin.users.list')->with('users', $users);
     }
 
 
     public function show(Request $request)
     {
-        $user = User::withCount(['comments', 'followers', 'followings'])->findOrFail($request->user_id);
-        $liked_news = $user->reactions()->withCount('comments')->with(['country', 'category', 'reactions'])->latest('published_at')->get()
+        $user = User::withCount(['comments', 'followers', 'followings'])
+            ->with(['comments.news', 'followers', 'followings'])
+            ->findOrFail($request->user_id);
+        $liked_news = $user->reactions()
+            ->withCount('comments')
+            ->with(['country', 'category', 'reactions', 'bookmarks'])
+            ->latest('published_at')
+            ->get()
             ->filter(function ($reaction) {
                 return $reaction->pivot->status == 1;
             });
-        $bookmarked_news = $user->bookmarks()->withCount('comments')->with(['country', 'category', 'reactions'])->latest('published_at')->get();
+        $bookmarked_news = $user->bookmarks()
+            ->withCount('comments')
+            ->with(['country', 'category', 'reactions'])
+            ->latest('published_at')
+            ->get();
 
         return view('user.profile.show')
             ->with('liked_news', $liked_news)
@@ -43,17 +58,17 @@ class UserController extends Controller
         $user = User::findOrFail(Auth::id());
         $favorite_sources_ids = $user->favoriteSources->pluck('id')->toArray();
         $sources = Source::all();
-        $continents = [ 'America','Asia','Europe','Oceania','Africa' ];
+        $continents = ['America', 'Asia', 'Europe', 'Oceania', 'Africa'];
         $all_countries = Country::all();
         $favorite_countries_ids = $user->favoriteCountries->pluck('id')->toArray();
 
         return view('user.profile.edit', [
-                'user' => $user,
-                'sources' => $sources,
-                'continents' => $continents,
-                'all_countries' => $all_countries,
-                'favorite_sources_ids' => $favorite_sources_ids,
-                'favorite_countries_ids' => $favorite_countries_ids
+            'user' => $user,
+            'sources' => $sources,
+            'continents' => $continents,
+            'all_countries' => $all_countries,
+            'favorite_sources_ids' => $favorite_sources_ids,
+            'favorite_countries_ids' => $favorite_countries_ids
         ]);
     }
 
@@ -71,8 +86,8 @@ class UserController extends Controller
         $favorite_sources = [];
         foreach ($sources as $source) {
             $favorite_sources[] = [
-            'user_id' => $request->id,
-            'source_id' => $source
+                'user_id' => $request->id,
+                'source_id' => $source
             ];
         }
         $user->favoriteSources()->detach();
@@ -88,31 +103,19 @@ class UserController extends Controller
         $user->favoriteCountries()->detach();
         $user->favoriteCountries()->attach($favorite_countries);
 
-        if ($request->avatar) {
-            $this->deleteAvatar($user->avatar);
-            $user->avatar = $this->saveAvatar($request);
-        }
+
+        if ($user->avatar) {
+            ImageService::deleteImage($user->avatar, self::LOCAL_STORAGE_FOLDER);
+            $user->avatar = ImageService::saveImage($request->avatar, self::SIZE, self::LOCAL_STORAGE_FOLDER);
+        } else {
+            $user->avatar = ImageService::saveImage($request->avatar, self::SIZE, self::LOCAL_STORAGE_FOLDER);
+        };
 
         $user->save();
 
         return redirect()->route('user.profile.show', ['user_id' => $user->id]);
     }
-
-    public function saveAvatar($request)
-    {
-        $avatar_name = time().".".$request->avatar->extension();
-        $request->avatar->storeAs(self::LOCAL_STORAGE_FOLDER, $avatar_name);
-        return $avatar_name;
-    }
-
-    public function deleteAvatar($avatar_name)
-    {
-        $image_path = self::LOCAL_STORAGE_FOLDER.$avatar_name;
-        if (Storage::disk('local')->exists($image_path)) :
-            Storage::disk('local')->delete($image_path);
-        endif;
-    }
-
+    
     public function destroy($user_id)
     {
         User::destroy($user_id);
@@ -125,5 +128,20 @@ class UserController extends Controller
         User::withTrashed()->where('id', $user_id)->restore();
 
         return redirect()->back();
+    }
+    public function reactivate($user_id)
+    {
+        User::withTrashed()->where('id', $user_id)->restore();
+        Session::flash('reactivate', 'Your account has been restored');
+        return redirect(route('login'));
+    }
+    public function withdrawal()
+    {
+        $user = Auth::user();
+        Auth::logout();
+        Session::flash('withdrawal', 'Your account has been deleted');
+        Mail::to($user->email)->send(new RestoreMail($user));
+        $user->delete();
+        return redirect(route('news.index'));
     }
 }

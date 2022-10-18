@@ -105,7 +105,6 @@
                 </div>
             </div>
         </div>
-
         <section  class="mx-auto mt-5 favorite">
             <!-- Media -->
             <div class="favorite-media">

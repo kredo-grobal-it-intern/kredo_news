@@ -18,6 +18,9 @@
         &-none {
             display: none;
         }
+        &-dropdown{
+            font-size: 25px;
+        }
     }
 
     &-btn {
@@ -91,6 +94,9 @@
 
 .reaction i, .bookmark i {
     cursor: pointer;
+}
+.fa-circle-xmark {
+    font-size: 70px;
 }
 
 @media (max-width: 992px) {

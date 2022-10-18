@@ -1,13 +1,21 @@
-@if (Auth::check() && $news->isBookmarked())
+@guest
     <p class="bookmark">
-        <i class="fa-solid fa-bookmark bookmark-toggle text-success" data-newsid="{{ $news->id }}"></i>
-    </p>
-@elseif (Auth::check() && !Auth::user()->email_verified_at)
-    <p>
-        <i class="bookmark fa-regular fa-bookmark bookmark-toggle" data-bs-toggle="modal" data-bs-target="#verify"  data-newsid="{{ $news->id }}"></i>
+        <i class="fa-regular fa-bookmark"
+            data-bs-toggle="modal" data-bs-target="#feature" data-newsid="{{ $news->id }}">
+        </i>
     </p>
 @else
-    <p class="bookmark">
-        <i class="fa-regular fa-bookmark bookmark-toggle" @guest data-bs-toggle="modal" data-bs-target="#feature" @endguest data-newsid="{{ $news->id }}"></i>
-    </p>
-@endif
+    @if (Auth::user()->hasVerifiedEmail())
+        <p class="bookmark">
+            <i class="fa-bookmark bookmark-toggle @if($news->isBookmarked()) fa-solid text-success @else fa-regular @endif"
+                data-newsid="{{ $news->id }}">
+            </i>
+        </p>
+    @else
+        <p class="bookmark">
+            <i class="fa-regular fa-bookmark"
+                data-bs-toggle="modal" data-bs-target="#verify" data-newsid="{{ $news->id }}">
+            </i>
+        </p>
+    @endif
+@endguest

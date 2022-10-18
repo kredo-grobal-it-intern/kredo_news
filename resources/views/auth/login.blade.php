@@ -66,6 +66,9 @@
         @if (Session::has('login_needed'))
             toastr.error('{{ Session::get('login_needed') }}');
         @endif
+        @if (Session::has('reactivate'))
+            toastr.success('{{ Session::get('reactivate') }}');
+        @endif
     });
 </script>
 @endsection
