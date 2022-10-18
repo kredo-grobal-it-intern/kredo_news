@@ -9,17 +9,10 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Source;
 use Illuminate\Support\Facades\Auth;
-<<<<<<< HEAD
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\RestoreMail;
-use Illuminate\Support\Facades\Session;
-=======
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RestoreMail;
 use Illuminate\Support\Facades\Session;
 use App\Services\ImageService;
->>>>>>> main
 
 class UserController extends Controller
 {
@@ -36,13 +29,9 @@ class UserController extends Controller
 
     public function show(Request $request)
     {
-<<<<<<< HEAD
-        $user = User::withCount(['comments', 'followers', 'followings'])->findOrFail($request->user_id);
-=======
         $user = User::withCount(['comments', 'followers', 'followings'])
             ->with(['comments.news', 'followers', 'followings'])
             ->findOrFail($request->user_id);
->>>>>>> main
         $liked_news = $user->reactions()
             ->withCount('comments')
             ->with(['country', 'category', 'reactions', 'bookmarks'])

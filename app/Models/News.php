@@ -114,13 +114,6 @@ class News extends Model
     public static function getWhatsHotBySource($source_id)
     {
         return News::where('source_id', $source_id)
-<<<<<<< HEAD
-            ->withCount('comments')
-            ->with(['bookmarks', 'reactions'])
-            ->orderBy('comments_count', 'desc')
-            ->limit(5)
-            ->get();
-=======
                 ->withCount('comments')
                 ->with(['bookmarks', 'reactions'])
                 ->where('status', NewsStatusConst::PUBLISHED)
@@ -128,7 +121,6 @@ class News extends Model
                 ->orderBy('comments_count', 'desc')
                 ->limit(5)
                 ->get();
->>>>>>> main
     }
 
     public static function getWhatsHot()
@@ -146,11 +138,8 @@ class News extends Model
     public static function getLatestNewsList($source_id)
     {
         return News::where('source_id', $source_id)
-<<<<<<< HEAD
-=======
             ->where('status', NewsStatusConst::PUBLISHED)
             ->where('post_date_time', '<=', News::currentTime())
->>>>>>> main
             ->withCount('comments')
             ->with(['bookmarks', 'reactions'])
             ->latest('published_at')
