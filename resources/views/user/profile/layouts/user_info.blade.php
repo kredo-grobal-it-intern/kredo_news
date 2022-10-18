@@ -18,6 +18,7 @@
                     @endif
                     <div class="d-flex justify-content-between">
                         <h2 class="fw-bold mb-0">{{ $user->username }}</h2>
+                        @if (Auth::user()->id === $user->id)
                         <div class="dropdown">
                             <button class="btn btn-sm" data-bs-toggle="dropdown">
                                     <span class="profile-heading-dropdown"><i class="fa-solid fa-ellipsis"></i></span>
@@ -29,6 +30,7 @@
                             @include('user.profile.modal.update_password')
                             @include('user.profile.modal.delete_account')
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
