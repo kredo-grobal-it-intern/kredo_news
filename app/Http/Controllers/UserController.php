@@ -21,8 +21,9 @@ class UserController extends Controller
 
     public function index()
     {
-        // $users = User::where('is_admin', 0)->withTrashed()->paginate(10);
-        $users = User::where('is_admin', 0)->withTrashed()->get();
+        $users = User::with('country')
+            ->withCount(['comments', 'followers', 'followings'])
+            ->where('is_admin', 0)->withTrashed()->get();
         return view('admin.users.list')->with('users', $users);
     }
 
@@ -114,7 +115,7 @@ class UserController extends Controller
 
         return redirect()->route('user.profile.show', ['user_id' => $user->id]);
     }
-
+    
     public function destroy($user_id)
     {
         User::destroy($user_id);

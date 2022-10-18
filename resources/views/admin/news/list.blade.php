@@ -59,7 +59,7 @@
                             {{ $news->country->name }}
                     </div>
                 </td>
-                <td>{{ number_format($news->comments->count()) }}</td>
+                <td>{{ number_format($news->comments_count) }}</td>
                 <td>{{ number_format($news->getDislike()->count()) }}</td>
                 <td>{{ number_format($news->getlike()->count()) }}</td>
                 <td>
@@ -93,8 +93,8 @@
 
                                 <button type="submit" class="dropdown-item"><i class="fa-solid fa-file-excel"></i>Draft</button>
                             </form>
-                            
-                            
+
+
                             @elseif($news->status == 2)
                             <a href="{{ route('admin.news.edit', $news->id) }}" class="dropdown-item text-decoration-none text-black">
                                 <span class="me-1"><i class="fa-regular fa-pen-to-square"></span></i>Edit
@@ -103,12 +103,12 @@
                             <form action="{{ route('admin.news.display', $news->id) }}" method="post">
                                 @csrf
                                 @method('PATCH')
-                                
+
                                 <button type="submit" class="dropdown-item text-primary"><i class="fa-solid fa-eye"></i>Display</button>
                             </form>
-                            
+
                             <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#hide-news-{{ $news->id }}"><i class="fa-solid fa-trash-can"></i>Delete</button>
-                            
+
                             @else
                             <a href="{{ route('admin.news.edit', $news->id) }}" class="dropdown-item text-decoration-none text-black">
                                 <span class="me-1"><i class="fa-regular fa-pen-to-square"></span></i>Edit

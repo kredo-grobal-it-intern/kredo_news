@@ -23,8 +23,10 @@ class NewsController extends Controller
 
     public function index()
     {
-        $all_news = News::withTrashed()->get();
-        // $all_news = News::orderBy('post_date', 'desc')->withTrashed()->paginate(10);
+        $all_news = News::with(['category', 'country', 'source.country', 'reactions'])
+            ->withCount('comments')
+            ->withTrashed()
+            ->get();
         return view('admin.news.list')
             ->with('all_news', $all_news);
     }
@@ -59,7 +61,7 @@ class NewsController extends Controller
 
     public function create()
     {
-        $all_media  = Source::all();
+        $all_media  = Source::with('country')->get();
         $categories = Category::all();
         $countries  = Country::whereNotNull('continent')->get();
 
@@ -83,7 +85,6 @@ class NewsController extends Controller
         $news->published_at   = $request->published_at;
         $news->author         = $request->author;
         $news->image          = ImageService::saveImage($request->image, self::SIZE, self::LOCAL_STORAGE_FOLDER);
-        ;
         $news->content        = $request->content;
         $news->post_date_time = $request->post_date_time;
         $news->status         = $request->status;
@@ -95,8 +96,8 @@ class NewsController extends Controller
 
     public function edit($news_id)
     {
-        $news = News::findOrFail($news_id);
-        $all_media  = Source::all();
+        $news = News::with(['category', 'country', 'source.country'])->findOrFail($news_id);
+        $all_media  = Source::with('country')->get();
         $categories = Category::all();
         $countries  = Country::whereNotNull('continent')->get();
 
