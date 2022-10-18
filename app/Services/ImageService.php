@@ -11,13 +11,12 @@ class ImageService
     public static function saveImage($image, $size, $storage)
     {
         $resize_image = Image::make($image)
-                            ->fit($size['height'])
+                            ->fit($size['height'], $size['width'])
                             ->orientate()
                             ->encode('webp');
 
         $file_name = time() . '.' . 'webp';
 
-        // $path = storage_path('app/public/images/news/');
         $path = storage_path('app/'. $storage);
         $resize_image->save($path . $file_name);
         
@@ -26,7 +25,6 @@ class ImageService
 
     public static function deleteImage($image_name, $storage)
     {
-        // $image_path = 'public/images/news/'.$image_name;
         $image_path = $storage . $image_name;
 
         if (Storage::disk('local')->exists($image_path)) {
