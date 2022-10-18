@@ -20,7 +20,7 @@ class CategoryController extends Controller
                         ->get();
 
         $category = Category::findOrFail($id);
-        
+
         return view('user.news.category')->with('category', $category)->with('all_news', $all_news);
     }
 }

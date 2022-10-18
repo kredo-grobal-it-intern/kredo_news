@@ -26,7 +26,7 @@ class MediaController extends Controller
                         ->latest('published_at')
                         ->get();
         $media = Source::findOrFail($id);
-        
+
         return view('user.news.media')
                 ->with('all_news', $all_news)
                 ->with('media', $media);
