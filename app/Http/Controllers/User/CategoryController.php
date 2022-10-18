@@ -10,8 +10,7 @@ class CategoryController extends Controller
 {
     public function show($id)
     {
-        $categories = Category::all();
-        $all_news = News::where('category_id', $id)->get();
+        $all_news = News::withCount('comments')->with(['bookmarks', 'reactions'])->where('category_id', $id)->get();
         $category = Category::findOrFail($id);
         return view('user.news.category')->with('category', $category)->with('all_news', $all_news);
     }

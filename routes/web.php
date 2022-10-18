@@ -41,6 +41,7 @@ Route::get('/search/category', [NewsController::class, 'filter'])->name('news.fi
 Route::get('/category/{category_id}', [CategoryController::class, 'show'])->name('news.category');
 Route::get('/country/{country_id}', [CountryController::class, 'show'])->name('news.country');
 Route::get('/media/{media_id}', [MediaController::class, 'show'])->name('news.media');
+Route::get('/reactivate/{user_id}', [UserController::class, 'reactivate'])->name('reactivate');
 
 // Logged in user
 Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'verified'], function () {
@@ -49,6 +50,8 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'verified'], 
     Route::post('/follow', [FollowController::class, 'follow'])->name('follow');
     Route::post('/unfollow', [FollowController::class, 'unfollow'])->name('unfollow');
     Route::post('/bookmark', [BookmarkController::class, 'bookmark'])->name('bookmark');
+    Route::post('/withdrawal', [UserController::class, 'withdrawal'])->name('withdrawal');
+
     Route::group(['prefix' => 'favorite', 'as' => 'news.'], function () {
         Route::get('/', [NewsController::class, 'showFavoritePage'])->name('favorite');
         Route::get('/country/{country}', [NewsController::class, 'showFavoritePageByCountry'])->name('favorite.country');
@@ -102,3 +105,6 @@ Route::get('/login/google/callback', [GoogleLoginController::class, 'authGoogleC
 // Facebook Authentication
 Route::get('/login/facebook', [FacebookLoginController::class, 'getFacebookAuth'])->name('facebook.login');
 Route::get('login/facebook/callback', [FacebookLoginController::class, 'authFacebookCallback']);
+
+// Change Password
+Route::post('/changePassword', [UserController::class, 'changePasswordPost'])->name('changePasswordPost');

@@ -1,5 +1,5 @@
-<div id="delete-account" class="modal fade" aria-modal="true" style="display: block;">
-	<div class="modal-dialog modal-confirm ">
+<div id="delete-account" class="modal fade" aria-modal="true">
+	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header flex-column border-0">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -14,7 +14,7 @@
                 <div class="my-3">
                     <form action="{{ route('user.withdrawal') }}" method="post">
                         @csrf
-                        <button type="button" class="btn btn-secondary me-1" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-secondary me-1" data-bs-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-danger ms-1">Delete</button>
                     </form>
                 </div>

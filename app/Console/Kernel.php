@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('account:delete')->daily();
         $schedule->command('api:create')->dailyAt('05:00');
     }
 
