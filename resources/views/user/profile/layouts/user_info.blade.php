@@ -16,7 +16,7 @@
                     @else
                         <i class="profile-heading-none fa-solid fa-circle-user text-secondary me-2"></i>
                     @endif
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between align-items-center">
                         <h2 class="fw-bold mb-0">{{ $user->username }}</h2>
                         <div class="dropdown">
                             <button class="btn btn-sm" data-bs-toggle="dropdown">
