@@ -40,7 +40,7 @@ class AutoPopulateApiCategoryName extends Command
     {
         $categories = Category::all();
 
-        foreach($categories as $category) {
+        foreach ($categories as $category) {
             $category->api_name = strtolower($category->name);
             $category->save();
         }

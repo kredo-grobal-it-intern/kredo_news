@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use App\Models\Category;
-use Carbon\Carbon;
 use App\Models\News;
 use App\Models\Country;
 use Illuminate\Console\Command;
@@ -24,7 +23,7 @@ class GetNewsApi extends Command
      *
      * @var string
      */
-    protected $description = 'Get news using api'; 
+    protected $description = 'Get news using api';
 
     /**
      * Create a new command instance.
@@ -51,7 +50,7 @@ class GetNewsApi extends Command
         $countries = Country::all();
         $categories = Category::all();
         $api_news = null;
-        while($canFetch) {
+        while ($canFetch) {
             $params = [
                 'apiKey' => 'pub_1221269fcfaf2a306f63fea35bd2784ce9f4c',
                 'language' => 'en',
@@ -61,7 +60,7 @@ class GetNewsApi extends Command
                 
             ];
 
-            if($nextPage) {
+            if ($nextPage) {
                 $params['page'] = $nextPage;
             } else {
                 $canFetch = (!$counter) ? true : false;
@@ -72,12 +71,12 @@ class GetNewsApi extends Command
             $nextPage = $api_news->nextPage ?? null;
             $counter++;
 
-            if($counter == 3) {
+            if ($counter == 3) {
                 $canFetch = false;
             }
         }
 
-        $news = $news->filter(function($n) {
+        $news = $news->filter(function ($n) {
             return isset($n->content);
         });
 

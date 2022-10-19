@@ -40,7 +40,7 @@ class AutoPopulateApiSourceName extends Command
     {
         $sources = Source::all();
 
-        foreach($sources as $source) {
+        foreach ($sources as $source) {
             $source->api_name = strtolower($source->name);
             $source->save();
         }

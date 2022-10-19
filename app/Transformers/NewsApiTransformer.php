@@ -3,7 +3,6 @@
 namespace App\Transformers;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
 use League\Fractal\TransformerAbstract;
 
 class NewsApiTransformer extends TransformerAbstract
@@ -26,8 +25,8 @@ class NewsApiTransformer extends TransformerAbstract
         //
     ];
 
-    protected  $countries = null;
-    protected  $categories = null;
+    protected $countries = null;
+    protected $categories = null;
 
     public function __construct($countries_data, $categories_data)
     {
@@ -45,12 +44,12 @@ class NewsApiTransformer extends TransformerAbstract
         $countryName = $data->country[0];
         $categoryName = $data->category[0];
 
-        $affiliated_country = $this->countries->filter(function($country) use($countryName) {
-            return  $country->api_name == $countryName;
+        $affiliated_country = $this->countries->filter(function ($country) use ($countryName) {
+            return $country->api_name == $countryName;
         })->first();
 
-        $affiliated_category = $this->categories->filter(function($category) use($categoryName) {
-            return  $category->api_name == $categoryName;
+        $affiliated_category = $this->categories->filter(function ($category) use ($categoryName) {
+            return $category->api_name == $categoryName;
         })->first();
 
         return [

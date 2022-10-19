@@ -40,9 +40,9 @@ class AutoPopulateApiCountryName extends Command
     {
         $countries = Country::all();
 
-        foreach($countries as $country) {
+        foreach ($countries as $country) {
             $lowercase_name = strtolower($country->name);
-            if($lowercase_name == 'united states') {
+            if ($lowercase_name == 'united states') {
                 $country->api_name == 'united states of america';
             } else {
                 $country->api_name = $lowercase_name;
