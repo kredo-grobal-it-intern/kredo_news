@@ -63,9 +63,9 @@
                     {{ $user->country->name }}
                 </div>
             </td>
-            <td>{{ number_format($user->comments->count()) }}</td>
-            <td>{{ number_format($user->followers->count()) }}</td>
-            <td>{{ number_format($user->followings->count()) }}</td>
+            <td>{{ number_format($user->comments_count) }}</td>
+            <td>{{ number_format($user->followers_count) }}</td>
+            <td>{{ number_format($user->followings_count) }}</td>
             <td>
                 @if ($user->deleted_at)
                     <p class="badge bg-danger m-0">Inactive</p>

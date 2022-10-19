@@ -55,7 +55,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
     public function isFollowed(){
-        return $this->followers()->where('follower_id',Auth::user()->id)->exists();
+        return $this->followers->contains(Auth::user());
     }
 
     public static function getFollowCountForJson(User $user) {

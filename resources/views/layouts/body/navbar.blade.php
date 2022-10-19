@@ -49,9 +49,9 @@
                                 });
                             @endphp
                             <span class="dropdown-item fw-bold d-block text-center">--- {{ $continent }} ---</span>
-                            @foreach ($sources_by_continent as $sources)
-                                <a href="{{ route('news.media' , $sources->id) }}" class="dropdown-item">
-                                    {{ $sources->country->name }}
+                            @foreach ($sources_by_continent as $source)
+                                <a href="{{ route('news.media' , $source->id) }}" class="dropdown-item">
+                                    {{ $source->country->name }}
                                 </a>
                             @endforeach
                         @endforeach
