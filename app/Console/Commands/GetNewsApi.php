@@ -76,9 +76,10 @@ class GetNewsApi extends Command
                 $canFetch = false;
             }
         }
-        $news = $news->filter(function($n) {
-            return $n->content;
-        });
+
+        // $news = $news->filter(function($n) {
+        //     return isset($n->content);
+        // });
 
        
         $data = fractal() //This fractal is responsible for transforming our data. it is being install by a composer  (composer.json line 18)
@@ -86,10 +87,10 @@ class GetNewsApi extends Command
             ->transformWith(new NewsApiTransformer($countries, $categories)) // if it does not have this line it makes many error deu to so many quarry //
             ->toArray();
             
-        $filtered_news = collect($data['data'])->fitler(function($news) {
+        $filtered_news = collect($data['data'])->filter(function($news) {
             return $news->content;
         })->toArray();
-
+        dd($filtered_news);
         News::insert($filtered_news['data']);
     }
 }
