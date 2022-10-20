@@ -52,7 +52,7 @@ class GetNewsApi extends Command
         $api_news = null;
         while ($canFetch) {
             $params = [
-                'apiKey' => 'pub_1221269fcfaf2a306f63fea35bd2784ce9f4c',
+                'apiKey' => env("NEWS_API_KEY"),
                 'language' => 'en',
                 // 'category' => 'travel',
                 // 'country' => 'us'
@@ -65,9 +65,8 @@ class GetNewsApi extends Command
             } else {
                 $canFetch = (!$counter) ? true : false;
             }
-            $api_news = Http::get('https://newsdata.io/api/1/news', $params)->object();
+            $api_news = Http::get(env("NEWS_API_BASE_URL"), $params)->object();
             $news = $news->merge(collect($api_news->results));
-            // dd($api_news);
             $nextPage = $api_news->nextPage ?? null;
             $counter++;
 
