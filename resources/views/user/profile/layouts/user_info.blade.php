@@ -18,12 +18,13 @@
                     @endif
                     <div class="d-flex justify-content-between align-items-center">
                         <h2 class="fw-bold mb-0">{{ $user->username }}</h2>
-                        @if (Auth::user()->id === $user->id)
+                        @if (Auth::id() === $user->id)
                         <div class="dropdown">
                             <button class="btn btn-sm" data-bs-toggle="dropdown">
                                     <span class="profile-heading-dropdown"><i class="fa-solid fa-ellipsis"></i></span>
                             </button>
                             <div class="dropdown-menu">
+                                <a href="{{route('user.profile.edit')}}" class="dropdown-item text-decoration-none text-secondary"><i class="fa-solid fa-pen-to-square me-1"></i>Edit Profile</a>
                                 <button class="btn dropdown-item shadow-none text-primary" data-bs-toggle="modal" data-bs-target="#update-password"><span class="me-1"><i class="fa-solid fa-key"></i></span>Change Password</button>
                                 <button class="btn dropdown-item shadow-none text-danger" data-bs-toggle="modal" data-bs-target="#delete-account"><span class="me-1"><i class="fa-solid fa-user-xmark"></i> Delete Account</span></button>
                             </div>
@@ -36,9 +37,7 @@
             </div>
             <div class="">
                 <div class="profile-action mb-3">
-                    @if (Auth::user()->id === $user->id)
-                        <a href="{{route('user.profile.edit')}}" class="text-decoration-none text-secondary"><i class="fa-solid fa-pen-to-square me-1"></i>Edit Profile</a>
-                    @else
+                    @if (Auth::id() !== $user->id)
                         @include('user.news.feature.follow')
                     @endif
                 </div>
