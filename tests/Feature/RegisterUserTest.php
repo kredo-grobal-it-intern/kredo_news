@@ -3,29 +3,51 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use App\Models\Country;
 use Database\Seeders\CountrySeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class RegisterUserTest extends TestCase
 {
     use RefreshDatabase;
-    public function test_create_user()
+
+    public function setUp(): void
     {
+        parent::setUp();
         $this->seed(CountrySeeder::class);
-        $country = Country::latest()->take(1)->first();
-        
+    }
+
+    public function test_registration_screen_can_be_rendered()
+    {
+        $response = $this->get('/register');
+        $response->assertStatus(200);
+    }
+
+    public function test_new_users_can_register()
+    {
         $response = $this->post('/register', [
             'username' => 'test',
             'email'    => 'test@gmail.com',
-            'nationality' => $country->id,
-            'country' => $country->id,
+            'nationality' => 1,
+            'country' => 1,
             'password' => 'password',
             'password_confirmation' => 'password',
         ]);
+        $this->assertAuthenticated();
         $response->assertRedirect(route('verification.notice'));
     }
 
-   
+    public function test_displays_validation_errors_by_email()
+    {
+        $response = $this->post('/register', [
+            'username' => 'test',
+            'email'    => 'testgmail.com', // wrong
+            'nationality' => 1,
+            'country' => 1,
+            'password' => 'password',
+            'password_confirmation' => 'password',
+        ]);
 
+        $response->assertStatus(302);
+        $response->assertSessionHasErrors('email');
+    }
 }
