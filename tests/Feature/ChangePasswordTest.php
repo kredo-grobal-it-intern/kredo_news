@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\User;
-use Database\Seeders\UserSeeder;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -24,7 +23,7 @@ class ChangePasswordTest extends TestCase
         $response->assertStatus(200);
     }
     public function test_change_password(){
-        $this->seed(UserSeeder::class);
+        $this->seed();
         Session::start();
         $user = User::find(4);
         $response = $this->actingAs($user)->post('/changePassword', [
