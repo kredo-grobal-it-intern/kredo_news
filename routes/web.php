@@ -91,8 +91,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], f
 
     Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
         Route::get('list', [UserController::class, 'index'])->name('list');
-        Route::delete('destroy/{user_id}', [UserController::class, 'destroy'])->name('destroy');
-        Route::get('restore/{user_id}', [UserController::class, 'restore'])->name('restore');
+        Route::patch('destroy/{user_id}', [UserController::class, 'block'])->name('block');
+        Route::get('restore/{user_id}', [UserController::class, 'restore'])->name('restore')->withTrashed();
     });
     Route::get('/create', [MailController::class, 'create'])->name('create');
     Route::post('/sendmail', [MailController::class, 'sendMail'])->name('mail');
