@@ -32,6 +32,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'category_id',
         'avatar',
         'is_admin',
+        'deleted_at',
     ];
 
     /**
