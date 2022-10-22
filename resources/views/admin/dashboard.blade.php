@@ -15,7 +15,7 @@
                         <i class="fa-solid fa-users"></i>
                     </div>
                     <div class="ms-3">
-                        <h2>{{ number_format($users->whereNull('deleted_at')->count()) }} <span class="line-sm">Total news users</span></h2>
+                        <h2>{{ number_format($users->whereNull('blocked_at')->count()) }} <span class="line-sm">Total news users</span></h2>
                         <p class="line-md">Totla new users</p>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                     @foreach ($good_news as $news)
                     <li>
                         <div class="list-align">
-                            <a href="{{ route('news.show', $news->id) }}">{{ $news->title }}</a>                           
+                            <a href="{{ route('news.show', $news->id) }}">{{ $news->title }}</a>
                             <div class="col-2 icon-align">{{ number_format($news->reactions_count)}}&nbsp;<i class="fa-solid fa-thumbs-up"></i></div>
                         </div>
                     </li>
@@ -117,7 +117,7 @@
                     @foreach ($bad_news as $news)
                     <li>
                         <div class="list-align">
-                            <a href="{{ route('news.show', $news->id) }}">{{ $news->title }}</a>                            
+                            <a href="{{ route('news.show', $news->id) }}">{{ $news->title }}</a>
                             <div class="icon-align">{{ number_format($news->reactions_count)}}&nbsp;<i class="fa-solid fa-thumbs-down"></i></div>
                         </div>
                     </li>
