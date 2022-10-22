@@ -14,7 +14,7 @@ class UpdateApiNameColumnInSourcesTable extends Migration
     public function up()
     {
         Schema::table('sources', function (Blueprint $table) {
-            $table->string('api_name')->default('')->change();
+            $table->string('api_name')->default('nullable')->change();
         });
     }
 
@@ -26,7 +26,7 @@ class UpdateApiNameColumnInSourcesTable extends Migration
     public function down()
     {
         Schema::table('sources', function (Blueprint $table) {
-            //
+            $table->string('api_name')->nullable(false)->change();
         });
     }
 }
