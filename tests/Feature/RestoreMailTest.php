@@ -6,22 +6,22 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\Newsletter;
+use App\Mail\RestoreMail;
+use App\Models\User;
 
-class NewsletterTest extends TestCase
+class RestoreMailTest extends TestCase
 {
     /**
      * A basic feature test example.
      *
      * @return void
      */
-    public function test_newsletter()
+    public function test_restoreMail()
     {
         Mail::fake();
-        $content="Test";
-        $subject="Test";
-        Mail::bcc('test@test.com')->send(new Newsletter($subject, $content));
-        Mail::assertSent(Newsletter::class);
+        $user=User::factory()->create();
+        Mail::to($user->email)->send(new RestoreMail($user));
+        Mail::assertSent(RestoreMail::class);
 
     }
 }
