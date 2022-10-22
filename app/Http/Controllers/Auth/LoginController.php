@@ -48,11 +48,11 @@ class LoginController extends Controller
     {
         $this->validateLogin($request);
 
-        if ($this->isBlockUser($request)){
+        if ($this->isBlockUser($request)) {
             throw ValidationException::withMessages([
                 'email' => "User has been blocked by the admin.",
             ]);
-        }elseif(!$this->isActiveUser($request)){
+        } elseif (!$this->isActiveUser($request)) {
             throw ValidationException::withMessages([
                 'email' => "User has been deactivated.",
             ]);
@@ -61,8 +61,10 @@ class LoginController extends Controller
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.
-        if (method_exists($this, 'hasTooManyLoginAttempts') &&
-            $this->hasTooManyLoginAttempts($request)) {
+        if (
+            method_exists($this, 'hasTooManyLoginAttempts') &&
+            $this->hasTooManyLoginAttempts($request)
+        ) {
             $this->fireLockoutEvent($request);
 
             return $this->sendLockoutResponse($request);
@@ -92,7 +94,7 @@ class LoginController extends Controller
         ]);
     }
 
-     protected function sendLockoutResponse(Request $request)
+    protected function sendLockoutResponse(Request $request)
     {
         $seconds = $this->limiter()->availableIn(
             $this->throttleKey($request)
@@ -109,14 +111,16 @@ class LoginController extends Controller
     protected function attemptLogin(Request $request)
     {
         return $this->guard()->attempt(
-            $this->credentials($request), $request->boolean('remember')
+            $this->credentials($request),
+            $request->boolean('remember')
         );
     }
 
     protected function incrementLoginAttempts(Request $request)
     {
         $this->limiter()->hit(
-            $this->throttleKey($request), $this->decayMinutes() * 60
+            $this->throttleKey($request),
+            $this->decayMinutes() * 60
         );
     }
 
@@ -125,18 +129,20 @@ class LoginController extends Controller
         return Auth::guard();
     }
 
-    protected function isActiveUser(Request $request){
-        $email=$request->email;
-        $user=User::withTrashed()->where('email',$email)->first();
-        if ( $user->deleted_at) {
+    protected function isActiveUser(Request $request)
+    {
+        $email = $request->email;
+        $user = User::withTrashed()->where('email', $email)->first();
+        if ($user->deleted_at) {
             return false;
         }
         return true;
     }
-    protected function isBlockUser(Request $request){
-        $email=$request->email;
-        $user=User::withTrashed()->where('email',$email)->first();
-        if ( $user->blocked_at) {
+    protected function isBlockUser(Request $request)
+    {
+        $email = $request->email;
+        $user = User::withTrashed()->where('email', $email)->first();
+        if ($user->blocked_at) {
             return true;
         }
         return false;
