@@ -18,8 +18,9 @@ $(function () {
         })
             .done(function (data) {
                 $this.toggleClass('text-primary');
-                $this.siblings('.upCount').text(data.newsLikesCount);
-                $this.closest('.status').find('.downCount').text(data.newsDislikesCount).siblings('.down-toggle').removeClass('text-danger');
+                $('i').find(`[data-newsid='${likeNewsId}']`).siblings('.upCount').text(data.newsLikesCount);
+                // $this.siblings('.upCount').text(data.newsLikesCount);
+                $('i').find(`[data-newsid='${likeNewsId}']`).closest('.status').find('.downCount').text(data.newsDislikesCount).siblings('.down-toggle').removeClass('text-danger');
             })
             .fail(function (data, xhr, err) {
                 console.log('エラー');
