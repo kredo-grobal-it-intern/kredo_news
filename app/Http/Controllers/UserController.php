@@ -116,16 +116,20 @@ class UserController extends Controller
         return redirect()->route('user.profile.show', ['user_id' => $user->id]);
     }
 
-    public function destroy($user_id)
+    public function block($user_id)
     {
-        User::destroy($user_id);
+        $user = User::findOrFail($user_id);
+        $user->blocked_at = Now();
+        $user->save();
 
         return redirect()->back();
     }
 
     public function restore($user_id)
     {
-        User::withTrashed()->where('id', $user_id)->restore();
+        $user = User::withTrashed()->findOrFail($user_id);
+        $user->blocked_at = null;
+        $user->save();
 
         return redirect()->back();
     }
@@ -146,7 +150,9 @@ class UserController extends Controller
         Auth::logout();
         Session::flash('withdrawal', 'Your account has been deleted');
         Mail::to($user->email)->send(new RestoreMail($user));
-        $user->delete();
+        $user->deleted_at = Now();
+        $user->save();
+
         return redirect(route('news.index'));
     }
 }
