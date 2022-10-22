@@ -18,10 +18,9 @@ class NewsletterTest extends TestCase
     public function test_newsletter()
     {
         Mail::fake();
-        $content="Test";
-        $subject="Test";
+        $content = "Test";
+        $subject = "Test";
         Mail::bcc('test@test.com')->send(new Newsletter($subject, $content));
         Mail::assertSent(Newsletter::class);
-
     }
 }

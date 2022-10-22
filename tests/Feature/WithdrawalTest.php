@@ -18,10 +18,10 @@ class WithdrawalTest extends TestCase
      */
     public function test_withdrawal()
     {
-        $user=User::factory()->create();
-        $user->email_verified_at =Carbon::now()->format('Y-m-d H:i:s');
+        $user = User::factory()->create();
+        $user->email_verified_at = Carbon::now()->format('Y-m-d H:i:s');
         $user->save();
-        $response=$this->actingAs($user)->post(route('user.withdrawal'));
+        $response = $this->actingAs($user)->post(route('user.withdrawal'));
         $response->assertRedirect(route('news.index'));
     }
 }

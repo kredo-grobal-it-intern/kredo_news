@@ -19,9 +19,8 @@ class RestoreMailTest extends TestCase
     public function test_restoreMail()
     {
         Mail::fake();
-        $user=User::factory()->create();
+        $user = User::factory()->create();
         Mail::to($user->email)->send(new RestoreMail($user));
         Mail::assertSent(RestoreMail::class);
-
     }
 }

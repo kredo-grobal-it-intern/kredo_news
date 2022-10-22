@@ -15,14 +15,14 @@ class ReactivateTest extends TestCase
      *
      * @return void
      */
-     public function test_reactivate()
+    public function test_reactivate()
     {
-        $user=User::factory()->create();
+        $user = User::factory()->create();
         $this->actingAs($user)->post(route('user.withdrawal'));
-        $response=$this->get(route('reactivate',['user_id' => $user->id]));
+        $response = $this->get(route('reactivate', ['user_id' => $user->id]));
         $response->assertRedirect(route('login'));
         $response->assertSessionHas([
-                'reactivate' => 'Your account has been restored.'
+            'reactivate' => 'Your account has been restored.'
         ]);
     }
 }
