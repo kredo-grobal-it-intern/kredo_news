@@ -57,10 +57,7 @@ class LoginController extends Controller
             ]);
         }
 
-        if (
-            method_exists($this, 'hasTooManyLoginAttempts') &&
-            $this->hasTooManyLoginAttempts($request)
-        ) {
+        if (method_exists($this, 'hasTooManyLoginAttempts') && $this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
 
             return $this->sendLockoutResponse($request);
@@ -94,10 +91,13 @@ class LoginController extends Controller
         );
 
         throw ValidationException::withMessages([
-            $this->username() => [trans('auth.throttle', [
-                'seconds' => $seconds,
-                'minutes' => ceil($seconds / 60),
-            ])],
+            $this->username() => [trans(
+                'auth.throttle',
+                [
+                    'seconds' => $seconds,
+                    'minutes' => ceil($seconds / 60),
+                ]
+            )],
         ])->status(Response::HTTP_TOO_MANY_REQUESTS);
     }
 
