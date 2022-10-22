@@ -14,7 +14,7 @@ class UpdateApiNameColumnInCategoriesTable extends Migration
     public function up()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->string('api_name')->default('nullable')->change();
+            $table->string('api_name')->nullable()->change();
         });
     }
 
