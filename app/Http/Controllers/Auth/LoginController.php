@@ -56,7 +56,6 @@ class LoginController extends Controller
                 'email' => "User has been deactivated.",
             ]);
         }
-
         if (
             method_exists($this, 'hasTooManyLoginAttempts') &&
             $this->hasTooManyLoginAttempts($request)
@@ -98,7 +97,8 @@ class LoginController extends Controller
                 'seconds' => $seconds,
                 'minutes' => ceil($seconds / 60),
             ])],
-        ])->status(Response::HTTP_TOO_MANY_REQUESTS);
+        ])
+        ->status(Response::HTTP_TOO_MANY_REQUESTS);
     }
 
     protected function attemptLogin(Request $request)
