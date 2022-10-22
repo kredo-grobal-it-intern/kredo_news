@@ -44,7 +44,7 @@ Route::get('/media/{media_id}', [MediaController::class, 'show'])->name('news.me
 Route::get('/reactivate/{user_id}', [UserController::class, 'reactivate'])->name('reactivate');
 
 // Logged in user
-Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'verified'], function () {
+Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['active_user','verified']], function () {
     Route::post('/like', [ReactionController::class, 'like'])->name('like');
     Route::post('/dislike', [ReactionController::class, 'dislike'])->name('dislike');
     Route::post('/follow', [FollowController::class, 'follow'])->name('follow');
@@ -91,8 +91,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], f
 
     Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
         Route::get('list', [UserController::class, 'index'])->name('list');
-        Route::delete('destroy/{user_id}', [UserController::class, 'destroy'])->name('destroy');
-        Route::get('restore/{user_id}', [UserController::class, 'restore'])->name('restore');
+        Route::patch('destroy/{user_id}', [UserController::class, 'block'])->name('block');
+        Route::get('restore/{user_id}', [UserController::class, 'restore'])->name('restore')->withTrashed();
     });
     Route::get('/create', [MailController::class, 'create'])->name('create');
     Route::post('/sendmail', [MailController::class, 'sendMail'])->name('mail');
