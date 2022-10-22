@@ -145,9 +145,9 @@ class UserController extends Controller
         Auth::logout();
         Session::flash('withdrawal', 'Your account has been deleted');
         Mail::to($user->email)->send(new RestoreMail($user));
-        $user->deleted_at= Now();
+        $user->deleted_at = Now();
         $user->save();
-        
+
         return redirect(route('news.index'));
     }
 }
