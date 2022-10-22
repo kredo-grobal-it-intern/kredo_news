@@ -14,9 +14,7 @@ class AddBlockedAtToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            Schema::table('users', function (Blueprint $table) {
-                $table->timestamp('blocked_at')->nullable();
-            });
+            $table->timestamp('blocked_at')->nullable();
         });
     }
 
@@ -28,9 +26,7 @@ class AddBlockedAtToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            Schema::table('users', function (Blueprint $table) {
-                $table->timestamp('blocked_at')->nullable();
-            });
+            $table->timestamp('blocked_at')->nullable();
         });
     }
 }
