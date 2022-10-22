@@ -44,7 +44,7 @@ Route::get('/media/{media_id}', [MediaController::class, 'show'])->name('news.me
 Route::get('/reactivate/{user_id}', [UserController::class, 'reactivate'])->name('reactivate');
 
 // Logged in user
-Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['active_user','verified']], function () {
+Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'verified'], function () {
     Route::post('/like', [ReactionController::class, 'like'])->name('like');
     Route::post('/dislike', [ReactionController::class, 'dislike'])->name('dislike');
     Route::post('/follow', [FollowController::class, 'follow'])->name('follow');
