@@ -131,11 +131,11 @@ class UserController extends Controller
     }
     public function reactivate($user_id)
     {
-        $user=User::withTrashed()->where('id', $user_id)->first();
-        if($user->deleted_at){
+        $user = User::withTrashed()->where('id', $user_id)->first();
+        if ($user->deleted_at) {
             $user->restore();
             Session::flash('reactivate', 'Your account has been restored.');
-        } else{
+        } else {
             Session::flash('reactivate', 'Your account was already restored.');
         }
         return redirect(route('login'));
