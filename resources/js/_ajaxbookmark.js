@@ -17,9 +17,10 @@ $(function() {
         })
         // success
         .done(function(data) {
-            $this.toggleClass('text-success');
-            $this.toggleClass('fa-solid');
-            $this.toggleClass('fa-regular');
+            let bookmarkEl = $(`[data-newsid='${likeNewsId}'].bookmark-toggle`);
+            bookmarkEl.toggleClass('text-success');
+            bookmarkEl.toggleClass('fa-solid');
+            bookmarkEl.toggleClass('fa-regular');
         })
     });
 });
