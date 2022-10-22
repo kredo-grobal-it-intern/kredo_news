@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\ProfileUpdateRequest;
-use App\Models\Country;
-use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Source;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
+use App\Models\Country;
 use App\Mail\RestoreMail;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Request;
 use App\Services\ImageService;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
+use App\Http\Requests\ProfileUpdateRequest;
 
 class UserController extends Controller
 {
@@ -154,5 +155,38 @@ class UserController extends Controller
         $user->save();
 
         return redirect(route('news.index'));
+    }
+    public function changePasswordPost(Request $request)
+    {
+        if (!(Hash::check($request->current_password, Auth::user()->password))) {
+            // The passwords matches
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Your current password does not matches with the password.'
+            ], 500);
+        }
+        if (strcmp($request->current_password, $request->password) == 0) {
+            // Current password and new password same
+            return response()->json([
+                'status' => 'error',
+                'message' => 'New Password cannot be same as your current password.'
+            ], 500);
+        }
+
+        $validatedData = $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        //Change Password
+        $user = Auth::user();
+        $user->password = Hash::make($request->password);
+        if ($user->save()) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Password successfully changed!'
+            ]);
+        }
+        return response()->json();
     }
 }
