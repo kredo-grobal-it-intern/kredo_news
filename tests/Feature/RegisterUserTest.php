@@ -31,12 +31,13 @@ class RegisterUserTest extends TestCase
             'country' => 1,
             'password' => 'password',
             'password_confirmation' => 'password',
+            'deleted_at' => null,
         ]);
         $this->assertAuthenticated();
         $response->assertRedirect(route('verification.notice'));
     }
 
-    public function test_displays_validation_errors_by_email()
+    public function test_displays_validation_errors_by_invalid_email()
     {
         $response = $this->post('/register', [
             'username' => 'test',
@@ -45,6 +46,7 @@ class RegisterUserTest extends TestCase
             'country' => 1,
             'password' => 'password',
             'password_confirmation' => 'password',
+            'deleted_at' => null,
         ]);
 
         $response->assertStatus(302);
