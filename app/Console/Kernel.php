@@ -15,8 +15,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('get:news')->dailyAt('05:00');
         $schedule->command('account:delete')->daily();
-        $schedule->command('api:create')->dailyAt('05:00');
     }
 
     /**
@@ -27,7 +27,6 @@ class Kernel extends ConsoleKernel
     protected function commands()
     {
         $this->load(__DIR__.'/Commands');
-
         require base_path('routes/console.php');
     }
 }

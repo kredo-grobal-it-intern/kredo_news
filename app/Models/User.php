@@ -32,6 +32,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'category_id',
         'avatar',
         'is_admin',
+        'deleted_at',
     ];
 
     /**
@@ -53,6 +54,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    const DELETED_AT = 'blocked_at';
+    protected $dates = ['blocked_at'];
 
     public function isFollowed(){
         return $this->followers->contains(Auth::user());

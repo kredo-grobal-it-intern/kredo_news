@@ -6,6 +6,7 @@
 @section('script_footer')
 <script src="{{ mix('js/_ajaxfollow.js') }}" defer></script>
 <script src="{{ mix('js/_profile_tab.js') }}" defer></script>
+<script src="{{ mix('js/_comment_delete.js') }}" defer></script>
 @endsection
 @section('content')
 <div class="container">
