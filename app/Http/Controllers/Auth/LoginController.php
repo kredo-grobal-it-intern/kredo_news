@@ -47,6 +47,11 @@ class LoginController extends Controller
     {
         $this->validateLogin($request);
 
+        if (!$this->isRegistered($request)) {
+            throw ValidationException::withMessages([
+                'email' => "The email is not registered",
+            ]);
+        }
         if ($this->isBlockUser($request)) {
             throw ValidationException::withMessages([
                 'email' => "User has been blocked by the admin.",
@@ -138,6 +143,15 @@ class LoginController extends Controller
         $email = $request->email;
         $user = User::withTrashed()->where('email', $email)->first();
         if ($user->blocked_at) {
+            return true;
+        }
+        return false;
+    }
+    protected function isRegistered(Request $request)
+    {
+        $email = $request->email;
+        $user = User::withTrashed()->where('email', $email)->first();
+        if ($user) {
             return true;
         }
         return false;
