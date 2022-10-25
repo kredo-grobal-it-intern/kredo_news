@@ -16,7 +16,7 @@ class RegisterUserTest extends TestCase
         $this->seed(CountrySeeder::class);
     }
 
-    public function test_registration_screen_can_be_rendered()
+    public function test_user_can_view_a_registration_form()
     {
         $response = $this->get('/register');
         $response->assertStatus(200);
