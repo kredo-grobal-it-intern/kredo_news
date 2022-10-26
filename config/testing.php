@@ -1,6 +1,6 @@
 <?php
     return [
-        'responses' => [
+            'responses' => [
             'news_api' => getResponseFormat('news-transformer-structure.json')
         ]
         ];
