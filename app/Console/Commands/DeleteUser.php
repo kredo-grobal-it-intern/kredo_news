@@ -38,7 +38,7 @@ class DeleteUser extends Command
      */
     public function handle()
     {
-        $users = User::onlyTrashed()->where(
+        $users = User::where(
             'deleted_at',
             '<=',
             now()->subDays(30)->toDateTimeString()
