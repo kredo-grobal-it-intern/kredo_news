@@ -1,0 +1,16 @@
+{
+    "data": [
+        [
+            "title",
+            "country_id",
+            "category_id",
+            "description",
+            "content",
+            "author",
+            "url",
+            "image",
+            "is_api",
+            "published_at"
+        ]
+    ]
+}
