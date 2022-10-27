@@ -105,12 +105,14 @@ class UserController extends Controller
         $user->favoriteCountries()->attach($favorite_countries);
 
 
-        if ($user->avatar) {
-            ImageService::deleteImage($user->avatar, self::LOCAL_STORAGE_FOLDER);
-            $user->avatar = ImageService::saveImage($request->avatar, self::SIZE, self::LOCAL_STORAGE_FOLDER);
-        } else {
-            $user->avatar = ImageService::saveImage($request->avatar, self::SIZE, self::LOCAL_STORAGE_FOLDER);
-        };
+        if ($request->avatar) {
+            if ($user->avatar) {
+                ImageService::deleteImage($user->avatar, self::LOCAL_STORAGE_FOLDER);
+                $user->avatar = ImageService::saveImage($request->avatar, self::SIZE, self::LOCAL_STORAGE_FOLDER);
+            } else {
+                $user->avatar = ImageService::saveImage($request->avatar, self::SIZE, self::LOCAL_STORAGE_FOLDER);
+            };
+        }
 
         $user->save();
 
