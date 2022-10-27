@@ -106,17 +106,22 @@ class UserController extends Controller
 
 
         if ($request->avatar) {
-            if ($user->avatar) {
-                ImageService::deleteImage($user->avatar, self::LOCAL_STORAGE_FOLDER);
-                $user->avatar = ImageService::saveImage($request->avatar, self::SIZE, self::LOCAL_STORAGE_FOLDER);
-            } else {
-                $user->avatar = ImageService::saveImage($request->avatar, self::SIZE, self::LOCAL_STORAGE_FOLDER);
-            };
+            $this->updateImage($user, $request);
         }
 
         $user->save();
 
         return redirect()->route('user.profile.show', ['user_id' => $user->id]);
+    }
+
+    public function updateImage(User $user, Request $request)
+    {
+        if ($user->avatar) {
+            ImageService::deleteImage($user->avatar, self::LOCAL_STORAGE_FOLDER);
+            $user->avatar = ImageService::saveImage($request->avatar, self::SIZE, self::LOCAL_STORAGE_FOLDER);
+        } else {
+            $user->avatar = ImageService::saveImage($request->avatar, self::SIZE, self::LOCAL_STORAGE_FOLDER);
+        };
     }
 
     public function block($user_id)
