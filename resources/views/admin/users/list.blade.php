@@ -68,22 +68,26 @@
             <td>{{ number_format($user->followings_count) }}</td>
             <td>
                 @if ($user->blocked_at)
-                    <p class="badge bg-danger m-0">Inactive</p>
+                    <p class="badge bg-dark m-0">Blocked</p>
+                @elseif ($user->deleted_at)
+                    <p class="badge bg-danger m-0">Pending</p>
                 @else
-                <p class="badge bg-primary m-0">Active</p>
+                    <p class="badge bg-primary m-0">Active</p>
                 @endif
             </td>
             <td>
                 <div class="dropdown">
+                    @if ($user->deleted_at)
+                    @else
                     <button class="btn btn-sm" data-bs-toggle="dropdown">
                         <i class="fa-solid fa-ellipsis"></i>
                     </button>
-
+                    @endif
                     <div class="dropdown-menu">
                         @if ($user->blocked_at)
                         <a href="{{ route('admin.users.restore', $user->id) }}" class="btn dropdown-item shadow-none text-primary border-0 px-0 ms-3"><i class="fa-solid fa-user"></i>Activate</a>
                         @else
-                        <button class="btn dropdown-item shadow-none text-danger px-0 ms-3" data-bs-toggle="modal" data-bs-target="#deactivate-user-{{ $user->id }}"><i class="fa-solid fa-user-slash"></i>Deactivate</button>
+                        <button class="btn dropdown-item shadow-none text-dark px-0 ms-3" data-bs-toggle="modal" data-bs-target="#deactivate-user-{{ $user->id }}"><i class="fa-solid fa-user-slash"></i>Block</button>
                         @endif
                     </div>
                 </div>
