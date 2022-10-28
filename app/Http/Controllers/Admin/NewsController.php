@@ -126,12 +126,12 @@ class NewsController extends Controller
             ImageService::deleteImage($news->image, self::LOCAL_STORAGE_FOLDER);
             $news->image = ImageService::saveImage($request->image, self::SIZE, self::LOCAL_STORAGE_FOLDER);
         } else {
-            $news->image = $this->saveImage($request->image);
+            $news->image = ImageService::saveImage($request->image, self::SIZE, self::LOCAL_STORAGE_FOLDER);
         };
 
         $news->save();
 
-        return redirect()->route('news.index');
+        return redirect()->route('admin.news.list');
     }
 
     public function display($news_id)
