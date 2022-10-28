@@ -1,6 +1,15 @@
 <div class="col-md-7 order-md-2 col-12">
     <!-- news image -->
-    <a href="{{ route('news.show', $news->id) }}"><img src="{{ asset('images/news/' . $news->image) }}" alt="{{ $news->image }}" class="w-100 top-news-image"></a>
+     @if ($news->image == null)
+        <a href="{{ route('news.show', $news->id) }}"><img src="{{ asset('images/news/no_image.webp') }}" alt="News Image"
+                class="top-news-image w-100"></a>
+    @elseif ($news->is_api)
+        <a href="{{ route('news.show', $news->id) }}"><img src="{{ url($news->image) }}" alt="News Image"
+                class="top-news-image w-100"></a>
+    @else
+        <a href="{{ route('news.show', $news->id) }}"><img src="{{ asset('images/news/' . $news->image) }}"
+                alt="News Image" class="top-news-image w-100"></a>
+    @endif
 </div>
 <!-- top news -->
 <div class="col-md-5 order-md-1 col-12">

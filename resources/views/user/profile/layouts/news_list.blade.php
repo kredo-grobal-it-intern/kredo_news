@@ -1,11 +1,14 @@
 <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-4">
     <div class="card">
-        @if ($news->image)
-            <a href="{{ route('news.show', $news->id) }}"><img src="{{ asset('images/news/' . $news->image) }}"
-                    alt="" class="card-img-top news-list-img"></a>
+        @if ($news->image == null)
+            <a href="{{ route('news.show', $news->id) }}"><img src="{{ asset('images/news/no_image.webp') }}"
+                    alt="News Image" class="card-img-top news-list-img"></a>
+        @elseif ($news->is_api)
+            <a href="{{ route('news.show', $news->id) }}"><img src="{{ url($news->image) }}" alt="News Image"
+                    class="card-img-top news-list-img"></a>
         @else
-            <a href="{{ route('news.show', $news->id) }}"><img src="{{ asset('images/country.webp') }}"
-                    alt="{{ $news->country->name }}" class="card-img-top news-list-img"></a>
+            <a href="{{ route('news.show', $news->id) }}"><img src="{{ asset('images/news/' . $news->image) }}"
+                    alt="News Image" class="card-img-top news-list-img"></a>
         @endif
         <div class="card-body">
             <p class="fw-bold news-list-title"><a href="{{ route('news.show', $news->id) }}">{{ $news->title }}</a></p>

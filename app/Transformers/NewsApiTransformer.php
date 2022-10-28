@@ -15,7 +15,7 @@ class NewsApiTransformer extends TransformerAbstract
     protected array $defaultIncludes = [
         //
     ];
-    
+
     /**
      * List of resources possible to include
      *
@@ -33,7 +33,7 @@ class NewsApiTransformer extends TransformerAbstract
         $this->countries = $countries_data;
         $this->categories = $categories_data;
     }
-    
+
     /**
      * A Fractal transformer.
      *
@@ -54,15 +54,18 @@ class NewsApiTransformer extends TransformerAbstract
 
         return [
             'title' => $data->title,
-            'country_id' => $affiliated_country ? $affiliated_country->id : null,
-            'category_id' => $affiliated_category ? $affiliated_category->id : null,
+            'country_id' => $affiliated_country ? $affiliated_country->id : rand(1,249),
+            'category_id' => $affiliated_category ? $affiliated_category->id : rand(1,6),
             'description' => $data->description,
             'content' => $data->content,
             'author' => $data->creator ? $data->creator[0] : null,
             'url' => $data->link,
             'image' => $data->image_url,
             'is_api' => 1,
-            'published_at' => Carbon::parse($data->pubDate)->format('Y-m-d')
+            'published_at' => Carbon::parse($data->pubDate)->format('Y-m-d'),
+            'post_date_time' => Now(),
+            'status' => 1,
+            'source_id' => rand(1,20)
         ];
     }
 }
