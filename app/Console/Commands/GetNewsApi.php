@@ -70,7 +70,7 @@ class GetNewsApi extends Command
             $nextPage = $api_news->nextPage ?? null;
             $counter++;
 
-            if ($counter == 199) {
+            if ($counter == 1) {
                 $canFetch = false;
             }
         }

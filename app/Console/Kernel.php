@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('get:news')->dailyAt('05:00');
+        $schedule->command('get:news')->everyTenMinutes();
         $schedule->command('account:delete')->daily();
     }
 
