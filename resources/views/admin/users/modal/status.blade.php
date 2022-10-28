@@ -2,11 +2,11 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content border-dange">
         <div class="modal-header border-danger">
-            <h5 class="modal-title text-danger">Deactivate user</h5>
+            <h5 class="modal-title text-danger">Block user</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body border-danger">
-            <p class="fs-5">Are you sure to deactivate this user?</p>
+            <p class="fs-5">Are you sure to block this user?</p>
 
             <div class="d-flex align-items-center justify-content-center">
             @if ($user->avatar)
@@ -25,7 +25,7 @@
             @method('PATCH')
 
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-danger deactivate">Deactivate</button>
+            <button type="submit" class="btn btn-danger deactivate">Block</button>
             </form>
         </div>
         </div>
