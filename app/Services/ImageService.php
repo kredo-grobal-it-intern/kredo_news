@@ -17,8 +17,7 @@ class ImageService
 
         $file_name = time() . '.' . 'webp';
 
-        $path = public_path('storage/'. $storage);
-        // dd($path);
+        $path ='storage/'. $storage;
         $resize_image->save($path . $file_name);
 
         return $file_name;
