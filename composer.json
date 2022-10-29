@@ -20,8 +20,8 @@
         "spatie/laravel-fractal": "^6.0",
         "squizlabs/php_codesniffer": "*",
         "tinymce/tinymce": "^6.2",
-        "ext-gd": "*"
-
+        "ext-gd": "*",
+        "ext-exif": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
