@@ -17,7 +17,7 @@ use App\Http\Requests\ProfileUpdateRequest;
 
 class UserController extends Controller
 {
-    const LOCAL_STORAGE_FOLDER = 'public/images/avatars/';
+    const LOCAL_STORAGE_FOLDER = 'images/avatars/';
     const SIZE = ['height' => 180, 'width' => 180];
 
     public function index()
