@@ -227,5 +227,5 @@ http://127.0.0.1:8000/
 ##### DATABASE: wrrupfcwse47hcii
 ##### PORT: 3306
 
-##### Visit a website
+## Visit a website
 https://kredo-news.herokuapp.com/
