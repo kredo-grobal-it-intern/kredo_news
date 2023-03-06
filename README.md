@@ -207,7 +207,7 @@ $ php artisan serve
 ##### 13. Visit a website
 http://127.0.0.1:8000/
 
-## Set Sequel Ace    
+## Set Sequel Ace (Local)
 <kbd><img width="400" alt="Screenshot 2022-12-14 at 3 12 15 PM" src="https://user-images.githubusercontent.com/119660809/207520076-f413e459-9ab4-44bb-91fe-6a908dc8283d.png"><kbd>
 
 ##### Name: localhost/kredo_news
@@ -218,3 +218,14 @@ http://127.0.0.1:8000/
 ##### PORT: 3306
 
     
+## Set Sequel Ace (Heroku)
+
+##### Name: Heroku/kredo_news
+##### HOST: qz8si2yulh3i7gl3.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
+##### USERNAME: dxnjudo9znxg8q78
+##### PASSWORD: jgxt0qiubdo95mtp  
+##### DATABASE: wrrupfcwse47hcii
+##### PORT: 3306
+
+##### Visit a website
+https://kredo-news.herokuapp.com/
